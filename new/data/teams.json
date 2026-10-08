@@ -1,0 +1,28 @@
+{
+  "teams": [
+    {
+      "id": "",
+      "names": ["札幌大", "札幌大学"],
+      "updated": "",
+      "displayName": "",
+      "color": "",
+      "intro": "",
+      "coach": "",
+      "captain": "",
+      "founded": "",
+      "members": "",
+      "ground": "",
+      "website": "",
+      "sns": {
+        "instagram": "",
+        "x": ""
+      },
+      "players": [
+        { "no": 1, "name": "", "pos": "GK", "grade": "", "school": "" }
+      ],
+      "news": [
+        { "date": "", "title": "", "url": "" }
+      ]
+    }
+  ]
+}
