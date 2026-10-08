@@ -76,6 +76,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 .crest.xs{width:22px;height:22px;font-size:10px;box-shadow:inset 0 0 0 1.5px #ffffff38}
 .crest.sm{width:30px;height:30px;font-size:12px}
 .crest.xl{width:84px;height:84px;font-size:32px;box-shadow:inset 0 0 0 4px #ffffff38}
+.crest.two{font-size:13px;letter-spacing:-.05em}
+.crest.xs.two{font-size:8.5px}
+.crest.sm.two{font-size:10.5px}
+.crest.xl.two{font-size:26px}
 
 /* pickup */
 .main{padding:28px 0 64px}
@@ -88,8 +92,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .label{font-family:var(--num);font-size:12px;font-weight:700;letter-spacing:.14em;background:var(--lime);color:var(--navy);padding:4px 10px;border-radius:4px}
 .label.ghost{background:#ffffff18;color:#d2e0eb;font-family:"Noto Sans JP";letter-spacing:0;font-size:11px}
 .duel{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;margin:auto 0;padding:24px 0}
-.duel .club{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
-.duel .club strong{font-size:clamp(16px,2.2vw,22px);font-weight:900;line-height:1.35;overflow-wrap:anywhere}
+.duel .side-t{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.duel .side-t strong{font-size:clamp(16px,2.2vw,22px);font-weight:900;line-height:1.35;overflow-wrap:anywhere}
 .duel .mid{text-align:center;min-width:130px}
 .duel .score{font-family:var(--num);font-size:64px;font-weight:800;line-height:1}
 .duel .score i{font-style:normal;color:#ffffff50;margin:0 8px}
@@ -142,9 +146,11 @@ button{font:inherit;color:inherit;cursor:pointer}
 .mrow .sc.done{background:var(--navy);color:#fff}
 .mrow .sc.vs{font-size:14px;color:var(--muted);letter-spacing:.1em;background:transparent;border:1px solid var(--line)}
 .mrow .go{color:var(--muted);font-size:14px;text-align:right}
+.mrow .vn{display:none}
 
 /* ranking */
-.side{display:grid;gap:28px;align-content:start}
+.side{display:grid;gap:28px;align-content:start;min-width:0}
+.side>section,.cols>section{min-width:0}
 .tabbar{display:flex;border-bottom:1px solid var(--line)}
 .tabbar button{flex:1;border:0;background:#fff;padding:13px 6px;font-size:13px;font-weight:700;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-1px}
 .tabbar button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--blue)}
@@ -209,8 +215,8 @@ tr.top .pos{border-left-color:var(--blue);color:var(--blue)}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 @media(max-width:920px){
-  .pickup,.cols{grid-template-columns:1fr}
-  .side{grid-template-columns:1fr 1fr;gap:20px}
+  .pickup,.cols{grid-template-columns:minmax(0,1fr)}
+  .side{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
   .nav a{padding:0 9px;font-size:12px}
 }
 @media(max-width:680px){
@@ -230,7 +236,8 @@ tr.top .pos{border-left-color:var(--blue);color:var(--blue)}
   .hero-in{padding:18px}
   .duel{gap:8px;padding:20px 0}
   .crest.xl{width:60px;height:60px;font-size:24px}
-  .duel .club strong{font-size:15px}
+  .crest.xl.two{font-size:19px}
+  .duel .side-t strong{font-size:15px}
   .duel .mid{min-width:86px}
   .duel .score{font-size:44px}
   .duel .vs{font-size:30px}
@@ -238,10 +245,12 @@ tr.top .pos{border-left-color:var(--blue);color:var(--blue)}
   .sechead h2{font-size:19px}
   .mrow{grid-template-columns:42px minmax(0,1fr) 58px minmax(0,1fr);gap:7px;padding:13px 12px}
   .mrow .go{display:none}
+  .mrow .ko small{display:none}
+  .mrow .vn{display:block;grid-column:2/-1;text-align:center;font-size:10.5px;color:var(--muted);margin-top:-3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .tm{font-size:12.5px}
   .tm .crest{display:none}
   .mrow .sc{font-size:20px}
-  .side{grid-template-columns:1fr}
+  .side{grid-template-columns:minmax(0,1fr)}
   .clubs{grid-template-columns:repeat(2,1fr);gap:10px}
   .feat{grid-template-columns:1fr}
   .feat article{display:grid;grid-template-columns:110px 1fr}
@@ -353,15 +362,17 @@ const tkey=t=>typeof t==='string'?t:(t?.id||t?.name||t?.short||'');
 const detail=id=>'../results/?comp='+encodeURIComponent(id);
 const jstToday=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 const pick=(o,ks)=>{for(const k of ks)if(o?.[k]!=null&&o[k]!=='')return o[k];return null};
-const isDone=m=>m.status==='finished'&&m.score;
+const isDone=m=>m.status==='finished'&&m.score&&m.score.home!=null&&m.score.home!==''&&m.score.away!=null&&m.score.away!=='';
 const PARAMS=new URLSearchParams(location.search);
 let DEMO=PARAMS.has('demo');
 
 const PALETTE=['#145ec9','#0f7a6b','#7b3fb5','#c0392b','#1d6fa5','#b35c00','#2e7d32','#ad1457','#37474f','#5d4dbf'];
 function crest(t,size){
   const n=name(t),k=tkey(t);let h=0;for(const ch of k)h=(h*31+ch.charCodeAt(0))>>>0;
-  const ch=[...n.replace(/^(北海道|国立|私立)/,'')][0]||[...n][0]||'?';
-  return '<span class="crest '+(size||'')+'" style="--c:'+PALETTE[h%PALETTE.length]+'" aria-hidden="true">'+esc(ch)+'</span>';
+  let s=n.replace(/^(北海道|国立|私立)/,'').replace(/(大学|大)$/,'');
+  if(![...s].length)s=n.replace(/大学$/,'大');
+  const ch=[...s].slice(0,2).join('')||'?',two=[...ch].length>1;
+  return '<span class="crest '+(size||'')+(two?' two':'')+'" style="--c:'+PALETTE[h%PALETTE.length]+'" aria-hidden="true">'+esc(ch)+'</span>';
 }
 const WD=['日','月','火','水','木','金','土'];
 function fmtDate(s){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');if(!m)return s||'日程未定';return (+m[2])+'/'+(+m[3])+'（'+WD[new Date(+m[1],+m[2]-1,+m[3]).getDay()]+'）'}
@@ -381,7 +392,12 @@ let S={id:'',rounds:[],ri:0};
 function buildRounds(ms){
   const map=new Map();
   for(const m of order(ms)){const k=m.round||'日程';if(!map.has(k))map.set(k,[]);map.get(k).push(m)}
-  return [...map.entries()].map(([label,list])=>({label,list}));
+  const n=l=>{const m=/第\s*(\d+)\s*節/.exec(l);return m?+m[1]:null};
+  return [...map.entries()].map(([label,list])=>({label,list})).sort((a,b)=>{
+    const x=n(a.label),y=n(b.label);
+    if(x!=null&&y!=null)return x-y;
+    return String(a.list[0].date||'').localeCompare(String(b.list[0].date||''));
+  });
 }
 function defaultRound(rounds){
   const today=jstToday();
@@ -443,7 +459,7 @@ function renderSchedule(){
       '<div class="tm h'+(done&&h<a?' lose':'')+'">'+crest(m.home,'sm')+'<span>'+esc(name(m.home))+'</span></div>'+
       (done?'<div class="sc done">'+esc(m.score.home)+' - '+esc(m.score.away)+'</div>':'<div class="sc vs">VS</div>')+
       '<div class="tm'+(done&&a<h?' lose':'')+'">'+crest(m.away,'sm')+'<span>'+esc(name(m.away))+'</span></div>'+
-      '<div class="go">›</div></a>';
+      '<div class="go">›</div>'+(m.venue?'<div class="vn">'+esc(m.venue)+'</div>':'')+'</a>';
   }
   $('matchList').innerHTML=html;
 }
@@ -458,11 +474,11 @@ function renderFeatured(m){
   const lab=done?'LATEST RESULT':d===0?'TODAY':'NEXT MATCH';
   $('feature').innerHTML=
     '<div class="hero-top"><span class="label">'+lab+'</span><span class="label ghost">'+esc(m.round||'大会')+'</span></div>'+
-    '<div class="duel"><div class="club">'+crest(m.home,'xl')+'<strong>'+esc(name(m.home))+'</strong></div>'+
+    '<div class="duel"><div class="side-t">'+crest(m.home,'xl')+'<strong>'+esc(name(m.home))+'</strong></div>'+
       '<div class="mid">'+(done?'<div class="score">'+esc(m.score.home)+'<i>-</i>'+esc(m.score.away)+'</div>':'<div class="vs">VS</div>')+
       '<small>'+esc(fmtDate(m.date))+(m.kickoff?'　'+esc(m.kickoff)+' KO':'')+'</small>'+
       (!done&&d>0?'<div class="cd">あと '+d+' 日</div>':'')+'</div>'+
-      '<div class="club">'+crest(m.away,'xl')+'<strong>'+esc(name(m.away))+'</strong></div></div>'+
+      '<div class="side-t">'+crest(m.away,'xl')+'<strong>'+esc(name(m.away))+'</strong></div></div>'+
     '<div class="hero-foot"><span>📍 '+esc(m.venue||'会場未定')+'</span><a href="'+detail(S.id)+'">'+(done?'試合詳細を見る':'公式記録を見る')+' ↗</a></div>';
 }
 /* topics: auto headlines generated from official data */
@@ -513,12 +529,15 @@ async function load(id){
     document.querySelectorAll('.js-detail').forEach(a=>a.href=detail(id));
     $('updated').textContent=(d.competition?.name||id)+'　最終更新 '+(d.updatedAt||'不明');
     const ms=d.matches||[];
-    S.rounds=buildRounds(ms);S.ri=defaultRound(S.rounds);
-    setRound(S.ri);
+    S.rounds=buildRounds(ms);
     const today=jstToday(),o=order(ms);
     const up=o.find(m=>!isDone(m)&&(m.date||'9999')>=today),last=o.filter(isDone).pop();
     const lastD=last?daysUntil(last.date):null;
-    renderFeatured(last&&lastD!=null&&lastD>=-2?last:(up||last||o[0]));
+    const feat=last&&lastD!=null&&lastD>=-2?last:(up||last||o[0]);
+    const fi=S.rounds.findIndex(r=>r.list.includes(feat));
+    S.ri=fi>=0?fi:defaultRound(S.rounds);
+    setRound(S.ri);
+    renderFeatured(feat);
     renderTopics(ms,d.scorers,d.competition?.name||'');
     renderTable(d.groups);renderScorers(d.scorers);renderClubs(collectTeams(ms),id);
   }catch(e){
@@ -545,7 +564,8 @@ links.forEach(a=>{const s=document.querySelector(a.getAttribute('href'));if(s)sp
   $('demo').hidden=!DEMO;
   const cs=d.competitions||[];
   if(!cs.length){$('comptabs').innerHTML='<button>大会が登録されていません</button>';return}
-  $('comptabs').innerHTML=cs.map(c=>'<button role="tab" data-id="'+esc(c.id)+'">'+esc(c.name)+'</button>').join('');
+  const short=n=>String(n||'').replace(/^\d{4}年度\s*/,'').replace(/第\d+回\s*/,'').replace(/^北海道学生サッカー/,'').replace(/^北海道/,'').trim()||n;
+  $('comptabs').innerHTML=cs.map(c=>'<button role="tab" data-id="'+esc(c.id)+'" title="'+esc(c.name)+'">'+esc(short(c.name))+'</button>').join('');
   let saved=PARAMS.get('comp');if(!saved){try{saved=localStorage.getItem('jufa_comp')}catch(_){}}
   const first=cs.some(c=>c.id===saved)?saved:cs[0].id;
   $('comptabs').addEventListener('click',e=>{
