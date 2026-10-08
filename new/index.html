@@ -212,6 +212,10 @@ tr.top .pos{border-left-color:var(--blue);color:var(--blue)}
 
 .sk{display:block;height:14px;margin:14px 18px;border-radius:6px;background:linear-gradient(90deg,#e9eef3 25%,#f5f8fa 50%,#e9eef3 75%);background-size:200% 100%;animation:sh 1.3s infinite}
 @keyframes sh{to{background-position:-200% 0}}
+/* Ver.4: 固定ヘッダーとページ内リンクの調整 */
+html{scroll-padding-top:0}
+#schedule,#ranking,#clubs,#news{scroll-margin-top:118px}
+@media(max-width:680px){#schedule,#ranking,#clubs,#news{scroll-margin-top:110px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 @media(max-width:920px){
@@ -360,6 +364,8 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const name=t=>typeof t==='string'?t:(t?.short||t?.name||'未定');
 const tkey=t=>typeof t==='string'?t:(t?.id||t?.name||t?.short||'');
 const detail=id=>'../results/?comp='+encodeURIComponent(id);
+/* Ver.4: 大学・チーム専用ページへのリンク */
+const teamUrl=(comp,t)=>DEMO?'#clubs':'./team.html?comp='+encodeURIComponent(comp)+'&team='+encodeURIComponent(tkey(t));
 const jstToday=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 const pick=(o,ks)=>{for(const k of ks)if(o?.[k]!=null&&o[k]!=='')return o[k];return null};
 const isDone=m=>m.status==='finished'&&m.score&&m.score.home!=null&&m.score.home!==''&&m.score.away!=null&&m.score.away!=='';
@@ -386,7 +392,12 @@ async function json(file){
 }
 const order=ms=>[...ms].sort((a,b)=>String(a.date||'').localeCompare(String(b.date||''))||String(a.kickoff||'').localeCompare(String(b.kickoff||'')));
 
-let S={id:'',rounds:[],ri:0};
+let S={id:'',rounds:[],ri:0,feat:null};
+function isSameMatch(a,b){
+  if(!a||!b)return false;
+  if(a.matchId&&b.matchId)return a.matchId===b.matchId;
+  return a.date===b.date&&a.kickoff===b.kickoff&&tkey(a.home)===tkey(b.home)&&tkey(a.away)===tkey(b.away);
+}
 
 /* rounds: group matches by m.round, ordered by first date */
 function buildRounds(ms){
@@ -412,9 +423,9 @@ function defaultRound(rounds){
 /* club bar & clubs */
 function collectTeams(ms){const map=new Map();for(const m of ms)for(const t of [m.home,m.away]){const k=tkey(t);if(k&&name(t)!=='未定'&&!map.has(k))map.set(k,t)}return [...map.values()].sort((a,b)=>name(a).localeCompare(name(b),'ja'))}
 function renderClubs(teams,id){
-  $('clubbar').innerHTML='<small>CLUBS</small>'+teams.map(t=>'<a href="'+detail(id)+'" title="'+esc(name(t))+'">'+crest(t,'sm')+'</a>').join('');
+  $('clubbar').innerHTML='<small>CLUBS</small>'+teams.map(t=>'<a href="'+esc(teamUrl(id,t))+'" title="'+esc(name(t))+'">'+crest(t,'sm')+'</a>').join('');
   $('clubCount').textContent=teams.length?teams.length+'クラブ':'';
-  $('clubList').innerHTML=teams.length?teams.map(t=>'<a class="club" href="'+detail(id)+'">'+crest(t)+'<strong>'+esc(name(t))+'</strong><small>'+esc((typeof t==='object'&&t.univ&&t.univ!==name(t))?t.univ:'クラブページ準備中')+'</small></a>').join(''):'<p class="empty">クラブ情報はありません。</p>';
+  $('clubList').innerHTML=teams.length?teams.map(t=>'<a class="club" href="'+esc(teamUrl(id,t))+'">'+crest(t)+'<strong>'+esc(name(t))+'</strong><small>'+esc((typeof t==='object'&&t.univ&&t.univ!==name(t))?t.univ:'チーム情報を見る')+' ›</small></a>').join(''):'<p class="empty">クラブ情報はありません。</p>';
 }
 
 /* ticker */
@@ -430,7 +441,9 @@ function renderTicker(){
   $('prevR').disabled=S.ri<=0;$('nextR').disabled=S.ri>=S.rounds.length-1;
   $('tickerTitle').textContent=r?'試合':'試合';
   if(!r){$('ticker').innerHTML='<p class="empty">試合データがありません。</p>';return}
-  $('ticker').innerHTML=r.list.map(m=>{
+  const list=r.list.filter(m=>!isSameMatch(m,S.feat));
+  if(!list.length){$('ticker').innerHTML='<p class="empty">この節のほかの試合はありません。</p>';return}
+  $('ticker').innerHTML=list.map(m=>{
     const done=isDone(m),h=+m.score?.home,a=+m.score?.away;
     return '<a class="tcard" href="'+detail(S.id)+'"><div class="meta"><span>'+esc(fmtDate(m.date))+'</span>'+stBadge(m)+'</div>'+
       '<div class="trow'+(done&&h<a?' lose':'')+'">'+crest(m.home,'xs')+'<span>'+esc(name(m.home))+'</span><b>'+(done?esc(m.score.home):'')+'</b></div>'+
@@ -534,6 +547,7 @@ async function load(id){
     const up=o.find(m=>!isDone(m)&&(m.date||'9999')>=today),last=o.filter(isDone).pop();
     const lastD=last?daysUntil(last.date):null;
     const feat=last&&lastD!=null&&lastD>=-2?last:(up||last||o[0]);
+    S.feat=feat;
     const fi=S.rounds.findIndex(r=>r.list.includes(feat));
     S.ri=fi>=0?fi:defaultRound(S.rounds);
     setRound(S.ri);
