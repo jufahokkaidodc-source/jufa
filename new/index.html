@@ -2,306 +2,43 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>北海道学生サッカー連盟 | 新サイト試験版</title>
-  <meta name="robots" content="noindex,nofollow">
-  <style>
-    :root {
-      --navy: #091b34;
-      --blue: #2569e8;
-      --muted: #718197;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: #f2f5fa;
-      color: #152a43;
-      font-family: system-ui, 'Noto Sans JP', sans-serif;
-    }
-    a { color: inherit; text-decoration: none; }
-    header {
-      background: var(--navy);
-      color: #fff;
-      padding: 18px 5%;
-    }
-    header strong { font-size: 18px; }
-    header small {
-      display: block;
-      color: #a5bad5;
-      font-size: 10px;
-      letter-spacing: .15em;
-    }
-    .hero {
-      background: linear-gradient(120deg,#071b34,#19529c);
-      color: #fff;
-      padding: 64px 5%;
-    }
-    .hero h1 {
-      font-size: clamp(30px,5vw,56px);
-      margin: 12px 0;
-    }
-    .hero p { color: #c4d7f3; }
-    .wrap { max-width: 1100px; margin: auto; }
-    .grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 20px;
-      padding: 25px 18px;
-    }
-    .panel {
-      background: white;
-      padding: 23px;
-      border-radius: 12px;
-      box-shadow: 0 6px 22px #142d4810;
-    }
-    .wide { grid-column: 1/-1; }
-    h2 { font-size: 19px; margin: 0 0 18px; }
-    .bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    select {
-      padding: 10px;
-      border: 1px solid #d1dbe7;
-      border-radius: 7px;
-      max-width: 100%;
-    }
-    .match {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 10px;
-      padding: 14px 0;
-      border-bottom: 1px solid #e7edf5;
-      align-items: center;
-    }
-    .match .right { text-align: right; }
-    .score { font-size: 20px; font-weight: 900; }
-    .meta {
-      grid-column: 1/-1;
-      font-size: 11px;
-      color: var(--muted);
-    }
-    .link {
-      color: var(--blue);
-      font-weight: 700;
-      font-size: 13px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-    td, th {
-      padding: 12px 5px;
-      border-bottom: 1px solid #e8eef6;
-      text-align: right;
-    }
-    td:first-child, th:first-child { text-align: left; }
-    th { color: var(--muted); font-size: 11px; }
-    .muted { color: var(--muted); font-size: 13px; }
-    footer {
-      background: var(--navy);
-      color: #a5bad5;
-      padding: 25px 5%;
-      font-size: 12px;
-    }
-    @media (max-width: 740px) {
-      .grid { grid-template-columns: 1fr; }
-      .hero { padding: 45px 5%; }
-      .panel { padding: 18px; }
-    }
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#071a2c">
+<title>北海道学生サッカー連盟 | 大学サッカーの今を届ける</title>
+<style>
+:root{--ink:#102235;--navy:#071a2c;--blue:#125bea;--mint:#c7f36b;--muted:#64748b;--line:#e3e9f0;--bg:#f3f6fa}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif}a{text-decoration:none;color:inherit}button,select{font:inherit}button{cursor:pointer}.wrap{max-width:1220px;margin:auto;padding-left:22px;padding-right:22px}.top{background:#04121f;color:#b8c8d9;font-size:11px;padding:8px 0;letter-spacing:.1em}.top .wrap{display:flex;justify-content:space-between}.header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:5;border-bottom:1px solid #244056}.head-inner{min-height:72px;display:flex;align-items:center;gap:25px}.logo{display:flex;align-items:center;gap:12px;flex-shrink:0}.crest{height:44px;width:44px;border:2px solid #c7f36b;border-radius:12px;display:grid;place-items:center;color:var(--mint);font-weight:900;font-size:24px;letter-spacing:-.1em}.brand{font-size:16px;font-weight:900;line-height:1.3}.brand small{display:block;font-size:9px;letter-spacing:.08em;color:#a7bbce;font-weight:500}.nav{display:flex;gap:22px;margin-left:auto;font-size:12px;font-weight:750}.nav a:hover{color:var(--mint)}.mobile-menu{display:none;border:1px solid #3c5368;border-radius:8px;background:none;color:white;padding:9px}.hero{background:radial-gradient(circle at 85% 30%,#235d77 0,transparent 30%),linear-gradient(120deg,#071a2c,#113d60 70%,#08283c);color:white;overflow:hidden}.hero-inner{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;min-height:360px;gap:20px}.eyebrow{display:inline-block;background:var(--mint);color:#092137;font-size:11px;font-weight:900;padding:7px 11px;letter-spacing:.13em}.hero h1{font-size:clamp(32px,4.4vw,59px);line-height:1.26;letter-spacing:-.06em;margin:18px 0}.hero h1 em{font-style:normal;color:var(--mint)}.hero p{color:#d2e0ec;font-size:14px;line-height:1.9}.hero-art{position:relative;height:290px;display:grid;place-items:center}.pitch{width:270px;height:270px;border:2px solid #ffffff28;border-radius:50%;position:relative;transform:rotate(-16deg)}.pitch:before{content:"";position:absolute;inset:36px;border:2px solid #ffffff2c;border-radius:50%}.pitch:after{content:"HOKKAIDO\A FOOTBALL";white-space:pre;position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-weight:950;font-size:38px;line-height:1.2;letter-spacing:-.07em;color:#ffffff25}.hero-number{position:absolute;right:0;bottom:10px;font-size:100px;font-weight:1000;color:#ffffff12}.ticker{background:#fff;border-bottom:1px solid var(--line)}.ticker-inner{display:flex;align-items:center;gap:15px;min-height:64px}.ticker-label{background:var(--navy);color:#fff;padding:10px 12px;font-size:10px;font-weight:900;white-space:nowrap}.ticker-content{font-size:13px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ticker-content a{font-weight:750}.ticker-content span{color:var(--muted);margin-right:12px}.main{padding-top:34px;padding-bottom:70px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:17px}.section-head h2{margin:0;font-size:24px;letter-spacing:-.04em}.section-head h2 small{display:block;color:var(--blue);font-size:10px;letter-spacing:.14em;margin-bottom:5px}.more{color:var(--blue);font-size:12px;font-weight:800;white-space:nowrap}.layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,1fr);gap:24px}.panel{background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden}.panel-pad{padding:20px}.select-wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px}.select-wrap label{font-size:12px;font-weight:800}.select-wrap select{flex:1;min-width:220px;max-width:100%;padding:12px 13px;border:1px solid #cad4e1;border-radius:8px;background:white;color:var(--ink)}.updated{font-size:11px;color:var(--muted);margin:0 0 16px}.match{display:grid;grid-template-columns:minmax(0,1fr) 90px minmax(0,1fr);gap:8px;align-items:center;padding:17px 15px;border-top:1px solid var(--line);transition:background .2s}.match:hover,.team-row:hover{background:#f5f9ff}.team-name{font-size:13px;font-weight:850}.team-name.right{text-align:right}.score{text-align:center;font-size:21px;font-weight:950;font-variant-numeric:tabular-nums}.match-meta{grid-column:1/-1;color:var(--muted);font-size:11px;text-align:center}.pill{display:inline-block;border-radius:30px;background:#eaf2ff;color:#1655a7;padding:4px 8px;font-size:10px;font-weight:800}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:12px}th{color:#758599;background:#f8fafc;font-size:10px;font-weight:750}th,td{padding:13px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}th:first-child,td:first-child{text-align:left}.rank{font-weight:900;color:#1a5ddb}.team{font-weight:750}.subtle{font-size:11px;color:var(--muted)}.mini{padding:0 16px}.mini-row{display:flex;align-items:center;gap:10px;border-top:1px solid var(--line);padding:14px 0;font-size:12px}.mini-row .num{color:#155ae4;font-size:18px;font-weight:950;width:25px}.mini-row .person{flex:1;min-width:0;font-weight:800}.mini-row .person small{display:block;font-size:10px;font-weight:400;color:var(--muted);margin-top:3px}.mini-row .count{font-size:17px;font-weight:950}.block{margin-top:40px}.teams{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.team-row{background:#fff;border:1px solid var(--line);border-radius:10px;padding:17px;min-height:95px;display:flex;flex-direction:column;justify-content:space-between}.team-row strong{font-size:13px}.team-row span{font-size:11px;color:var(--muted)}.placeholder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.placeholder{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}.placeholder-art{height:135px;background:linear-gradient(135deg,#e6edf5,#d6e2ef);display:grid;place-items:center;color:#61768e;font-size:12px;font-weight:850;letter-spacing:.06em}.placeholder-body{padding:16px}.placeholder-body strong{display:block;font-size:14px;margin-bottom:8px}.placeholder-body p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}.sponsor{border:1px dashed #b5c2d0;border-radius:12px;padding:25px;text-align:center;color:#718196;font-size:12px;background:#fff}.footer{background:#061625;color:#c1d1df;padding:40px 0}.footer strong{color:white}.footer p{font-size:12px;line-height:1.9}.footer a{text-decoration:underline}.loading{padding:18px;color:var(--muted);font-size:13px}.status{color:#9ab0c4;font-size:11px}.empty{color:var(--muted);padding:15px;font-size:12px}.note{font-size:11px;color:var(--muted);margin-top:12px}
+@media(max-width:900px){.nav{gap:12px}.hero-inner{grid-template-columns:1fr .45fr}.hero-art{height:230px}.pitch{height:180px;width:180px}.teams{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.top{display:none}.head-inner{min-height:64px}.brand{font-size:13px}.brand small{font-size:8px}.crest{height:38px;width:38px;font-size:20px}.mobile-menu{display:block;margin-left:auto}.nav{display:none;position:absolute;top:64px;left:0;right:0;background:#0b2439;padding:20px 24px;flex-direction:column;gap:18px}.nav.open{display:flex}.hero-inner{grid-template-columns:1fr;min-height:280px}.hero-art{display:none}.hero h1{font-size:36px}.hero p{font-size:12px}.ticker-label{padding:8px}.ticker-content{font-size:11px}.main{padding-top:25px}.layout{grid-template-columns:1fr}.section-head h2{font-size:21px}.panel-pad{padding:16px}.match{padding:16px 11px;grid-template-columns:minmax(0,1fr) 75px minmax(0,1fr)}.team-name{font-size:12px}.score{font-size:18px}.placeholder-grid{grid-template-columns:1fr}.placeholder-art{height:95px}.teams{grid-template-columns:repeat(2,minmax(0,1fr))}.block{margin-top:32px}}
+</style>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <strong>北海道学生サッカー連盟</strong>
-      <small>HOKKAIDO UNIVERSITY FOOTBALL LEAGUE</small>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="wrap">
-      <small>NEW OFFICIAL SITE / PREVIEW</small>
-      <h1>北海道の大学サッカーを、<br>もっと熱く。</h1>
-      <p>試合を知る。選手を知る。チームを応援する。</p>
-    </div>
-  </section>
-
-  <main class="wrap grid">
-    <section class="panel wide">
-      <div class="bar">
-        <h2>大会を選択</h2>
-        <select id="comp" aria-label="大会を選択">
-          <option>読み込み中…</option>
-        </select>
-      </div>
-      <p id="updated" class="muted">
-        既存の公式公開JSONを読み込みます。
-      </p>
-    </section>
-
-    <section class="panel">
-      <div class="bar">
-        <h2>MATCH CENTER</h2>
-        <a class="link" id="resultLink" href="../results/">
-          試合一覧 →
-        </a>
-      </div>
-      <div id="matches">読み込み中…</div>
-    </section>
-
-    <section class="panel">
-      <div class="bar">
-        <h2>LEAGUE STANDINGS</h2>
-        <a class="link" id="standLink" href="../results/">
-          順位表 →
-        </a>
-      </div>
-      <div id="standings"></div>
-    </section>
-
-    <section class="panel wide">
-      <div class="bar">
-        <h2>TOP SCORERS</h2>
-        <a class="link" id="scorerLink" href="../results/">
-          得点ランキング →
-        </a>
-      </div>
-      <div id="scorers"></div>
-    </section>
-
-    <section class="panel wide">
-      <h2>このページについて</h2>
-      <p class="muted">
-        公式公開JSONを参照する新サイトの試験版です。
-        既存の大会運営機能は変更していません。
-        ニュース・写真・スポンサー表示などは今後の実装対象です。
-      </p>
-      <a class="link" href="../">既存サイトへ戻る →</a>
-    </section>
-  </main>
-
-  <footer>北海道学生サッカー連盟・新サイト試験版</footer>
-
-  <script>
-    const $ = id => document.getElementById(id);
-
-    const esc = s => String(s ?? '').replace(
-      /[&<>"']/g,
-      c => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#39;'
-      }[c])
-    );
-
-    async function get(n) {
-      const r = await fetch('../results/data/' + n, {
-        cache: 'no-cache'
-      });
-      if (!r.ok) throw Error('HTTP ' + r.status);
-      return r.json();
-    }
-
-    async function load(id) {
-      try {
-        const d = await get(encodeURIComponent(id) + '.json');
-        if (!d.ok) throw Error('データがありません');
-
-        $('updated').textContent =
-          '公式公開データ更新：' + (d.updatedAt || '不明');
-
-        const url = '../results/?comp=' + encodeURIComponent(id);
-
-        ['resultLink', 'standLink', 'scorerLink'].forEach(
-          k => $(k).href = url
-        );
-
-        const matches = [...(d.matches || [])].sort(
-          (a, b) => (b.date || '').localeCompare(a.date || '')
-        );
-
-        $('matches').innerHTML = matches.slice(0, 6).map(m =>
-          '<a class="match" href="' + url +
-          '&match=' + encodeURIComponent(m.matchId) + '">' +
-          '<span>' + esc(m.home?.short || '未定') + '</span>' +
-          '<span class="score">' +
-          (m.status === 'finished' && m.score
-            ? esc(m.score.home) + ' - ' + esc(m.score.away)
-            : 'VS') +
-          '</span>' +
-          '<span class="right">' +
-          esc(m.away?.short || '未定') +
-          '</span>' +
-          '<span class="meta">' +
-          esc(m.round) + ' ・ ' +
-          esc(m.date) + ' ' +
-          esc(m.kickoff) + ' ・ ' +
-          esc(m.venue) +
-          '</span></a>'
-        ).join('') || '<p class="muted">試合データなし</p>';
-
-        const table = (d.groups || []).flatMap(g => g.table || []);
-
-        $('standings').innerHTML = table.length
-          ? '<table><tr><th>順位・チーム</th>' +
-            '<th>試合</th><th>勝点</th></tr>' +
-            table.slice(0, 10).map(t =>
-              '<tr><td>' + esc(t.rank) + '　' +
-              esc(t.team?.short) + '</td><td>' +
-              esc(t.played) + '</td><td><b>' +
-              esc(t.points) + '</b></td></tr>'
-            ).join('') + '</table>'
-          : '<p class="muted">この大会には順位表がありません</p>';
-
-        const scorers = d.scorers || [];
-
-        $('scorers').innerHTML = scorers.length
-          ? '<table><tr><th>順位・選手</th>' +
-            '<th>所属</th><th>得点</th></tr>' +
-            scorers.slice(0, 10).map(p =>
-              '<tr><td>' + esc(p.rank) + '　' +
-              esc(p.name) + '</td><td>' +
-              esc(p.team?.short) + '</td><td><b>' +
-              esc(p.count) + '</b></td></tr>'
-            ).join('') + '</table>'
-          : '<p class="muted">得点記録なし</p>';
-
-      } catch (e) {
-        $('matches').textContent =
-          '読み込みエラー：' + e.message;
-      }
-    }
-
-    (async () => {
-      try {
-        const d = await get('competitions.json');
-        const c = d.competitions || [];
-
-        $('comp').innerHTML = c.map(x =>
-          '<option value="' + esc(x.id) + '">' +
-          esc(x.name) + '</option>'
-        ).join('');
-
-        $('comp').addEventListener(
-          'change',
-          e => load(e.target.value)
-        );
-
-        if (c.length) load(c[0].id);
-
-      } catch (e) {
-        $('matches').textContent =
-          '読み込みエラー：' + e.message;
-      }
-    })();
-  </script>
-</body>
-</html>
+<div class="top"><div class="wrap"><span>HOKKAIDO UNIVERSITY FOOTBALL</span><span>OFFICIAL WEBSITE / PREVIEW VERSION 2</span></div></div>
+<header class="header"><div class="wrap head-inner"><a href="./" class="logo"><span class="crest">H</span><span class="brand">北海道学生サッカー連盟<small>HOKKAIDO UNIVERSITY FOOTBALL</small></span></a><button id="menuBtn" class="mobile-menu" aria-expanded="false" aria-controls="nav">☰ メニュー</button><nav id="nav" class="nav"><a href="#matches">試合・結果</a><a href="#standings">順位表</a><a href="#scorers">個人成績</a><a href="#teams">大学・チーム</a><a href="#news">ニュース</a><a href="../results/">大会データ ↗</a></nav></div></header>
+<section class="hero"><div class="wrap hero-inner"><div><span class="eyebrow">2026 SEASON · HOKKAIDO</span><h1>北海道の大学サッカーを、<br><em>もっと熱く。</em></h1><p>試合の熱狂も、選手の挑戦も。<br>北海道の大学サッカーをひとつにつなぐ公式プラットフォーム。</p></div><div class="hero-art" aria-hidden="true"><div class="pitch"></div><span class="hero-number">26</span></div></div></section>
+<div class="ticker"><div class="wrap ticker-inner"><span class="ticker-label">LATEST MATCH</span><div id="ticker" class="ticker-content">公式試合データを読み込み中…</div><a href="#matches" class="more">もっと見る →</a></div></div>
+<main class="wrap main"><div class="select-wrap"><label for="comp">大会を選ぶ</label><select id="comp"><option>大会一覧を読み込み中…</option></select></div><p class="updated" id="updated">公開済みの公式データと連携しています。</p>
+<div class="layout"><section id="matches"><div class="section-head"><h2><small>MATCH CENTER</small>試合日程・結果</h2><a class="more" id="matchLink" href="../results/">すべて見る ↗</a></div><div class="panel" id="matchList"><p class="loading">読み込み中…</p></div><p class="note">直近の試合と今後の予定を表示します。詳細は公式大会データに移動します。</p></section><section id="standings"><div class="section-head"><h2><small>LEAGUE TABLE</small>順位表</h2><a class="more" id="standLink" href="../results/">詳細 ↗</a></div><div class="panel table-wrap" id="standingsList"><p class="loading">読み込み中…</p></div></section></div>
+<div class="layout block"><section id="scorers"><div class="section-head"><h2><small>PLAYER RANKING</small>得点ランキング</h2><a class="more" id="scorerLink" href="../results/">すべて見る ↗</a></div><div class="panel mini" id="scorerList"><p class="loading">読み込み中…</p></div></section><section><div class="section-head"><h2><small>TOURNAMENT</small>大会情報</h2></div><div class="panel panel-pad"><strong id="competitionName">大会を読み込み中…</strong><p class="subtle" id="competitionFormat"></p><p class="subtle">公式大会データから、試合日程・順位・個人成績を確認できます。</p><a class="more" id="competitionLink" href="../results/">大会詳細を見る ↗</a></div></section></div>
+<section class="block" id="teams"><div class="section-head"><h2><small>UNIVERSITY & TEAMS</small>参加大学・チーム</h2><span class="subtle">選択中の大会に出場するチーム</span></div><div class="teams" id="teamList"><p class="loading">読み込み中…</p></div><p class="note">チーム名から、その大会の公式結果ページを開きます。チーム専用ページは今後実装予定です。</p></section>
+<section class="block" id="news"><div class="section-head"><h2><small>STORIES & UPDATES</small>ニュース・特集</h2><span class="subtle">コンテンツ準備中</span></div><div class="placeholder-grid"><article class="placeholder"><div class="placeholder-art">MATCH REPORT</div><div class="placeholder-body"><strong>試合レポート</strong><p>公式記事の公開に合わせて、試合の見どころや振り返りを掲載します。</p></div></article><article class="placeholder"><div class="placeholder-art">PLAYER STORY</div><div class="placeholder-body"><strong>選手・チーム特集</strong><p>大学・選手の活動を伝えるコンテンツを掲載予定です。</p></div></article><article class="placeholder"><div class="placeholder-art">INFORMATION</div><div class="placeholder-body"><strong>連盟からのお知らせ</strong><p>大会案内や連盟からの公式発表を掲載予定です。</p></div></article></div></section>
+<section class="block"><div class="section-head"><h2><small>PARTNERS</small>パートナー・スポンサー</h2></div><div class="sponsor">スポンサー掲載スペース（準備中）<br><span class="subtle">正式な掲載情報が登録されるまで広告は表示しません。</span></div></section></main>
+<footer class="footer"><div class="wrap"><strong>北海道学生サッカー連盟</strong><p>北海道の大学サッカーの公式情報を発信します。<br><a href="../">現行公式サイト</a>　/　<a href="../results/">大会結果・公式記録</a></p><span class="status">新サイト Ver.2 試験公開中。既存の運営システムには変更を加えていません。</span></div></footer>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const txt=(obj,...keys)=>{for(const k of keys){const v=obj?.[k];if(v!==undefined&&v!==null&&typeof v!=='object'&&String(v).trim())return String(v)}return ''};
+const teamName=t=>typeof t==='string'?t:txt(t,'short','name','univ')||'未定';
+const teamId=t=>typeof t==='object'?txt(t,'id'):'';
+const urlFor=id=>'../results/?comp='+encodeURIComponent(id);
+async function getData(file){const r=await fetch('../results/data/'+file,{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);return r.json()}
+function score(m){return m.status==='finished'&&m.score?esc(m.score.home)+' – '+esc(m.score.away):'<span class="pill">'+(m.status==='finished'?'結果未登録':'予定')+'</span>'}
+function renderMatches(matches,id){const sorted=[...matches].sort((a,b)=>(a.date||'').localeCompare(b.date||'')||(a.kickoff||'').localeCompare(b.kickoff||''));const today=new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Tokyo'});const upcoming=sorted.filter(m=>(m.date||'')>=today&&m.status!=='finished');const past=sorted.filter(m=>m.status==='finished'&&(m.date||'')<=today).reverse();const chosen=[...upcoming.slice(0,3),...past.slice(0,5)].slice(0,7);if(!chosen.length){$('matchList').innerHTML='<p class="empty">この大会の試合データはありません。</p>';return}const link=urlFor(id);$('matchList').innerHTML=chosen.map(m=>'<a class="match" href="'+link+'"><span class="team-name">'+esc(teamName(m.home))+'</span><span class="score">'+score(m)+'</span><span class="team-name right">'+esc(teamName(m.away))+'</span><span class="match-meta">'+esc(m.round)+'　'+esc(m.date)+' '+esc(m.kickoff)+'　'+esc(m.venue)+'</span></a>').join('');const top=chosen[0];$('ticker').innerHTML='<span>'+esc(top.date)+'　'+esc(top.round)+'</span><a href="'+link+'">'+esc(teamName(top.home))+'　'+(top.score&&top.status==='finished'?esc(top.score.home)+' - '+esc(top.score.away):'VS')+'　'+esc(teamName(top.away))+'</a>'}
+function renderTable(groups){const rows=(groups||[]).flatMap(g=>g.table||[]);$('standingsList').innerHTML=rows.length?'<table><thead><tr><th>順位・チーム</th><th>試合</th><th>勝点</th></tr></thead><tbody>'+rows.slice(0,12).map(t=>'<tr><td><span class="rank">'+esc(t.rank)+'</span>　<span class="team">'+esc(teamName(t.team))+'</span></td><td>'+esc(t.played)+'</td><td><strong>'+esc(t.points)+'</strong></td></tr>').join('')+'</tbody></table>':'<p class="empty">この大会には順位表がありません。</p>'}
+function renderScorers(scorers){$('scorerList').innerHTML=scorers?.length?scorers.slice(0,8).map(p=>'<div class="mini-row"><span class="num">'+esc(p.rank)+'</span><span class="person">'+esc(p.name)+'<small>'+esc(teamName(p.team))+'</small></span><span class="count">'+esc(p.count)+' <span class="subtle">得点</span></span></div>').join(''):'<p class="empty">得点ランキングはまだありません。</p>'}
+function renderTeams(data,id){const all=new Map();for(const m of data.matches||[]){for(const t of [m.home,m.away]){const key=teamId(t)||teamName(t);if(key&&key!=='未定'&&!all.has(key))all.set(key,t)}}const teams=[...all.values()].sort((a,b)=>teamName(a).localeCompare(teamName(b),'ja'));$('teamList').innerHTML=teams.length?teams.map(t=>'<a class="team-row" href="'+urlFor(id)+'"><strong>'+esc(teamName(t))+'</strong><span>'+esc(txt(t,'univ','name')||'大会結果を見る')+' ↗</span></a>').join(''):'<p class="empty">参加チームのデータがありません。</p>'}
+async function load(id){for(const el of ['matchList','standingsList','scorerList','teamList'])$(el).innerHTML='<p class="loading">読み込み中…</p>';try{const d=await getData(encodeURIComponent(id)+'.json');if(!d.ok)throw Error('大会データが取得できません');const u=urlFor(id);for(const k of ['matchLink','standLink','scorerLink','competitionLink'])$(k).href=u;$('updated').textContent='公式データ更新：'+(d.updatedAt||'不明');$('competitionName').textContent=d.competition?.name||id;$('competitionFormat').textContent=d.competition?.format||'';renderMatches(d.matches||[],id);renderTable(d.groups);renderScorers(d.scorers);renderTeams(d,id)}catch(e){$('matchList').innerHTML='<p class="empty">データの読み込みに失敗しました：'+esc(e.message)+'</p>';for(const k of ['standingsList','scorerList','teamList'])$(k).innerHTML='<p class="empty">データを表示できません。</p>'}}
+$('menuBtn').addEventListener('click',()=>{const open=$('nav').classList.toggle('open');$('menuBtn').setAttribute('aria-expanded',String(open))});$('nav').addEventListener('click',e=>{if(e.target.closest('a')){$('nav').classList.remove('open');$('menuBtn').setAttribute('aria-expanded','false')}});
+(async()=>{try{const d=await getData('competitions.json');const comps=d.competitions||[];if(!comps.length)throw Error('大会一覧が空です');$('comp').innerHTML=comps.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.name)+'</option>').join('');$('comp').addEventListener('change',e=>load(e.target.value));await load(comps[0].id)}catch(e){$('comp').innerHTML='<option>大会情報を取得できません</option>';$('matchList').innerHTML='<p class="empty">大会一覧の取得に失敗しました：'+esc(e.message)+'</p>'}})();
+</script>
+</body></html>
