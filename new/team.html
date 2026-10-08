@@ -544,8 +544,15 @@ function squad(){
     // 出場記録はまだないが teams.json に登録されている選手も載せる
     for(const [k,e] of extra)if(!list.some(x=>norm(x.name)===k))list.push({...e,apps:0});
   }else{
-    const goals=new Map((S.data.scorers||[]).filter(s=>isMe(s.team)).map(s=>[norm(s.name),s.count]));
-    list=[...extra.values()].map(e=>({...e,goals:goals.get(norm(e.name))}));
+    // 出場記録がまだない：得点・アシスト・警告の記録に名前がある選手を載せる
+    const m=new Map();
+    const P=(nm,no)=>{const k=norm(nm);if(!k)return null;const x=m.get(k)||{name:nm,no:'',goals:0,assists:0,yc:0,rc:0};if(has(no)&&!has(x.no))x.no=no;m.set(k,x);return x};
+    for(const r of (S.data.scorers||[]).filter(r=>isMe(r.team))){const x=P(r.name);if(x)x.goals=r.count}
+    for(const r of (S.data.assists||[]).filter(r=>isMe(r.team))){const x=P(r.name);if(x)x.assists=r.count}
+    const ct=(S.data.cardTable||[]).find(t=>isMe(t.team));
+    for(const r of ct?.players||[]){const x=P(r.name,r.no);if(x){x.yc=r.c||0;x.rc=r.s||0}}
+    for(const [k,e] of extra){const x=m.get(k)||{goals:0,assists:0,yc:0,rc:0};m.set(k,{...x,...e,no:has(e.no)?e.no:x.no})}
+    list=[...m.values()].map(x=>({...x,partial:true}));
   }
   return {list:list.sort((a,b)=>(+a.no||999)-(+b.no||999)),official:!!(st&&st.players?.length),matches:st?.matches};
 }
@@ -557,13 +564,17 @@ function renderPlayers(){
   const other=list.filter(x=>!POS.some(([k])=>String(x.pos||'').toUpperCase()===k));
   if(other.length)groups.push(['','ポジション未登録',other]);
   const stat=x=>{
-    if(x.apps==null)return x.goals?'<span class="gl">今大会 '+esc(x.goals)+'得点</span>':'';
+    if(x.apps==null){
+      const a=[x.goals?x.goals+'得点':'',x.assists?x.assists+'アシスト':''].filter(Boolean);
+      return a.length||x.yc||x.rc?'<span class="gl">'+esc(a.join('・'))+(x.yc?'<i class="yc" title="警告">'+x.yc+'</i>':'')+(x.rc?'<i class="rc" title="退場">'+x.rc+'</i>':'')+'</span>':'';
+    }
     const a=[x.apps+'試合出場'+(x.starts?'（先発'+x.starts+'）':''),x.min?x.min+'分':'',x.goals?x.goals+'得点':'',x.assists?x.assists+'アシスト':''].filter(Boolean);
     return '<span class="gl">'+esc(x.apps?a.join('・'):'出場記録なし')+(x.yc?'<i class="yc" title="警告">'+x.yc+'</i>':'')+(x.rc?'<i class="rc" title="退場">'+x.rc+'</i>':'')+'</span>';
   };
   $('playersBox').innerHTML=groups.filter(g=>g[2].length).map(([k,l,ps])=>'<div class="posgroup"><h3>'+esc(k)+'<span>'+esc(l)+'・'+ps.length+'名</span></h3><div class="players">'+
     ps.map(x=>'<div class="player"><span class="no">'+esc(x.no??'')+'</span><b>'+esc(x.name)+'</b><small>'+esc([x.grade,x.school].filter(has).join('・'))+'</small>'+stat(x)+'</div>').join('')+'</div></div>').join('')+
-    (official?'<p class="note">出場・得点・警告は公式記録が確定した試合から自動で集計しています（アディショナルタイムは含みません）。</p>':'');
+    (official?'<p class="note">出場・得点・警告は公式記録が確定した試合から自動で集計しています（アディショナルタイムは含みません）。</p>':
+      '<p class="note">いまは得点・アシスト・警告の記録に名前がある選手だけを掲載しています。公式記録（先発・控え）が確定すると、出場した全選手が自動で載ります。</p>');
 }
 function renderNews(){
   const p=profileOf(S.team);
