@@ -61,6 +61,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .crest.xs.two{font-size:8.5px}
 .crest.sm.two{font-size:10.5px}
 .crest.xl.two{font-size:30px}
+.crest.img{background:transparent!important;box-shadow:none!important;border-radius:0}
+.crest.img img{width:100%;height:100%;object-fit:contain;display:block}
+
 
 /* hero */
 .hero{background:var(--navy);color:#fff;position:relative;overflow:hidden}
@@ -312,7 +315,7 @@ dl.facts dd{margin:0;font-weight:700;overflow-wrap:anywhere}
       <a href="#record">成績</a>
       <a href="#about">クラブ情報</a>
       <a href="#players">選手</a>
-      <a href="../results/" class="js-detail">公式記録 ↗</a>
+      <a href="./about.html">連盟について</a>
     </nav>
   </div>
   <div class="comptabs"><div class="wrap" id="comptabs" role="tablist"><button aria-selected="true">読み込み中…</button></div></div>
@@ -418,8 +421,21 @@ function crest(t,size){
   let s=n.replace(/^(北海道|国立|私立)/,'').replace(/(大学|大)$/,'');
   if(![...s].length)s=n.replace(/大学$/,'大');
   const ch=[...s].slice(0,2).join('')||'?',two=[...ch].length>1;
+  const u=emblemUrl(profileOf(t));
+  if(u)return '<span class="crest img '+(size||'')+(two?' two':'')+'" style="--c:'+teamColor(t)+'" data-ch="'+esc(ch)+'"><img src="'+esc(u)+'" alt="'+esc(name(t))+'" loading="lazy" onerror="crestFail(this)"></span>';
   return '<span class="crest '+(size||'')+(two?' two':'')+'" style="--c:'+teamColor(t)+'" aria-hidden="true">'+esc(ch)+'</span>';
 }
+
+/* エンブレム画像：チーム紹介シートの「エンブレム」列（new/emblems/ のファイル名、または画像URL） */
+function emblemUrl(p){
+  const e=String(p?.emblem||'').trim();if(!e)return '';
+  const d=e.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
+  if(d)return 'https://drive.google.com/thumbnail?id='+d[1]+'&sz=w400';
+  if(/^https:\/\//i.test(e))return e;
+  if(/^[^\/\\?#]+\.(png|jpe?g|webp|svg|gif)$/i.test(e))return './emblems/'+encodeURIComponent(e);
+  return '';
+}
+function crestFail(img){const s=img.parentNode;s.classList.remove('img');s.textContent=s.dataset.ch}
 const WD=['日','月','火','水','木','金','土'];
 function fmtDate(s,short){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');if(!m)return s||'日程未定';return (+m[2])+'/'+(+m[3])+(short?'':'（'+WD[new Date(+m[1],+m[2]-1,+m[3]).getDay()]+'）')}
 function wd(s){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');return m?WD[new Date(+m[1],+m[2]-1,+m[3]).getDay()]:''}
@@ -664,6 +680,9 @@ async function loadComp(id,wanted,univ){
     if(!d.ok)throw Error('大会データを取得できません');
     S.data=d;
     S.roster=await loadRoster(id);
+    // シートの「チーム紹介」を teams.json より優先して使う
+    PROFILES=PROFILES.filter(x=>!x._sheet);
+    for(const t of S.roster?.teams||[])if(t.profile)PROFILES.unshift({...t.profile,_sheet:true,id:tkey(t.team),names:[t.team.univ,t.team.name,t.team.short].filter(has)});
     $('updated').textContent=(d.competition?.name||id)+'　最終更新 '+(d.updatedAt||'不明');
     const teams=collectTeams(d);
     // 大会を切り替えても、同じ大学がいればそのまま表示
