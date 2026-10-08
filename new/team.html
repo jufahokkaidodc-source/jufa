@@ -199,7 +199,9 @@ dl.facts dd{margin:0;font-weight:700;overflow-wrap:anywhere}
 .player .no{grid-row:1/3;font-family:var(--num);font-size:34px;font-weight:800;color:var(--team);line-height:1;min-width:38px;text-align:center}
 .player b{font-size:14px;line-height:1.35}
 .player small{font-size:10.5px;color:var(--muted)}
-.player .gl{grid-column:1/-1;font-size:10.5px;color:var(--blue);font-weight:700;border-top:1px solid var(--line);padding-top:7px;margin-top:6px}
+.player .gl{grid-column:1/-1;font-size:10.5px;color:var(--blue);font-weight:700;border-top:1px solid var(--line);padding-top:7px;margin-top:6px;line-height:1.6}
+.player .gl i{display:inline-block;font-style:normal;color:var(--ink);font-size:10px;width:14px;height:18px;line-height:18px;text-align:center;border-radius:2px;margin-left:5px;vertical-align:-3px}
+.player .gl i.yc{background:#f2c200}.player .gl i.rc{background:var(--lose);color:#fff}
 
 /* news */
 .news a{display:flex;gap:14px;padding:13px 18px;border-top:1px solid var(--line);font-size:13.5px;font-weight:700;align-items:baseline}
@@ -401,7 +403,8 @@ async function loadProfiles(){
 function profileOf(t){
   if(!t)return null;
   const id=tkey(t),cands=[name(t),fullName(t),typeof t==='object'?t.univ:''].filter(has);
-  return PROFILES.find(p=>has(p.id)&&p.id===id)||PROFILES.find(p=>(p.names||[]).some(n=>cands.includes(n)))||null;
+  const base=String(id).replace(/-[A-Z0-9]+$/,'');
+  return PROFILES.find(p=>has(p.id)&&(p.id===id||p.id===base))||PROFILES.find(p=>(p.names||[]).some(n=>cands.includes(n)))||null;
 }
 
 let S={comp:'',data:null,team:null,up:[],res:[]};
@@ -528,17 +531,39 @@ function renderAbout(){
       (links.length?'<div class="links">'+links.map(([k,u])=>'<a href="'+esc(safeUrl(u))+'" target="_blank" rel="noopener">'+esc(k)+' ↗</a>').join('')+'</div>':'')+'</div></div>';
 }
 const POS=[['GK','ゴールキーパー'],['DF','ディフェンダー'],['MF','ミッドフィルダー'],['FW','フォワード']];
-function renderPlayers(){
+const norm=v=>String(v||'').replace(/[\s　]/g,'');
+function squad(){
   const p=profileOf(S.team);
-  const goals=new Map((S.data.scorers||[]).filter(s=>isMe(s.team)).map(s=>[String(s.name).replace(/\s/g,''),s.count]));
-  const list=(p?.players||[]).filter(x=>has(x.name)).sort((a,b)=>(+a.no||999)-(+b.no||999));
-  $('squadCount').textContent=list.length?list.length+'名':'';
-  if(!list.length){$('playersBox').innerHTML='<div class="pending"><b>選手名鑑は準備中です</b>背番号・ポジション・学年などは、各大学からの登録をもとに掲載します。</div>';return}
+  const extra=new Map((p?.players||[]).filter(x=>has(x.name)).map(x=>[norm(x.name),x]));
+  const st=(S.data.playerStats||[]).find(t=>isMe(t.team));
+  let list;
+  if(st&&st.players?.length){
+    // 公式記録（出場した選手）。teams.json の学年・出身校を名前で突き合わせて補う
+    list=st.players.map(x=>{const e=extra.get(norm(x.name))||{};return {no:has(x.no)?x.no:e.no,name:x.name,pos:x.pos||e.pos,grade:e.grade,school:e.school,
+      apps:x.apps,starts:x.starts,min:x.min,goals:x.goals,assists:x.assists,yc:x.yc,rc:x.rc,official:true}});
+    // 出場記録はまだないが teams.json に登録されている選手も載せる
+    for(const [k,e] of extra)if(!list.some(x=>norm(x.name)===k))list.push({...e,apps:0});
+  }else{
+    const goals=new Map((S.data.scorers||[]).filter(s=>isMe(s.team)).map(s=>[norm(s.name),s.count]));
+    list=[...extra.values()].map(e=>({...e,goals:goals.get(norm(e.name))}));
+  }
+  return {list:list.sort((a,b)=>(+a.no||999)-(+b.no||999)),official:!!(st&&st.players?.length),matches:st?.matches};
+}
+function renderPlayers(){
+  const {list,official,matches}=squad();
+  $('squadCount').textContent=list.length?list.length+'名'+(official&&matches?'・'+matches+'試合の記録':''):'';
+  if(!list.length){$('playersBox').innerHTML='<div class="pending"><b>選手名鑑は準備中です</b>公式記録が確定した試合に出場した選手から、自動で掲載されます。</div>';return}
   const groups=POS.map(([k,l])=>[k,l,list.filter(x=>String(x.pos||'').toUpperCase()===k)]);
   const other=list.filter(x=>!POS.some(([k])=>String(x.pos||'').toUpperCase()===k));
-  if(other.length)groups.push(['OTHER','その他',other]);
+  if(other.length)groups.push(['','ポジション未登録',other]);
+  const stat=x=>{
+    if(x.apps==null)return x.goals?'<span class="gl">今大会 '+esc(x.goals)+'得点</span>':'';
+    const a=[x.apps+'試合出場'+(x.starts?'（先発'+x.starts+'）':''),x.min?x.min+'分':'',x.goals?x.goals+'得点':'',x.assists?x.assists+'アシスト':''].filter(Boolean);
+    return '<span class="gl">'+esc(x.apps?a.join('・'):'出場記録なし')+(x.yc?'<i class="yc" title="警告">'+x.yc+'</i>':'')+(x.rc?'<i class="rc" title="退場">'+x.rc+'</i>':'')+'</span>';
+  };
   $('playersBox').innerHTML=groups.filter(g=>g[2].length).map(([k,l,ps])=>'<div class="posgroup"><h3>'+esc(k)+'<span>'+esc(l)+'・'+ps.length+'名</span></h3><div class="players">'+
-    ps.map(x=>{const g=goals.get(String(x.name).replace(/\s/g,''));return '<div class="player"><span class="no">'+esc(x.no??'')+'</span><b>'+esc(x.name)+'</b><small>'+esc([x.grade,x.school].filter(has).join('・'))+'</small>'+(g?'<span class="gl">今大会 '+esc(g)+'得点</span>':'')+'</div>'}).join('')+'</div></div>').join('');
+    ps.map(x=>'<div class="player"><span class="no">'+esc(x.no??'')+'</span><b>'+esc(x.name)+'</b><small>'+esc([x.grade,x.school].filter(has).join('・'))+'</small>'+stat(x)+'</div>').join('')+'</div></div>').join('')+
+    (official?'<p class="note">出場・得点・警告は公式記録が確定した試合から自動で集計しています（アディショナルタイムは含みません）。</p>':'');
 }
 function renderNews(){
   const p=profileOf(S.team);
@@ -548,8 +573,9 @@ function renderNews(){
 }
 
 /* ---------- load ---------- */
-function showTeam(teams,wanted){
-  const t=teams.find(x=>tkey(x)===wanted)||teams.find(x=>name(x)===wanted||fullName(x)===wanted)||teams[0];
+const univOf=t=>typeof t==='object'?(t.univ||t.name||''):String(t||'');
+function showTeam(teams,wanted,univ){
+  const t=teams.find(x=>tkey(x)===wanted)||(has(univ)&&teams.find(x=>univOf(x)===univ))||teams.find(x=>name(x)===wanted||fullName(x)===wanted)||teams[0];
   if(!t){$('teamTitle').textContent='チーム情報がありません';return}
   S.team=t;
   const u=new URL(location.href);u.searchParams.set('comp',S.comp);u.searchParams.set('team',tkey(t));history.replaceState(null,'',u);
@@ -562,7 +588,7 @@ function showTeam(teams,wanted){
   renderHero(row,ms);renderPair();renderMatches(S.up.length?'up':'res');
   renderScorers();renderRecord(row,ms);renderAbout();renderPlayers();renderNews();
 }
-async function loadComp(id,wanted){
+async function loadComp(id,wanted,univ){
   S.comp=id;
   document.querySelectorAll('#comptabs button').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.id===id)));
   document.querySelectorAll('.js-detail').forEach(a=>a.href=detail(id));
@@ -573,7 +599,7 @@ async function loadComp(id,wanted){
     $('updated').textContent=(d.competition?.name||id)+'　最終更新 '+(d.updatedAt||'不明');
     const teams=collectTeams(d);
     // 大会を切り替えても、同じ大学がいればそのまま表示
-    showTeam(teams,wanted);
+    showTeam(teams,wanted,univ);
   }catch(e){
     $('teamTitle').textContent='読み込みに失敗しました';
     for(const k of ['pair','matchList','miniTable','scorers','recordBox'])$(k).innerHTML='<p class="empty">データを表示できません：'+esc(e.message)+'</p>';
@@ -599,7 +625,7 @@ $('nav').addEventListener('click',e=>{if(e.target.closest('a')){$('nav').classLi
   const comp=cs.some(c=>c.id===PARAMS.get('comp'))?PARAMS.get('comp'):cs[0].id;
   $('comptabs').addEventListener('click',e=>{
     const b=e.target.closest('button[data-id]');if(!b||b.dataset.id===S.comp)return;
-    loadComp(b.dataset.id,S.team?tkey(S.team):null);
+    loadComp(b.dataset.id,S.team?tkey(S.team):null,S.team?univOf(S.team):'');
   });
   await loadComp(comp,PARAMS.get('team'));
 })();
@@ -615,6 +641,7 @@ function demoData(file){
   const tb=T.map((t,i)=>({team:t,played:3,won:[2,1,1,1,1,0,0,0][i],drawn:[1,1,1,0,0,2,1,0][i],lost:[0,1,1,2,2,1,2,3][i],goalsFor:[6,4,5,3,4,2,2,1][i],goalsAgainst:[2,3,4,4,6,3,5,6][i],points:[7,4,4,3,3,2,1,0][i]}))
     .map(r=>({...r,goalDiff:r.goalsFor-r.goalsAgainst})).map((r,i)=>({...r,rank:i+1}));
   return{ok:true,competition:{name:'【サンプル】リーグ 1部'},updatedAt:jstToday()+' 18:00',matches:ms,groups:[{table:tb}],
+    playerStats:[{team:T[0],matches:3,players:[{no:'1',name:'選手 守男',pos:'GK',apps:3,starts:3,min:270,goals:0,assists:0,yc:0,rc:0},{no:'2',name:'選手 堅太',pos:'DF',apps:3,starts:3,min:270,goals:0,assists:1,yc:1,rc:0},{no:'5',name:'選手 鉄平',pos:'DF',apps:2,starts:1,min:110,goals:0,assists:0,yc:0,rc:0},{no:'7',name:'選手 三郎',pos:'MF',apps:3,starts:3,min:250,goals:2,assists:1,yc:0,rc:0},{no:'14',name:'選手 速人',pos:'MF',apps:2,starts:0,min:40,goals:0,assists:0,yc:0,rc:0},{no:'10',name:'選手 一郎',pos:'FW',apps:3,starts:3,min:262,goals:3,assists:0,yc:1,rc:0}]}],
     scorers:[['選手 一郎',0,3],['選手 二郎',2,3],['選手 三郎',0,2],['選手 四郎',5,2],['選手 五郎',1,1]].map((s,i)=>({rank:[1,1,3,3,5][i],name:s[0],team:T[s[1]],count:s[2]}))};
 }
 function demoProfiles(){
