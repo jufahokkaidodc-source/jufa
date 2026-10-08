@@ -80,6 +80,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .crest.xs.two{font-size:8.5px}
 .crest.sm.two{font-size:10.5px}
 .crest.xl.two{font-size:26px}
+.crest.img{background:transparent!important;box-shadow:none!important;border-radius:0}
+.crest.img img{width:100%;height:100%;object-fit:contain;display:block}
+
 
 /* pickup */
 .main{padding:28px 0 64px}
@@ -113,6 +116,17 @@ button{font:inherit;color:inherit;cursor:pointer}
 .news a:hover{background:#f6f9fc}
 .news time{font-size:10.5px;color:var(--muted);display:flex;gap:8px;align-items:center}
 .news .cat{font-size:10px;font-weight:700;color:var(--blue);border:1px solid #c9daf2;padding:1px 6px;border-radius:3px}
+.news .cat.nw{color:#fff;background:var(--blue);border-color:var(--blue)}
+.news .cat.imp{color:#fff;background:#c0392b;border-color:#c0392b}
+.alert{background:#fff8e6;border-bottom:1px solid #f0d99a}
+.alert .wrap{display:flex;gap:14px;align-items:flex-start;padding:10px 0}
+.alert b{flex:none;font-size:11.5px;color:#fff;background:#c0392b;padding:4px 10px;border-radius:4px;margin-top:2px}
+.alert .al{display:grid;gap:4px;min-width:0;flex:1}
+.alert a{display:flex;gap:12px;font-size:13px;font-weight:700;min-width:0}
+.alert a:hover span{text-decoration:underline}
+.alert time{flex:none;font-family:var(--num);font-weight:600;color:#8a6d1a}
+.alert span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:680px){.alert .wrap{flex-direction:column;gap:6px}.alert a{flex-direction:column;gap:0}.alert span{white-space:normal}}
 .news p{margin:5px 0 0;font-size:13px;font-weight:700;line-height:1.55}
 
 /* sections */
@@ -277,12 +291,15 @@ html{scroll-padding-top:0}
       <a href="#schedule">日程・結果</a>
       <a href="#ranking">順位・ランキング</a>
       <a href="#clubs">クラブ</a>
-      <a href="#news">ニュース</a>
+      <a href="./news.html">お知らせ</a>
+      <a href="./about.html">連盟について</a>
       <a href="../results/">公式記録 ↗</a>
     </nav>
   </div>
   <div class="comptabs"><div class="wrap" id="comptabs" role="tablist"><button aria-selected="true">読み込み中…</button></div></div>
 </header>
+
+<div class="alert" id="alert" hidden></div>
 
 <section class="ticker">
   <div class="wrap">
@@ -305,7 +322,7 @@ html{scroll-padding-top:0}
       <div class="hero-in" id="feature"><span class="sk" style="width:40%"></span></div>
     </section>
     <aside class="newsbox">
-      <div class="boxhead"><h3><small>LATEST</small>最新トピックス</h3><a class="js-detail" href="../results/">公式記録 ↗</a></div>
+      <div class="boxhead"><h3><small>LATEST</small>お知らせ・トピックス</h3><a href="./news.html">お知らせ一覧 ›</a></div>
       <div class="news" id="topics"><span class="sk"></span><span class="sk"></span><span class="sk"></span></div>
     </aside>
   </div>
@@ -333,15 +350,6 @@ html{scroll-padding-top:0}
   <section class="section" id="clubs">
     <div class="sechead"><h2><small>CLUBS</small>参加クラブ</h2><span class="note" style="margin:0" id="clubCount"></span></div>
     <div class="clubs" id="clubList"><span class="sk"></span></div>
-  </section>
-
-  <section class="section" id="news">
-    <div class="sechead"><h2><small>NEWS & STORIES</small>ニュース・特集</h2><span class="note" style="margin:0">COMING SOON</span></div>
-    <div class="feat">
-      <article><div class="v" style="--c:#c5f26d"><span>MATCH<br>REPORT</span></div><div class="b"><em>準備中</em><strong>試合レポート</strong><p>好ゲームの見どころや試合後の振り返りをお届けします。</p></div></article>
-      <article><div class="v" style="--c:#3f8cf0"><span>PLAYER<br>STORY</span></div><div class="b"><em>準備中</em><strong>選手・クラブ特集</strong><p>ピッチの外の素顔や、各大学の取り組みを紹介します。</p></div></article>
-      <article><div class="v" style="--c:#2a6f97"><span>OFFICIAL<br>NEWS</span></div><div class="b"><em>準備中</em><strong>連盟からのお知らせ</strong><p>大会要項や日程変更などの公式発表を掲載します。</p></div></article>
-    </div>
   </section>
 
   <div class="partner">
@@ -372,13 +380,28 @@ const isDone=m=>m.status==='finished'&&m.score&&m.score.home!=null&&m.score.home
 const PARAMS=new URLSearchParams(location.search);
 let DEMO=PARAMS.has('demo');
 
+const PROF=new Map();
+/* エンブレム画像：チーム紹介シートの「エンブレム」列（new/emblems/ のファイル名、または画像URL） */
+function emblemUrl(p){
+  const e=String(p?.emblem||'').trim();if(!e)return '';
+  const d=e.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
+  if(d)return 'https://drive.google.com/thumbnail?id='+d[1]+'&sz=w400';
+  if(/^https:\/\//i.test(e))return e;
+  if(/^[^\/\\?#]+\.(png|jpe?g|webp|svg|gif)$/i.test(e))return './emblems/'+encodeURIComponent(e);
+  return '';
+}
+function crestFail(img){const s=img.parentNode;s.classList.remove('img');s.textContent=s.dataset.ch}
 const PALETTE=['#145ec9','#0f7a6b','#7b3fb5','#c0392b','#1d6fa5','#b35c00','#2e7d32','#ad1457','#37474f','#5d4dbf'];
 function crest(t,size){
   const n=name(t),k=tkey(t);let h=0;for(const ch of k)h=(h*31+ch.charCodeAt(0))>>>0;
   let s=n.replace(/^(北海道|国立|私立)/,'').replace(/(大学|大)$/,'');
   if(![...s].length)s=n.replace(/大学$/,'大');
   const ch=[...s].slice(0,2).join('')||'?',two=[...ch].length>1;
-  return '<span class="crest '+(size||'')+(two?' two':'')+'" style="--c:'+PALETTE[h%PALETTE.length]+'" aria-hidden="true">'+esc(ch)+'</span>';
+  const p=PROF.get(k)||PROF.get(typeof t==='object'?t.univ:'');
+  const c=/^#[0-9a-f]{3,8}$/i.test(p?.color||'')?p.color:PALETTE[h%PALETTE.length];
+  const u=emblemUrl(p);
+  if(u)return '<span class="crest img '+(size||'')+(two?' two':'')+'" style="--c:'+c+'" data-ch="'+esc(ch)+'"><img src="'+esc(u)+'" alt="'+esc(name(t))+'" loading="lazy" onerror="crestFail(this)"></span>';
+  return '<span class="crest '+(size||'')+(two?' two':'')+'" style="--c:'+c+'" aria-hidden="true">'+esc(ch)+'</span>';
 }
 const WD=['日','月','火','水','木','金','土'];
 function fmtDate(s){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');if(!m)return s||'日程未定';return (+m[2])+'/'+(+m[3])+'（'+WD[new Date(+m[1],+m[2]-1,+m[3]).getDay()]+'）'}
@@ -495,6 +518,12 @@ function renderFeatured(m){
     '<div class="hero-foot"><span>📍 '+esc(m.venue||'会場未定')+'</span><a href="'+detail(S.id)+'">'+(done?'試合詳細を見る':'公式記録を見る')+' ↗</a></div>';
 }
 /* topics: auto headlines generated from official data */
+let NEWS=[];
+function renderAlert(){
+  const imp=NEWS.filter(n=>n.important).slice(0,3);
+  $('alert').hidden=!imp.length;
+  $('alert').innerHTML='<div class="wrap"><b>重要なお知らせ</b><div class="al">'+imp.map(n=>'<a href="./news.html?id='+encodeURIComponent(n.id)+'"><time>'+esc(fmtDate(n.date))+'</time><span>'+esc(n.title)+'</span></a>').join('')+'</div></div>';
+}
 function renderTopics(ms,scorers,compName){
   const done=order(ms).filter(isDone).reverse(),items=[];
   const byRound=new Map();for(const m of done){const k=m.round||'';if(!byRound.has(k))byRound.set(k,[]);byRound.get(k).push(m)}
@@ -505,7 +534,9 @@ function renderTopics(ms,scorers,compName){
   const up=order(ms).find(m=>!isDone(m)&&(m.date||'9999')>=jstToday());
   if(up)items.unshift({date:up.date,cat:'予定',text:(up.round?up.round+'　':'')+fmtDate(up.date)+' 開催 '+name(up.home)+' vs '+name(up.away)+' ほか'});
   if(scorers?.length){const t=scorers[0];items.splice(1,0,{date:done[0]?.date,cat:'記録',text:'得点ランキング首位は'+name(t.team)+'・'+t.name+'選手（'+t.count+'得点）'})}
-  $('topics').innerHTML=items.length?items.slice(0,5).map(it=>'<a href="'+detail(S.id)+'"><time>'+esc(it.date?fmtDate(it.date):'')+'<span class="cat">'+esc(it.cat)+'</span></time><p>'+esc(it.text)+'</p></a>').join(''):'<p class="empty">'+esc(compName)+'のトピックスはまだありません。</p>';
+  for(const n of NEWS.filter(n=>n.cat==='連盟'||n.cat===S.id).slice(0,6))items.push({date:n.date,cat:n.cat==='連盟'?'連盟':'お知らせ',text:n.title,href:'./news.html?id='+encodeURIComponent(n.id),imp:n.important,news:true});
+  items.sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
+  $('topics').innerHTML=items.length?items.slice(0,6).map(it=>'<a href="'+esc(it.href||detail(S.id))+'"><time>'+esc(it.date?fmtDate(it.date):'')+'<span class="cat'+(it.news?' nw':'')+'">'+esc(it.cat)+'</span>'+(it.imp?'<span class="cat imp">重要</span>':'')+'</time><p>'+esc(it.text)+'</p></a>').join(''):'<p class="empty">'+esc(compName)+'のトピックスはまだありません。</p>';
 }
 
 /* standings */
@@ -537,8 +568,9 @@ async function load(id){
   S.id=id;
   document.querySelectorAll('#comptabs button').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.id===id)));
   try{
-    const d=await json(encodeURIComponent(id)+'.json');
+    const [d,ro]=await Promise.all([json(encodeURIComponent(id)+'.json'),DEMO?null:fetch('../results/data/'+encodeURIComponent(id)+'-roster.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)]);
     if(!d.ok)throw Error('大会データを取得できません');
+    for(const t of ro?.teams||[])if(t.profile){PROF.set(tkey(t.team),t.profile);if(t.team.univ)PROF.set(t.team.univ,t.profile)}
     document.querySelectorAll('.js-detail').forEach(a=>a.href=detail(id));
     $('updated').textContent=(d.competition?.name||id)+'　最終更新 '+(d.updatedAt||'不明');
     const ms=d.matches||[];
@@ -576,6 +608,8 @@ links.forEach(a=>{const s=document.querySelector(a.getAttribute('href'));if(s)sp
     else{$('comptabs').innerHTML='<button>大会情報を取得できません</button>';$('feature').innerHTML='<p class="empty" style="color:#c0d3e2">大会一覧を取得できません：'+esc(e.message)+'</p>';return}
   }
   $('demo').hidden=!DEMO;
+  try{const r=DEMO?{ok:1,news:[{id:'a1',date:jstToday(),cat:'連盟',title:'（サンプル）2027年度 チーム登録の受付について',important:true},{id:'a2',date:jstToday(),cat:'demo-1',title:'（サンプル）第3節 会場変更のお知らせ',important:true}]}:await fetch('../results/data/news.json',{cache:'no-store'}).then(r=>r.ok?r.json():null);NEWS=r?.news||[]}catch(_){NEWS=[]}
+  renderAlert();
   const cs=d.competitions||[];
   if(!cs.length){$('comptabs').innerHTML='<button>大会が登録されていません</button>';return}
   const short=n=>String(n||'').replace(/^\d{4}年度\s*/,'').replace(/第\d+回\s*/,'').replace(/^北海道学生サッカー/,'').replace(/^北海道/,'').trim()||n;
