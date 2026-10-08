@@ -218,6 +218,43 @@ dl.facts dd{margin:0;font-weight:700;overflow-wrap:anywhere}
 
 .sk{display:block;height:14px;margin:14px 18px;border-radius:6px;background:linear-gradient(90deg,#e9eef3 25%,#f5f8fa 50%,#e9eef3 75%);background-size:200% 100%;animation:sh 1.3s infinite}
 @keyframes sh{to{background-position:-200% 0}}
+/* squad table */
+.ptabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:12px}
+.ptabs::-webkit-scrollbar{display:none}
+.ptabs button{flex:none;border:1px solid var(--line);background:#fff;padding:7px 14px;border-radius:30px;font-size:12.5px;font-weight:700;color:var(--muted);display:flex;gap:6px;align-items:center}
+.ptabs button span{font-family:var(--num);font-size:13px;color:#9aa8b5}
+.ptabs button[aria-selected=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.ptabs button[aria-selected=true] span{color:var(--lime)}
+.sq-wrap{overflow-x:auto}
+.sq{font-size:13px}
+.sq th{background:#f6f8fa;padding:9px 8px;white-space:nowrap}
+.sq th small{font-weight:500;margin-left:1px}
+.sq td{padding:9px 8px}
+.sq tbody tr:not(.grp):hover td{background:#f6f9fc}
+.sq td.no{font-family:var(--num);font-size:20px;font-weight:800;color:var(--team);width:52px;text-align:center}
+.sq .pp{font-family:var(--num);font-weight:700;color:var(--muted);width:40px;font-size:13px}
+.sq td.nm{text-align:left;white-space:normal;min-width:120px}
+.sq td.nm b{font-size:14px}
+.sq td.nm small{display:block;font-size:10.5px;color:var(--muted);font-weight:500}
+.sq td.nm small.sp{display:none}
+.sq td.sch{max-width:180px;overflow:hidden;text-overflow:ellipsis;font-size:12px;color:var(--muted)}
+.sq td.pc{font-size:12px;color:var(--muted)}
+.sq td.n{font-family:var(--num);font-size:16px;font-weight:600;width:56px}
+.sq td.n small{font-size:12px;color:var(--muted);margin-left:2px}
+.sq td.g{font-weight:800;color:var(--ink)}
+.sq .z{color:#c5ced6;font-weight:400}
+.sq td.cd i{display:inline-block;font-style:normal;font-family:var(--num);font-size:11px;width:15px;height:19px;line-height:19px;border-radius:2px;margin:0 1px;color:var(--ink)}
+.sq td.cd i.yc{background:#f2c200}.sq td.cd i.rc{background:var(--lose);color:#fff}
+.sq tr.grp td{background:#fff;text-align:left;font-family:var(--num);font-weight:800;font-size:15px;letter-spacing:.1em;padding:14px 10px 6px;border-bottom:2px solid var(--ink)}
+.sq tr.grp td span{font-family:"Noto Sans JP";font-size:11px;font-weight:500;letter-spacing:0;color:var(--muted);margin-left:4px}
+.sq tr.grp:first-child td{padding-top:10px}
+@media(max-width:680px){
+  .sq .pc,.sq .pp{display:none}
+  .sq td.nm small.sp{display:block}
+  .sq td.no{width:40px;font-size:18px}
+  .sq td,.sq th{padding:8px 5px}
+  .sq td.n{width:44px;font-size:15px}
+}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 @media(max-width:920px){
@@ -562,26 +599,39 @@ function squad(){
   if(official)for(const x of list)if(x.apps==null)x.apps=0;
   return {list:list.sort((a,b)=>(+a.no||999)-(+b.no||999)),official,registered:!!R?.players?.length,matches:st?.matches,staff:R?.staff||[]};
 }
+let POSF='ALL';
 function renderPlayers(){
   const {list,official,registered,matches}=squad();
   $('squadCount').textContent=list.length?list.length+'名'+(official&&matches?'・'+matches+'試合の記録':''):'';
   if(!list.length){$('playersBox').innerHTML='<div class="pending"><b>選手名鑑は準備中です</b>公式記録が確定した試合に出場した選手から、自動で掲載されます。</div>';return}
-  const groups=POS.map(([k,l])=>[k,l,list.filter(x=>String(x.pos||'').toUpperCase()===k)]);
-  const other=list.filter(x=>!POS.some(([k])=>String(x.pos||'').toUpperCase()===k));
-  if(other.length)groups.push(['','ポジション未登録',other]);
-  const stat=x=>{
-    if(x.apps==null){
-      const a=[x.goals?x.goals+'得点':'',x.assists?x.assists+'アシスト':''].filter(Boolean);
-      return a.length||x.yc||x.rc?'<span class="gl">'+esc(a.join('・'))+(x.yc?'<i class="yc" title="警告">'+x.yc+'</i>':'')+(x.rc?'<i class="rc" title="退場">'+x.rc+'</i>':'')+'</span>':'';
-    }
-    const a=[x.apps+'試合出場'+(x.starts?'（先発'+x.starts+'）':''),x.min?x.min+'分':'',x.goals?x.goals+'得点':'',x.assists?x.assists+'アシスト':''].filter(Boolean);
-    return '<span class="gl">'+esc(x.apps?a.join('・'):'出場記録なし')+(x.yc?'<i class="yc" title="警告">'+x.yc+'</i>':'')+(x.rc?'<i class="rc" title="退場">'+x.rc+'</i>':'')+'</span>';
-  };
-  $('playersBox').innerHTML=groups.filter(g=>g[2].length).map(([k,l,ps])=>'<div class="posgroup"><h3>'+esc(k)+'<span>'+esc(l)+'・'+ps.length+'名</span></h3><div class="players">'+
-    ps.map(x=>'<div class="player"><span class="no">'+esc(x.no??'')+'</span><b>'+esc(x.name)+'</b><small>'+esc([x.grade,x.school].filter(has).join('・'))+'</small>'+stat(x)+'</div>').join('')+'</div></div>').join('')+
+  const posOf=x=>{const k=String(x.pos||'').toUpperCase();return POS.some(([p])=>p===k)?k:'—'};
+  const cnt=k=>list.filter(x=>k==='ALL'||posOf(x)===k).length;
+  const tabs=[['ALL','全員'],...POS.map(([k])=>[k,k]),...(cnt('—')?[['—','未登録']]:[])].filter(([k])=>cnt(k));
+  if(!tabs.some(([k])=>k===POSF))POSF='ALL';
+  const hasGrade=list.some(x=>has(x.grade)),hasSchool=list.some(x=>has(x.school));
+  const showApps=list.some(x=>x.apps!=null),showAst=list.some(x=>x.assists);
+  const dash=v=>v?esc(v):'<span class="z">–</span>';
+  const card=x=>(x.yc?'<i class="yc">'+x.yc+'</i>':'')+(x.rc?'<i class="rc">'+x.rc+'</i>':'')||'<span class="z">–</span>';
+  const row=x=>'<tr><td class="no">'+esc(x.no??'')+'</td>'+
+    '<td class="nm"><b>'+esc(x.name)+'</b>'+(has(x.kana)?'<small>'+esc(x.kana)+'</small>':'')+
+      ((hasGrade||hasSchool)?'<small class="sp">'+esc([x.grade,x.school].filter(has).join('・'))+'</small>':'')+'</td>'+
+    (hasGrade?'<td class="pc">'+esc(x.grade||'')+'</td>':'')+
+    (hasSchool?'<td class="pc l sch">'+esc(x.school||'')+'</td>':'')+
+    (showApps?'<td class="n">'+dash(x.apps)+(x.starts?'<small>('+x.starts+')</small>':'')+'</td><td class="n pc">'+dash(x.min)+'</td>':'')+
+    '<td class="n g">'+dash(x.goals)+'</td>'+(showAst?'<td class="n pc">'+dash(x.assists)+'</td>':'')+
+    '<td class="n cd">'+card(x)+'</td></tr>';
+  const head='<thead><tr><th>No.</th><th class="l">選手</th>'+(hasGrade?'<th class="pc">学年</th>':'')+(hasSchool?'<th class="pc l sch">出身校</th>':'')+
+    (showApps?'<th>出場<small>(先発)</small></th><th class="pc">時間</th>':'')+'<th>得点</th>'+(showAst?'<th class="pc">A</th>':'')+'<th>警告</th></tr></thead>';
+  const cols=5+(hasGrade?1:0)+(hasSchool?1:0)+(showApps?2:0)+(showAst?1:0);
+  const shown=POSF==='ALL'?[...POS.map(([k,l])=>[k,l]),['—','ポジション未登録']]:[[POSF,(POS.find(([k])=>k===POSF)||[,'ポジション未登録'])[1]]];
+  const body=shown.map(([k,l])=>{const ps=list.filter(x=>posOf(x)===k);if(!ps.length)return '';
+    return (POSF==='ALL'?'<tr class="grp"><td colspan="'+cols+'">'+esc(k==='—'?'':k)+' <span>'+esc(l)+'・'+ps.length+'名</span></td></tr>':'')+ps.map(row).join('')}).join('');
+  $('playersBox').innerHTML='<div class="ptabs" role="tablist">'+tabs.map(([k,l])=>'<button role="tab" data-pos="'+esc(k)+'" aria-selected="'+(k===POSF)+'">'+esc(l)+'<span>'+cnt(k)+'</span></button>').join('')+'</div>'+
+    '<div class="card sq-wrap"><table class="sq">'+head+'<tbody>'+body+'</tbody></table></div>'+
     '<p class="note">'+(registered?'選手一覧は大会の選手登録から掲載しています。':'いまは得点・アシスト・警告の記録に名前がある選手だけを掲載しています。')+
-      (official?'出場・得点・警告は公式記録が確定した試合から自動で集計しています（アディショナルタイムは含みません）。':'')+'</p>';
+      (official?'出場・時間・得点・警告は公式記録が確定した試合から自動で集計しています（時間はアディショナルタイムを含みません）。':'')+'</p>';
 }
+$('playersBox').addEventListener('click',e=>{const b=e.target.closest('.ptabs button');if(b){POSF=b.dataset.pos;renderPlayers()}});
 function renderNews(){
   const p=profileOf(S.team);
   const list=(p?.news||[]).filter(n=>has(n.title)).sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
