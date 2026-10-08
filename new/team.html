@@ -407,7 +407,11 @@ function profileOf(t){
   return PROFILES.find(p=>has(p.id)&&(p.id===id||p.id===base))||PROFILES.find(p=>(p.names||[]).some(n=>cands.includes(n)))||null;
 }
 
-let S={comp:'',data:null,team:null,up:[],res:[]};
+let S={comp:'',data:null,roster:null,team:null,up:[],res:[]};
+async function loadRoster(id){
+  if(DEMO)return demoRoster();
+  try{const r=await fetch('../results/data/'+encodeURIComponent(id)+'-roster.json',{cache:'no-store'});return r.ok?await r.json():null}catch(_){return null}
+}
 
 function collectTeams(d){
   const map=new Map();
@@ -519,14 +523,15 @@ const SNS={instagram:'Instagram',x:'X',twitter:'X',facebook:'Facebook',youtube:'
 function safeUrl(u){return /^https?:\/\//i.test(String(u||''))?u:''}
 function renderAbout(){
   const p=profileOf(S.team);
-  const facts=p?[['監督',p.coach],['主将',p.captain],['創部',p.founded],['部員数',p.members],['練習場',p.ground]].filter(([,v])=>has(v)):[];
+  const staff=squad().staff.map(s=>[s.role||'スタッフ',s.name]);
+  const facts=[...staff,...(p?[[staff.some(s=>/監督/.test(s[0]))?'':'監督',p.coach],['主将',p.captain],['創部',p.founded],['部員数',p.members],['練習場',p.ground]]:[])].filter(([k,v])=>has(k)&&has(v));
   const links=p?[[ '公式サイト',p.website],...Object.entries(p.sns||{}).map(([k,v])=>[SNS[k]||k,v])].filter(([,u])=>safeUrl(u)):[];
   $('profUpdated').textContent=p&&has(p.updated)?'更新 '+p.updated:'';
-  if(!p||(!has(p.intro)&&!facts.length&&!links.length)){
+  if(!has(p?.intro)&&!facts.length&&!links.length){
     $('aboutBox').innerHTML='<div class="pending"><b>クラブ紹介は準備中です</b>チーム紹介・監督・練習場などは、各大学からの登録をもとに掲載します。</div>';return;
   }
   $('aboutBox').innerHTML='<div class="about">'+
-    '<div class="card">'+(has(p.intro)?'<div class="intro">'+esc(p.intro)+'</div>':'<p class="empty">紹介文は準備中です。</p>')+'</div>'+
+    '<div class="card">'+(has(p?.intro)?'<div class="intro">'+esc(p.intro)+'</div>':'<p class="empty">チーム紹介文は準備中です。</p>')+'</div>'+
     '<div class="card">'+(facts.length?'<dl class="facts">'+facts.map(([k,v])=>'<div><dt>'+esc(k)+'</dt><dd>'+esc(v)+'</dd></div>').join('')+'</dl>':'')+
       (links.length?'<div class="links">'+links.map(([k,u])=>'<a href="'+esc(safeUrl(u))+'" target="_blank" rel="noopener">'+esc(k)+' ↗</a>').join('')+'</div>':'')+'</div></div>';
 }
@@ -534,30 +539,31 @@ const POS=[['GK','ゴールキーパー'],['DF','ディフェンダー'],['MF','
 const norm=v=>String(v||'').replace(/[\s　]/g,'');
 function squad(){
   const p=profileOf(S.team);
-  const extra=new Map((p?.players||[]).filter(x=>has(x.name)).map(x=>[norm(x.name),x]));
+  const R=(S.roster?.teams||[]).find(t=>isMe(t.team));
   const st=(S.data.playerStats||[]).find(t=>isMe(t.team));
-  let list;
-  if(st&&st.players?.length){
-    // 公式記録（出場した選手）。teams.json の学年・出身校を名前で突き合わせて補う
-    list=st.players.map(x=>{const e=extra.get(norm(x.name))||{};return {no:has(x.no)?x.no:e.no,name:x.name,pos:x.pos||e.pos,grade:e.grade,school:e.school,
-      apps:x.apps,starts:x.starts,min:x.min,goals:x.goals,assists:x.assists,yc:x.yc,rc:x.rc,official:true}});
-    // 出場記録はまだないが teams.json に登録されている選手も載せる
-    for(const [k,e] of extra)if(!list.some(x=>norm(x.name)===k))list.push({...e,apps:0});
-  }else{
-    // 出場記録がまだない：得点・アシスト・警告の記録に名前がある選手を載せる
-    const m=new Map();
-    const P=(nm,no)=>{const k=norm(nm);if(!k)return null;const x=m.get(k)||{name:nm,no:'',goals:0,assists:0,yc:0,rc:0};if(has(no)&&!has(x.no))x.no=no;m.set(k,x);return x};
-    for(const r of (S.data.scorers||[]).filter(r=>isMe(r.team))){const x=P(r.name);if(x)x.goals=r.count}
-    for(const r of (S.data.assists||[]).filter(r=>isMe(r.team))){const x=P(r.name);if(x)x.assists=r.count}
+  const m=new Map();          // 名前（空白なし）→ 選手
+  const byId=new Map();
+  const get=(nm,id)=>{const x=(id&&byId.get(id))||m.get(norm(nm));if(x)return x;if(!norm(nm))return null;const y={name:nm,no:'',goals:0,assists:0,yc:0,rc:0};m.set(norm(nm),y);if(id)byId.set(id,y);return y};
+  // 1. 名鑑（選手登録・選手マスター）
+  for(const r of R?.players||[]){const x=get(r.name,r.id);Object.assign(x,{id:r.id,no:r.no,pos:r.pos,grade:r.grade,school:r.school,kana:r.kana,registered:true})}
+  // 2. 出場記録（公式記録）
+  for(const r of st?.players||[]){const x=get(r.name,r.id);if(!x)continue;Object.assign(x,{apps:r.apps,starts:r.starts,min:r.min,goals:r.goals,assists:r.assists,yc:r.yc,rc:r.rc});if(!has(x.no))x.no=r.no;if(!has(x.pos))x.pos=r.pos}
+  // 3. 出場記録がないときは得点・アシスト・警告から
+  if(!st?.players?.length){
+    for(const r of (S.data.scorers||[]).filter(r=>isMe(r.team))){const x=get(r.name,r.playerId);if(x)x.goals=r.count}
+    for(const r of (S.data.assists||[]).filter(r=>isMe(r.team))){const x=get(r.name,r.playerId);if(x)x.assists=r.count}
     const ct=(S.data.cardTable||[]).find(t=>isMe(t.team));
-    for(const r of ct?.players||[]){const x=P(r.name,r.no);if(x){x.yc=r.c||0;x.rc=r.s||0}}
-    for(const [k,e] of extra){const x=m.get(k)||{goals:0,assists:0,yc:0,rc:0};m.set(k,{...x,...e,no:has(e.no)?e.no:x.no})}
-    list=[...m.values()].map(x=>({...x,partial:true}));
+    for(const r of ct?.players||[]){const x=get(r.name,r.playerId);if(x){x.yc=r.c||0;x.rc=r.s||0;if(!has(x.no))x.no=r.no}}
   }
-  return {list:list.sort((a,b)=>(+a.no||999)-(+b.no||999)),official:!!(st&&st.players?.length),matches:st?.matches};
+  // 4. teams.json（学年・出身校の補足）
+  for(const e of (p?.players||[]).filter(x=>has(x.name))){const x=get(e.name);for(const k of ['no','pos','grade','school'])if(!has(x[k])&&has(e[k]))x[k]=e[k]}
+  const list=[...m.values()];
+  const official=!!st?.players?.length;
+  if(official)for(const x of list)if(x.apps==null)x.apps=0;
+  return {list:list.sort((a,b)=>(+a.no||999)-(+b.no||999)),official,registered:!!R?.players?.length,matches:st?.matches,staff:R?.staff||[]};
 }
 function renderPlayers(){
-  const {list,official,matches}=squad();
+  const {list,official,registered,matches}=squad();
   $('squadCount').textContent=list.length?list.length+'名'+(official&&matches?'・'+matches+'試合の記録':''):'';
   if(!list.length){$('playersBox').innerHTML='<div class="pending"><b>選手名鑑は準備中です</b>公式記録が確定した試合に出場した選手から、自動で掲載されます。</div>';return}
   const groups=POS.map(([k,l])=>[k,l,list.filter(x=>String(x.pos||'').toUpperCase()===k)]);
@@ -573,8 +579,8 @@ function renderPlayers(){
   };
   $('playersBox').innerHTML=groups.filter(g=>g[2].length).map(([k,l,ps])=>'<div class="posgroup"><h3>'+esc(k)+'<span>'+esc(l)+'・'+ps.length+'名</span></h3><div class="players">'+
     ps.map(x=>'<div class="player"><span class="no">'+esc(x.no??'')+'</span><b>'+esc(x.name)+'</b><small>'+esc([x.grade,x.school].filter(has).join('・'))+'</small>'+stat(x)+'</div>').join('')+'</div></div>').join('')+
-    (official?'<p class="note">出場・得点・警告は公式記録が確定した試合から自動で集計しています（アディショナルタイムは含みません）。</p>':
-      '<p class="note">いまは得点・アシスト・警告の記録に名前がある選手だけを掲載しています。公式記録（先発・控え）が確定すると、出場した全選手が自動で載ります。</p>');
+    '<p class="note">'+(registered?'選手一覧は大会の選手登録から掲載しています。':'いまは得点・アシスト・警告の記録に名前がある選手だけを掲載しています。')+
+      (official?'出場・得点・警告は公式記録が確定した試合から自動で集計しています（アディショナルタイムは含みません）。':'')+'</p>';
 }
 function renderNews(){
   const p=profileOf(S.team);
@@ -607,6 +613,7 @@ async function loadComp(id,wanted,univ){
     const d=await json(encodeURIComponent(id)+'.json');
     if(!d.ok)throw Error('大会データを取得できません');
     S.data=d;
+    S.roster=await loadRoster(id);
     $('updated').textContent=(d.competition?.name||id)+'　最終更新 '+(d.updatedAt||'不明');
     const teams=collectTeams(d);
     // 大会を切り替えても、同じ大学がいればそのまま表示
@@ -654,6 +661,10 @@ function demoData(file){
   return{ok:true,competition:{name:'【サンプル】リーグ 1部'},updatedAt:jstToday()+' 18:00',matches:ms,groups:[{table:tb}],
     playerStats:[{team:T[0],matches:3,players:[{no:'1',name:'選手 守男',pos:'GK',apps:3,starts:3,min:270,goals:0,assists:0,yc:0,rc:0},{no:'2',name:'選手 堅太',pos:'DF',apps:3,starts:3,min:270,goals:0,assists:1,yc:1,rc:0},{no:'5',name:'選手 鉄平',pos:'DF',apps:2,starts:1,min:110,goals:0,assists:0,yc:0,rc:0},{no:'7',name:'選手 三郎',pos:'MF',apps:3,starts:3,min:250,goals:2,assists:1,yc:0,rc:0},{no:'14',name:'選手 速人',pos:'MF',apps:2,starts:0,min:40,goals:0,assists:0,yc:0,rc:0},{no:'10',name:'選手 一郎',pos:'FW',apps:3,starts:3,min:262,goals:3,assists:0,yc:1,rc:0}]}],
     scorers:[['選手 一郎',0,3],['選手 二郎',2,3],['選手 三郎',0,2],['選手 四郎',5,2],['選手 五郎',1,1]].map((s,i)=>({rank:[1,1,3,3,5][i],name:s[0],team:T[s[1]],count:s[2]}))};
+}
+function demoRoster(){
+  return {teams:[{team:{id:'t0'},players:[['1','選手 守男','GK','4年','サンプル高校'],['21','選手 控太','GK','1年',''],['2','選手 堅太','DF','3年','サンプル高校'],['3','選手 新人','DF','1年','サンプル高校'],['5','選手 鉄平','DF','2年',''],['7','選手 三郎','MF','4年','サンプル高校'],['14','選手 速人','MF','2年',''],['10','選手 一郎','FW','4年','サンプル高校']].map(a=>({id:'p'+a[0],no:a[0],name:a[1],pos:a[2],grade:a[3],school:a[4]})),
+    staff:[{role:'部長',name:'サンプル 部長'},{role:'監督',name:'サンプル 監督'},{role:'コーチ',name:'サンプル コーチ'}]}]};
 }
 function demoProfiles(){
   return{teams:[{id:'t0',names:['サンプル大A'],updated:jstToday(),intro:'（サンプル）ここにチーム紹介文が入ります。\nチームの目標や雰囲気、応援してほしいことなどを各大学が自由に書けます。',coach:'サンプル 監督',captain:'選手 一郎',founded:'1970年',members:'45名',ground:'サンプルグラウンド',website:'https://example.com',sns:{instagram:'https://example.com',x:'https://example.com'},
