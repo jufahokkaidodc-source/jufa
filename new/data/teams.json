@@ -13,12 +13,9 @@
       "members": "",
       "ground": "",
       "website": "",
-      "sns": {
-        "instagram": "",
-        "x": ""
-      },
+      "sns": { "instagram": "", "x": "" },
       "players": [
-        { "no": 1, "name": "", "pos": "GK", "grade": "", "school": "" }
+        { "no": "", "name": "", "pos": "", "grade": "", "school": "" }
       ],
       "news": [
         { "date": "", "title": "", "url": "" }
