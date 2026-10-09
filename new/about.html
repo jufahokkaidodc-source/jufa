@@ -225,7 +225,7 @@ function cover(t){
 let EMB={};
 const embReady=fetch('./emblems/index.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).then(j=>{EMB=j&&typeof j==='object'?j:{}}).catch(()=>{});
 function embFor(...names){for(const n of names){const f=n&&EMB[String(n).trim()];if(f&&/^[^\/\\?#]+\.(png|jpe?g|webp|svg|gif)$/i.test(f))return './emblems/'+encodeURIComponent(f)}return ''}
-function crestFail(img){const s=img.parentNode;s.classList.remove('img');img.replaceWith(document.createTextNode(s.dataset.ch))}
+function crestFail(img){const s=img.parentNode;if(img.classList.contains('ed')){s.classList.remove('hasdark');img.remove();return}s.classList.remove('img','hasdark');s.querySelectorAll('img').forEach(x=>x.remove());s.insertBefore(document.createTextNode(s.dataset.ch),s.firstChild)}
 /* 案①：同じ見た目（同じエンブレム・同じ文字）のチームが並ぶときだけ、名前の違う部分を小さな札にして付ける */
 const BADGE=new Map();
 const BADGE_WORDS={'セカンド':'2nd','サテライト':'SAT','サード':'3rd','トップ':'TOP'};
