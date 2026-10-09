@@ -381,7 +381,7 @@ dl.facts dd{margin:0;font-weight:700;overflow-wrap:anywhere}
 
     <div class="side">
       <section>
-        <div class="sechead"><h2><small>STANDINGS</small>順位</h2><a class="js-home" href="./#ranking">全順位 ›</a></div>
+        <div class="sechead"><h2><small>STANDINGS</small>順位</h2><a class="js-stand" href="./results.html?tab=standings">全順位 ›</a></div>
         <div class="card" id="miniTable"><span class="sk"></span></div>
       </section>
       <section>
@@ -604,7 +604,7 @@ function renderMiniTable(){
     g.table.slice(a,b).map(r=>{
       let gd=pick(r,['goalDiff','gd','diff']);if(gd==null&&pick(r,['goalsFor','gf'])!=null)gd=(+pick(r,['goalsFor','gf']))-(+pick(r,['goalsAgainst','ga'])||0);
       return '<tr class="'+(isMe(r.team)?'me':'')+'"><td class="l"><span class="pos">'+esc(r.rank)+'</span></td><td class="l"><a class="tt" href="'+esc(teamUrl(S.comp,r.team))+'">'+crest(r.team,'xs')+esc(name(r.team))+'</a></td><td class="pts">'+esc(r.points)+'</td><td class="n">'+esc(r.played)+'</td><td class="n">'+esc(gd!=null&&+gd>0?'+'+gd:gd??'')+'</td></tr>';
-    }).join('')+'</tbody></table><a class="tbl-foot" href="./#ranking">全'+g.table.length+'チームの順位を見る ›</a>';
+    }).join('')+'</tbody></table><a class="tbl-foot" href="'+detail(S.comp)+'&tab=standings">全'+g.table.length+'チームの順位を見る ›</a>';
   return g.table[i];
 }
 function renderScorers(){
@@ -731,6 +731,7 @@ async function loadComp(id,wanted,univ){
   S.comp=id;
   document.querySelectorAll('#comptabs button').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.id===id)));
   document.querySelectorAll('.js-detail').forEach(a=>a.href=detail(id));
+  document.querySelectorAll('.js-stand').forEach(a=>a.href=detail(id)+'&tab=standings');
   try{
     const d=await json(encodeURIComponent(id)+'.json');
     if(!d.ok)throw Error('大会データを取得できません');

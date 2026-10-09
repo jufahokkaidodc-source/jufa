@@ -354,12 +354,11 @@ html{scroll-padding-top:0}
     <a href="./" class="brand"><span class="logo"><img src="./img/jufa-hokkaido.png" alt="JUFA Hokkaido" width="77" height="38"></span><span class="brandname">北海道学生サッカー連盟<small>Hokkaido University Football Association</small></span></a>
     <button class="menubtn" id="menu" aria-controls="nav" aria-expanded="false">☰ メニュー</button>
     <nav class="nav" id="nav">
-      <a href="#schedule">日程・結果</a>
-      <a href="#ranking">順位・ランキング</a>
+      <a href="./results.html" class="js-sched">日程・結果</a>
+      <a href="./results.html?tab=standings" class="js-rank">順位・ランキング</a>
       <a href="#clubs">クラブ</a>
       <a href="./news.html">お知らせ</a>
       <a href="./about.html">連盟について</a>
-      <a href="./results.html">大会記録</a>
     </nav>
   </div>
   <div class="comptabs"><div class="wrap" id="comptabs" role="tablist"><button aria-selected="true">読み込み中…</button></div></div>
@@ -410,14 +409,14 @@ html{scroll-padding-top:0}
 
     <div class="side" id="ranking">
       <section>
-        <div class="sechead"><h2><small>STANDINGS</small>順位表</h2><a class="js-detail" href="./results.html">詳細 ↗</a></div>
+        <div class="sechead"><h2><small>STANDINGS</small>順位表</h2><a class="js-detail" data-tab="standings" href="./results.html?tab=standings">詳細 ↗</a></div>
         <div class="card table-wrap" id="table"><span class="sk"></span><span class="sk"></span></div>
       </section>
     </div>
   </div>
 
   <section class="section" id="scorers">
-    <div class="sechead"><h2><small>RANKING</small>得点ランキング</h2><a class="js-detail" href="./results.html">一覧 ↗</a></div>
+    <div class="sechead"><h2><small>RANKING</small>得点ランキング</h2><a class="js-detail" data-tab="scorers" href="./results.html?tab=scorers">一覧 ↗</a></div>
     <div class="card scorers" id="scorerList"><span class="sk"></span><span class="sk"></span></div>
   </section>
 
@@ -759,7 +758,9 @@ async function load(id){
     const [d,ro]=await Promise.all([json(encodeURIComponent(id)+'.json'),DEMO?null:fetch('../results/data/'+encodeURIComponent(id)+'-roster.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)]);
     if(!d.ok)throw Error('大会データを取得できません');
     for(const t of ro?.teams||[])if(t.profile){PROF.set(tkey(t.team),t.profile);if(t.team.univ)PROF.set(t.team.univ,t.profile)}
-    document.querySelectorAll('.js-detail').forEach(a=>a.href=detail(id));
+    document.querySelectorAll('.js-detail').forEach(a=>a.href=detail(id)+(a.dataset.tab?'&tab='+a.dataset.tab:''));
+    document.querySelectorAll('.js-sched').forEach(a=>a.href=detail(id));
+    document.querySelectorAll('.js-rank').forEach(a=>a.href=detail(id)+'&tab=standings');
     $('updated').textContent=(d.competition?.name||id)+'　最終更新 '+(d.updatedAt||'不明');
     const ms=d.matches||[];
     makeBadges(collectTeams(ms),tkey,name);
