@@ -253,13 +253,14 @@ function makeBadges(teams,keyOf,labelOf){
 }
 function addBadge(html,key){const b=BADGE.get(key);return b?html.replace(/<\/span>$/,'<i class="bdg">'+esc(b)+'</i></span>'):html}
 function crest(t){return addBadge(crestBase(t),t.id)}
+function crestInk(c){const m=/^#?([0-9a-f]{6})$/i.exec(String(c||''));if(!m)return '#fff';const n=parseInt(m[1],16),L=[n>>16&255,n>>8&255,n&255].map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*L[0]+.7152*L[1]+.0722*L[2]>.45?'#222':'#fff'}
 function crestBase(t){
   const n=t.short||t.name||'';let h=0;for(const ch of String(t.id||n))h=(h*31+ch.charCodeAt(0))>>>0;
   let s=n.replace(/^(北海道|国立|私立)/,'').replace(/(大学|大)$/,'');if(![...s].length)s=n.replace(/大学$/,'大');
   const ch=[...s].slice(0,2).join('')||'?',two=[...ch].length>1;
   const c=/^#[0-9a-f]{3,8}$/i.test(t.color||'')?t.color:PALETTE[h%PALETTE.length],u=emblemUrl(t.emblem)||embFor(t.univ,t.name,t.short);
-  if(u)return '<span class="crest img'+(two?' two':'')+'" style="--c:'+c+'" data-ch="'+esc(ch)+'"><img src="'+esc(u)+'" alt="" loading="lazy" onerror="crestFail(this)"></span>';
-  return '<span class="crest'+(two?' two':'')+'" style="--c:'+c+'">'+esc(ch)+'</span>';
+  if(u)return '<span class="crest img'+(two?' two':'')+'" style="--c:'+c+';color:'+crestInk(c)+'" data-ch="'+esc(ch)+'"><img src="'+esc(u)+'" alt="" loading="lazy" onerror="crestFail(this)"></span>';
+  return '<span class="crest'+(two?' two':'')+'" style="--c:'+c+';color:'+crestInk(c)+'">'+esc(ch)+'</span>';
 }
 const sec=(id,en,ja,inner)=>'<section class="section" id="'+id+'"><div class="sechead"><h2><small>'+en+'</small>'+ja+'</h2></div>'+inner+'</section>';
 boot('about.json',async(d)=>{
