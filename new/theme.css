@@ -23,7 +23,7 @@ body{background:var(--bg);color:var(--ink)}
 .header .nav a{color:#333}
 .header .nav a:hover,.header .nav a.on{color:#111;border-bottom-color:var(--red)}
 .brandname small{color:#777}
-.logo{box-shadow:0 0 0 1px #e5e5e5}
+.logo{box-shadow:none}  /* ロゴにふち取りを付けない（2026-10） */
 .menubtn{border-color:#ccc;color:#111}
 .comptabs{background:#161616;border-top:0}
 @media(max-width:680px){
