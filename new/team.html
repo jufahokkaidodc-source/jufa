@@ -72,6 +72,13 @@ button{font:inherit;color:inherit;cursor:pointer}
 .crest.xl.two{font-size:30px}
 .crest.img{background:transparent!important;box-shadow:none!important;border-radius:0}
 .crest.img img{width:100%;height:100%;object-fit:contain;display:block}
+/* 暗い背景の上のエンブレム：白い版（チーム紹介「エンブレム（暗い背景用）」）があればそれ、なければ白い丸い台にのせる */
+.crest.img .ed{display:none}
+.hero .crest.img.hasdark .el, .mcard.next .crest.img.hasdark .el, .header .crest.img.hasdark .el{display:none}
+.hero .crest.img.hasdark .ed, .mcard.next .crest.img.hasdark .ed, .header .crest.img.hasdark .ed{display:block}
+.hero .crest.img:not(.hasdark), .mcard.next .crest.img:not(.hasdark), .header .crest.img:not(.hasdark){background:#fff!important;border-radius:50%}
+.hero .crest.img:not(.hasdark) img, .mcard.next .crest.img:not(.hasdark) img, .header .crest.img:not(.hasdark) img{position:absolute;inset:15%;width:70%;height:70%}
+
 
 
 /* hero */
@@ -462,7 +469,8 @@ function crestBase(t,size){
   if(![...s].length)s=n.replace(/大学$/,'大');
   const ch=[...s].slice(0,2).join('')||'?',two=[...ch].length>1;
   const u=emblemUrl(profileOf(t))||embFor(typeof t==='object'?t.univ:'',name(t),typeof t==='object'?t.name:'');
-  if(u)return '<span class="crest img '+(size||'')+(two?' two':'')+'" style="--c:'+teamColor(t)+'" data-ch="'+esc(ch)+'"><img src="'+esc(u)+'" alt="'+esc(name(t))+'" loading="lazy" onerror="crestFail(this)"></span>';
+  const ud=emblemUrl({emblem:profileOf(t)?.emblemDark});
+  if(u)return '<span class="crest img '+(size||'')+(two?' two':'')+(ud?' hasdark':'')+'" style="--c:'+teamColor(t)+'" data-ch="'+esc(ch)+'"><img class="el" src="'+esc(u)+'" alt="'+esc(name(t))+'" loading="lazy" onerror="crestFail(this)">'+(ud?'<img class="ed" src="'+esc(ud)+'" alt="'+esc(name(t))+'" loading="lazy" onerror="crestFail(this)">':'')+'</span>';
   return '<span class="crest '+(size||'')+(two?' two':'')+'" style="--c:'+teamColor(t)+'" aria-hidden="true">'+esc(ch)+'</span>';
 }
 
@@ -479,7 +487,7 @@ function emblemUrl(p){
 let EMB={};
 const embReady=fetch('./emblems/index.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).then(j=>{EMB=j&&typeof j==='object'?j:{}}).catch(()=>{});
 function embFor(...names){for(const n of names){const f=n&&EMB[String(n).trim()];if(f&&/^[^\/\\?#]+\.(png|jpe?g|webp|svg|gif)$/i.test(f))return './emblems/'+encodeURIComponent(f)}return ''}
-function crestFail(img){const s=img.parentNode;s.classList.remove('img');img.replaceWith(document.createTextNode(s.dataset.ch))}
+function crestFail(img){const s=img.parentNode;if(img.classList.contains('ed')){s.classList.remove('hasdark');img.remove();return}s.classList.remove('img','hasdark');s.querySelectorAll('img').forEach(x=>x.remove());s.insertBefore(document.createTextNode(s.dataset.ch),s.firstChild)}
 const WD=['日','月','火','水','木','金','土'];
 function fmtDate(s,short){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');if(!m)return s||'日程未定';return (+m[2])+'/'+(+m[3])+(short?'':'（'+WD[new Date(+m[1],+m[2]-1,+m[3]).getDay()]+'）')}
 function wd(s){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');return m?WD[new Date(+m[1],+m[2]-1,+m[3]).getDay()]:''}
