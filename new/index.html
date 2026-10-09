@@ -359,7 +359,7 @@ html{scroll-padding-top:0}
       <a href="#clubs">クラブ</a>
       <a href="./news.html">お知らせ</a>
       <a href="./about.html">連盟について</a>
-      <a href="../results/">公式記録 ↗</a>
+      <a href="./results.html">大会記録</a>
     </nav>
   </div>
   <div class="comptabs"><div class="wrap" id="comptabs" role="tablist"><button aria-selected="true">読み込み中…</button></div></div>
@@ -402,7 +402,7 @@ html{scroll-padding-top:0}
 
   <div class="cols section">
     <section id="schedule">
-      <div class="sechead"><h2><small>SCHEDULE & RESULTS</small>日程・結果</h2><a class="js-detail" href="../results/">全試合 ↗</a></div>
+      <div class="sechead"><h2><small>SCHEDULE & RESULTS</small>日程・結果</h2><a class="js-detail" href="./results.html">全試合 ↗</a></div>
       <div class="subtabs" id="roundTabs" role="tablist"></div>
       <div class="card" id="matchList"><span class="sk"></span><span class="sk"></span><span class="sk"></span></div>
       <p class="note">試合をタップすると公式記録ページ（得点者・警告などの詳細）に移動します。</p>
@@ -410,14 +410,14 @@ html{scroll-padding-top:0}
 
     <div class="side" id="ranking">
       <section>
-        <div class="sechead"><h2><small>STANDINGS</small>順位表</h2><a class="js-detail" href="../results/">詳細 ↗</a></div>
+        <div class="sechead"><h2><small>STANDINGS</small>順位表</h2><a class="js-detail" href="./results.html">詳細 ↗</a></div>
         <div class="card table-wrap" id="table"><span class="sk"></span><span class="sk"></span></div>
       </section>
     </div>
   </div>
 
   <section class="section" id="scorers">
-    <div class="sechead"><h2><small>RANKING</small>得点ランキング</h2><a class="js-detail" href="../results/">一覧 ↗</a></div>
+    <div class="sechead"><h2><small>RANKING</small>得点ランキング</h2><a class="js-detail" href="./results.html">一覧 ↗</a></div>
     <div class="card scorers" id="scorerList"><span class="sk"></span><span class="sk"></span></div>
   </section>
 
@@ -435,7 +435,7 @@ html{scroll-padding-top:0}
 <footer class="footer">
   <div class="wrap">
     <div><strong>北海道学生サッカー連盟</strong><p>新サイト Ver.3 試験公開中。既存の大会運営システムには変更を加えていません。</p><p id="updated"></p></div>
-    <nav><a href="../">現行公式サイト</a><a href="../results/">公式大会記録</a><a href="#" onclick="scrollTo({top:0});return false">ページ上部へ ↑</a></nav>
+    <nav><a href="../">現行公式サイト</a><a href="./results.html">大会記録</a><a href="#" onclick="scrollTo({top:0});return false">ページ上部へ ↑</a></nav>
   </div>
 </footer>
 
@@ -445,7 +445,7 @@ const $=id=>document.getElementById(id);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const name=t=>typeof t==='string'?t:(t?.short||t?.name||'未定');
 const tkey=t=>typeof t==='string'?t:(t?.id||t?.name||t?.short||'');
-const detail=id=>'../results/?comp='+encodeURIComponent(id);
+const detail=(id,mid)=>'./results.html?comp='+encodeURIComponent(id)+(mid?'&match='+encodeURIComponent(mid):'');
 /* Ver.4: 大学・チーム専用ページへのリンク */
 const teamUrl=(comp,t)=>DEMO?'#clubs':'./team.html?comp='+encodeURIComponent(comp)+'&team='+encodeURIComponent(tkey(t));
 const jstToday=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
@@ -592,7 +592,7 @@ function renderTicker(){
   if(!list.length){$('ticker').innerHTML='<p class="empty">この節のほかの試合はありません。</p>';return}
   $('ticker').innerHTML=list.map(m=>{
     const done=isDone(m),h=+m.score?.home,a=+m.score?.away;
-    return '<a class="tcard" href="'+detail(S.id)+'"><div class="meta"><span>'+esc(fmtDate(m.date))+'</span>'+stBadge(m)+'</div>'+
+    return '<a class="tcard" href="'+detail(S.id,isDone(m)?m.matchId:'')+'"><div class="meta"><span>'+esc(fmtDate(m.date))+'</span>'+stBadge(m)+'</div>'+
       '<div class="trow'+(done&&h<a?' lose':'')+'">'+crest(m.home,'sm')+'<span>'+esc(name(m.home))+'</span><b>'+(done?esc(m.score.home):'')+'</b></div>'+
       '<div class="trow'+(done&&a<h?' lose':'')+'">'+crest(m.away,'sm')+'<span>'+esc(name(m.away))+'</span><b>'+(done?esc(m.score.away):'')+'</b></div>'+
       '<div class="venue">'+esc(m.venue||'会場未定')+'</div></a>';
@@ -614,7 +614,7 @@ function renderSchedule(){
   for(const m of r.list){
     if(m.date!==cur){cur=m.date;const d=daysUntil(m.date);html+='<div class="dayhead">'+esc(fmtDate(m.date))+(d===0?'　今日':d===1?'　明日':'')+'</div>'}
     const done=isDone(m),h=+m.score?.home,a=+m.score?.away;
-    html+='<a class="mrow" href="'+detail(S.id)+'">'+
+    html+='<a class="mrow" href="'+detail(S.id,isDone(m)?m.matchId:'')+'">'+
       '<div class="ko">'+esc(m.kickoff||'--:--')+'<small>'+esc(m.venue||'')+'</small></div>'+
       '<div class="tm h'+(done&&h<a?' lose':'')+'">'+crest(m.home,'sm')+'<span>'+esc(name(m.home))+'</span></div>'+
       (done?'<div class="sc done">'+esc(m.score.home)+' - '+esc(m.score.away)+'</div>':'<div class="sc vs">VS</div>')+
@@ -639,7 +639,7 @@ function renderFeatured(m){
       '<small>'+esc(fmtDate(m.date))+(m.kickoff?'　'+esc(m.kickoff)+' KO':'')+'</small>'+
       (!done&&d>0?'<div class="cd">あと '+d+' 日</div>':'')+'</div>'+
       '<div class="side-t">'+crest(m.away,'xl')+'<strong>'+esc(name(m.away))+'</strong></div></div>'+
-    '<div class="hero-foot"><span>📍 '+esc(m.venue||'会場未定')+'</span><a href="'+detail(S.id)+'">'+(done?'試合詳細を見る':'公式記録を見る')+' ↗</a></div>';
+    '<div class="hero-foot"><span>📍 '+esc(m.venue||'会場未定')+'</span><a href="'+detail(S.id,done?m.matchId:'')+'">'+(done?'試合詳細を見る':'公式記録を見る')+' ↗</a></div>';
 }
 /* topics: auto headlines generated from official data */
 let NEWS=[];

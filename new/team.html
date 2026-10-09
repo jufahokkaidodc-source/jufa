@@ -376,7 +376,7 @@ dl.facts dd{margin:0;font-weight:700;overflow-wrap:anywhere}
         <div class="tabs" role="tablist"><button id="tabUp" role="tab" aria-selected="true">これから</button><button id="tabRes" role="tab" aria-selected="false">結果</button></div>
       </div>
       <div class="card" id="matchList"><span class="sk"></span><span class="sk"></span></div>
-      <p class="note">試合をタップすると公式記録ページ（得点者・警告などの詳細）に移動します。</p>
+      <p class="note">試合をタップすると大会記録のページ（得点者・警告などの詳細）に移動します。</p>
     </section>
 
     <div class="side">
@@ -415,7 +415,7 @@ dl.facts dd{margin:0;font-weight:700;overflow-wrap:anywhere}
 <footer class="footer">
   <div class="wrap">
     <div><strong>北海道学生サッカー連盟</strong><p>チームページ Ver.2（試験公開）。試合・成績は公式記録から自動反映、クラブ情報・選手名鑑は各大学の登録内容を表示しています。</p><p id="updated"></p></div>
-    <nav><a href="./">新公式サイト</a><a href="../results/">公式大会記録</a><a href="#" onclick="scrollTo({top:0});return false">ページ上部へ ↑</a></nav>
+    <nav><a href="./">新公式サイト</a><a href="./results.html">大会記録</a><a href="#" onclick="scrollTo({top:0});return false">ページ上部へ ↑</a></nav>
   </div>
 </footer>
 
@@ -426,7 +426,7 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const name=t=>typeof t==='string'?t:(t?.short||t?.name||'未定');
 const fullName=t=>typeof t==='string'?t:(t?.name||t?.short||'未定');
 const tkey=t=>typeof t==='string'?t:(t?.id||t?.name||t?.short||'');
-const detail=id=>'../results/?comp='+encodeURIComponent(id);
+const detail=(id,mid)=>'./results.html?comp='+encodeURIComponent(id)+(mid?'&match='+encodeURIComponent(mid):'');
 const jstToday=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 const pick=(o,ks)=>{for(const k of ks)if(o?.[k]!=null&&o[k]!=='')return o[k];return null};
 const isDone=m=>m.status==='finished'&&m.score&&m.score.home!=null&&m.score.home!==''&&m.score.away!=null&&m.score.away!=='';
@@ -570,7 +570,7 @@ function duel(m,next){
 function renderPair(){
   const nx=S.up[0],ls=S.res[0];
   const card=(m,next)=>!m?'<div class="mcard'+(next?' next':'')+'"><div class="top"><span class="lbl">'+(next?'NEXT MATCH':'LAST RESULT')+'</span></div><p class="empty" style="padding:8px 0;'+(next?'color:#bcd0df':'')+'">'+(next?'予定されている試合はありません。':'まだ試合結果はありません。')+'</p></div>':
-    '<a class="mcard'+(next?' next':'')+'" href="'+detail(S.comp)+'"><div class="top"><span class="lbl">'+(next?'NEXT MATCH':'LAST RESULT')+'</span><span>'+esc(m.round||'')+(next?'':'　<span class="res '+outcome(m)+'">'+OUT[outcome(m)]+'</span>')+'</span></div>'+
+    '<a class="mcard'+(next?' next':'')+'" href="'+detail(S.comp,isDone(m)?m.matchId:'')+'"><div class="top"><span class="lbl">'+(next?'NEXT MATCH':'LAST RESULT')+'</span><span>'+esc(m.round||'')+(next?'':'　<span class="res '+outcome(m)+'">'+OUT[outcome(m)]+'</span>')+'</span></div>'+
     duel(m,next)+'<div class="foot">📍 '+esc(m.venue||'会場未定')+'</div></a>';
   $('pair').innerHTML=card(nx,true)+card(ls,false);
 }
@@ -582,7 +582,7 @@ function renderMatches(which){
   $('matchList').innerHTML=list.map(m=>{
     const home=isMe(m.home),opp=home?m.away:m.home,o=outcome(m);
     const mine=o?(home?m.score.home:m.score.away):null,their=o?(home?m.score.away:m.score.home):null;
-    return '<a class="mrow" href="'+detail(S.comp)+'">'+
+    return '<a class="mrow" href="'+detail(S.comp,isDone(m)?m.matchId:'')+'">'+
       '<div class="d">'+esc(fmtDate(m.date,true))+'<small>（'+esc(wd(m.date))+'）'+esc(m.kickoff||'')+'</small></div>'+
       '<div class="ha'+(home?' H':'')+'">'+(home?'HOME':'AWAY')+'</div>'+
       '<div class="opp">'+crest(opp,'sm')+'<div><span>vs '+esc(name(opp))+'</span><small>'+esc([m.round,m.venue].filter(has).join('　'))+'</small></div></div>'+
