@@ -597,11 +597,23 @@ function renderTopics(ms,scorers,compName){
 }
 
 /* top photos：写真がないときは何も出さない。今の1枚と次の1枚だけ読み込む */
-const PH={list:[],i:0,timer:null,paused:false};
+const PH={list:[],i:0,timer:null,paused:false,key:''};
+let HERO=[];
+/* 大会ごとの写真：その大会の写真があればそれだけ、なければ「すべての大会」の写真 */
+function heroFor(id){
+  const ok=x=>photoUrl(x.photo,1600);
+  const own=HERO.filter(x=>x.comp===id&&ok(x));
+  return (own.length?own:HERO.filter(x=>!x.comp&&ok(x))).slice(0,10);
+}
 function renderPhotos(list){
-  PH.list=(list||[]).filter(x=>photoUrl(x.photo,1600)).slice(0,10);
+  list=(list||[]).filter(x=>photoUrl(x.photo,1600)).slice(0,10);
+  const key=list.map(x=>x.photo).join('|');
+  if(key&&key===PH.key)return; // 同じ写真なら作り直さない
+  PH.key=key;stopPhotos();
+  PH.list=list;
   const box=$('photos');
-  if(!PH.list.length){box.hidden=true;return}
+  $('phStage').style.aspectRatio='';
+  if(!PH.list.length){box.hidden=true;$('phStage').innerHTML='';return}
   box.hidden=false;
   $('phStage').innerHTML=PH.list.map((x,i)=>{
     const set=photoSet(x.photo,[800,1200,1600,2400]);
@@ -695,6 +707,7 @@ async function load(id){
     renderFeatured(feat);
     renderTopics(ms,d.scorers,d.competition?.name||'');
     renderTable(d.groups);renderScorers(d.scorers);renderClubs(collectTeams(ms),id);
+    renderPhotos(heroFor(id));
   }catch(e){
     $('feature').innerHTML='<p class="empty" style="color:#c0d3e2">データを読み込めません：'+esc(e.message)+'</p>';
     for(const k of ['ticker','topics','matchList','table','scorerList','clubList'])$(k).innerHTML='<p class="empty">データを表示できません。</p>';
@@ -717,10 +730,8 @@ links.forEach(a=>{const s=document.querySelector(a.getAttribute('href'));if(s)sp
     else{$('comptabs').innerHTML='<button>大会情報を取得できません</button>';$('feature').innerHTML='<p class="empty" style="color:#c0d3e2">大会一覧を取得できません：'+esc(e.message)+'</p>';return}
   }
   $('demo').hidden=!DEMO;
-  let HERO=[];
   try{const r=DEMO?{ok:1,news:[{id:'a1',date:jstToday(),cat:'連盟',title:'（サンプル）2027年度 チーム登録の受付について',important:true},{id:'a2',date:jstToday(),cat:'demo-1',title:'（サンプル）第3節 会場変更のお知らせ',important:true}],hero:demoHero()}:await fetch('../results/data/news.json',{cache:'no-store'}).then(r=>r.ok?r.json():null);NEWS=r?.news||[];HERO=r?.hero||[]}catch(_){NEWS=[]}
   renderAlert();
-  renderPhotos(HERO);
   const cs=d.competitions||[];
   if(!cs.length){$('comptabs').innerHTML='<button>大会が登録されていません</button>';return}
   const short=n=>String(n||'').replace(/^\d{4}年度\s*/,'').replace(/第\d+回\s*/,'').replace(/^北海道学生サッカー/,'').replace(/^北海道/,'').trim()||n;
@@ -743,9 +754,10 @@ function demoPhoto(n,c1,c2,h){
   return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 }
 function demoHero(){return [
-  {photo:demoPhoto(1,'#0e2c48','#1f5a8a',751),caption:'（サンプル）リーグ第10節　好プレーに沸くスタンド',credit:'連盟広報'},
-  {photo:demoPhoto(2,'#14532d','#0e2c48'),caption:'（サンプル）新人戦　決勝のキックオフ',credit:'学生 A'},
-  {photo:demoPhoto(3,'#5b2a86','#0e2c48'),caption:'',credit:''}]}
+  {photo:demoPhoto(1,'#0e2c48','#1f5a8a',751),caption:'（サンプル）リーグ1部 第10節　好プレーに沸くスタンド',credit:'連盟広報',comp:'demo-1'},
+  {photo:demoPhoto(2,'#14532d','#0e2c48'),caption:'（サンプル）リーグ1部 優勝チーム',credit:'学生 A',comp:'demo-1'},
+  {photo:demoPhoto(3,'#5b2a86','#0e2c48'),caption:'（サンプル）リーグ2部 開幕戦',credit:'',comp:'demo-2'},
+  {photo:demoPhoto(4,'#7a3b00','#0e2c48'),caption:'（サンプル）すべての大会で出る写真',credit:'',comp:''}]}
 function demoData(file){
   const T='ABCDEFGH'.split('').map((c,i)=>({id:'t'+i,short:'サンプル大学'+c,name:'サンプル大学'+c,univ:'サンプル大学'+c+' サッカー部'}));
   if(file==='competitions.json')return{competitions:[{id:'demo-1',name:'【サンプル】リーグ 1部'},{id:'demo-2',name:'【サンプル】リーグ 2部'},{id:'demo-cup',name:'【サンプル】選手権'}]};
