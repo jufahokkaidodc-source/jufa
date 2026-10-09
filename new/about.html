@@ -233,7 +233,7 @@ function makeBadges(teams,keyOf,labelOf){
   BADGE.clear();
   const g=new Map();
   for(const t of teams){
-    const h=crestBase(t),u=(h.match(/<img src="([^"]+)"/)||[])[1];
+    const h=crestBase(t),u=(h.match(/<img[^>]*? src="([^"]+)"/)||[])[1];
     const look=u||'txt:'+((h.match(/>([^<]*)<\/span>$/)||[])[1]||'');
     if(!g.has(look))g.set(look,[]);g.get(look).push(t);
   }
