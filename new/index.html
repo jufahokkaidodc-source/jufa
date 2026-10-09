@@ -85,20 +85,23 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 
 /* top photos（トップ写真：数枚を切り替えて表示） */
-.photos{position:relative;background:var(--navy);overflow:hidden}
-.ph-stage{position:relative;width:100%;aspect-ratio:21/8;max-height:560px;min-height:220px}
-.ph{position:absolute;inset:0;margin:0;opacity:0;transition:opacity .8s ease;pointer-events:none}
+.photos{position:relative;width:min(960px,100%);margin:0 auto;background:var(--navy);overflow:hidden}
+.ph-stage{position:relative;width:100%;aspect-ratio:16/9}
+.ph{position:absolute;inset:0;margin:0;opacity:0;transition:opacity .8s ease;pointer-events:none;overflow:hidden}
 .ph.on{opacity:1;pointer-events:auto}
 .ph a{display:block;width:100%;height:100%}
-.ph img{width:100%;height:100%;object-fit:cover;display:block;background:var(--navy2)}
-.ph figcaption{position:absolute;left:0;right:0;bottom:0;padding:48px 0 30px;background:linear-gradient(transparent,#071b2ecc);color:#fff}
-.ph figcaption .wrap{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
-.ph figcaption span{font-size:clamp(14px,1.8vw,19px);font-weight:900;line-height:1.5;text-shadow:0 1px 6px #0008;overflow-wrap:anywhere}
-.ph figcaption small{flex:none;font-size:11px;color:#d2e0eb;text-shadow:0 1px 4px #0008}
-.ph-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:#071b2e88;color:#fff;font-size:22px;line-height:1;z-index:2}
+.ph img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.ph img.fg{object-fit:contain}
+.ph img.bg{object-fit:cover;filter:blur(22px) brightness(.75);transform:scale(1.12)}
+.ph-cap{display:flex;align-items:center;gap:12px;min-height:44px;padding:6px 16px;color:#fff;background:var(--navy)}
+.ph-cap[hidden],.ph-nav[hidden]{display:none}
+.ph-cap .tx{flex:1;min-width:0;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.ph-cap span{font-size:14px;font-weight:700;line-height:1.5;overflow-wrap:anywhere}
+.ph-cap small{font-size:11px;color:#9fb8cc}
+.ph-nav{position:absolute;top:calc(50% - 22px);transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:#071b2e88;color:#fff;font-size:22px;line-height:1;z-index:2}
 .ph-nav:hover{background:#071b2ecc}
 .ph-nav.p{left:14px}.ph-nav.n{right:14px}
-.ph-dots{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:4px;z-index:2}
+.ph-dots{flex:none;display:flex;gap:2px}
 .ph-dots button{width:28px;height:28px;border:0;background:transparent;padding:0;display:grid;place-items:center}
 .ph-dots button:before{content:"";width:8px;height:8px;border-radius:50%;background:#ffffff70;transition:.2s}
 .ph-dots button[aria-current=true]:before{background:var(--lime);width:20px;border-radius:4px}
@@ -296,9 +299,8 @@ html{scroll-padding-top:0}
   .mrow .sc{font-size:20px}
   .side{grid-template-columns:minmax(0,1fr)}
   .clubs{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .ph-stage{aspect-ratio:4/3;max-height:none}
-  .ph figcaption{padding:40px 0 34px}
-  .ph figcaption .wrap{flex-direction:column;align-items:flex-start;gap:2px}
+  .ph-stage{aspect-ratio:4/3}
+  .ph-cap .tx{gap:2px 10px}
   .ph-nav{display:none}
   .feat{grid-template-columns:1fr}
   .feat article{display:grid;grid-template-columns:110px 1fr}
@@ -335,7 +337,7 @@ html{scroll-padding-top:0}
   <div class="ph-stage" id="phStage"></div>
   <button class="ph-nav p" id="phPrev" aria-label="前の写真">‹</button>
   <button class="ph-nav n" id="phNext" aria-label="次の写真">›</button>
-  <div class="ph-dots" id="phDots"></div>
+  <div class="ph-cap" id="phCap"><div class="tx" id="phTx" aria-live="polite"></div><div class="ph-dots" id="phDots"></div></div>
 </section>
 
 <section class="ticker">
@@ -603,18 +605,18 @@ function renderPhotos(list){
   box.hidden=false;
   $('phStage').innerHTML=PH.list.map((x,i)=>{
     const set=photoSet(x.photo,[800,1200,1600,2400]);
-    const img='<img data-src="'+esc(photoUrl(x.photo,1600))+'"'+(set?' data-srcset="'+esc(set)+'" sizes="100vw"':'')+' alt="'+esc(x.caption||'トップ写真')+'" decoding="async"'+(i===0?' fetchpriority="high"':'')+'>';
+    const src=' data-src="'+esc(photoUrl(x.photo,1600))+'"'+(set?' data-srcset="'+esc(set)+'" sizes="(max-width:960px) 100vw, 960px"':'');
+    const img='<img class="bg"'+src+' alt="" aria-hidden="true"><img class="fg"'+src+' alt="'+esc(x.caption||'トップ写真')+'" decoding="async"'+(i===0?' fetchpriority="high"':'')+'>';
     const u=safeUrl(x.url);
-    const cap=(x.caption||x.credit)?'<figcaption><div class="wrap"><span>'+esc(x.caption||'')+'</span>'+(x.credit?'<small>撮影：'+esc(x.credit)+'</small>':'')+'</div></figcaption>':'';
-    return '<figure class="ph" data-i="'+i+'" aria-roledescription="slide" aria-label="'+(i+1)+' / '+PH.list.length+'">'+(u?'<a href="'+esc(u)+'"'+(/^https?:/i.test(u)&&!u.startsWith(location.origin)?' target="_blank" rel="noopener"':'')+'>'+img+'</a>':img)+cap+'</figure>';
+    return '<figure class="ph" data-i="'+i+'" aria-roledescription="slide" aria-label="'+(i+1)+' / '+PH.list.length+'">'+(u?'<a href="'+esc(u)+'"'+(/^https?:/i.test(u)&&!u.startsWith(location.origin)?' target="_blank" rel="noopener"':'')+'>'+img+'</a>':img)+'</figure>';
   }).join('');
-  $('phStage').querySelectorAll('img').forEach(im=>im.onerror=()=>{const f=im.closest('.ph');const i=+f.dataset.i;PH.list[i]=null;f.remove();if(!PH.list.some(Boolean)){box.hidden=true;stopPhotos()}else if(i===PH.i)showPhoto(PH.i+1)});
+  $('phStage').querySelectorAll('img.fg').forEach(im=>im.onerror=()=>{const f=im.closest('.ph');const i=+f.dataset.i;PH.list[i]=null;f.remove();if(!PH.list.some(Boolean)){box.hidden=true;stopPhotos()}else if(i===PH.i)showPhoto(PH.i+1)});
   const many=PH.list.length>1;
   $('phPrev').hidden=$('phNext').hidden=!many;
   $('phDots').innerHTML=many?PH.list.map((_,i)=>'<button data-i="'+i+'" aria-label="'+(i+1)+'枚目の写真"></button>').join(''):'';
   showPhoto(0);startPhotos();
 }
-function loadImg(i){const f=$('phStage').querySelector('.ph[data-i="'+i+'"]');const im=f&&f.querySelector('img[data-src]');if(!im)return;if(im.dataset.srcset)im.srcset=im.dataset.srcset;im.src=im.dataset.src;im.removeAttribute('data-src')}
+function loadImg(i){const f=$('phStage').querySelector('.ph[data-i="'+i+'"]');if(!f)return;f.querySelectorAll('img[data-src]').forEach(im=>{if(im.dataset.srcset)im.srcset=im.dataset.srcset;im.src=im.dataset.src;im.removeAttribute('data-src')})}
 function showPhoto(i){
   const n=PH.list.length;if(!n)return;
   for(let k=0;k<n;k++){i=((i%n)+n)%n;if(PH.list[i])break;i++}
@@ -622,6 +624,9 @@ function showPhoto(i){
   let j=i;for(let k=1;k<n;k++){const x=(i+k)%n;if(PH.list[x]){j=x;break}}loadImg(j);
   $('phStage').querySelectorAll('.ph').forEach(f=>{const on=+f.dataset.i===i;f.classList.toggle('on',on);f.setAttribute('aria-hidden',String(!on));f.querySelectorAll('a').forEach(a=>a.tabIndex=on?0:-1)});
   $('phDots').querySelectorAll('button').forEach(b=>b.setAttribute('aria-current',String(+b.dataset.i===i)));
+  const x=PH.list[i];
+  $('phTx').innerHTML=(x.caption?'<span>'+esc(x.caption)+'</span>':'')+(x.credit?'<small>撮影：'+esc(x.credit)+'</small>':'');
+  $('phCap').hidden=!x.caption&&!x.credit&&PH.list.filter(Boolean).length<2;
 }
 const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function stopPhotos(){clearInterval(PH.timer);PH.timer=null}
@@ -726,12 +731,13 @@ links.forEach(a=>{const s=document.querySelector(a.getAttribute('href'));if(s)sp
 })();
 
 /* demo data (preview only; never used on github.io) */
-function demoPhoto(n,c1,c2){
-  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="700" viewBox="0 0 1600 700"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+c1+'"/><stop offset="1" stop-color="'+c2+'"/></linearGradient></defs><rect width="1600" height="700" fill="url(#g)"/><g fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="6"><rect x="80" y="60" width="1440" height="580"/><line x1="800" y1="60" x2="800" y2="640"/><circle cx="800" cy="350" r="110"/></g><text x="800" y="370" font-size="64" font-family="sans-serif" font-weight="700" fill="#fff" fill-opacity=".85" text-anchor="middle">サンプル写真 '+n+'</text></svg>';
+function demoPhoto(n,c1,c2,h){
+  h=h||700;const m=h/2;
+  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="'+h+'" viewBox="0 0 1600 '+h+'"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+c1+'"/><stop offset="1" stop-color="'+c2+'"/></linearGradient></defs><rect width="1600" height="'+h+'" fill="url(#g)"/><g fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="6"><rect x="80" y="60" width="1440" height="'+(h-120)+'"/><line x1="800" y1="60" x2="800" y2="'+(h-60)+'"/><circle cx="800" cy="'+m+'" r="110"/></g><text x="800" y="'+(m+20)+'" font-size="64" font-family="sans-serif" font-weight="700" fill="#fff" fill-opacity=".85" text-anchor="middle">サンプル写真 '+n+'</text></svg>';
   return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 }
 function demoHero(){return [
-  {photo:demoPhoto(1,'#0e2c48','#1f5a8a'),caption:'（サンプル）リーグ第10節　好プレーに沸くスタンド',credit:'連盟広報'},
+  {photo:demoPhoto(1,'#0e2c48','#1f5a8a',1067),caption:'（サンプル）リーグ第10節　好プレーに沸くスタンド',credit:'連盟広報'},
   {photo:demoPhoto(2,'#14532d','#0e2c48'),caption:'（サンプル）新人戦　決勝のキックオフ',credit:'学生 A'},
   {photo:demoPhoto(3,'#5b2a86','#0e2c48'),caption:'',credit:''}]}
 function demoData(file){
