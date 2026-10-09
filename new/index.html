@@ -507,6 +507,7 @@ function makeBadges(teams,keyOf,labelOf){
 }
 function addBadge(html,key){const b=BADGE.get(key);return b?html.replace(/<\/span>$/,'<i class="bdg">'+esc(b)+'</i></span>'):html}
 function crest(t,size){return addBadge(crestBase(t,size),tkey(t))}
+function crestInk(c){const m=/^#?([0-9a-f]{6})$/i.exec(String(c||''));if(!m)return '#fff';const n=parseInt(m[1],16),L=[n>>16&255,n>>8&255,n&255].map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*L[0]+.7152*L[1]+.0722*L[2]>.45?'#222':'#fff'}
 function crestBase(t,size){
   const n=name(t),k=tkey(t);let h=0;for(const ch of k)h=(h*31+ch.charCodeAt(0))>>>0;
   let s=n.replace(/^(北海道|国立|私立)/,'').replace(/(大学|大)$/,'');
@@ -516,8 +517,8 @@ function crestBase(t,size){
   const c=/^#[0-9a-f]{3,8}$/i.test(p?.color||'')?p.color:PALETTE[h%PALETTE.length];
   const u=emblemUrl(p)||embFor(typeof t==='object'?t.univ:'',name(t),typeof t==='object'?t.name:'');
   const ud=emblemUrl({emblem:p?.emblemDark});
-  if(u)return '<span class="crest img '+(size||'')+(two?' two':'')+(ud?' hasdark':'')+'" style="--c:'+c+'" data-ch="'+esc(ch)+'"><img class="el" src="'+esc(u)+'" alt="'+esc(name(t))+'" loading="lazy" onerror="crestFail(this)">'+(ud?'<img class="ed" src="'+esc(ud)+'" alt="'+esc(name(t))+'" loading="lazy" onerror="crestFail(this)">':'')+'</span>';
-  return '<span class="crest '+(size||'')+(two?' two':'')+'" style="--c:'+c+'" aria-hidden="true">'+esc(ch)+'</span>';
+  if(u)return '<span class="crest img '+(size||'')+(two?' two':'')+(ud?' hasdark':'')+'" style="--c:'+c+';color:'+crestInk(c)+'" data-ch="'+esc(ch)+'"><img class="el" src="'+esc(u)+'" alt="'+esc(name(t))+'" loading="lazy" onerror="crestFail(this)">'+(ud?'<img class="ed" src="'+esc(ud)+'" alt="'+esc(name(t))+'" loading="lazy" onerror="crestFail(this)">':'')+'</span>';
+  return '<span class="crest '+(size||'')+(two?' two':'')+'" style="--c:'+c+';color:'+crestInk(c)+'" aria-hidden="true">'+esc(ch)+'</span>';
 }
 const WD=['日','月','火','水','木','金','土'];
 function fmtDate(s){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');if(!m)return s||'日程未定';return (+m[2])+'/'+(+m[3])+'（'+WD[new Date(+m[1],+m[2]-1,+m[3]).getDay()]+'）'}
