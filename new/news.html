@@ -65,6 +65,11 @@ button{font:inherit;color:inherit;cursor:pointer}
 .list .t{min-width:0}
 .list .t b{display:block;font-size:15px;line-height:1.55;margin-top:4px}
 .list .go{color:var(--muted)}
+.list a.th{grid-template-columns:120px 1fr 128px auto}
+.list .thumb{width:128px;aspect-ratio:3/2;border-radius:8px;overflow:hidden;background:#eef2f6}
+.list .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.aphoto{margin:0 0 20px;border-radius:12px;overflow:hidden;background:#eef2f6}
+.aphoto img{display:block;width:100%;height:auto;max-height:70vh;object-fit:contain;background:#eef2f6}
 .more{display:block;margin:14px auto 0;border:1px solid var(--line);background:#fff;border-radius:30px;padding:10px 26px;font-size:13px;font-weight:700}
 .article{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 32px}
 .article .meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--muted)}
@@ -92,6 +97,10 @@ button{font:inherit;color:inherit;cursor:pointer}
   .sechead h2{font-size:19px}
   .list a{grid-template-columns:1fr;gap:4px;padding:14px 16px}
   .list .go{display:none}
+  .list a.th{grid-template-columns:1fr 96px;column-gap:12px}
+  .list a.th time{grid-column:1}
+  .list a.th .t{grid-column:1}
+  .list a.th .thumb{grid-column:2;grid-row:1/span 2;width:96px;align-self:center}
   .article{padding:20px 18px}
   .btn{width:100%;justify-content:center}
 }
@@ -136,6 +145,17 @@ let DEMO=PARAMS.has('demo');
 const WD=['日','月','火','水','木','金','土'];
 function fmtDate(s){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');if(!m)return s||'';return m[1]+'.'+m[2]+'.'+m[3]+'（'+WD[new Date(+m[1],+m[2]-1,+m[3]).getDay()]+'）'}
 const safeUrl=u=>/^https?:\/\//i.test(String(u||''))?String(u):'';
+/* 写真：ドライブの共有リンクは縮小版（幅 w px）にする。https の画像URLはそのまま */
+function photoUrl(u,w){
+  u=String(u||'').trim();if(!u)return '';
+  const d=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
+  if(d)return 'https://drive.google.com/thumbnail?id='+d[1]+'&sz=w'+w;
+  if(/^https:\/\//i.test(u))return u;
+  if(DEMO&&/^data:image\//.test(u))return u;
+  return '';
+}
+const photoSet=(u,ws)=>/drive\.google\.com\/thumbnail/.test(photoUrl(u,ws[0]))?ws.map(w=>photoUrl(u,w)+' '+w+'w').join(', '):'';
+const noImg="this.closest('.thumb,.aphoto').remove()";
 /* 本文：改行を保ち、URLをリンクにする */
 function richText(t){return esc(t).replace(/(https?:\/\/[^\s<>"']+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>').replace(/\n/g,'<br>')}
 const shortComp=n=>String(n||'').replace(/^\d{4}年度\s*/,'').replace(/第\d+回\s*/,'').replace(/^北海道学生サッカー/,'').replace(/^北海道/,'').trim()||n;
@@ -166,7 +186,7 @@ function renderList(){
   if(CAT!=='ALL'&&!cats.some(c=>c[0]===CAT))CAT='ALL';
   const list=ALL.filter(n=>CAT==='ALL'||n.cat===CAT);
   $('main').innerHTML='<div class="chips" role="tablist">'+[['ALL','すべて'],...cats].map(([k,l])=>'<button role="tab" data-cat="'+esc(k)+'" aria-selected="'+(k===CAT)+'">'+esc(k==='ALL'||k==='連盟'?l:shortComp(l))+'</button>').join('')+'</div>'+
-    '<div class="card list">'+(list.length?list.slice(0,SHOW).map(n=>'<a href="?id='+encodeURIComponent(n.id)+'"><time>'+esc(fmtDate(n.date))+'</time><div class="t">'+(n.important?'<span class="imp">重要</span> ':'')+'<span class="cat">'+esc(n.cat==='連盟'?'連盟':shortComp(n.catName))+'</span><b>'+esc(n.title)+'</b></div><span class="go">›</span></a>').join(''):'<p class="empty">お知らせはまだありません。</p>')+'</div>'+
+    '<div class="card list">'+(list.length?list.slice(0,SHOW).map(n=>{const ph=photoUrl(n.photo,400);return '<a href="?id='+encodeURIComponent(n.id)+'"'+(ph?' class="th"':'')+'><time>'+esc(fmtDate(n.date))+'</time><div class="t">'+(n.important?'<span class="imp">重要</span> ':'')+'<span class="cat">'+esc(n.cat==='連盟'?'連盟':shortComp(n.catName))+'</span><b>'+esc(n.title)+'</b></div>'+(ph?'<span class="thumb"><img src="'+esc(ph)+'" alt="" loading="lazy" decoding="async" onerror="'+noImg+'"></span>':'')+'<span class="go">›</span></a>'}).join(''):'<p class="empty">お知らせはまだありません。</p>')+'</div>'+
     (list.length>SHOW?'<button class="more" id="more">もっと見る（残り'+(list.length-SHOW)+'件）</button>':'');
 }
 function renderArticle(n){
@@ -175,7 +195,7 @@ function renderArticle(n){
   $('h1').textContent='お知らせ';
   const u=safeUrl(n.url);
   $('main').innerHTML='<article class="article"><div class="meta"><time>'+esc(fmtDate(n.date))+'</time>'+(n.important?'<span class="imp">重要</span>':'')+'<a class="cat" href="./news.html?cat='+encodeURIComponent(n.cat)+'">'+esc(n.cat==='連盟'?'連盟':shortComp(n.catName))+'</a></div>'+
-    '<h2>'+esc(n.title)+'</h2>'+(has(n.body)?'<div class="body">'+richText(n.body)+'</div>':'')+
+    '<h2>'+esc(n.title)+'</h2>'+(photoUrl(n.photo,1200)?'<figure class="aphoto"><img src="'+esc(photoUrl(n.photo,1200))+'"'+(photoSet(n.photo,[800,1200,1600])?' srcset="'+esc(photoSet(n.photo,[800,1200,1600]))+'" sizes="(max-width:1100px) 100vw, 1036px"':'')+' alt="'+esc(n.title)+'" decoding="async" onerror="'+noImg+'"></figure>':'')+(has(n.body)?'<div class="body">'+richText(n.body)+'</div>':'')+
     (u?'<a class="btn" href="'+esc(u)+'" target="_blank" rel="noopener">'+(/\.pdf(\?|$)/i.test(u)?'PDFを開く':'詳しく見る')+' ↗</a>':'')+
     '</article><a class="back" href="./news.html">‹ お知らせ一覧へ</a>';
 }
@@ -194,7 +214,7 @@ boot('news.json',(d,err)=>{
 function demoData(file){
   const t=new Date();const d=n=>{const x=new Date(t);x.setDate(x.getDate()-n);return x.toISOString().slice(0,10)};
   return {ok:true,updatedAt:d(0)+'T18:00:00+09:00',news:[
-    {id:'a1',date:d(1),cat:'連盟',catName:'連盟',title:'（サンプル）2027年度 チーム登録の受付について',body:'（サンプル）ここに本文が入ります。\n改行もそのまま表示されます。\n詳しくは https://example.com をご覧ください。',url:'https://example.com',important:true},
+    {id:'a1',date:d(1),cat:'連盟',catName:'連盟',photo:'data:image/svg+xml;charset=utf-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><rect width="1200" height="800" fill="#1f5a8a"/><text x="600" y="420" font-size="60" font-family="sans-serif" fill="#fff" text-anchor="middle">サンプル写真</text></svg>'),title:'（サンプル）2027年度 チーム登録の受付について',body:'（サンプル）ここに本文が入ります。\n改行もそのまま表示されます。\n詳しくは https://example.com をご覧ください。',url:'https://example.com',important:true},
     {id:'a2',date:d(3),cat:'demo-1',catName:'【サンプル】リーグ 1部',title:'（サンプル）第12節 会場変更のお知らせ',body:'（サンプル）第12節の会場を変更します。',url:'',important:true},
     {id:'a3',date:d(6),cat:'demo-cup',catName:'【サンプル】新人戦',title:'（サンプル）新人戦 組み合わせ決定',body:'',url:'https://example.com/a.pdf',important:false},
     {id:'a4',date:d(12),cat:'連盟',catName:'連盟',title:'（サンプル）審判講習会の開催',body:'（サンプル）本文',url:'',important:false}]};
