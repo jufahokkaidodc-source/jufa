@@ -610,6 +610,12 @@ function renderPhotos(list){
     const u=safeUrl(x.url);
     return '<figure class="ph" data-i="'+i+'" aria-roledescription="slide" aria-label="'+(i+1)+' / '+PH.list.length+'">'+(u?'<a href="'+esc(u)+'"'+(/^https?:/i.test(u)&&!u.startsWith(location.origin)?' target="_blank" rel="noopener"':'')+'>'+img+'</a>':img)+'</figure>';
   }).join('');
+  /* 枠の形は、最初に表示できた写真の縦横比に合わせる（極端な形は 4:3〜21:9 に収める） */
+  let fitted=false;
+  $('phStage').querySelectorAll('img.fg').forEach(im=>im.addEventListener('load',()=>{
+    if(fitted||!im.naturalWidth||!im.naturalHeight)return;fitted=true;
+    $('phStage').style.aspectRatio=String(Math.min(21/9,Math.max(4/3,im.naturalWidth/im.naturalHeight)));
+  }));
   $('phStage').querySelectorAll('img.fg').forEach(im=>im.onerror=()=>{const f=im.closest('.ph');const i=+f.dataset.i;PH.list[i]=null;f.remove();if(!PH.list.some(Boolean)){box.hidden=true;stopPhotos()}else if(i===PH.i)showPhoto(PH.i+1)});
   const many=PH.list.length>1;
   $('phPrev').hidden=$('phNext').hidden=!many;
@@ -737,7 +743,7 @@ function demoPhoto(n,c1,c2,h){
   return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 }
 function demoHero(){return [
-  {photo:demoPhoto(1,'#0e2c48','#1f5a8a',1067),caption:'（サンプル）リーグ第10節　好プレーに沸くスタンド',credit:'連盟広報'},
+  {photo:demoPhoto(1,'#0e2c48','#1f5a8a',751),caption:'（サンプル）リーグ第10節　好プレーに沸くスタンド',credit:'連盟広報'},
   {photo:demoPhoto(2,'#14532d','#0e2c48'),caption:'（サンプル）新人戦　決勝のキックオフ',credit:'学生 A'},
   {photo:demoPhoto(3,'#5b2a86','#0e2c48'),caption:'',credit:''}]}
 function demoData(file){
