@@ -37,10 +37,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 .header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:30}
 .head{height:62px;display:flex;align-items:center;gap:18px}
 .brand{display:flex;align-items:center;gap:11px;min-width:0}
-.logo{width:38px;height:38px;border-radius:10px;background:#fff;display:grid;place-items:center;flex:none;padding:3px;overflow:hidden}
-.logo img{width:100%;height:100%;object-fit:contain;display:block}
+.logo{height:46px;border-radius:8px;background:#fff;display:flex;align-items:center;flex:none;padding:4px 7px}
+.logo img{height:100%;width:auto;display:block}
 .brandname{font-size:15px;font-weight:900;line-height:1.25}
-.brandname small{display:block;font-family:var(--num);font-size:10px;color:#9fb8cc;letter-spacing:.14em;font-weight:600}
+.brandname small{display:block;font-family:var(--num);font-size:11px;color:#9fb8cc;letter-spacing:.04em;font-weight:600}
 .nav{display:flex;margin-left:auto;height:100%}
 .nav a{display:flex;align-items:center;padding:0 14px;font-size:13px;font-weight:700;color:#d2e0eb;border-bottom:3px solid transparent;transition:.15s}
 .nav a:hover,.nav a.on{color:#fff;border-bottom-color:var(--lime)}
@@ -85,6 +85,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 .crest.xl.two{font-size:26px}
 .crest.img{background:transparent!important;box-shadow:none!important;border-radius:0}
 .crest.img img{width:100%;height:100%;object-fit:contain;display:block}
+.crest{position:relative}
+.crest .bdg{position:absolute;right:-6px;bottom:-4px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--lime);color:var(--navy);font:800 10px/16px var(--num);font-style:normal;letter-spacing:0;text-align:center;white-space:nowrap;box-shadow:0 0 0 1.5px #fff}
+.crest.xs .bdg{display:none}
+.crest.sm .bdg{min-width:14px;height:14px;padding:0 3px;font-size:9px;line-height:14px}
+.crest.xl .bdg{min-width:28px;height:24px;padding:0 7px;border-radius:12px;font-size:15px;line-height:24px;right:-8px;bottom:-2px}
+
 
 
 /* top photos（トップ写真：数枚を切り替えて表示） */
@@ -273,7 +279,12 @@ html{scroll-padding-top:0}
   .wrap{width:calc(100% - 32px)}
   .clubbar small{display:none}
   .head{height:56px}
-  .logo{width:34px;height:34px;font-size:21px}
+  .logo{height:36px;padding:3px 5px}
+  .brand{gap:8px}
+  .brandname{font-size:13px}
+  .menubtn{font-size:0;padding:6px 11px;flex:none}
+  .menubtn:before{content:"☰";font-size:18px;line-height:1}
+  .brandname small{font-size:9.5px;letter-spacing:0;white-space:normal;line-height:1.25}
   .brandname{font-size:13px}
   .menubtn{display:block}
   .nav{display:none;position:absolute;top:56px;left:0;right:0;flex-direction:column;background:var(--navy);padding:6px 16px 14px;height:auto;border-bottom:1px solid #ffffff1a}
@@ -320,7 +331,7 @@ html{scroll-padding-top:0}
 
 <header class="header">
   <div class="wrap head">
-    <a href="./" class="brand"><span class="logo"><img src="../results/apple-touch-icon.png" alt="北海道学生サッカー連盟のエンブレム" width="32" height="32"></span><span class="brandname">北海道学生サッカー連盟<small>HOKKAIDO UNIVERSITY FOOTBALL</small></span></a>
+    <a href="./" class="brand"><span class="logo"><img src="./img/jufa-hokkaido.png" alt="JUFA Hokkaido" width="77" height="38"></span><span class="brandname">北海道学生サッカー連盟<small>Hokkaido University Football Association</small></span></a>
     <button class="menubtn" id="menu" aria-controls="nav" aria-expanded="false">☰ メニュー</button>
     <nav class="nav" id="nav">
       <a href="#schedule">日程・結果</a>
@@ -447,9 +458,35 @@ const photoSet=(u,ws)=>/drive\.google\.com\/thumbnail/.test(photoUrl(u,ws[0]))?w
 let EMB={};
 const embReady=fetch('./emblems/index.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).then(j=>{EMB=j&&typeof j==='object'?j:{}}).catch(()=>{});
 function embFor(...names){for(const n of names){const f=n&&EMB[String(n).trim()];if(f&&/^[^\/\\?#]+\.(png|jpe?g|webp|svg|gif)$/i.test(f))return './emblems/'+encodeURIComponent(f)}return ''}
-function crestFail(img){const s=img.parentNode;s.classList.remove('img');s.textContent=s.dataset.ch}
+function crestFail(img){const s=img.parentNode;s.classList.remove('img');img.replaceWith(document.createTextNode(s.dataset.ch))}
 const PALETTE=['#145ec9','#0f7a6b','#7b3fb5','#c0392b','#1d6fa5','#b35c00','#2e7d32','#ad1457','#37474f','#5d4dbf'];
-function crest(t,size){
+/* 案①：同じ見た目（同じエンブレム・同じ文字）のチームが並ぶときだけ、名前の違う部分を小さな札にして付ける */
+const BADGE=new Map();
+const BADGE_WORDS={'セカンド':'2nd','サテライト':'SAT','サード':'3rd','トップ':'TOP'};
+function makeBadges(teams,keyOf,labelOf){
+  BADGE.clear();
+  const g=new Map();
+  for(const t of teams){
+    const h=crestBase(t),u=(h.match(/<img src="([^"]+)"/)||[])[1];
+    const look=u||'txt:'+((h.match(/>([^<]*)<\/span>$/)||[])[1]||'');
+    if(!g.has(look))g.set(look,[]);g.get(look).push(t);
+  }
+  const tok=c=>/[0-9A-Za-z\-－]/.test(c||'');
+  for(const ts of g.values()){
+    if(ts.length<2)continue;
+    const ns=ts.map(t=>[...String(labelOf(t)||'')]),min=Math.min(...ns.map(n=>n.length));
+    let p=0;while(p<min&&ns.every(n=>n[p]===ns[0][p]))p++;
+    while(p>0&&tok(ns[0][p-1])&&ns.some(n=>tok(n[p])))p--;
+    let s=0;while(s<min-p&&ns.every(n=>n[n.length-1-s]===ns[0][ns[0].length-1-s]))s++;
+    while(s>0&&ns.some(n=>tok(n[n.length-1-s]))&&tok(ns[0][ns[0].length-s]))s--;
+    let out=ns.map(n=>{let x=n.slice(p,n.length-s).join('').replace(/[-－\s]/g,'');x=BADGE_WORDS[x]||x;return [...x].slice(0,3).join('')});
+    if(out.some(x=>!x)||new Set(out).size<out.length)out=ts.map((_,i)=>String.fromCharCode(65+i));
+    ts.forEach((t,i)=>BADGE.set(keyOf(t),out[i]));
+  }
+}
+function addBadge(html,key){const b=BADGE.get(key);return b?html.replace(/<\/span>$/,'<i class="bdg">'+esc(b)+'</i></span>'):html}
+function crest(t,size){return addBadge(crestBase(t,size),tkey(t))}
+function crestBase(t,size){
   const n=name(t),k=tkey(t);let h=0;for(const ch of k)h=(h*31+ch.charCodeAt(0))>>>0;
   let s=n.replace(/^(北海道|国立|私立)/,'').replace(/(大学|大)$/,'');
   if(![...s].length)s=n.replace(/大学$/,'大');
@@ -702,6 +739,7 @@ async function load(id){
     document.querySelectorAll('.js-detail').forEach(a=>a.href=detail(id));
     $('updated').textContent=(d.competition?.name||id)+'　最終更新 '+(d.updatedAt||'不明');
     const ms=d.matches||[];
+    makeBadges(collectTeams(ms),tkey,name);
     S.rounds=buildRounds(ms);
     const today=jstToday(),o=order(ms);
     const up=o.find(m=>!isDone(m)&&(m.date||'9999')>=today),last=o.filter(isDone).pop();
