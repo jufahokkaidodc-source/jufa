@@ -235,7 +235,7 @@ tr.top .pos{border-left-color:var(--blue);color:var(--blue)}
 .scorer.lead{background:linear-gradient(90deg,#f1f8e2,#fff 75%)}
 
 /* clubs（エンブレム＋チーム写真のカード） */
-.clubs{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.clubs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px} /* 1行に4つ（スマホは2つ） */
 .club{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;transition:.15s;min-width:0}
 .club:hover{border-color:var(--blue);transform:translateY(-2px)}
 .club .cv{--c:#145ec9;position:relative;width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,var(--c),var(--navy));overflow:hidden}
@@ -245,7 +245,7 @@ tr.top .pos{border-left-color:var(--blue);color:var(--blue)}
 .club>.crest:not(.img){background:var(--c)}
 .club>.crest.img{background:#fff!important;border-radius:50%}
 .club .cb{padding:8px 10px 14px;display:flex;flex-direction:column;gap:2px;min-width:0;width:100%}
-.club strong{font-size:13px;line-height:1.4;overflow-wrap:anywhere}
+.club strong{font-size:14px;line-height:1.4;overflow-wrap:anywhere}
 .club small{font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* features */
@@ -566,7 +566,7 @@ function clubCard(t,href){
   const cr=crest(t),c=(cr.match(/--c:(#[0-9a-f]{3,8})/i)||[])[1]||'#145ec9';
   const ph=photoUrl(p?.teamPhoto,600),set=photoSet(p?.teamPhoto,[400,600,900]);
   const cv=ph?'<span class="cv photo" style="--c:'+c+'"><img src="'+esc(ph)+'"'+(set?' srcset="'+esc(set)+'" sizes="(max-width:680px) 50vw, 220px"':'')+' alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.remove(\'photo\');this.remove()"></span>':'<span class="cv" style="--c:'+c+'"></span>';
-  return '<a class="club" href="'+esc(href)+'" style="--c:'+c+'">'+cv+cr+'<span class="cb"><strong>'+esc(name(t))+'</strong><small>'+esc((typeof t==='object'&&t.univ&&t.univ!==name(t))?t.univ:'チーム情報を見る')+' ›</small></span></a>';
+  return '<a class="club" href="'+esc(href)+'" style="--c:'+c+'">'+cv+cr+'<span class="cb"><strong>'+esc(typeof t==='object'?(t.name||t.short||''):t)+'</strong></span></a>';
 }
 function renderClubs(teams,id){
   $('clubbar').innerHTML='<small>CLUBS</small>'+teams.map(t=>'<a href="'+esc(teamUrl(id,t))+'" title="'+esc(name(t))+'">'+crest(t,'sm')+'</a>').join('');
