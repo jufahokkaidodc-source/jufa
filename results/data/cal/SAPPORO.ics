@@ -1,0 +1,324 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//JUFA Hokkaido//schedule//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:札幌大学の試合（北海道学生サッカー連盟）
+X-WR-TIMEZONE:Asia/Tokyo
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:2026-L1-101@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260516T110000
+DTEND;TZID=Asia/Tokyo:20260516T130000
+SUMMARY:札幌大 1-1 北翔大（2026年度 第45回北海道学生サッ
+ カーリーグ 1部 第1節）
+LOCATION:芦別市陸上競技場
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
+ 第1節\n会場：芦別市陸上競技場\nhttps://jufahokkaidodc-source.
+ github.io/jufa/new/results.html?comp=2026-L1&match=2026-L1-101
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L1&match=2026-L1-101
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L1-109@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260530T113000
+DTEND;TZID=Asia/Tokyo:20260530T133000
+SUMMARY:札幌大 3-1 岩教大（2026年度 第45回北海道学生サッ
+ カーリーグ 1部 第3節）
+LOCATION:北海道教育大学岩見沢校
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
+ 第3節\n会場：北海道教育大学岩見沢校\nhttps://jufahokkaidod
+ c-source.github.io/jufa/new/results.html?comp=2026-L1&match=2026-L1-109
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L1&match=2026-L1-109
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L1-114@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260606T140000
+DTEND;TZID=Asia/Tokyo:20260606T160000
+SUMMARY:札幌大 10-0 学園大（2026年度 第45回北海道学生サッ
+ カーリーグ 1部 第4節）
+LOCATION:北海道教育大学岩見沢校
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
+ 第4節\n会場：北海道教育大学岩見沢校\nhttps://jufahokkaidod
+ c-source.github.io/jufa/new/results.html?comp=2026-L1&match=2026-L1-114
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L1&match=2026-L1-114
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L1-120@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260614T163000
+DTEND;TZID=Asia/Tokyo:20260614T183000
+SUMMARY:札幌大 1-0 星槎大（2026年度 第45回北海道学生サッ
+ カーリーグ 1部 第5節）
+LOCATION:東雁来公園サッカー場
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
+ 第5節\n会場：東雁来公園サッカー場\nhttps://jufahokkaidodc-s
+ ource.github.io/jufa/new/results.html?comp=2026-L1&match=2026-L1-120
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L1&match=2026-L1-120
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L1-108@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260620T110000
+DTEND;TZID=Asia/Tokyo:20260620T130000
+SUMMARY:札幌大 2-0 東海大（2026年度 第45回北海道学生サッ
+ カーリーグ 1部 第2節）
+LOCATION:浜厚真野原公園サッカー場
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
+ 第2節\n会場：浜厚真野原公園サッカー場\nhttps://jufahokkai
+ dodc-source.github.io/jufa/new/results.html?comp=2026-L1&match=2026-L1-108
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L1&match=2026-L1-108
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L1-121@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260718T150000
+DTEND;TZID=Asia/Tokyo:20260718T170000
+SUMMARY:札幌大 4-0 北大（2026年度 第45回北海道学生サッカ
+ ーリーグ 1部 第6節）
+LOCATION:北海道教育大学岩見沢校
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
+ 第6節\n会場：北海道教育大学岩見沢校\nhttps://jufahokkaidod
+ c-source.github.io/jufa/new/results.html?comp=2026-L1&match=2026-L1-121
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L1&match=2026-L1-121
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L1-127@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260725T130000
+DTEND;TZID=Asia/Tokyo:20260725T150000
+SUMMARY:札幌大 4-0 大谷大（2026年度 第45回北海道学生サッ
+ カーリーグ 1部 第7節）
+LOCATION:札幌大谷学園丘珠グラウンド
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
+ 第7節\n会場：札幌大谷学園丘珠グラウンド\nhttps://jufahok
+ kaidodc-source.github.io/jufa/new/results.html?comp=2026-L1&match=2026-L1-
+ 127
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L1&match=2026-L1-127
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L1-129@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260912T100000
+DTEND;TZID=Asia/Tokyo:20260912T120000
+SUMMARY:札幌大 2-1 北大（2026年度 第45回北海道学生サッカ
+ ーリーグ 1部 第8節）
+LOCATION:白旗山競技場A
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
+ 第8節\n会場：白旗山競技場A\nhttps://jufahokkaidodc-source.githu
+ b.io/jufa/new/results.html?comp=2026-L1&match=2026-L1-129
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L1&match=2026-L1-129
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L1-134@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260919T130000
+DTEND;TZID=Asia/Tokyo:20260919T150000
+SUMMARY:札幌大 9-0 大谷大（2026年度 第45回北海道学生サッ
+ カーリーグ 1部 第9節）
+LOCATION:札幌大谷学園丘珠グラウンド
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
+ 第9節\n会場：札幌大谷学園丘珠グラウンド\nhttps://jufahok
+ kaidodc-source.github.io/jufa/new/results.html?comp=2026-L1&match=2026-L1-
+ 134
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L1&match=2026-L1-134
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L1-138@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260926T124500
+DTEND;TZID=Asia/Tokyo:20260926T144500
+SUMMARY:札幌大 4-0 学園大（2026年度 第45回北海道学生サッ
+ カーリーグ 1部 第10節）
+LOCATION:札幌厚別公園陸上競技場（補助競技場）
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
+ 第10節\n会場：札幌厚別公園陸上競技場（補助競技場）\
+ nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-L
+ 1&match=2026-L1-138
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L1&match=2026-L1-138
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L1-141@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20261003T120000
+DTEND;TZID=Asia/Tokyo:20261003T140000
+SUMMARY:札幌大 7-0 星槎大（2026年度 第45回北海道学生サッ
+ カーリーグ 1部 第11節）
+LOCATION:札幌国際大学
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
+ 第11節\n会場：札幌国際大学\nhttps://jufahokkaidodc-source.githu
+ b.io/jufa/new/results.html?comp=2026-L1&match=2026-L1-141
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L1&match=2026-L1-141
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L1-145@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20261010T100000
+DTEND;TZID=Asia/Tokyo:20261010T120000
+SUMMARY:札幌大 2-0 北翔大（2026年度 第45回北海道学生サッ
+ カーリーグ 1部 第12節）
+LOCATION:札幌厚別公園陸上競技場
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
+ 第12節\n会場：札幌厚別公園陸上競技場\nhttps://jufahokkaido
+ dc-source.github.io/jufa/new/results.html?comp=2026-L1&match=2026-L1-145
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L1&match=2026-L1-145
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L1-149@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20261017T113000
+DTEND;TZID=Asia/Tokyo:20261017T133000
+SUMMARY:札幌大 0-3 岩教大（2026年度 第45回北海道学生サッ
+ カーリーグ 1部 第13節）
+LOCATION:北海道教育大学岩見沢校
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
+ 第13節\n会場：北海道教育大学岩見沢校\nhttps://jufahokkaido
+ dc-source.github.io/jufa/new/results.html?comp=2026-L1&match=2026-L1-149
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L1&match=2026-L1-149
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L1-155@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20261025T130000
+DTEND;TZID=Asia/Tokyo:20261025T150000
+SUMMARY:札幌大 vs 東海大（2026年度 第45回北海道学生サッ
+ カーリーグ 1部 第14節）
+LOCATION:札幌厚別公園陸上競技場（補助競技場）
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
+ 第14節\n会場：札幌厚別公園陸上競技場（補助競技場）\
+ nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-L
+ 1&match=2026-L1-155
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L1&match=2026-L1-155
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-ROOKIE-701@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260801T170000
+DTEND;TZID=Asia/Tokyo:20260801T190000
+SUMMARY:札幌大 10-0 医療大（2026年度 第6回全日本大学サッ
+ カー新人戦北海道大会 予選Aブロック 第1節）
+LOCATION:札幌大学
+DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
+ 大会　予選Aブロック 第1節\n会場：札幌大学\nhttps://jufah
+ okkaidodc-source.github.io/jufa/new/results.html?comp=2026-ROOKIE&match=20
+ 26-ROOKIE-701
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-701
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-ROOKIE-706@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260822T150000
+DTEND;TZID=Asia/Tokyo:20260822T170000
+SUMMARY:札幌大 11-0 大谷大（2026年度 第6回全日本大学サッ
+ カー新人戦北海道大会 予選Aブロック 第2節）
+LOCATION:札幌大谷学園丘珠グラウンド
+DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
+ 大会　予選Aブロック 第2節\n会場：札幌大谷学園丘珠グ
+ ラウンド\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.htm
+ l?comp=2026-ROOKIE&match=2026-ROOKIE-706
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-706
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-ROOKIE-716@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260913T100000
+DTEND;TZID=Asia/Tokyo:20260913T120000
+SUMMARY:札幌大 6-0 北翔大（2026年度 第6回全日本大学サッ
+ カー新人戦北海道大会 準々決勝）
+LOCATION:白旗山競技場A
+DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
+ 大会　準々決勝\n会場：白旗山競技場A\nhttps://jufahokkaidod
+ c-source.github.io/jufa/new/results.html?comp=2026-ROOKIE&match=2026-ROOKI
+ E-716
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-716
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-PM-10@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260627T110000
+DTEND;TZID=Asia/Tokyo:20260627T130000
+SUMMARY:札幌大 14-0 科学大（2026年度 第50回総理大臣杯 全
+ 日本大学サッカートーナメント北海道大会 2回戦）
+LOCATION:芦別市陸上競技場
+DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
+ トーナメント北海道大会　2回戦\n会場：芦別市陸上競
+ 技場\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp
+ =2026-PM&match=2026-PM-10
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PM&match=2026-PM-10
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-PM-18@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260628T124500
+DTEND;TZID=Asia/Tokyo:20260628T144500
+SUMMARY:札幌大 4-0 学園大（2026年度 第50回総理大臣杯 全日
+ 本大学サッカートーナメント北海道大会 3回戦）
+LOCATION:東雁来公園サッカー場
+DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
+ トーナメント北海道大会　3回戦\n会場：東雁来公園サ
+ ッカー場\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.htm
+ l?comp=2026-PM&match=2026-PM-18
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PM&match=2026-PM-18
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-PM-22@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260705T103000
+DTEND;TZID=Asia/Tokyo:20260705T123000
+SUMMARY:札幌大 3-0 北大（2026年度 第50回総理大臣杯 全日本
+ 大学サッカートーナメント北海道大会 準決勝）
+LOCATION:札幌厚別公園陸上競技場
+DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
+ トーナメント北海道大会　準決勝\n会場：札幌厚別公園
+ 陸上競技場\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.
+ html?comp=2026-PM&match=2026-PM-22
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PM&match=2026-PM-22
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-PM-24@jufa-hokkaido
+DTSTAMP:20261018T033734Z
+DTSTART;TZID=Asia/Tokyo:20260712T150000
+DTEND;TZID=Asia/Tokyo:20260712T170000
+SUMMARY:札幌大 4-1 岩教大（2026年度 第50回総理大臣杯 全日
+ 本大学サッカートーナメント北海道大会 決勝）
+LOCATION:札幌厚別公園陸上競技場
+DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
+ トーナメント北海道大会　決勝\n会場：札幌厚別公園陸
+ 上競技場\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.htm
+ l?comp=2026-PM&match=2026-PM-24
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PM&match=2026-PM-24
+END:VEVENT
+END:VCALENDAR
