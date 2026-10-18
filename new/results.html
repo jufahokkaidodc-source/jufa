@@ -250,6 +250,25 @@ table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
 .calbox small{flex-basis:100%;color:var(--muted);font-size:12px}
 .calbox .calsel{max-width:100%;font:inherit;font-size:13px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
 .calbox .calone{font-size:13px;color:var(--muted)}
+
+/* 表彰 */
+.awlist{padding:6px 16px}
+.awrow{display:flex;align-items:center;gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+.awrow:first-child{border-top:0}
+.awk{flex:none;min-width:118px;text-align:center;font-size:13px;font-weight:900;padding:4px 10px;border-radius:999px;background:var(--card2);color:var(--ink)}
+.awk.hot{background:var(--red);color:#fff}
+.awb{display:flex;align-items:center;gap:10px;min-width:0}
+.awb b{display:block;font-size:17px}
+.awb small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.awb a{color:inherit}
+
+/* 試合の写真 */
+.mphotos{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-bottom:8px}
+.mphotos figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.mphotos img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;background:var(--card2)}
+.mphotos figcaption{padding:8px 10px;font-size:13px;color:var(--ink)}
+.mphotos figcaption span{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+@media (max-width:420px){.mphotos{grid-template-columns:1fr}}
 </style>
 <link rel="stylesheet" href="./theme.css">
 <style>
@@ -408,7 +427,8 @@ const TABS=[
   ['tournament','トーナメント',d=>d.rounds&&d.rounds.length],
   ['scorers','得点',d=>d.scorers&&d.scorers.length],
   ['assists','アシスト',d=>d.assists&&d.assists.length],
-  ['cards','警告・退場',d=>d.cards&&d.cards.length]
+  ['cards','警告・退場',d=>d.cards&&d.cards.length],
+  ['awards','表彰',d=>d.awards&&d.awards.length]
 ];
 let COMPS=[],DATA=null,DETAIL=null,SCROLL_Y=0;
 const S={comp:QS.get('comp')||'',tab:QS.get('tab')||'schedule',match:QS.get('match')||'',round:'',team:'',cteam:''};
@@ -463,7 +483,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Enter'){const m=e.target.clo
 $('menu').addEventListener('click',()=>{const o=$('nav').classList.toggle('open');$('menu').setAttribute('aria-expanded',String(o))});
 
 function render(){
-  const f={schedule:rSchedule,standings:rStandings,grid:rGrid,tournament:rTournament,scorers:()=>rRanking(DATA.scorers,'得点'),assists:()=>rRanking(DATA.assists,'アシスト'),cards:rCards}[S.tab]||rSchedule;
+  const f={schedule:rSchedule,standings:rStandings,grid:rGrid,tournament:rTournament,scorers:()=>rRanking(DATA.scorers,'得点'),assists:()=>rRanking(DATA.assists,'アシスト'),cards:rCards,awards:rAwards}[S.tab]||rSchedule;
   $('main').innerHTML=f();
   const on=(id,k)=>{const el=$(id);if(el)el.addEventListener('change',e=>{S[k]=e.target.value;render();});};
   on('roundSel','round');on('teamSel','team');on('cteamSel','cteam');
@@ -571,6 +591,15 @@ function bMatch(m){
 }
 
 /* ---------- ランキング ---------- */
+/* 表彰（全体システムの「発信」→「表彰」で入れたもの） */
+function rAwards(){
+  return '<div class="card awlist">'+DATA.awards.map(a=>{
+    const hot=/優勝$|王$|最優秀/.test(a.award)&&!/準/.test(a.award);
+    const main=a.name?esc(a.name):(a.team?teamLink(a.team,name(a.team)):'');
+    const sub=[a.name&&a.team?teamLink(a.team,name(a.team)):'',esc(a.note||'')].filter(Boolean).join('　');
+    return '<div class="awrow"><span class="awk'+(hot?' hot':'')+'">'+esc(a.award)+'</span><div class="awb">'+(a.team?crest(a.team,'sm'):'')+'<div><b>'+main+'</b>'+(sub?'<small>'+sub+'</small>':'')+'</div></div></div>';
+  }).join('')+'</div>';
+}
 function rRanking(list,label){
   if(!list||!list.length)return '<div class="card empty">記録はありません</div>';
   return '<div style="height:14px"></div><div class="card scroll"><table class="tbl rank"><tr><th>順位</th><th class="l">選手</th><th class="l">チーム</th><th>'+label+'</th></tr>'+
@@ -644,7 +673,11 @@ function rMatch(){
   const off=inf&&(inf.referee||inf.ar1)?'<div class="sh"><h2>審判員・コンディション</h2></div><div class="card off">'+[['主審',inf.referee],['副審',[inf.ar1,inf.ar2].filter(Boolean).join('・')],['第4審',inf.fourth],['天候',inf.weather],['ピッチ',[inf.pitch,inf.pitchCondition].filter(Boolean).join('・')]].filter(x=>x[1]).map(x=>'<div><span>'+x[0]+'</span>'+esc(x[1])+'</div>').join('')+'</div>':'';
   const note=lv?'<p class="note">速報です（公式記録の確定前）。スコア・得点者・時間は、確定のときに変わることがあります。</p>':d.source==='report'?'<p class="note">この試合は試合報告から取り込んだ記録です（先発・交代の記録はありません）。</p>':'';
   const back={tournament:'トーナメント',cards:'警告・退場'}[S.tab]||'日程・結果';
-  $('main').innerHTML='<a class="back" href="'+pageUrl(S.comp,S.tab)+'">‹ '+back+'に戻る</a>'+head+tl+lu+pk+off+note+'<div class="foot">'+esc(DATA.competition.name)+'　'+esc(m.matchId)+'</div>';
+  // 試合の写真（全体システムの「発信」→「試合の写真」。写っている人の同意があるものだけ）
+  const dimg=(u,w)=>{const m=String(u||'').match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);return m?'https://drive.google.com/thumbnail?id='+m[1]+'&sz=w'+w:(/^https:\/\//.test(u)?u:'');};
+  const phs=(d.photos||[]).filter(p=>dimg(p.url,800));
+  const ph=phs.length?'<div class="sh"><h2>写真</h2></div><div class="mphotos">'+phs.map(p=>'<figure><a href="'+esc(dimg(p.url,1600))+'" target="_blank" rel="noopener"><img src="'+esc(dimg(p.url,800))+'" alt="'+esc(p.caption||'試合の写真')+'" loading="lazy" decoding="async" onerror="this.closest(\'figure\').remove()"></a>'+(p.caption||p.credit?'<figcaption>'+esc(p.caption||'')+(p.credit?'<span>撮影：'+esc(p.credit)+'</span>':'')+'</figcaption>':'')+'</figure>').join('')+'</div>':'';
+  $('main').innerHTML='<a class="back" href="'+pageUrl(S.comp,S.tab)+'">‹ '+back+'に戻る</a>'+head+tl+ph+lu+pk+off+note+'<div class="foot">'+esc(DATA.competition.name)+'　'+esc(m.matchId)+'</div>';
 }
 
 if(window.JUFA_LIVE)JUFA_LIVE.on(()=>{
@@ -655,5 +688,6 @@ if(window.JUFA_LIVE)JUFA_LIVE.on(()=>{
 init();
 </script>
 <script src="./alert.js"></script>
+<script src="./hit.js"></script>
 </body>
 </html>
