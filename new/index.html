@@ -7,7 +7,18 @@
 <link rel="icon" href="../results/favicon.png" sizes="32x32">
 <link rel="apple-touch-icon" href="../results/apple-touch-icon.png">
 <meta name="robots" content="noindex,nofollow">
-<title>北海道学生サッカー連盟 | 公式サイト Ver.3 プレビュー</title>
+<title>北海道学生サッカー連盟 | 公式サイト</title>
+<meta name="description" content="北海道の大学サッカーの日程・結果・順位表・試合速報・お知らせ。北海道学生サッカー連盟の公式サイトです。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="北海道学生サッカー連盟">
+<meta property="og:title" content="北海道学生サッカー連盟 | 公式サイト">
+<meta property="og:description" content="北海道の大学サッカーの日程・結果・順位表・試合速報・お知らせ。北海道学生サッカー連盟の公式サイトです。">
+<meta property="og:url" content="https://jufahokkaidodc-source.github.io/jufa/new/">
+<meta property="og:image" content="https://jufahokkaidodc-source.github.io/jufa/new/img/ogp.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -445,7 +456,7 @@ html{scroll-padding-top:0}
 
 <footer class="footer">
   <div class="wrap">
-    <div><strong>北海道学生サッカー連盟</strong><p>新サイト Ver.3 試験公開中。既存の大会運営システムには変更を加えていません。</p><p id="updated"></p></div>
+    <div><strong>北海道学生サッカー連盟</strong><p>試合の日程・結果・記録は、連盟の大会運営システムから自動で反映しています。</p><p id="updated"></p></div>
     <nav><a href="../">現行公式サイト</a><a href="./results.html">大会記録</a><a href="#" onclick="scrollTo({top:0});return false">ページ上部へ ↑</a></nav>
   </div>
 </footer>
@@ -868,5 +879,6 @@ function demoData(file){
     scorers:[['選手 一郎',0,4],['選手 二郎',2,3],['選手 三郎',3,3],['選手 四郎',5,2],['選手 五郎',1,2],['選手 六郎',6,1]].map((s,i)=>({rank:[1,2,2,4,4,6][i],name:s[0],team:T[s[1]],count:s[2]}))};
 }
 </script>
+<script src="./alert.js"></script>
 </body>
 </html>
