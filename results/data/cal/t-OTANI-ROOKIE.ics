@@ -1,0 +1,65 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//JUFA Hokkaido//schedule//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:札幌大谷大学の試合（北海道学生サッカー連
+ 盟）
+X-WR-TIMEZONE:Asia/Tokyo
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:2026-ROOKIE-706@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260822T150000
+DTEND;TZID=Asia/Tokyo:20260822T170000
+SUMMARY:札幌大 11-0 大谷大（2026年度 第6回全日本大学サッ
+ カー新人戦北海道大会 予選Aブロック 第2節）
+LOCATION:札幌大谷学園丘珠グラウンド
+DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
+ 大会　予選Aブロック 第2節\n会場：札幌大谷学園丘珠グ
+ ラウンド\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.htm
+ l?comp=2026-ROOKIE&match=2026-ROOKIE-706
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-706
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-ROOKIE-712@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260829T130000
+DTEND;TZID=Asia/Tokyo:20260829T150000
+SUMMARY:大谷大 6-0 医療大（2026年度 第6回全日本大学サッ
+ カー新人戦北海道大会 予選Aブロック 第3節）
+LOCATION:札幌サッカーアミューズメントパーク（人工芝）
+DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
+ 大会　予選Aブロック 第3節\n会場：札幌サッカーアミュ
+ ーズメントパーク（人工芝）\nhttps://jufahokkaidodc-source.git
+ hub.io/jufa/new/results.html?comp=2026-ROOKIE&match=2026-ROOKIE-712
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-712
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-ROOKIE-718@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260913T110000
+DTEND;TZID=Asia/Tokyo:20260913T130000
+SUMMARY:岩教大 10-1 大谷大（2026年度 第6回全日本大学サッ
+ カー新人戦北海道大会 準々決勝）
+LOCATION:北海道教育大学岩見沢校
+DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
+ 大会　準々決勝\n会場：北海道教育大学岩見沢校\nhttps:/
+ /jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-ROOKIE&ma
+ tch=2026-ROOKIE-718
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-718
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,80 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//JUFA Hokkaido//schedule//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:北海道大学体育会の試合（北海道学生サッカ
+ ー連盟）
+X-WR-TIMEZONE:Asia/Tokyo
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:2026-ROOKIE-703@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260801T153000
+DTEND;TZID=Asia/Tokyo:20260801T173000
+SUMMARY:北大 3-0 科学大（2026年度 第6回全日本大学サッカ
+ ー新人戦北海道大会 予選Dブロック 第1節）
+LOCATION:札幌国際大学
+DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
+ 大会　予選Dブロック 第1節\n会場：札幌国際大学\nhttps:/
+ /jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-ROOKIE&ma
+ tch=2026-ROOKIE-703
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-703
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-ROOKIE-710@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260822T183000
+DTEND;TZID=Asia/Tokyo:20260822T203000
+SUMMARY:北大 5-0 旭教大（2026年度 第6回全日本大学サッカ
+ ー新人戦北海道大会 予選Dブロック 第2節）
+LOCATION:リアルター夢りんご東光スポーツ公園球技場
+DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
+ 大会　予選Dブロック 第2節\n会場：リアルター夢りんご
+ 東光スポーツ公園球技場\nhttps://jufahokkaidodc-source.github.io
+ /jufa/new/results.html?comp=2026-ROOKIE&match=2026-ROOKIE-710
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-710
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-ROOKIE-713@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260829T153000
+DTEND;TZID=Asia/Tokyo:20260829T173000
+SUMMARY:北大 1-3 星槎大（2026年度 第6回全日本大学サッカ
+ ー新人戦北海道大会 予選Dブロック 第3節）
+LOCATION:札幌サッカーアミューズメントパーク（人工芝）
+DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
+ 大会　予選Dブロック 第3節\n会場：札幌サッカーアミュ
+ ーズメントパーク（人工芝）\nhttps://jufahokkaidodc-source.git
+ hub.io/jufa/new/results.html?comp=2026-ROOKIE&match=2026-ROOKIE-713
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-713
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-ROOKIE-719@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260913T133000
+DTEND;TZID=Asia/Tokyo:20260913T153000
+SUMMARY:北大 0-0 学園大（2026年度 第6回全日本大学サッカ
+ ー新人戦北海道大会 準々決勝）
+LOCATION:北海道教育大学岩見沢校
+DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
+ 大会　準々決勝\n会場：北海道教育大学岩見沢校\nhttps:/
+ /jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-ROOKIE&ma
+ tch=2026-ROOKIE-719
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-719
+END:VEVENT
+END:VCALENDAR

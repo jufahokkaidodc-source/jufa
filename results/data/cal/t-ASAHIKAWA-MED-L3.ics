@@ -1,0 +1,139 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//JUFA Hokkaido//schedule//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:旭川医科大学の試合（北海道学生サッカー連
+ 盟）
+X-WR-TIMEZONE:Asia/Tokyo
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:2026-L3-303@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260523T110000
+DTEND;TZID=Asia/Tokyo:20260523T130000
+SUMMARY:科学大 1-0 旭医大（2026年度 第45回北海道学生サッ
+ カーリーグ 3部 第2節）
+LOCATION:リアルター夢りんご東光スポーツ公園球技場
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
+ 第2節\n会場：リアルター夢りんご東光スポーツ公園球
+ 技場\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp
+ =2026-L3&match=2026-L3-303
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-303
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L3-305@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260531T140000
+DTEND;TZID=Asia/Tokyo:20260531T160000
+SUMMARY:釧教大 1-0 旭医大（2026年度 第45回北海道学生サッ
+ カーリーグ 3部 第3節）
+LOCATION:サホロリバーサイド運動広場
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
+ 第3節\n会場：サホロリバーサイド運動広場\nhttps://jufahok
+ kaidodc-source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-
+ 305
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-305
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L3-310@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260613T133000
+DTEND;TZID=Asia/Tokyo:20260613T153000
+SUMMARY:旭医大 2-3 医療大（2026年度 第45回北海道学生サッ
+ カーリーグ 3部 第6節）
+LOCATION:リアルター夢りんご東光スポーツ公園球技場
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
+ 第6節\n会場：リアルター夢りんご東光スポーツ公園球
+ 技場\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp
+ =2026-L3&match=2026-L3-310
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-310
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L3-312@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260718T133000
+DTEND;TZID=Asia/Tokyo:20260718T153000
+SUMMARY:北大医 3-0 旭医大（2026年度 第45回北海道学生サッ
+ カーリーグ 3部 第7節）
+LOCATION:忠和公園
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
+ 第7節\n会場：忠和公園\nhttps://jufahokkaidodc-source.github.io/ju
+ fa/new/results.html?comp=2026-L3&match=2026-L3-312
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-312
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L3-314@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260725T154500
+DTEND;TZID=Asia/Tokyo:20260725T174500
+SUMMARY:函教大 4-1 旭医大（2026年度 第45回北海道学生サッ
+ カーリーグ 3部 第8節）
+LOCATION:札幌サッカーアミューズメントパーク（天然芝）
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
+ 第8節\n会場：札幌サッカーアミューズメントパーク（
+ 天然芝）\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.htm
+ l?comp=2026-L3&match=2026-L3-314
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-314
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L3-318@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260919T150000
+DTEND;TZID=Asia/Tokyo:20260919T170000
+SUMMARY:旭医大 1-1 北大水（2026年度 第45回北海道学生サッ
+ カーリーグ 3部 第9節）
+LOCATION:札幌大谷学園丘珠グラウンド
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
+ 第9節\n会場：札幌大谷学園丘珠グラウンド\nhttps://jufahok
+ kaidodc-source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-
+ 318
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-318
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L3-321@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260927T110000
+DTEND;TZID=Asia/Tokyo:20260927T130000
+SUMMARY:旭医大 4-0 帯畜大（2026年度 第45回北海道学生サッ
+ カーリーグ 3部 第11節）
+LOCATION:サホロリバーサイド運動広場
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
+ 第11節\n会場：サホロリバーサイド運動広場\nhttps://jufaho
+ kkaidodc-source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3
+ -321
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-321
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-L3-327@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20261010T110000
+DTEND;TZID=Asia/Tokyo:20261010T130000
+SUMMARY:旭医大 6-0 文教大（2026年度 第45回北海道学生サッ
+ カーリーグ 3部 第14節）
+LOCATION:リアルター夢りんご東光スポーツ公園球技場
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
+ 第14節\n会場：リアルター夢りんご東光スポーツ公園球
+ 技場\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp
+ =2026-L3&match=2026-L3-327
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-327
+END:VEVENT
+END:VCALENDAR

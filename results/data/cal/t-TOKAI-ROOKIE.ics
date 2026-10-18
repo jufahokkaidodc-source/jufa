@@ -1,0 +1,65 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//JUFA Hokkaido//schedule//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:東海大学札幌校舎の試合（北海道学生サッカ
+ ー連盟）
+X-WR-TIMEZONE:Asia/Tokyo
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:2026-ROOKIE-702@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260801T093000
+DTEND;TZID=Asia/Tokyo:20260801T113000
+SUMMARY:東海大 3-0 国際大（2026年度 第6回全日本大学サッ
+ カー新人戦北海道大会 予選Bブロック 第1節）
+LOCATION:札幌国際大学
+DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
+ 大会　予選Bブロック 第1節\n会場：札幌国際大学\nhttps:/
+ /jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-ROOKIE&ma
+ tch=2026-ROOKIE-702
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-702
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-ROOKIE-707@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260822T150000
+DTEND;TZID=Asia/Tokyo:20260822T170000
+SUMMARY:東海大 0-2 学園大（2026年度 第6回全日本大学サッ
+ カー新人戦北海道大会 予選Bブロック 第2節）
+LOCATION:北海道教育大学岩見沢校
+DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
+ 大会　予選Bブロック 第2節\n会場：北海道教育大学岩見
+ 沢校\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp
+ =2026-ROOKIE&match=2026-ROOKIE-707
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-707
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-ROOKIE-717@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260913T123000
+DTEND;TZID=Asia/Tokyo:20260913T143000
+SUMMARY:東海大 0-2 星槎大（2026年度 第6回全日本大学サッ
+ カー新人戦北海道大会 準々決勝）
+LOCATION:白旗山競技場A
+DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
+ 大会　準々決勝\n会場：白旗山競技場A\nhttps://jufahokkaidod
+ c-source.github.io/jufa/new/results.html?comp=2026-ROOKIE&match=2026-ROOKI
+ E-717
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-717
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,49 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//JUFA Hokkaido//schedule//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:北翔大学の試合（北海道学生サッカー連盟）
+X-WR-TIMEZONE:Asia/Tokyo
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:2026-PM-12@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260627T110000
+DTEND;TZID=Asia/Tokyo:20260627T130000
+SUMMARY:北翔大 8-0 旭教大（2026年度 第50回総理大臣杯 全日
+ 本大学サッカートーナメント北海道大会 2回戦）
+LOCATION:カムイの杜公園
+DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
+ トーナメント北海道大会　2回戦\n会場：カムイの杜公
+ 園\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=20
+ 26-PM&match=2026-PM-12
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PM&match=2026-PM-12
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-PM-19@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260628T110000
+DTEND;TZID=Asia/Tokyo:20260628T130000
+SUMMARY:北翔大 0-2 北大（2026年度 第50回総理大臣杯 全日本
+ 大学サッカートーナメント北海道大会 3回戦）
+LOCATION:カムイの杜公園
+DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
+ トーナメント北海道大会　3回戦\n会場：カムイの杜公
+ 園\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=20
+ 26-PM&match=2026-PM-19
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PM&match=2026-PM-19
+END:VEVENT
+END:VCALENDAR

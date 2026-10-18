@@ -1,0 +1,176 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//JUFA Hokkaido//schedule//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:札幌大学サテライトの試合（北海道学生サッ
+ カー連盟）
+X-WR-TIMEZONE:Asia/Tokyo
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:2026-IL-704@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260517T153000
+DTEND;TZID=Asia/Tokyo:20260517T173000
+SUMMARY:札大サテライト 2-1 東海大B（2026年度 第18回インデ
+ ィペンデンスリーグ北海道大会 第1節）
+LOCATION:札幌大学
+DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
+ 道大会　第1節\n会場：札幌大学\nhttps://jufahokkaidodc-source.
+ github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-704
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-704
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-IL-707@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260524T133000
+DTEND;TZID=Asia/Tokyo:20260524T153000
+SUMMARY:札大サテライト 4-1 岩教大B（2026年度 第18回インデ
+ ィペンデンスリーグ北海道大会 第2節）
+LOCATION:北海道教育大学岩見沢校
+DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
+ 道大会　第2節\n会場：北海道教育大学岩見沢校\nhttps://j
+ ufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-IL&match=20
+ 26-IL-707
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-707
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-IL-717@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260531T153000
+DTEND;TZID=Asia/Tokyo:20260531T173000
+SUMMARY:札大サテライト 2-3 東海大A（2026年度 第18回インデ
+ ィペンデンスリーグ北海道大会 第3節）
+LOCATION:札幌大学
+DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
+ 道大会　第3節\n会場：札幌大学\nhttps://jufahokkaidodc-source.
+ github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-717
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-717
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-IL-724@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260614T153000
+DTEND;TZID=Asia/Tokyo:20260614T173000
+SUMMARY:札大サテライト 6-2 国際大（2026年度 第18回インデ
+ ィペンデンスリーグ北海道大会 第5節）
+LOCATION:札幌大学
+DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
+ 道大会　第5節\n会場：札幌大学\nhttps://jufahokkaidodc-source.
+ github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-724
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-724
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-IL-727@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260621T110000
+DTEND;TZID=Asia/Tokyo:20260621T130000
+SUMMARY:札大サテライト 5-1 学園大U-22（2026年度 第18回イン
+ ディペンデンスリーグ北海道大会 第6節）
+LOCATION:札幌大学
+DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
+ 道大会　第6節\n会場：札幌大学\nhttps://jufahokkaidodc-source.
+ github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-727
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-727
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-IL-732@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260720T173000
+DTEND;TZID=Asia/Tokyo:20260720T193000
+SUMMARY:札大サテライト 1-0 学園大U-20（2026年度 第18回イン
+ ディペンデンスリーグ北海道大会 第8節）
+LOCATION:札幌大学
+DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
+ 道大会　第8節\n会場：札幌大学\nhttps://jufahokkaidodc-source.
+ github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-732
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-732
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-IL-736@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260808T160000
+DTEND;TZID=Asia/Tokyo:20260808T180000
+SUMMARY:札大セカンド 1-4 札大サテライト（2026年度 第18回
+ インディペンデンスリーグ北海道大会 第10節）
+LOCATION:厚別公園陸上競技場（補助）
+DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
+ 道大会　第10節\n会場：厚別公園陸上競技場（補助）\nht
+ tps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-IL&m
+ atch=2026-IL-736
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-736
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-IL-746@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260920T110000
+DTEND;TZID=Asia/Tokyo:20260920T130000
+SUMMARY:札大サテライト 7-0 北大（2026年度 第18回インディ
+ ペンデンスリーグ北海道大会 第14節）
+LOCATION:札幌大学
+DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
+ 道大会　第14節\n会場：札幌大学\nhttps://jufahokkaidodc-source
+ .github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-746
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-746
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-IL-752@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20260927T133000
+DTEND;TZID=Asia/Tokyo:20260927T153000
+SUMMARY:札大サテライト 4-1 北翔大（2026年度 第18回インデ
+ ィペンデンスリーグ北海道大会 第15節）
+LOCATION:札幌大学
+DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
+ 道大会　第15節\n会場：札幌大学\nhttps://jufahokkaidodc-source
+ .github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-752
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-752
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-IL-756@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20261004T133000
+DTEND;TZID=Asia/Tokyo:20261004T153000
+SUMMARY:札大サテライト 7-1 星槎大（2026年度 第18回インデ
+ ィペンデンスリーグ北海道大会 第16節）
+LOCATION:札幌国際大学
+DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
+ 道大会　第16節\n会場：札幌国際大学\nhttps://jufahokkaidodc-
+ source.github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-756
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-756
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-IL-757@jufa-hokkaido
+DTSTAMP:20261018T040754Z
+DTSTART;TZID=Asia/Tokyo:20261011T110000
+DTEND;TZID=Asia/Tokyo:20261011T130000
+SUMMARY:岩教大A 3-4 札大サテライト（2026年度 第18回インデ
+ ィペンデンスリーグ北海道大会 第17節）
+LOCATION:札幌大学
+DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
+ 道大会　第17節\n会場：札幌大学\nhttps://jufahokkaidodc-source
+ .github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-757
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-757
+END:VEVENT
+END:VCALENDAR
