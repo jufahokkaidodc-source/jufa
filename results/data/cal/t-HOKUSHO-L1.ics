@@ -18,7 +18,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-L1-101@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261018T082407Z
 DTSTART;TZID=Asia/Tokyo:20260516T110000
 DTEND;TZID=Asia/Tokyo:20260516T130000
 SUMMARY:札幌大 1-1 北翔大（2026年度 第45回北海道学生サッ
@@ -32,7 +32,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L1-105@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261018T082407Z
 DTSTART;TZID=Asia/Tokyo:20260523T130000
 DTEND;TZID=Asia/Tokyo:20260523T150000
 SUMMARY:北翔大 0-1 大谷大（2026年度 第45回北海道学生サッ
@@ -47,7 +47,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L1-110@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261018T082407Z
 DTSTART;TZID=Asia/Tokyo:20260530T140000
 DTEND;TZID=Asia/Tokyo:20260530T160000
 SUMMARY:東海大 2-1 北翔大（2026年度 第45回北海道学生サッ
@@ -61,7 +61,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L1-116@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261018T082407Z
 DTSTART;TZID=Asia/Tokyo:20260607T123000
 DTEND;TZID=Asia/Tokyo:20260607T143000
 SUMMARY:北大 0-0 北翔大（2026年度 第45回北海道学生サッカ
@@ -75,7 +75,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L1-119@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261018T082407Z
 DTSTART;TZID=Asia/Tokyo:20260614T140000
 DTEND;TZID=Asia/Tokyo:20260614T160000
 SUMMARY:北翔大 3-0 学園大（2026年度 第45回北海道学生サッ
@@ -89,10 +89,10 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L1-124@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261018T082407Z
 DTSTART;TZID=Asia/Tokyo:20260718T150000
 DTEND;TZID=Asia/Tokyo:20260718T170000
-SUMMARY:北翔大 1-0 星槎大（2026年度 第45回北海道学生サッ
+SUMMARY:北翔大 0-1 星槎大（2026年度 第45回北海道学生サッ
  カーリーグ 1部 第6節）
 LOCATION:札幌大谷学園丘珠グラウンド
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
@@ -104,7 +104,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L1-126@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261018T082407Z
 DTSTART;TZID=Asia/Tokyo:20260725T173000
 DTEND;TZID=Asia/Tokyo:20260725T193000
 SUMMARY:岩教大 1-3 北翔大（2026年度 第45回北海道学生サッ
@@ -118,7 +118,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L1-130@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261018T082407Z
 DTSTART;TZID=Asia/Tokyo:20260912T123000
 DTEND;TZID=Asia/Tokyo:20260912T143000
 SUMMARY:北翔大 0-1 星槎大（2026年度 第45回北海道学生サッ
@@ -132,7 +132,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L1-136@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261018T082407Z
 DTSTART;TZID=Asia/Tokyo:20260919T123000
 DTEND;TZID=Asia/Tokyo:20260919T143000
 SUMMARY:岩教大 7-1 北翔大（2026年度 第45回北海道学生サッ
@@ -147,7 +147,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L1-137@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261018T082407Z
 DTSTART;TZID=Asia/Tokyo:20260926T101500
 DTEND;TZID=Asia/Tokyo:20260926T121500
 SUMMARY:北大 2-1 北翔大（2026年度 第45回北海道学生サッカ
@@ -162,7 +162,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L1-142@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261018T082407Z
 DTSTART;TZID=Asia/Tokyo:20261003T143000
 DTEND;TZID=Asia/Tokyo:20261003T163000
 SUMMARY:北翔大 1-0 学園大（2026年度 第45回北海道学生サッ
@@ -176,10 +176,10 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L1-145@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261018T082407Z
 DTSTART;TZID=Asia/Tokyo:20261010T100000
 DTEND;TZID=Asia/Tokyo:20261010T120000
-SUMMARY:札幌大 2-0 北翔大（2026年度 第45回北海道学生サッ
+SUMMARY:札幌大 3-0 北翔大（2026年度 第45回北海道学生サッ
  カーリーグ 1部 第12節）
 LOCATION:札幌厚別公園陸上競技場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 1部　
@@ -190,7 +190,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L1-150@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261018T082407Z
 DTSTART;TZID=Asia/Tokyo:20261017T140000
 DTEND;TZID=Asia/Tokyo:20261017T160000
 SUMMARY:東海大 1-0 北翔大（2026年度 第45回北海道学生サッ
@@ -204,7 +204,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L1-153@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261018T082407Z
 DTSTART;TZID=Asia/Tokyo:20261024T130000
 DTEND;TZID=Asia/Tokyo:20261024T150000
 SUMMARY:北翔大 vs 大谷大（2026年度 第45回北海道学生サッ
