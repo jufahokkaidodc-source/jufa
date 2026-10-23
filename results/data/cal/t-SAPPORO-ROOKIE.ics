@@ -18,7 +18,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-ROOKIE-701@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261023T085035Z
 DTSTART;TZID=Asia/Tokyo:20260801T170000
 DTEND;TZID=Asia/Tokyo:20260801T190000
 SUMMARY:札幌大 10-0 医療大（2026年度 第6回全日本大学サッ
@@ -33,7 +33,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-706@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261023T085035Z
 DTSTART;TZID=Asia/Tokyo:20260822T150000
 DTEND;TZID=Asia/Tokyo:20260822T170000
 SUMMARY:札幌大 11-0 大谷大（2026年度 第6回全日本大学サッ
@@ -48,7 +48,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-716@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261023T085035Z
 DTSTART;TZID=Asia/Tokyo:20260913T100000
 DTEND;TZID=Asia/Tokyo:20260913T120000
 SUMMARY:札幌大 6-0 北翔大（2026年度 第6回全日本大学サッ
@@ -60,5 +60,20 @@ DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
  E-716
 URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
  -ROOKIE&match=2026-ROOKIE-716
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-ROOKIE-720@jufa-hokkaido
+DTSTAMP:20261023T085035Z
+DTSTART;TZID=Asia/Tokyo:20261101T100000
+DTEND;TZID=Asia/Tokyo:20261101T120000
+SUMMARY:札幌大 vs 星槎大（2026年度 第6回全日本大学サッカ
+ ー新人戦北海道大会 準決勝）
+LOCATION:東雁来公園サッカー場
+DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
+ 大会　準決勝\n会場：東雁来公園サッカー場\nhttps://jufah
+ okkaidodc-source.github.io/jufa/new/results.html?comp=2026-ROOKIE&match=20
+ 26-ROOKIE-720
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-720
 END:VEVENT
 END:VCALENDAR

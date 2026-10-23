@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-IL-704@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261023T085035Z
 DTSTART;TZID=Asia/Tokyo:20260517T153000
 DTEND;TZID=Asia/Tokyo:20260517T173000
 SUMMARY:札大サテライト 2-1 東海大B（2026年度 第18回インデ
@@ -33,7 +33,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-707@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261023T085035Z
 DTSTART;TZID=Asia/Tokyo:20260524T133000
 DTEND;TZID=Asia/Tokyo:20260524T153000
 SUMMARY:札大サテライト 4-1 岩教大B（2026年度 第18回インデ
@@ -48,7 +48,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-717@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261023T085035Z
 DTSTART;TZID=Asia/Tokyo:20260531T153000
 DTEND;TZID=Asia/Tokyo:20260531T173000
 SUMMARY:札大サテライト 2-3 東海大A（2026年度 第18回インデ
@@ -62,7 +62,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-724@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261023T085035Z
 DTSTART;TZID=Asia/Tokyo:20260614T153000
 DTEND;TZID=Asia/Tokyo:20260614T173000
 SUMMARY:札大サテライト 6-2 国際大（2026年度 第18回インデ
@@ -76,7 +76,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-727@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261023T085035Z
 DTSTART;TZID=Asia/Tokyo:20260621T110000
 DTEND;TZID=Asia/Tokyo:20260621T130000
 SUMMARY:札大サテライト 5-1 学園大U-22（2026年度 第18回イン
@@ -90,7 +90,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-732@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261023T085035Z
 DTSTART;TZID=Asia/Tokyo:20260720T173000
 DTEND;TZID=Asia/Tokyo:20260720T193000
 SUMMARY:札大サテライト 1-0 学園大U-20（2026年度 第18回イン
@@ -104,7 +104,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-736@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261023T085035Z
 DTSTART;TZID=Asia/Tokyo:20260808T160000
 DTEND;TZID=Asia/Tokyo:20260808T180000
 SUMMARY:札大セカンド 1-4 札大サテライト（2026年度 第18回
@@ -119,7 +119,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-746@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261023T085035Z
 DTSTART;TZID=Asia/Tokyo:20260920T110000
 DTEND;TZID=Asia/Tokyo:20260920T130000
 SUMMARY:札大サテライト 7-0 北大（2026年度 第18回インディ
@@ -133,7 +133,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-752@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261023T085035Z
 DTSTART;TZID=Asia/Tokyo:20260927T133000
 DTEND;TZID=Asia/Tokyo:20260927T153000
 SUMMARY:札大サテライト 4-1 北翔大（2026年度 第18回インデ
@@ -147,7 +147,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-756@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261023T085035Z
 DTSTART;TZID=Asia/Tokyo:20261004T133000
 DTEND;TZID=Asia/Tokyo:20261004T153000
 SUMMARY:札大サテライト 7-1 星槎大（2026年度 第18回インデ
@@ -161,7 +161,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-757@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261023T085035Z
 DTSTART;TZID=Asia/Tokyo:20261011T110000
 DTEND;TZID=Asia/Tokyo:20261011T130000
 SUMMARY:岩教大A 3-4 札大サテライト（2026年度 第18回インデ
@@ -172,5 +172,20 @@ DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
  .github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-757
 URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
  -IL&match=2026-IL-757
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-IL-767@jufa-hokkaido
+DTSTAMP:20261023T085035Z
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+SUMMARY:札大サテライト vs 東海大A（2026年度 第18回インデ
+ ィペンデンスリーグ北海道大会 プレーオフ）
+LOCATION:北海道教育大学岩見沢校
+DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
+ 道大会　プレーオフ\n会場：北海道教育大学岩見沢校\nh
+ ttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-IL&
+ match=2026-IL-767
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-767
 END:VEVENT
 END:VCALENDAR
