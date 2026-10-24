@@ -18,7 +18,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-L3-301@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260516T130000
 DTEND;TZID=Asia/Tokyo:20260516T150000
 SUMMARY:北大医 2-1 文教大（2026年度 第45回北海道学生サッ
@@ -32,7 +32,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-302@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260517T123000
 DTEND;TZID=Asia/Tokyo:20260517T143000
 SUMMARY:科学大 3-0 医療大（2026年度 第45回北海道学生サッ
@@ -46,7 +46,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-303@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260523T110000
 DTEND;TZID=Asia/Tokyo:20260523T130000
 SUMMARY:科学大 1-0 旭医大（2026年度 第45回北海道学生サッ
@@ -61,7 +61,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-304@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260530T130000
 DTEND;TZID=Asia/Tokyo:20260530T150000
 SUMMARY:北大医 0-0 医療大（2026年度 第45回北海道学生サッ
@@ -75,7 +75,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-305@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260531T140000
 DTEND;TZID=Asia/Tokyo:20260531T160000
 SUMMARY:釧教大 1-0 旭医大（2026年度 第45回北海道学生サッ
@@ -90,7 +90,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-306@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260606T103000
 DTEND;TZID=Asia/Tokyo:20260606T123000
 SUMMARY:函教大 0-2 文教大（2026年度 第45回北海道学生サッ
@@ -104,7 +104,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-307@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260606T124500
 DTEND;TZID=Asia/Tokyo:20260606T144500
 SUMMARY:科学大 3-0 北大水（2026年度 第45回北海道学生サッ
@@ -118,7 +118,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-308@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260607T103000
 DTEND;TZID=Asia/Tokyo:20260607T123000
 SUMMARY:科学大 2-1 函教大（2026年度 第45回北海道学生サッ
@@ -132,7 +132,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-309@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260607T124500
 DTEND;TZID=Asia/Tokyo:20260607T144500
 SUMMARY:北大水 1-3 文教大（2026年度 第45回北海道学生サッ
@@ -146,7 +146,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-310@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260613T133000
 DTEND;TZID=Asia/Tokyo:20260613T153000
 SUMMARY:旭医大 2-3 医療大（2026年度 第45回北海道学生サッ
@@ -161,7 +161,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-311@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260614T110000
 DTEND;TZID=Asia/Tokyo:20260614T130000
 SUMMARY:釧教大 4-0 帯畜大（2026年度 第45回北海道学生サッ
@@ -176,7 +176,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-312@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260718T133000
 DTEND;TZID=Asia/Tokyo:20260718T153000
 SUMMARY:北大医 3-0 旭医大（2026年度 第45回北海道学生サッ
@@ -190,7 +190,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-313@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260725T133000
 DTEND;TZID=Asia/Tokyo:20260725T153000
 SUMMARY:医療大 2-5 文教大（2026年度 第45回北海道学生サッ
@@ -205,7 +205,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-314@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260725T154500
 DTEND;TZID=Asia/Tokyo:20260725T174500
 SUMMARY:函教大 4-1 旭医大（2026年度 第45回北海道学生サッ
@@ -220,7 +220,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-315@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260726T183000
 DTEND;TZID=Asia/Tokyo:20260726T203000
 SUMMARY:北大医 2-0 科学大（2026年度 第45回北海道学生サッ
@@ -235,7 +235,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-316@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260919T110000
 DTEND;TZID=Asia/Tokyo:20260919T130000
 SUMMARY:釧教大 0-0 医療大（2026年度 第45回北海道学生サッ
@@ -249,7 +249,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-317@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260919T133000
 DTEND;TZID=Asia/Tokyo:20260919T153000
 SUMMARY:北大医 7-0 帯畜大（2026年度 第45回北海道学生サッ
@@ -263,7 +263,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-318@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260919T150000
 DTEND;TZID=Asia/Tokyo:20260919T170000
 SUMMARY:旭医大 1-1 北大水（2026年度 第45回北海道学生サッ
@@ -278,7 +278,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-319@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260920T113000
 DTEND;TZID=Asia/Tokyo:20260920T133000
 SUMMARY:医療大 4-0 帯畜大（2026年度 第45回北海道学生サッ
@@ -292,7 +292,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-320@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260920T140000
 DTEND;TZID=Asia/Tokyo:20260920T160000
 SUMMARY:北大医 0-2 釧教大（2026年度 第45回北海道学生サッ
@@ -306,7 +306,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-321@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20260927T110000
 DTEND;TZID=Asia/Tokyo:20260927T130000
 SUMMARY:旭医大 4-0 帯畜大（2026年度 第45回北海道学生サッ
@@ -321,7 +321,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-322@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261003T110000
 DTEND;TZID=Asia/Tokyo:20261003T130000
 SUMMARY:函教大 9-1 帯畜大（2026年度 第45回北海道学生サッ
@@ -336,7 +336,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-323@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261003T133000
 DTEND;TZID=Asia/Tokyo:20261003T153000
 SUMMARY:釧教大 2-0 北大水（2026年度 第45回北海道学生サッ
@@ -351,7 +351,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-324@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261004T110000
 DTEND;TZID=Asia/Tokyo:20261004T130000
 SUMMARY:帯畜大 3-2 北大水（2026年度 第45回北海道学生サッ
@@ -366,7 +366,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-325@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261004T133000
 DTEND;TZID=Asia/Tokyo:20261004T153000
 SUMMARY:釧教大 1-0 函教大（2026年度 第45回北海道学生サッ
@@ -381,7 +381,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-326@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261010T095000
 DTEND;TZID=Asia/Tokyo:20261010T115000
 SUMMARY:函教大 1-0 北大水（2026年度 第45回北海道学生サッ
@@ -395,7 +395,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-327@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261010T110000
 DTEND;TZID=Asia/Tokyo:20261010T130000
 SUMMARY:旭医大 6-0 文教大（2026年度 第45回北海道学生サッ
@@ -410,7 +410,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-328@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261017T103000
 DTEND;TZID=Asia/Tokyo:20261017T123000
 SUMMARY:北大医 5-2 北大水（2026年度 第45回北海道学生サッ
@@ -424,7 +424,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-329@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261017T124500
 DTEND;TZID=Asia/Tokyo:20261017T144500
 SUMMARY:函教大 1-1 医療大（2026年度 第45回北海道学生サッ
@@ -438,7 +438,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-330@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261017T150000
 DTEND;TZID=Asia/Tokyo:20261017T170000
 SUMMARY:科学大 4-1 文教大（2026年度 第45回北海道学生サッ
@@ -453,7 +453,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-331@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261018T103000
 DTEND;TZID=Asia/Tokyo:20261018T123000
 SUMMARY:医療大 1-1 北大水（2026年度 第45回北海道学生サッ
@@ -467,7 +467,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-332@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261018T124500
 DTEND;TZID=Asia/Tokyo:20261018T144500
 SUMMARY:北大医 2-0 函教大（2026年度 第45回北海道学生サッ
@@ -481,7 +481,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-333@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261024T110000
 DTEND;TZID=Asia/Tokyo:20261024T130000
 SUMMARY:釧教大 3-1 文教大（2026年度 第45回北海道学生サッ
@@ -495,10 +495,10 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-334@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261024T170000
 DTEND;TZID=Asia/Tokyo:20261024T190000
-SUMMARY:科学大 vs 帯畜大（2026年度 第45回北海道学生サッ
+SUMMARY:科学大 9-0 帯畜大（2026年度 第45回北海道学生サッ
  カーリーグ 3部 第17節）
 LOCATION:サホロリバーサイド運動広場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
@@ -510,7 +510,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-335@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261025T110000
 DTEND;TZID=Asia/Tokyo:20261025T130000
 SUMMARY:科学大 vs 釧教大（2026年度 第45回北海道学生サッ
@@ -524,7 +524,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-336@jufa-hokkaido
-DTSTAMP:20261024T093744Z
+DTSTAMP:20261024T095740Z
 DTSTART;TZID=Asia/Tokyo:20261025T133000
 DTEND;TZID=Asia/Tokyo:20261025T153000
 SUMMARY:帯畜大 vs 文教大（2026年度 第45回北海道学生サッ
