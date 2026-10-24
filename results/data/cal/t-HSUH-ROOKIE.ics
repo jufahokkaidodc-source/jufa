@@ -19,11 +19,11 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-ROOKIE-701@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260801T170000
 DTEND;TZID=Asia/Tokyo:20260801T190000
-SUMMARY:札幌大 10-0 医療大（2026年度 第6回全日本大学サッ
- カー新人戦北海道大会 予選Aブロック 第1節）
+SUMMARY:札大 10-0 医療大（2026年度 第6回全日本大学サッカ
+ ー新人戦北海道大会 予選Aブロック 第1節）
 LOCATION:札幌大学
 DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
  大会　予選Aブロック 第1節\n会場：札幌大学\nhttps://jufah
@@ -34,7 +34,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-712@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260829T130000
 DTEND;TZID=Asia/Tokyo:20260829T150000
 SUMMARY:大谷大 6-0 医療大（2026年度 第6回全日本大学サッ

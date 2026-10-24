@@ -18,11 +18,11 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-PM-10@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260627T110000
 DTEND;TZID=Asia/Tokyo:20260627T130000
-SUMMARY:札幌大 14-0 科学大（2026年度 第50回総理大臣杯 全
- 日本大学サッカートーナメント北海道大会 2回戦）
+SUMMARY:札大 14-0 科学大（2026年度 第50回総理大臣杯 全日
+ 本大学サッカートーナメント北海道大会 2回戦）
 LOCATION:芦別市陸上競技場
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　2回戦\n会場：芦別市陸上競
@@ -33,11 +33,11 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-PM-18@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260628T124500
 DTEND;TZID=Asia/Tokyo:20260628T144500
-SUMMARY:札幌大 4-0 学園大（2026年度 第50回総理大臣杯 全日
- 本大学サッカートーナメント北海道大会 3回戦）
+SUMMARY:札大 4-0 学園大（2026年度 第50回総理大臣杯 全日本
+ 大学サッカートーナメント北海道大会 3回戦）
 LOCATION:東雁来公園サッカー場
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　3回戦\n会場：東雁来公園サ
@@ -48,11 +48,11 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-PM-22@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260705T103000
 DTEND;TZID=Asia/Tokyo:20260705T123000
-SUMMARY:札幌大 3-0 北大（2026年度 第50回総理大臣杯 全日本
- 大学サッカートーナメント北海道大会 準決勝）
+SUMMARY:札大 3-0 北大（2026年度 第50回総理大臣杯 全日本大
+ 学サッカートーナメント北海道大会 準決勝）
 LOCATION:札幌厚別公園陸上競技場
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　準決勝\n会場：札幌厚別公園
@@ -63,11 +63,11 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-PM-24@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260712T150000
 DTEND;TZID=Asia/Tokyo:20260712T170000
-SUMMARY:札幌大 4-1 岩教大（2026年度 第50回総理大臣杯 全日
- 本大学サッカートーナメント北海道大会 決勝）
+SUMMARY:札大 4-1 岩教大（2026年度 第50回総理大臣杯 全日本
+ 大学サッカートーナメント北海道大会 決勝）
 LOCATION:札幌厚別公園陸上競技場
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　決勝\n会場：札幌厚別公園陸

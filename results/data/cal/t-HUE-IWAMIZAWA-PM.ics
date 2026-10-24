@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-PM-17@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260627T113000
 DTEND;TZID=Asia/Tokyo:20260627T133000
 SUMMARY:岩教大 3-0 旭医大（2026年度 第50回総理大臣杯 全日
@@ -34,7 +34,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-PM-21@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260628T151500
 DTEND;TZID=Asia/Tokyo:20260628T171500
 SUMMARY:岩教大 9-0 大谷大（2026年度 第50回総理大臣杯 全日
@@ -49,7 +49,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-PM-23@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260705T150000
 DTEND;TZID=Asia/Tokyo:20260705T170000
 SUMMARY:岩教大 4-0 東海大（2026年度 第50回総理大臣杯 全日
@@ -64,11 +64,11 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-PM-24@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260712T150000
 DTEND;TZID=Asia/Tokyo:20260712T170000
-SUMMARY:札幌大 4-1 岩教大（2026年度 第50回総理大臣杯 全日
- 本大学サッカートーナメント北海道大会 決勝）
+SUMMARY:札大 4-1 岩教大（2026年度 第50回総理大臣杯 全日本
+ 大学サッカートーナメント北海道大会 決勝）
 LOCATION:札幌厚別公園陸上競技場
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　決勝\n会場：札幌厚別公園陸

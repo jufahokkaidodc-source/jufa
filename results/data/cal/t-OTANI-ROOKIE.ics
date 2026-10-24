@@ -19,11 +19,11 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-ROOKIE-706@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260822T150000
 DTEND;TZID=Asia/Tokyo:20260822T170000
-SUMMARY:札幌大 11-0 大谷大（2026年度 第6回全日本大学サッ
- カー新人戦北海道大会 予選Aブロック 第2節）
+SUMMARY:札大 11-0 大谷大（2026年度 第6回全日本大学サッカ
+ ー新人戦北海道大会 予選Aブロック 第2節）
 LOCATION:札幌大谷学園丘珠グラウンド
 DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
  大会　予選Aブロック 第2節\n会場：札幌大谷学園丘珠グ
@@ -34,7 +34,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-712@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260829T130000
 DTEND;TZID=Asia/Tokyo:20260829T150000
 SUMMARY:大谷大 6-0 医療大（2026年度 第6回全日本大学サッ
@@ -49,7 +49,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-718@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260913T110000
 DTEND;TZID=Asia/Tokyo:20260913T130000
 SUMMARY:岩教大 10-1 大谷大（2026年度 第6回全日本大学サッ

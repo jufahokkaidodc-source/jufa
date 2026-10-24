@@ -18,11 +18,11 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-ROOKIE-701@jufa-hokkaido
-DTSTAMP:20261023T085035Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260801T170000
 DTEND;TZID=Asia/Tokyo:20260801T190000
-SUMMARY:札幌大 10-0 医療大（2026年度 第6回全日本大学サッ
- カー新人戦北海道大会 予選Aブロック 第1節）
+SUMMARY:札大 10-0 医療大（2026年度 第6回全日本大学サッカ
+ ー新人戦北海道大会 予選Aブロック 第1節）
 LOCATION:札幌大学
 DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
  大会　予選Aブロック 第1節\n会場：札幌大学\nhttps://jufah
@@ -33,11 +33,11 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-706@jufa-hokkaido
-DTSTAMP:20261023T085035Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260822T150000
 DTEND;TZID=Asia/Tokyo:20260822T170000
-SUMMARY:札幌大 11-0 大谷大（2026年度 第6回全日本大学サッ
- カー新人戦北海道大会 予選Aブロック 第2節）
+SUMMARY:札大 11-0 大谷大（2026年度 第6回全日本大学サッカ
+ ー新人戦北海道大会 予選Aブロック 第2節）
 LOCATION:札幌大谷学園丘珠グラウンド
 DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
  大会　予選Aブロック 第2節\n会場：札幌大谷学園丘珠グ
@@ -48,11 +48,11 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-716@jufa-hokkaido
-DTSTAMP:20261023T085035Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260913T100000
 DTEND;TZID=Asia/Tokyo:20260913T120000
-SUMMARY:札幌大 6-0 北翔大（2026年度 第6回全日本大学サッ
- カー新人戦北海道大会 準々決勝）
+SUMMARY:札大 6-0 北翔大（2026年度 第6回全日本大学サッカ
+ ー新人戦北海道大会 準々決勝）
 LOCATION:白旗山競技場A
 DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
  大会　準々決勝\n会場：白旗山競技場A\nhttps://jufahokkaidod
@@ -63,11 +63,11 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-720@jufa-hokkaido
-DTSTAMP:20261023T085035Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20261101T100000
 DTEND;TZID=Asia/Tokyo:20261101T120000
-SUMMARY:札幌大 vs 星槎大（2026年度 第6回全日本大学サッカ
- ー新人戦北海道大会 準決勝）
+SUMMARY:札大 vs 星槎大（2026年度 第6回全日本大学サッカー
+ 新人戦北海道大会 準決勝）
 LOCATION:東雁来公園サッカー場
 DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
  大会　準決勝\n会場：東雁来公園サッカー場\nhttps://jufah

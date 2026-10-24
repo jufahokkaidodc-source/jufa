@@ -18,7 +18,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-ROOKIE-708@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260822T173000
 DTEND;TZID=Asia/Tokyo:20260822T193000
 SUMMARY:岩教大 5-2 北翔大（2026年度 第6回全日本大学サッ
@@ -33,7 +33,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-715@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260829T153000
 DTEND;TZID=Asia/Tokyo:20260829T173000
 SUMMARY:北翔大 8-1 樽商大（2026年度 第6回全日本大学サッ
@@ -48,11 +48,11 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-716@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261024T064202Z
 DTSTART;TZID=Asia/Tokyo:20260913T100000
 DTEND;TZID=Asia/Tokyo:20260913T120000
-SUMMARY:札幌大 6-0 北翔大（2026年度 第6回全日本大学サッ
- カー新人戦北海道大会 準々決勝）
+SUMMARY:札大 6-0 北翔大（2026年度 第6回全日本大学サッカ
+ ー新人戦北海道大会 準々決勝）
 LOCATION:白旗山競技場A
 DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
  大会　準々決勝\n会場：白旗山競技場A\nhttps://jufahokkaidod
