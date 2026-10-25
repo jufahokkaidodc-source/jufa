@@ -17,4 +17,120 @@ TZOFFSETTO:+0900
 TZNAME:JST
 END:STANDARD
 END:VTIMEZONE
+BEGIN:VEVENT
+UID:2026-PO-157@jufa-hokkaido
+DTSTAMP:20261025T084959Z
+DTSTART;TZID=Asia/Tokyo:20261031T100000
+DTEND;TZID=Asia/Tokyo:20261031T120000
+SUMMARY:学園大 vs 札医大（2026年度 第45回北海道学生サッ
+ カーリーグ 入替戦 入替戦1回戦）
+LOCATION:札幌国際大学
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 入替
+ 戦　入替戦1回戦\n会場：札幌国際大学\nhttps://jufahokkaidod
+ c-source.github.io/jufa/new/results.html?comp=2026-PO&match=2026-PO-157
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PO&match=2026-PO-157
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-PO-158@jufa-hokkaido
+DTSTAMP:20261025T084959Z
+DTSTART;TZID=Asia/Tokyo:20261031T123000
+DTEND;TZID=Asia/Tokyo:20261031T143000
+SUMMARY:北翔大 vs 旭教大（2026年度 第45回北海道学生サッ
+ カーリーグ 入替戦 入替戦1回戦）
+LOCATION:札幌国際大学
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 入替
+ 戦　入替戦1回戦\n会場：札幌国際大学\nhttps://jufahokkaidod
+ c-source.github.io/jufa/new/results.html?comp=2026-PO&match=2026-PO-158
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PO&match=2026-PO-158
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-PO-257@jufa-hokkaido
+DTSTAMP:20261025T084959Z
+DTSTART;TZID=Asia/Tokyo:20261103T113000
+DTEND;TZID=Asia/Tokyo:20261103T133000
+SUMMARY:釧公大 vs 北大医（2026年度 第45回北海道学生サッ
+ カーリーグ 入替戦 入替戦1回戦）
+LOCATION:浜厚真野原公園サッカー場
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 入替
+ 戦　入替戦1回戦\n会場：浜厚真野原公園サッカー場\nhtt
+ ps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-PO&ma
+ tch=2026-PO-257
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PO&match=2026-PO-257
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-PO-258@jufa-hokkaido
+DTSTAMP:20261025T084959Z
+DTSTART;TZID=Asia/Tokyo:20261103T140000
+DTEND;TZID=Asia/Tokyo:20261103T160000
+SUMMARY:室工大 vs 釧教大（2026年度 第45回北海道学生サッ
+ カーリーグ 入替戦 入替戦1回戦）
+LOCATION:浜厚真野原公園サッカー場
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 入替
+ 戦　入替戦1回戦\n会場：浜厚真野原公園サッカー場\nhtt
+ ps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-PO&ma
+ tch=2026-PO-258
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PO&match=2026-PO-258
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-PO-159@jufa-hokkaido
+DTSTAMP:20261025T084959Z
+DTSTART;TZID=Asia/Tokyo:20261107T100000
+DTEND;TZID=Asia/Tokyo:20261107T120000
+SUMMARY:学園大 vs 札医大（2026年度 第45回北海道学生サッ
+ カーリーグ 入替戦 入替戦2回戦）
+LOCATION:札幌国際大学
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 入替
+ 戦　入替戦2回戦\n会場：札幌国際大学\nhttps://jufahokkaidod
+ c-source.github.io/jufa/new/results.html?comp=2026-PO&match=2026-PO-159
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PO&match=2026-PO-159
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-PO-259@jufa-hokkaido
+DTSTAMP:20261025T084959Z
+DTSTART;TZID=Asia/Tokyo:20261107T100000
+DTEND;TZID=Asia/Tokyo:20261107T120000
+SUMMARY:釧公大 vs 北大医（2026年度 第45回北海道学生サッ
+ カーリーグ 入替戦 入替戦2回戦）
+LOCATION:札幌サッカーアミューズメントパーク（人工芝）
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 入替
+ 戦　入替戦2回戦\n会場：札幌サッカーアミューズメン
+ トパーク（人工芝）\nhttps://jufahokkaidodc-source.github.io/jufa/
+ new/results.html?comp=2026-PO&match=2026-PO-259
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PO&match=2026-PO-259
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-PO-160@jufa-hokkaido
+DTSTAMP:20261025T084959Z
+DTSTART;TZID=Asia/Tokyo:20261107T123000
+DTEND;TZID=Asia/Tokyo:20261107T143000
+SUMMARY:北翔大 vs 旭教大（2026年度 第45回北海道学生サッ
+ カーリーグ 入替戦 入替戦2回戦）
+LOCATION:札幌国際大学
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 入替
+ 戦　入替戦2回戦\n会場：札幌国際大学\nhttps://jufahokkaidod
+ c-source.github.io/jufa/new/results.html?comp=2026-PO&match=2026-PO-160
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PO&match=2026-PO-160
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-PO-260@jufa-hokkaido
+DTSTAMP:20261025T084959Z
+DTSTART;TZID=Asia/Tokyo:20261107T123000
+DTEND;TZID=Asia/Tokyo:20261107T143000
+SUMMARY:室工大 vs 釧教大（2026年度 第45回北海道学生サッ
+ カーリーグ 入替戦 入替戦2回戦）
+LOCATION:札幌サッカーアミューズメントパーク（人工芝）
+DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 入替
+ 戦　入替戦2回戦\n会場：札幌サッカーアミューズメン
+ トパーク（人工芝）\nhttps://jufahokkaidodc-source.github.io/jufa/
+ new/results.html?comp=2026-PO&match=2026-PO-260
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PO&match=2026-PO-260
+END:VEVENT
 END:VCALENDAR
