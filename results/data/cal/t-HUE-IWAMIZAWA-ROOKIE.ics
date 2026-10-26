@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-ROOKIE-705@jufa-hokkaido
-DTSTAMP:20261023T085035Z
+DTSTAMP:20261026T060538Z
 DTSTART;TZID=Asia/Tokyo:20260801T173000
 DTEND;TZID=Asia/Tokyo:20260801T193000
 SUMMARY:岩教大 10-0 樽商大（2026年度 第6回全日本大学サッ
@@ -34,7 +34,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-708@jufa-hokkaido
-DTSTAMP:20261023T085035Z
+DTSTAMP:20261026T060538Z
 DTSTART;TZID=Asia/Tokyo:20260822T173000
 DTEND;TZID=Asia/Tokyo:20260822T193000
 SUMMARY:岩教大 5-2 北翔大（2026年度 第6回全日本大学サッ
@@ -49,7 +49,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-718@jufa-hokkaido
-DTSTAMP:20261023T085035Z
+DTSTAMP:20261026T060538Z
 DTSTART;TZID=Asia/Tokyo:20260913T110000
 DTEND;TZID=Asia/Tokyo:20260913T130000
 SUMMARY:岩教大 10-1 大谷大（2026年度 第6回全日本大学サッ
@@ -64,16 +64,16 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-721@jufa-hokkaido
-DTSTAMP:20261023T085035Z
+DTSTAMP:20261026T060538Z
 DTSTART;TZID=Asia/Tokyo:20261101T123000
 DTEND;TZID=Asia/Tokyo:20261101T143000
 SUMMARY:岩教大 vs 北大（2026年度 第6回全日本大学サッカー
  新人戦北海道大会 準決勝）
-LOCATION:東雁来公園サッカー場
+LOCATION:札幌サッカーアミューズメントパーク（天然芝）
 DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
- 大会　準決勝\n会場：東雁来公園サッカー場\nhttps://jufah
- okkaidodc-source.github.io/jufa/new/results.html?comp=2026-ROOKIE&match=20
- 26-ROOKIE-721
+ 大会　準決勝\n会場：札幌サッカーアミューズメントパ
+ ーク（天然芝）\nhttps://jufahokkaidodc-source.github.io/jufa/new/re
+ sults.html?comp=2026-ROOKIE&match=2026-ROOKIE-721
 URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
  -ROOKIE&match=2026-ROOKIE-721
 END:VEVENT

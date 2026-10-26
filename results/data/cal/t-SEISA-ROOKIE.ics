@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-ROOKIE-704@jufa-hokkaido
-DTSTAMP:20261024T064202Z
+DTSTAMP:20261026T060538Z
 DTSTART;TZID=Asia/Tokyo:20260801T150000
 DTEND;TZID=Asia/Tokyo:20260801T170000
 SUMMARY:星槎大 3-0 旭教大（2026年度 第6回全日本大学サッ
@@ -34,7 +34,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-709@jufa-hokkaido
-DTSTAMP:20261024T064202Z
+DTSTAMP:20261026T060538Z
 DTSTART;TZID=Asia/Tokyo:20260822T160000
 DTEND;TZID=Asia/Tokyo:20260822T180000
 SUMMARY:星槎大 7-0 科学大（2026年度 第6回全日本大学サッ
@@ -49,7 +49,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-713@jufa-hokkaido
-DTSTAMP:20261024T064202Z
+DTSTAMP:20261026T060538Z
 DTSTART;TZID=Asia/Tokyo:20260829T153000
 DTEND;TZID=Asia/Tokyo:20260829T173000
 SUMMARY:北大 1-3 星槎大（2026年度 第6回全日本大学サッカ
@@ -64,7 +64,7 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-717@jufa-hokkaido
-DTSTAMP:20261024T064202Z
+DTSTAMP:20261026T060538Z
 DTSTART;TZID=Asia/Tokyo:20260913T123000
 DTEND;TZID=Asia/Tokyo:20260913T143000
 SUMMARY:東海大 0-2 星槎大（2026年度 第6回全日本大学サッ
@@ -79,16 +79,16 @@ URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-720@jufa-hokkaido
-DTSTAMP:20261024T064202Z
+DTSTAMP:20261026T060538Z
 DTSTART;TZID=Asia/Tokyo:20261101T100000
 DTEND;TZID=Asia/Tokyo:20261101T120000
 SUMMARY:札大 vs 星槎大（2026年度 第6回全日本大学サッカー
  新人戦北海道大会 準決勝）
-LOCATION:東雁来公園サッカー場
+LOCATION:札幌サッカーアミューズメントパーク（天然芝）
 DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
- 大会　準決勝\n会場：東雁来公園サッカー場\nhttps://jufah
- okkaidodc-source.github.io/jufa/new/results.html?comp=2026-ROOKIE&match=20
- 26-ROOKIE-720
+ 大会　準決勝\n会場：札幌サッカーアミューズメントパ
+ ーク（天然芝）\nhttps://jufahokkaidodc-source.github.io/jufa/new/re
+ sults.html?comp=2026-ROOKIE&match=2026-ROOKIE-720
 URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
  -ROOKIE&match=2026-ROOKIE-720
 END:VEVENT
