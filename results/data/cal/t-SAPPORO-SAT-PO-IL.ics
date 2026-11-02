@@ -19,11 +19,11 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-IL-767@jufa-hokkaido
-DTSTAMP:20261030T234358Z
+DTSTAMP:20261102T133556Z
 DTSTART;VALUE=DATE:20261031
 DTEND;VALUE=DATE:20261101
-SUMMARY:札大サテライト vs 東海大A（2026年度 第18回インデ
- ィペンデンスリーグ北海道大会 プレーオフ）
+SUMMARY:札大サテライト 10-1 東海大A（2026年度 第18回イン
+ ディペンデンスリーグ北海道大会 プレーオフ）
 LOCATION:北海道教育大学岩見沢校
 DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
  道大会　プレーオフ\n会場：北海道教育大学岩見沢校\nh
