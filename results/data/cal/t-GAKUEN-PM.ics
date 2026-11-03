@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-PM-3@jufa-hokkaido
-DTSTAMP:20261029T104027Z
+DTSTAMP:20261103T003949Z
 DTSTART;TZID=Asia/Tokyo:20260620T133000
 DTEND;TZID=Asia/Tokyo:20260620T153000
 SUMMARY:札医大 1-3 学園大（2026年度 第50回総理大臣杯 全日
@@ -27,14 +27,14 @@ SUMMARY:札医大 1-3 学園大（2026年度 第50回総理大臣杯 全日
 LOCATION:浜厚真野原公園サッカー場
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　1回戦\n会場：浜厚真野原公
- 園サッカー場\nhttps://jufahokkaidodc-source.github.io/jufa/new/resul
- ts.html?comp=2026-PM&match=2026-PM-3
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -PM&match=2026-PM-3
+ 園サッカー場\nhttps://jufahokkaidodc-source.github.io/jufa/results/r
+ esults.html?comp=2026-PM&match=2026-PM-3
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-PM&match=2026-PM-3
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-PM-11@jufa-hokkaido
-DTSTAMP:20261029T104027Z
+DTSTAMP:20261103T003949Z
 DTSTART;TZID=Asia/Tokyo:20260627T140000
 DTEND;TZID=Asia/Tokyo:20260627T160000
 SUMMARY:学園大 12-2 北星大（2026年度 第50回総理大臣杯 全
@@ -42,14 +42,14 @@ SUMMARY:学園大 12-2 北星大（2026年度 第50回総理大臣杯 全
 LOCATION:北海道教育大学岩見沢校
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　2回戦\n会場：北海道教育大
- 学岩見沢校\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.
- html?comp=2026-PM&match=2026-PM-11
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -PM&match=2026-PM-11
+ 学岩見沢校\nhttps://jufahokkaidodc-source.github.io/jufa/results/resu
+ lts.html?comp=2026-PM&match=2026-PM-11
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-PM&match=2026-PM-11
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-PM-18@jufa-hokkaido
-DTSTAMP:20261029T104027Z
+DTSTAMP:20261103T003949Z
 DTSTART;TZID=Asia/Tokyo:20260628T124500
 DTEND;TZID=Asia/Tokyo:20260628T144500
 SUMMARY:札大 4-0 学園大（2026年度 第50回総理大臣杯 全日本
@@ -57,9 +57,9 @@ SUMMARY:札大 4-0 学園大（2026年度 第50回総理大臣杯 全日本
 LOCATION:東雁来公園サッカー場
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　3回戦\n会場：東雁来公園サ
- ッカー場\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.htm
- l?comp=2026-PM&match=2026-PM-18
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -PM&match=2026-PM-18
+ ッカー場\nhttps://jufahokkaidodc-source.github.io/jufa/results/results
+ .html?comp=2026-PM&match=2026-PM-18
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-PM&match=2026-PM-18
 END:VEVENT
 END:VCALENDAR

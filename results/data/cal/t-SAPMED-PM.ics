@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-PM-3@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261103T003949Z
 DTSTART;TZID=Asia/Tokyo:20260620T133000
 DTEND;TZID=Asia/Tokyo:20260620T153000
 SUMMARY:札医大 1-3 学園大（2026年度 第50回総理大臣杯 全日
@@ -27,9 +27,9 @@ SUMMARY:札医大 1-3 学園大（2026年度 第50回総理大臣杯 全日
 LOCATION:浜厚真野原公園サッカー場
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　1回戦\n会場：浜厚真野原公
- 園サッカー場\nhttps://jufahokkaidodc-source.github.io/jufa/new/resul
- ts.html?comp=2026-PM&match=2026-PM-3
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -PM&match=2026-PM-3
+ 園サッカー場\nhttps://jufahokkaidodc-source.github.io/jufa/results/r
+ esults.html?comp=2026-PM&match=2026-PM-3
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-PM&match=2026-PM-3
 END:VEVENT
 END:VCALENDAR

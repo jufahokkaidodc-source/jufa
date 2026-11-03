@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-L3-311@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003945Z
 DTSTART;TZID=Asia/Tokyo:20260614T110000
 DTEND;TZID=Asia/Tokyo:20260614T130000
 SUMMARY:釧教大 4-0 帯畜大（2026年度 第45回北海道学生サッ
@@ -27,14 +27,14 @@ SUMMARY:釧教大 4-0 帯畜大（2026年度 第45回北海道学生サッ
 LOCATION:サホロリバーサイド運動広場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第6節\n会場：サホロリバーサイド運動広場\nhttps://jufahok
- kaidodc-source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-
- 311
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-311
+ kaidodc-source.github.io/jufa/results/results.html?comp=2026-L3&match=2026
+ -L3-311
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-311
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-317@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003945Z
 DTSTART;TZID=Asia/Tokyo:20260919T133000
 DTEND;TZID=Asia/Tokyo:20260919T153000
 SUMMARY:北大医 7-0 帯畜大（2026年度 第45回北海道学生サッ
@@ -42,13 +42,13 @@ SUMMARY:北大医 7-0 帯畜大（2026年度 第45回北海道学生サッ
 LOCATION:鶴居村多目的運動広場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第9節\n会場：鶴居村多目的運動広場\nhttps://jufahokkaidodc-s
- ource.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-317
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-317
+ ource.github.io/jufa/results/results.html?comp=2026-L3&match=2026-L3-317
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-317
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-319@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003945Z
 DTSTART;TZID=Asia/Tokyo:20260920T113000
 DTEND;TZID=Asia/Tokyo:20260920T133000
 SUMMARY:医療大 4-0 帯畜大（2026年度 第45回北海道学生サッ
@@ -56,13 +56,13 @@ SUMMARY:医療大 4-0 帯畜大（2026年度 第45回北海道学生サッ
 LOCATION:鶴居村多目的運動広場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第10節\n会場：鶴居村多目的運動広場\nhttps://jufahokkaidodc-
- source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-319
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-319
+ source.github.io/jufa/results/results.html?comp=2026-L3&match=2026-L3-319
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-319
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-321@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003945Z
 DTSTART;TZID=Asia/Tokyo:20260927T110000
 DTEND;TZID=Asia/Tokyo:20260927T130000
 SUMMARY:旭医大 4-0 帯畜大（2026年度 第45回北海道学生サッ
@@ -70,14 +70,14 @@ SUMMARY:旭医大 4-0 帯畜大（2026年度 第45回北海道学生サッ
 LOCATION:サホロリバーサイド運動広場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第11節\n会場：サホロリバーサイド運動広場\nhttps://jufaho
- kkaidodc-source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3
- -321
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-321
+ kkaidodc-source.github.io/jufa/results/results.html?comp=2026-L3&match=202
+ 6-L3-321
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-321
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-322@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003945Z
 DTSTART;TZID=Asia/Tokyo:20261003T110000
 DTEND;TZID=Asia/Tokyo:20261003T130000
 SUMMARY:函教大 9-1 帯畜大（2026年度 第45回北海道学生サッ
@@ -85,14 +85,14 @@ SUMMARY:函教大 9-1 帯畜大（2026年度 第45回北海道学生サッ
 LOCATION:浜厚真野原公園サッカー場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第12節\n会場：浜厚真野原公園サッカー場\nhttps://jufahokka
- idodc-source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-32
- 2
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-322
+ idodc-source.github.io/jufa/results/results.html?comp=2026-L3&match=2026-L
+ 3-322
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-322
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-324@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003945Z
 DTSTART;TZID=Asia/Tokyo:20261004T110000
 DTEND;TZID=Asia/Tokyo:20261004T130000
 SUMMARY:帯畜大 3-2 北大水（2026年度 第45回北海道学生サッ
@@ -100,14 +100,14 @@ SUMMARY:帯畜大 3-2 北大水（2026年度 第45回北海道学生サッ
 LOCATION:浜厚真野原公園サッカー場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第13節\n会場：浜厚真野原公園サッカー場\nhttps://jufahokka
- idodc-source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-32
- 4
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-324
+ idodc-source.github.io/jufa/results/results.html?comp=2026-L3&match=2026-L
+ 3-324
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-324
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-334@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003945Z
 DTSTART;TZID=Asia/Tokyo:20261024T170000
 DTEND;TZID=Asia/Tokyo:20261024T190000
 SUMMARY:科学大 9-0 帯畜大（2026年度 第45回北海道学生サッ
@@ -115,14 +115,14 @@ SUMMARY:科学大 9-0 帯畜大（2026年度 第45回北海道学生サッ
 LOCATION:サホロリバーサイド運動広場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第17節\n会場：サホロリバーサイド運動広場\nhttps://jufaho
- kkaidodc-source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3
- -334
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-334
+ kkaidodc-source.github.io/jufa/results/results.html?comp=2026-L3&match=202
+ 6-L3-334
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-334
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-336@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003945Z
 DTSTART;TZID=Asia/Tokyo:20261025T133000
 DTEND;TZID=Asia/Tokyo:20261025T153000
 SUMMARY:帯畜大 0-2 文教大（2026年度 第45回北海道学生サッ
@@ -130,13 +130,13 @@ SUMMARY:帯畜大 0-2 文教大（2026年度 第45回北海道学生サッ
 LOCATION:阿寒町多目的広場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第18節\n会場：阿寒町多目的広場\nhttps://jufahokkaidodc-source
- .github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-336
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-336
+ .github.io/jufa/results/results.html?comp=2026-L3&match=2026-L3-336
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-336
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-PM-4@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003945Z
 DTSTART;TZID=Asia/Tokyo:20260621T160000
 DTEND;TZID=Asia/Tokyo:20260621T180000
 SUMMARY:旭教大 8-0 帯畜大（2026年度 第50回総理大臣杯 全日
@@ -144,9 +144,9 @@ SUMMARY:旭教大 8-0 帯畜大（2026年度 第50回総理大臣杯 全日
 LOCATION:サホロリバーサイド運動広場
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　1回戦\n会場：サホロリバー
- サイド運動広場\nhttps://jufahokkaidodc-source.github.io/jufa/new/re
- sults.html?comp=2026-PM&match=2026-PM-4
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -PM&match=2026-PM-4
+ サイド運動広場\nhttps://jufahokkaidodc-source.github.io/jufa/result
+ s/results.html?comp=2026-PM&match=2026-PM-4
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-PM&match=2026-PM-4
 END:VEVENT
 END:VCALENDAR

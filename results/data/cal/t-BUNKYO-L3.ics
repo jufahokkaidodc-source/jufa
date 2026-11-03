@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-L3-301@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003946Z
 DTSTART;TZID=Asia/Tokyo:20260516T130000
 DTEND;TZID=Asia/Tokyo:20260516T150000
 SUMMARY:北大医 2-1 文教大（2026年度 第45回北海道学生サッ
@@ -27,13 +27,13 @@ SUMMARY:北大医 2-1 文教大（2026年度 第45回北海道学生サッ
 LOCATION:札幌国際大学
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第1節\n会場：札幌国際大学\nhttps://jufahokkaidodc-source.github
- .io/jufa/new/results.html?comp=2026-L3&match=2026-L3-301
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-301
+ .io/jufa/results/results.html?comp=2026-L3&match=2026-L3-301
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-301
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-306@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003946Z
 DTSTART;TZID=Asia/Tokyo:20260606T103000
 DTEND;TZID=Asia/Tokyo:20260606T123000
 SUMMARY:函教大 0-2 文教大（2026年度 第45回北海道学生サッ
@@ -41,13 +41,13 @@ SUMMARY:函教大 0-2 文教大（2026年度 第45回北海道学生サッ
 LOCATION:北斗市フットボール 場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第4節\n会場：北斗市フットボール 場\nhttps://jufahokkaidodc-
- source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-306
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-306
+ source.github.io/jufa/results/results.html?comp=2026-L3&match=2026-L3-306
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-306
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-309@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003946Z
 DTSTART;TZID=Asia/Tokyo:20260607T124500
 DTEND;TZID=Asia/Tokyo:20260607T144500
 SUMMARY:北大水 1-3 文教大（2026年度 第45回北海道学生サッ
@@ -55,13 +55,14 @@ SUMMARY:北大水 1-3 文教大（2026年度 第45回北海道学生サッ
 LOCATION:函館フットボールパーク
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第5節\n会場：函館フットボールパーク\nhttps://jufahokkaidod
- c-source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-309
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-309
+ c-source.github.io/jufa/results/results.html?comp=2026-L3&match=2026-L3-30
+ 9
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-309
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-313@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003946Z
 DTSTART;TZID=Asia/Tokyo:20260725T133000
 DTEND;TZID=Asia/Tokyo:20260725T153000
 SUMMARY:医療大 2-5 文教大（2026年度 第45回北海道学生サッ
@@ -69,14 +70,14 @@ SUMMARY:医療大 2-5 文教大（2026年度 第45回北海道学生サッ
 LOCATION:札幌サッカーアミューズメントパーク（天然芝）
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第8節\n会場：札幌サッカーアミューズメントパーク（
- 天然芝）\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.htm
- l?comp=2026-L3&match=2026-L3-313
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-313
+ 天然芝）\nhttps://jufahokkaidodc-source.github.io/jufa/results/results
+ .html?comp=2026-L3&match=2026-L3-313
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-313
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-327@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003946Z
 DTSTART;TZID=Asia/Tokyo:20261010T110000
 DTEND;TZID=Asia/Tokyo:20261010T130000
 SUMMARY:旭医大 6-0 文教大（2026年度 第45回北海道学生サッ
@@ -84,14 +85,14 @@ SUMMARY:旭医大 6-0 文教大（2026年度 第45回北海道学生サッ
 LOCATION:リアルター夢りんご東光スポーツ公園球技場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第14節\n会場：リアルター夢りんご東光スポーツ公園球
- 技場\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp
- =2026-L3&match=2026-L3-327
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-327
+ 技場\nhttps://jufahokkaidodc-source.github.io/jufa/results/results.html?
+ comp=2026-L3&match=2026-L3-327
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-327
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-330@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003946Z
 DTSTART;TZID=Asia/Tokyo:20261017T150000
 DTEND;TZID=Asia/Tokyo:20261017T170000
 SUMMARY:科学大 4-1 文教大（2026年度 第45回北海道学生サッ
@@ -99,14 +100,14 @@ SUMMARY:科学大 4-1 文教大（2026年度 第45回北海道学生サッ
 LOCATION:札幌大谷学園丘珠グラウンド
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第15節\n会場：札幌大谷学園丘珠グラウンド\nhttps://jufaho
- kkaidodc-source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3
- -330
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-330
+ kkaidodc-source.github.io/jufa/results/results.html?comp=2026-L3&match=202
+ 6-L3-330
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-330
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-333@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003946Z
 DTSTART;TZID=Asia/Tokyo:20261024T110000
 DTEND;TZID=Asia/Tokyo:20261024T130000
 SUMMARY:釧教大 3-1 文教大（2026年度 第45回北海道学生サッ
@@ -114,13 +115,13 @@ SUMMARY:釧教大 3-1 文教大（2026年度 第45回北海道学生サッ
 LOCATION:阿寒町多目的広場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第17節\n会場：阿寒町多目的広場\nhttps://jufahokkaidodc-source
- .github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-333
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-333
+ .github.io/jufa/results/results.html?comp=2026-L3&match=2026-L3-333
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-333
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-336@jufa-hokkaido
-DTSTAMP:20261025T093739Z
+DTSTAMP:20261103T003946Z
 DTSTART;TZID=Asia/Tokyo:20261025T133000
 DTEND;TZID=Asia/Tokyo:20261025T153000
 SUMMARY:帯畜大 0-2 文教大（2026年度 第45回北海道学生サッ
@@ -128,8 +129,8 @@ SUMMARY:帯畜大 0-2 文教大（2026年度 第45回北海道学生サッ
 LOCATION:阿寒町多目的広場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第18節\n会場：阿寒町多目的広場\nhttps://jufahokkaidodc-source
- .github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-336
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -L3&match=2026-L3-336
+ .github.io/jufa/results/results.html?comp=2026-L3&match=2026-L3-336
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-L3&match=2026-L3-336
 END:VEVENT
 END:VCALENDAR

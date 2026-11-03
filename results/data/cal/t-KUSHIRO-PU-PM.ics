@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-PM-8@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261103T003949Z
 DTSTART;TZID=Asia/Tokyo:20260620T133000
 DTEND;TZID=Asia/Tokyo:20260620T153000
 SUMMARY:釧公大 3-0 札教大（2026年度 第50回総理大臣杯 全日
@@ -27,14 +27,14 @@ SUMMARY:釧公大 3-0 札教大（2026年度 第50回総理大臣杯 全日
 LOCATION:鶴居村多目的運動広場
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　1回戦\n会場：鶴居村多目的
- 運動広場\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.htm
- l?comp=2026-PM&match=2026-PM-8
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -PM&match=2026-PM-8
+ 運動広場\nhttps://jufahokkaidodc-source.github.io/jufa/results/results
+ .html?comp=2026-PM&match=2026-PM-8
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-PM&match=2026-PM-8
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-PM-16@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261103T003949Z
 DTSTART;TZID=Asia/Tokyo:20260627T133000
 DTEND;TZID=Asia/Tokyo:20260627T153000
 SUMMARY:釧公大 1-7 大谷大（2026年度 第50回総理大臣杯 全日
@@ -42,9 +42,9 @@ SUMMARY:釧公大 1-7 大谷大（2026年度 第50回総理大臣杯 全日
 LOCATION:芦別市陸上競技場
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　2回戦\n会場：芦別市陸上競
- 技場\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp
- =2026-PM&match=2026-PM-16
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -PM&match=2026-PM-16
+ 技場\nhttps://jufahokkaidodc-source.github.io/jufa/results/results.html?
+ comp=2026-PM&match=2026-PM-16
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-PM&match=2026-PM-16
 END:VEVENT
 END:VCALENDAR

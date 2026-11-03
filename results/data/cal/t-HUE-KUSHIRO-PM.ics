@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-PM-2@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261103T003949Z
 DTSTART;TZID=Asia/Tokyo:20260620T110000
 DTEND;TZID=Asia/Tokyo:20260620T130000
 SUMMARY:釧教大 2-2 北星大（2026年度 第50回総理大臣杯 全日
@@ -27,9 +27,9 @@ SUMMARY:釧教大 2-2 北星大（2026年度 第50回総理大臣杯 全日
 LOCATION:鶴居村多目的運動広場
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　1回戦\n会場：鶴居村多目的
- 運動広場\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.htm
- l?comp=2026-PM&match=2026-PM-2
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -PM&match=2026-PM-2
+ 運動広場\nhttps://jufahokkaidodc-source.github.io/jufa/results/results
+ .html?comp=2026-PM&match=2026-PM-2
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-PM&match=2026-PM-2
 END:VEVENT
 END:VCALENDAR

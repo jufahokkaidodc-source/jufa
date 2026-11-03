@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-PM-15@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261103T003951Z
 DTSTART;TZID=Asia/Tokyo:20260627T133000
 DTEND;TZID=Asia/Tokyo:20260627T153000
 SUMMARY:星槎大 2-0 樽商大（2026年度 第50回総理大臣杯 全日
@@ -27,14 +27,14 @@ SUMMARY:星槎大 2-0 樽商大（2026年度 第50回総理大臣杯 全日
 LOCATION:カムイの杜公園
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　2回戦\n会場：カムイの杜公
- 園\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=20
- 26-PM&match=2026-PM-15
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -PM&match=2026-PM-15
+ 園\nhttps://jufahokkaidodc-source.github.io/jufa/results/results.html?com
+ p=2026-PM&match=2026-PM-15
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-PM&match=2026-PM-15
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-PM-20@jufa-hokkaido
-DTSTAMP:20261018T040754Z
+DTSTAMP:20261103T003951Z
 DTSTART;TZID=Asia/Tokyo:20260628T133000
 DTEND;TZID=Asia/Tokyo:20260628T153000
 SUMMARY:星槎大 0-1 東海大（2026年度 第50回総理大臣杯 全日
@@ -42,9 +42,9 @@ SUMMARY:星槎大 0-1 東海大（2026年度 第50回総理大臣杯 全日
 LOCATION:カムイの杜公園
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　3回戦\n会場：カムイの杜公
- 園\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=20
- 26-PM&match=2026-PM-20
-URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
- -PM&match=2026-PM-20
+ 園\nhttps://jufahokkaidodc-source.github.io/jufa/results/results.html?com
+ p=2026-PM&match=2026-PM-20
+URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
+ 2026-PM&match=2026-PM-20
 END:VEVENT
 END:VCALENDAR
