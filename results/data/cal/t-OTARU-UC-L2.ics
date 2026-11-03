@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-L2-204@jufa-hokkaido
-DTSTAMP:20261103T003946Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260517T100000
 DTEND;TZID=Asia/Tokyo:20260517T120000
 SUMMARY:樽商大 2-1 札教大（2026年度 第45回北海道学生サッ
@@ -27,13 +27,13 @@ SUMMARY:樽商大 2-1 札教大（2026年度 第45回北海道学生サッ
 LOCATION:東雁来公園サッカー場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 2部　
  第1節\n会場：東雁来公園サッカー場\nhttps://jufahokkaidodc-s
- ource.github.io/jufa/results/results.html?comp=2026-L2&match=2026-L2-204
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L2&match=2026-L2-204
+ ource.github.io/jufa/new/results.html?comp=2026-L2&match=2026-L2-204
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L2&match=2026-L2-204
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L2-207@jufa-hokkaido
-DTSTAMP:20261103T003946Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260524T110000
 DTEND;TZID=Asia/Tokyo:20260524T130000
 SUMMARY:北星大 2-0 樽商大（2026年度 第45回北海道学生サッ
@@ -41,14 +41,14 @@ SUMMARY:北星大 2-0 樽商大（2026年度 第45回北海道学生サッ
 LOCATION:洞爺湖町月浦運動公園ポロモイスタジアム
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 2部　
  第2節\n会場：洞爺湖町月浦運動公園ポロモイスタジア
- ム\nhttps://jufahokkaidodc-source.github.io/jufa/results/results.html?com
- p=2026-L2&match=2026-L2-207
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L2&match=2026-L2-207
+ ム\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=20
+ 26-L2&match=2026-L2-207
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L2&match=2026-L2-207
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L2-212@jufa-hokkaido
-DTSTAMP:20261103T003946Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260531T130000
 DTEND;TZID=Asia/Tokyo:20260531T150000
 SUMMARY:室工大 1-1 樽商大（2026年度 第45回北海道学生サッ
@@ -56,13 +56,13 @@ SUMMARY:室工大 1-1 樽商大（2026年度 第45回北海道学生サッ
 LOCATION:芦別市陸上競技場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 2部　
  第3節\n会場：芦別市陸上競技場\nhttps://jufahokkaidodc-source.
- github.io/jufa/results/results.html?comp=2026-L2&match=2026-L2-212
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L2&match=2026-L2-212
+ github.io/jufa/new/results.html?comp=2026-L2&match=2026-L2-212
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L2&match=2026-L2-212
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L2-215@jufa-hokkaido
-DTSTAMP:20261103T003946Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260606T103000
 DTEND;TZID=Asia/Tokyo:20260606T123000
 SUMMARY:札医大 3-2 樽商大（2026年度 第45回北海道学生サッ
@@ -70,14 +70,13 @@ SUMMARY:札医大 3-2 樽商大（2026年度 第45回北海道学生サッ
 LOCATION:浜厚真野原公園サッカー場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 2部　
  第4節\n会場：浜厚真野原公園サッカー場\nhttps://jufahokkai
- dodc-source.github.io/jufa/results/results.html?comp=2026-L2&match=2026-L2
- -215
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L2&match=2026-L2-215
+ dodc-source.github.io/jufa/new/results.html?comp=2026-L2&match=2026-L2-215
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L2&match=2026-L2-215
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L2-220@jufa-hokkaido
-DTSTAMP:20261103T003946Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260614T133000
 DTEND;TZID=Asia/Tokyo:20260614T153000
 SUMMARY:釧公大 0-0 樽商大（2026年度 第45回北海道学生サッ
@@ -85,14 +84,14 @@ SUMMARY:釧公大 0-0 樽商大（2026年度 第45回北海道学生サッ
 LOCATION:サホロリバーサイド運動広場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 2部　
  第5節\n会場：サホロリバーサイド運動広場\nhttps://jufahok
- kaidodc-source.github.io/jufa/results/results.html?comp=2026-L2&match=2026
- -L2-220
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L2&match=2026-L2-220
+ kaidodc-source.github.io/jufa/new/results.html?comp=2026-L2&match=2026-L2-
+ 220
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L2&match=2026-L2-220
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L2-221@jufa-hokkaido
-DTSTAMP:20261103T003946Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260718T110000
 DTEND;TZID=Asia/Tokyo:20260718T130000
 SUMMARY:旭教大 3-3 樽商大（2026年度 第45回北海道学生サッ
@@ -100,13 +99,13 @@ SUMMARY:旭教大 3-3 樽商大（2026年度 第45回北海道学生サッ
 LOCATION:忠和公園
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 2部　
  第6節\n会場：忠和公園\nhttps://jufahokkaidodc-source.github.io/ju
- fa/results/results.html?comp=2026-L2&match=2026-L2-221
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L2&match=2026-L2-221
+ fa/new/results.html?comp=2026-L2&match=2026-L2-221
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L2&match=2026-L2-221
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L2-225@jufa-hokkaido
-DTSTAMP:20261103T003946Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260725T103000
 DTEND;TZID=Asia/Tokyo:20260725T123000
 SUMMARY:国際大 4-1 樽商大（2026年度 第45回北海道学生サッ
@@ -114,13 +113,13 @@ SUMMARY:国際大 4-1 樽商大（2026年度 第45回北海道学生サッ
 LOCATION:札幌国際大学
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 2部　
  第7節\n会場：札幌国際大学\nhttps://jufahokkaidodc-source.github
- .io/jufa/results/results.html?comp=2026-L2&match=2026-L2-225
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L2&match=2026-L2-225
+ .io/jufa/new/results.html?comp=2026-L2&match=2026-L2-225
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L2&match=2026-L2-225
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L2-230@jufa-hokkaido
-DTSTAMP:20261103T003946Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260912T133000
 DTEND;TZID=Asia/Tokyo:20260912T153000
 SUMMARY:札医大 3-1 樽商大（2026年度 第45回北海道学生サッ
@@ -128,14 +127,14 @@ SUMMARY:札医大 3-1 樽商大（2026年度 第45回北海道学生サッ
 LOCATION:リアルター夢りんご東光スポーツ公園球技場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 2部　
  第8節\n会場：リアルター夢りんご東光スポーツ公園球
- 技場\nhttps://jufahokkaidodc-source.github.io/jufa/results/results.html?
- comp=2026-L2&match=2026-L2-230
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L2&match=2026-L2-230
+ 技場\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp
+ =2026-L2&match=2026-L2-230
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L2&match=2026-L2-230
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L2-233@jufa-hokkaido
-DTSTAMP:20261103T003946Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260919T103000
 DTEND;TZID=Asia/Tokyo:20260919T123000
 SUMMARY:室工大 0-5 樽商大（2026年度 第45回北海道学生サッ
@@ -143,13 +142,13 @@ SUMMARY:室工大 0-5 樽商大（2026年度 第45回北海道学生サッ
 LOCATION:小樽市望洋サッカー場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 2部　
  第9節\n会場：小樽市望洋サッカー場\nhttps://jufahokkaidodc-s
- ource.github.io/jufa/results/results.html?comp=2026-L2&match=2026-L2-233
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L2&match=2026-L2-233
+ ource.github.io/jufa/new/results.html?comp=2026-L2&match=2026-L2-233
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L2&match=2026-L2-233
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L2-237@jufa-hokkaido
-DTSTAMP:20261103T003946Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260926T110000
 DTEND;TZID=Asia/Tokyo:20260926T130000
 SUMMARY:旭教大 2-1 樽商大（2026年度 第45回北海道学生サッ
@@ -157,13 +156,13 @@ SUMMARY:旭教大 2-1 樽商大（2026年度 第45回北海道学生サッ
 LOCATION:カムイの杜公園
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 2部　
  第10節\n会場：カムイの杜公園\nhttps://jufahokkaidodc-source.gi
- thub.io/jufa/results/results.html?comp=2026-L2&match=2026-L2-237
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L2&match=2026-L2-237
+ thub.io/jufa/new/results.html?comp=2026-L2&match=2026-L2-237
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L2&match=2026-L2-237
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L2-241@jufa-hokkaido
-DTSTAMP:20261103T003946Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20261003T103000
 DTEND;TZID=Asia/Tokyo:20261003T123000
 SUMMARY:樽商大 4-0 札教大（2026年度 第45回北海道学生サッ
@@ -171,13 +170,13 @@ SUMMARY:樽商大 4-0 札教大（2026年度 第45回北海道学生サッ
 LOCATION:小樽市望洋サッカー場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 2部　
  第11節\n会場：小樽市望洋サッカー場\nhttps://jufahokkaidodc-
- source.github.io/jufa/results/results.html?comp=2026-L2&match=2026-L2-241
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L2&match=2026-L2-241
+ source.github.io/jufa/new/results.html?comp=2026-L2&match=2026-L2-241
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L2&match=2026-L2-241
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L2-247@jufa-hokkaido
-DTSTAMP:20261103T003946Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20261010T103000
 DTEND;TZID=Asia/Tokyo:20261010T123000
 SUMMARY:国際大 7-0 樽商大（2026年度 第45回北海道学生サッ
@@ -185,13 +184,13 @@ SUMMARY:国際大 7-0 樽商大（2026年度 第45回北海道学生サッ
 LOCATION:札幌国際大学
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 2部　
  第12節\n会場：札幌国際大学\nhttps://jufahokkaidodc-source.githu
- b.io/jufa/results/results.html?comp=2026-L2&match=2026-L2-247
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L2&match=2026-L2-247
+ b.io/jufa/new/results.html?comp=2026-L2&match=2026-L2-247
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L2&match=2026-L2-247
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L2-249@jufa-hokkaido
-DTSTAMP:20261103T003946Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20261017T103000
 DTEND;TZID=Asia/Tokyo:20261017T123000
 SUMMARY:北星大 2-2 樽商大（2026年度 第45回北海道学生サッ
@@ -199,13 +198,13 @@ SUMMARY:北星大 2-2 樽商大（2026年度 第45回北海道学生サッ
 LOCATION:小樽市望洋サッカー場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 2部　
  第13節\n会場：小樽市望洋サッカー場\nhttps://jufahokkaidodc-
- source.github.io/jufa/results/results.html?comp=2026-L2&match=2026-L2-249
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L2&match=2026-L2-249
+ source.github.io/jufa/new/results.html?comp=2026-L2&match=2026-L2-249
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L2&match=2026-L2-249
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L2-254@jufa-hokkaido
-DTSTAMP:20261103T003946Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20261024T133000
 DTEND;TZID=Asia/Tokyo:20261024T153000
 SUMMARY:釧公大 0-3 樽商大（2026年度 第45回北海道学生サッ
@@ -213,8 +212,8 @@ SUMMARY:釧公大 0-3 樽商大（2026年度 第45回北海道学生サッ
 LOCATION:阿寒町多目的広場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 2部　
  第14節\n会場：阿寒町多目的広場\nhttps://jufahokkaidodc-source
- .github.io/jufa/results/results.html?comp=2026-L2&match=2026-L2-254
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L2&match=2026-L2-254
+ .github.io/jufa/new/results.html?comp=2026-L2&match=2026-L2-254
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L2&match=2026-L2-254
 END:VEVENT
 END:VCALENDAR

@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-IL-702@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260517T143000
 DTEND;TZID=Asia/Tokyo:20260517T163000
 SUMMARY:星槎大 3-1 北翔大（2026年度 第18回インディペンデ
@@ -27,13 +27,13 @@ SUMMARY:星槎大 3-1 北翔大（2026年度 第18回インディペンデ
 LOCATION:札幌国際大学
 DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
  道大会　第1節\n会場：札幌国際大学\nhttps://jufahokkaidodc-s
- ource.github.io/jufa/results/results.html?comp=2026-IL&match=2026-IL-702
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-IL&match=2026-IL-702
+ ource.github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-702
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-702
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-711@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260524T140000
 DTEND;TZID=Asia/Tokyo:20260524T160000
 SUMMARY:星槎大 2-5 学園大U-22（2026年度 第18回インディペン
@@ -41,13 +41,13 @@ SUMMARY:星槎大 2-5 学園大U-22（2026年度 第18回インディペン
 LOCATION:札幌大学
 DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
  道大会　第2節\n会場：札幌大学\nhttps://jufahokkaidodc-source.
- github.io/jufa/results/results.html?comp=2026-IL&match=2026-IL-711
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-IL&match=2026-IL-711
+ github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-711
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-711
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-713@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260531T133000
 DTEND;TZID=Asia/Tokyo:20260531T153000
 SUMMARY:星槎大 1-0 北大（2026年度 第18回インディペンデン
@@ -55,14 +55,14 @@ SUMMARY:星槎大 1-0 北大（2026年度 第18回インディペンデン
 LOCATION:北海道教育大学岩見沢校
 DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
  道大会　第3節\n会場：北海道教育大学岩見沢校\nhttps://j
- ufahokkaidodc-source.github.io/jufa/results/results.html?comp=2026-IL&matc
- h=2026-IL-713
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-IL&match=2026-IL-713
+ ufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-IL&match=20
+ 26-IL-713
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-713
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-728@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260621T133000
 DTEND;TZID=Asia/Tokyo:20260621T153000
 SUMMARY:札大セカンド 5-1 星槎大（2026年度 第18回インディ
@@ -70,13 +70,13 @@ SUMMARY:札大セカンド 5-1 星槎大（2026年度 第18回インディ
 LOCATION:札幌大学
 DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
  道大会　第6節\n会場：札幌大学\nhttps://jufahokkaidodc-source.
- github.io/jufa/results/results.html?comp=2026-IL&match=2026-IL-728
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-IL&match=2026-IL-728
+ github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-728
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-728
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-729@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260719T150000
 DTEND;TZID=Asia/Tokyo:20260719T170000
 SUMMARY:星槎大 1-8 岩教大A（2026年度 第18回インディペンデ
@@ -84,14 +84,14 @@ SUMMARY:星槎大 1-8 岩教大A（2026年度 第18回インディペンデ
 LOCATION:北海道教育大学岩見沢校
 DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
  道大会　第7節\n会場：北海道教育大学岩見沢校\nhttps://j
- ufahokkaidodc-source.github.io/jufa/results/results.html?comp=2026-IL&matc
- h=2026-IL-729
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-IL&match=2026-IL-729
+ ufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-IL&match=20
+ 26-IL-729
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-729
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-742@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260823T173000
 DTEND;TZID=Asia/Tokyo:20260823T193000
 SUMMARY:岩教大B 6-3 星槎大（2026年度 第18回インディペンデ
@@ -99,14 +99,14 @@ SUMMARY:岩教大B 6-3 星槎大（2026年度 第18回インディペンデ
 LOCATION:北海道教育大学岩見沢校
 DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
  道大会　第12節\n会場：北海道教育大学岩見沢校\nhttps://
- jufahokkaidodc-source.github.io/jufa/results/results.html?comp=2026-IL&mat
- ch=2026-IL-742
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-IL&match=2026-IL-742
+ jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-IL&match=2
+ 026-IL-742
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-742
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-747@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260920T133000
 DTEND;TZID=Asia/Tokyo:20260920T153000
 SUMMARY:星槎大 0-4 東海大A（2026年度 第18回インディペンデ
@@ -114,13 +114,13 @@ SUMMARY:星槎大 0-4 東海大A（2026年度 第18回インディペンデ
 LOCATION:札幌大学
 DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
  道大会　第14節\n会場：札幌大学\nhttps://jufahokkaidodc-source
- .github.io/jufa/results/results.html?comp=2026-IL&match=2026-IL-747
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-IL&match=2026-IL-747
+ .github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-747
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-747
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-750@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260927T133000
 DTEND;TZID=Asia/Tokyo:20260927T153000
 SUMMARY:学園大U-20 3-4 星槎大（2026年度 第18回インディペン
@@ -128,14 +128,14 @@ SUMMARY:学園大U-20 3-4 星槎大（2026年度 第18回インディペン
 LOCATION:北海道教育大学岩見沢校
 DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
  道大会　第15節\n会場：北海道教育大学岩見沢校\nhttps://
- jufahokkaidodc-source.github.io/jufa/results/results.html?comp=2026-IL&mat
- ch=2026-IL-750
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-IL&match=2026-IL-750
+ jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-IL&match=2
+ 026-IL-750
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-750
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-756@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20261004T133000
 DTEND;TZID=Asia/Tokyo:20261004T153000
 SUMMARY:札大サテライト 7-1 星槎大（2026年度 第18回インデ
@@ -143,13 +143,13 @@ SUMMARY:札大サテライト 7-1 星槎大（2026年度 第18回インデ
 LOCATION:札幌国際大学
 DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
  道大会　第16節\n会場：札幌国際大学\nhttps://jufahokkaidodc-
- source.github.io/jufa/results/results.html?comp=2026-IL&match=2026-IL-756
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-IL&match=2026-IL-756
+ source.github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-756
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-756
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-760@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20261011T133000
 DTEND;TZID=Asia/Tokyo:20261011T153000
 SUMMARY:東海大B 2-2 星槎大（2026年度 第18回インディペンデ
@@ -157,14 +157,14 @@ SUMMARY:東海大B 2-2 星槎大（2026年度 第18回インディペンデ
 LOCATION:浜厚真野原公園サッカー場
 DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
  道大会　第17節\n会場：浜厚真野原公園サッカー場\nhttps
- ://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=2026-IL&
- match=2026-IL-760
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-IL&match=2026-IL-760
+ ://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-IL&matc
+ h=2026-IL-760
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-760
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-IL-765@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20261018T110000
 DTEND;TZID=Asia/Tokyo:20261018T130000
 SUMMARY:星槎大 3-3 国際大（2026年度 第18回インディペンデ
@@ -172,8 +172,8 @@ SUMMARY:星槎大 3-3 国際大（2026年度 第18回インディペンデ
 LOCATION:札幌国際大学
 DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
  道大会　第18節\n会場：札幌国際大学\nhttps://jufahokkaidodc-
- source.github.io/jufa/results/results.html?comp=2026-IL&match=2026-IL-765
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-IL&match=2026-IL-765
+ source.github.io/jufa/new/results.html?comp=2026-IL&match=2026-IL-765
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -IL&match=2026-IL-765
 END:VEVENT
 END:VCALENDAR

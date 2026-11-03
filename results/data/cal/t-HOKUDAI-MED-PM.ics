@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-PM-6@jufa-hokkaido
-DTSTAMP:20261103T003950Z
+DTSTAMP:20261103T004225Z
 DTSTART;TZID=Asia/Tokyo:20260621T133000
 DTEND;TZID=Asia/Tokyo:20260621T153000
 SUMMARY:北大水 1-1 北大医（2026年度 第50回総理大臣杯 全日
@@ -27,9 +27,9 @@ SUMMARY:北大水 1-1 北大医（2026年度 第50回総理大臣杯 全日
 LOCATION:小樽市望洋サッカー場
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　1回戦\n会場：小樽市望洋サ
- ッカー場\nhttps://jufahokkaidodc-source.github.io/jufa/results/results
- .html?comp=2026-PM&match=2026-PM-6
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-PM&match=2026-PM-6
+ ッカー場\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.htm
+ l?comp=2026-PM&match=2026-PM-6
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PM&match=2026-PM-6
 END:VEVENT
 END:VCALENDAR

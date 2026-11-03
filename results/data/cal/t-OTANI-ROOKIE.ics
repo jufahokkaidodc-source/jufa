@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-ROOKIE-706@jufa-hokkaido
-DTSTAMP:20261103T003949Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260822T150000
 DTEND;TZID=Asia/Tokyo:20260822T170000
 SUMMARY:札大 11-0 大谷大（2026年度 第6回全日本大学サッカ
@@ -27,14 +27,14 @@ SUMMARY:札大 11-0 大谷大（2026年度 第6回全日本大学サッカ
 LOCATION:札幌大谷学園丘珠グラウンド
 DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
  大会　予選Aブロック 第2節\n会場：札幌大谷学園丘珠グ
- ラウンド\nhttps://jufahokkaidodc-source.github.io/jufa/results/results
- .html?comp=2026-ROOKIE&match=2026-ROOKIE-706
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-ROOKIE&match=2026-ROOKIE-706
+ ラウンド\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.htm
+ l?comp=2026-ROOKIE&match=2026-ROOKIE-706
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-706
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-712@jufa-hokkaido
-DTSTAMP:20261103T003949Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260829T130000
 DTEND;TZID=Asia/Tokyo:20260829T150000
 SUMMARY:大谷大 6-0 医療大（2026年度 第6回全日本大学サッ
@@ -43,13 +43,13 @@ LOCATION:札幌サッカーアミューズメントパーク（人工芝）
 DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
  大会　予選Aブロック 第3節\n会場：札幌サッカーアミュ
  ーズメントパーク（人工芝）\nhttps://jufahokkaidodc-source.git
- hub.io/jufa/results/results.html?comp=2026-ROOKIE&match=2026-ROOKIE-712
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-ROOKIE&match=2026-ROOKIE-712
+ hub.io/jufa/new/results.html?comp=2026-ROOKIE&match=2026-ROOKIE-712
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-712
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-718@jufa-hokkaido
-DTSTAMP:20261103T003949Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260913T110000
 DTEND;TZID=Asia/Tokyo:20260913T130000
 SUMMARY:岩教大 10-1 大谷大（2026年度 第6回全日本大学サッ
@@ -57,9 +57,9 @@ SUMMARY:岩教大 10-1 大谷大（2026年度 第6回全日本大学サッ
 LOCATION:北海道教育大学岩見沢校
 DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
  大会　準々決勝\n会場：北海道教育大学岩見沢校\nhttps:/
- /jufahokkaidodc-source.github.io/jufa/results/results.html?comp=2026-ROOKI
- E&match=2026-ROOKIE-718
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-ROOKIE&match=2026-ROOKIE-718
+ /jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-ROOKIE&ma
+ tch=2026-ROOKIE-718
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-718
 END:VEVENT
 END:VCALENDAR

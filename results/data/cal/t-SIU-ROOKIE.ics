@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-ROOKIE-702@jufa-hokkaido
-DTSTAMP:20261103T003948Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260801T093000
 DTEND;TZID=Asia/Tokyo:20260801T113000
 SUMMARY:東海大 3-0 国際大（2026年度 第6回全日本大学サッ
@@ -27,14 +27,14 @@ SUMMARY:東海大 3-0 国際大（2026年度 第6回全日本大学サッ
 LOCATION:札幌国際大学
 DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
  大会　予選Bブロック 第1節\n会場：札幌国際大学\nhttps:/
- /jufahokkaidodc-source.github.io/jufa/results/results.html?comp=2026-ROOKI
- E&match=2026-ROOKIE-702
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-ROOKIE&match=2026-ROOKIE-702
+ /jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-ROOKIE&ma
+ tch=2026-ROOKIE-702
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-702
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-ROOKIE-714@jufa-hokkaido
-DTSTAMP:20261103T003948Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260829T093000
 DTEND;TZID=Asia/Tokyo:20260829T113000
 SUMMARY:学園大 2-0 国際大（2026年度 第6回全日本大学サッ
@@ -42,9 +42,9 @@ SUMMARY:学園大 2-0 国際大（2026年度 第6回全日本大学サッ
 LOCATION:札幌国際大学
 DESCRIPTION:2026年度 第6回全日本大学サッカー新人戦北海道
  大会　予選Bブロック 第3節\n会場：札幌国際大学\nhttps:/
- /jufahokkaidodc-source.github.io/jufa/results/results.html?comp=2026-ROOKI
- E&match=2026-ROOKIE-714
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-ROOKIE&match=2026-ROOKIE-714
+ /jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-ROOKIE&ma
+ tch=2026-ROOKIE-714
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -ROOKIE&match=2026-ROOKIE-714
 END:VEVENT
 END:VCALENDAR

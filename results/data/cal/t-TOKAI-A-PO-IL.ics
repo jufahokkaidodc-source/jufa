@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-IL-767@jufa-hokkaido
-DTSTAMP:20261103T003948Z
+DTSTAMP:20261103T004224Z
 DTSTART;VALUE=DATE:20261031
 DTEND;VALUE=DATE:20261101
 SUMMARY:札大サテライト 10-1 東海大A（2026年度 第18回イン
@@ -27,9 +27,9 @@ SUMMARY:札大サテライト 10-1 東海大A（2026年度 第18回イン
 LOCATION:北海道教育大学岩見沢校
 DESCRIPTION:2026年度 第18回インディペンデンスリーグ北海
  道大会　プレーオフ\n会場：北海道教育大学岩見沢校\nh
- ttps://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=2026
+ ttps://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026-IL&
+ match=2026-IL-767
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
  -IL&match=2026-IL-767
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-IL&match=2026-IL-767
 END:VEVENT
 END:VCALENDAR

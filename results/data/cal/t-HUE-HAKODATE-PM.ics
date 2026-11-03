@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-PM-5@jufa-hokkaido
-DTSTAMP:20261103T003950Z
+DTSTAMP:20261103T004225Z
 DTSTART;TZID=Asia/Tokyo:20260621T095000
 DTEND;TZID=Asia/Tokyo:20260621T115000
 SUMMARY:国際大 2-1 函教大（2026年度 第50回総理大臣杯 全日
@@ -27,9 +27,9 @@ SUMMARY:国際大 2-1 函教大（2026年度 第50回総理大臣杯 全日
 LOCATION:函館フットボールパーク
 DESCRIPTION:2026年度 第50回総理大臣杯 全日本大学サッカー
  トーナメント北海道大会　1回戦\n会場：函館フットボ
- ールパーク\nhttps://jufahokkaidodc-source.github.io/jufa/results/resu
- lts.html?comp=2026-PM&match=2026-PM-5
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-PM&match=2026-PM-5
+ ールパーク\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.
+ html?comp=2026-PM&match=2026-PM-5
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -PM&match=2026-PM-5
 END:VEVENT
 END:VCALENDAR

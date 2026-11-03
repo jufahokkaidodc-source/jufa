@@ -19,7 +19,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-L3-306@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260606T103000
 DTEND;TZID=Asia/Tokyo:20260606T123000
 SUMMARY:函教大 0-2 文教大（2026年度 第45回北海道学生サッ
@@ -27,13 +27,13 @@ SUMMARY:函教大 0-2 文教大（2026年度 第45回北海道学生サッ
 LOCATION:北斗市フットボール 場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第4節\n会場：北斗市フットボール 場\nhttps://jufahokkaidodc-
- source.github.io/jufa/results/results.html?comp=2026-L3&match=2026-L3-306
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L3&match=2026-L3-306
+ source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-306
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-306
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-308@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260607T103000
 DTEND;TZID=Asia/Tokyo:20260607T123000
 SUMMARY:科学大 2-1 函教大（2026年度 第45回北海道学生サッ
@@ -41,14 +41,13 @@ SUMMARY:科学大 2-1 函教大（2026年度 第45回北海道学生サッ
 LOCATION:函館フットボールパーク
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第5節\n会場：函館フットボールパーク\nhttps://jufahokkaidod
- c-source.github.io/jufa/results/results.html?comp=2026-L3&match=2026-L3-30
- 8
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L3&match=2026-L3-308
+ c-source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-308
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-308
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-314@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20260725T154500
 DTEND;TZID=Asia/Tokyo:20260725T174500
 SUMMARY:函教大 4-1 旭医大（2026年度 第45回北海道学生サッ
@@ -56,14 +55,14 @@ SUMMARY:函教大 4-1 旭医大（2026年度 第45回北海道学生サッ
 LOCATION:札幌サッカーアミューズメントパーク（天然芝）
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第8節\n会場：札幌サッカーアミューズメントパーク（
- 天然芝）\nhttps://jufahokkaidodc-source.github.io/jufa/results/results
- .html?comp=2026-L3&match=2026-L3-314
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L3&match=2026-L3-314
+ 天然芝）\nhttps://jufahokkaidodc-source.github.io/jufa/new/results.htm
+ l?comp=2026-L3&match=2026-L3-314
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-314
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-322@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20261003T110000
 DTEND;TZID=Asia/Tokyo:20261003T130000
 SUMMARY:函教大 9-1 帯畜大（2026年度 第45回北海道学生サッ
@@ -71,14 +70,14 @@ SUMMARY:函教大 9-1 帯畜大（2026年度 第45回北海道学生サッ
 LOCATION:浜厚真野原公園サッカー場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第12節\n会場：浜厚真野原公園サッカー場\nhttps://jufahokka
- idodc-source.github.io/jufa/results/results.html?comp=2026-L3&match=2026-L
- 3-322
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L3&match=2026-L3-322
+ idodc-source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-32
+ 2
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-322
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-325@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20261004T133000
 DTEND;TZID=Asia/Tokyo:20261004T153000
 SUMMARY:釧教大 1-0 函教大（2026年度 第45回北海道学生サッ
@@ -86,14 +85,14 @@ SUMMARY:釧教大 1-0 函教大（2026年度 第45回北海道学生サッ
 LOCATION:浜厚真野原公園サッカー場
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第13節\n会場：浜厚真野原公園サッカー場\nhttps://jufahokka
- idodc-source.github.io/jufa/results/results.html?comp=2026-L3&match=2026-L
- 3-325
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L3&match=2026-L3-325
+ idodc-source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-32
+ 5
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-325
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-326@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20261010T095000
 DTEND;TZID=Asia/Tokyo:20261010T115000
 SUMMARY:函教大 1-0 北大水（2026年度 第45回北海道学生サッ
@@ -101,14 +100,13 @@ SUMMARY:函教大 1-0 北大水（2026年度 第45回北海道学生サッ
 LOCATION:函館フットボールパーク
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第14節\n会場：函館フットボールパーク\nhttps://jufahokkaido
- dc-source.github.io/jufa/results/results.html?comp=2026-L3&match=2026-L3-3
- 26
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L3&match=2026-L3-326
+ dc-source.github.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-326
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-326
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-329@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20261017T124500
 DTEND;TZID=Asia/Tokyo:20261017T144500
 SUMMARY:函教大 1-1 医療大（2026年度 第45回北海道学生サッ
@@ -116,13 +114,13 @@ SUMMARY:函教大 1-1 医療大（2026年度 第45回北海道学生サッ
 LOCATION:北斗市運動公園
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第15節\n会場：北斗市運動公園\nhttps://jufahokkaidodc-source.gi
- thub.io/jufa/results/results.html?comp=2026-L3&match=2026-L3-329
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L3&match=2026-L3-329
+ thub.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-329
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-329
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-L3-332@jufa-hokkaido
-DTSTAMP:20261103T003947Z
+DTSTAMP:20261103T004224Z
 DTSTART;TZID=Asia/Tokyo:20261018T124500
 DTEND;TZID=Asia/Tokyo:20261018T144500
 SUMMARY:北大医 2-0 函教大（2026年度 第45回北海道学生サッ
@@ -130,8 +128,8 @@ SUMMARY:北大医 2-0 函教大（2026年度 第45回北海道学生サッ
 LOCATION:北斗市運動公園
 DESCRIPTION:2026年度 第45回北海道学生サッカーリーグ 3部　
  第16節\n会場：北斗市運動公園\nhttps://jufahokkaidodc-source.gi
- thub.io/jufa/results/results.html?comp=2026-L3&match=2026-L3-332
-URL:https://jufahokkaidodc-source.github.io/jufa/results/results.html?comp=
- 2026-L3&match=2026-L3-332
+ thub.io/jufa/new/results.html?comp=2026-L3&match=2026-L3-332
+URL:https://jufahokkaidodc-source.github.io/jufa/new/results.html?comp=2026
+ -L3&match=2026-L3-332
 END:VEVENT
 END:VCALENDAR
