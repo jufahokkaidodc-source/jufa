@@ -695,8 +695,16 @@ function clubFor(t){
   const u=typeof t==='object'?String(t.univ||'').trim():'';
   return u?CLUBS.find(c=>c.published&&c.slug&&c.univ===u)||null:null; // 公開前（プレビューだけ）の大学はボタンを出さない
 }
+/* 公式サイト・SNSの補い（new/data/sns.json。旧HPの加盟チーム一覧から）。チーム紹介に入っているものが先 */
+let SNSX=null;
+function snsExtra(t){
+  if(SNSX===null){SNSX={};fetch('./data/sns.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{SNSX=(j&&j.teams)||{};if(S.team)renderAbout()}).catch(()=>{});return null}
+  if(!t||typeof t!=='object')return null;
+  return SNSX[String(t.name||'').trim()]||SNSX[String(t.univ||'').trim()]||null;
+}
 function renderAbout(){
-  const p=profileOf(S.team);
+  const p0=profileOf(S.team),ex=snsExtra(S.team);
+  const p=p0||ex?Object.assign({},ex||{},p0||{},{website:(p0&&safeUrl(p0.website))?p0.website:(ex&&ex.website)||'',sns:Object.assign({},(ex&&ex.sns)||{},Object.fromEntries(Object.entries((p0&&p0.sns)||{}).filter(([,v])=>safeUrl(v))))}):null;
   const club=clubFor(S.team);
   const staff=squad().staff.map(s=>[s.role||'スタッフ',s.name]);
   const facts=[...staff,...(p?[[staff.some(s=>/監督/.test(s[0]))?'':'監督',p.coach],['主将',p.captain],['創部',p.founded],['部員数',p.members],['練習場',p.ground]]:[])].filter(([k,v])=>has(k)&&has(v));
