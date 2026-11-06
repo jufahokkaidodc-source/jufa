@@ -166,6 +166,14 @@ button{font:inherit;color:inherit;cursor:pointer}
 .off td small{display:block;color:var(--muted);font-size:max(12px,.85em)}
 @media (max-width:480px){.off th{width:6em;font-size:max(12px,.85em)}}
 .kj{display:flex;flex-wrap:wrap;gap:6px}.kj span{background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:max(12px,.9em)}
+/* 加盟団体一覧のカード：エンブレム × 大学名（写真なし） */
+.club.club2{flex-direction:row;align-items:center;text-align:left;gap:10px;padding:10px 12px}
+.club.club2>.crest{margin:0;width:46px;height:46px;font-size:16px;border:0;flex:none}
+.club.club2>.crest.two{font-size:13px}
+.club.club2 div{padding:0}
+.club.club2 strong{font-size:14px;line-height:1.4}
+.clubs:has(.club2){grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+@media(max-width:680px){.club.club2>.crest{width:42px;height:42px;margin:0;font-size:15px}.clubs:has(.club2){grid-template-columns:1fr}}
 </style>
 <link rel="stylesheet" href="./theme.css">
 <script src="./site.js"></script>
@@ -297,6 +305,8 @@ function crestBase(t){
   return '<span class="crest'+(two?' two':'')+'" style="--c:'+c+';color:'+crestInk(c)+'">'+esc(ch)+'</span>';
 }
 const sec=(id,en,ja,inner)=>'<section class="section" id="'+id+'"><div class="sechead"><h2><small>'+en+'</small>'+ja+'</h2></div>'+inner+'</section>';
+/* 加盟団体一覧の名前：大学名（チーム名が「大学名＋校舎・校・学部」のときはチーム名。例：東海大学札幌校舎） */
+function univLabel(t){const u=t.univ||'',n=t.name||'';return u&&n.indexOf(u)===0&&/(校舎|校|学部)$/.test(n)?n:(u||n||t.short||'')}
 /* 全日本大学サッカー連盟宣言・役員名簿（new/data/federation.json。役員名簿は年度ごとに書き換える） */
 const fedReady=fetch('./data/federation.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null);
 function fedDeclaration(x){
@@ -322,10 +332,13 @@ boot('about.json',async(d)=>{
   if(d.overview?.length)parts.push(['overview','OVERVIEW','連盟概要','<div class="ov">'+d.overview.map(o=>{const u=safeUrl(o.url);return '<article><h3>'+esc(o.title)+'</h3>'+(has(o.body)?'<p>'+richText(o.body)+'</p>':'')+(u?'<a class="lk" href="'+esc(u)+'" target="_blank" rel="noopener">詳しく見る ↗</a>':'')+'</article>'}).join('')+'</div>']);
   if(fed?.declaration)parts.push(['declaration','DECLARATION','全日本大学サッカー連盟宣言',fedDeclaration(fed.declaration)]);
   if(fed?.officers)parts.push(['officers','OFFICERS','役員名簿',fedOfficers(fed.officers)]);
-  if(d.members?.length){
+  // 加盟団体一覧：学生リーグ（1部・2部・3部）のチームだけ（Iリーグなどは入れない）
+  const leagues=(d.members||[]).filter(l=>/-L\d+$/.test(l.comp));
+  if(leagues.length){
+    d.members=leagues;
     const total=new Set(d.members.flatMap(l=>l.teams.map(t=>t.univ||t.name))).size;
-    parts.push(['members','MEMBERS','加盟団体一覧','<p class="note" style="margin:-4px 2px 14px">'+total+'大学（今年度のリーグ戦の登録チーム）</p>'+d.members.map(l=>(makeBadges(l.teams,t=>t.id,t=>t.short||t.name),'')+'<div class="league"><h3>'+esc(shortComp(l.name))+'<span>'+l.teams.length+'チーム</span></h3><div class="clubs">'+
-      l.teams.map(t=>'<a class="club" href="./team.html?comp='+encodeURIComponent(l.comp)+'&team='+encodeURIComponent(t.id)+'">'+cover(t)+crest(t)+'<div><strong>'+esc(t.name||t.short)+'</strong></div></a>').join('')+'</div></div>').join('')]);
+    parts.push(['members','MEMBERS','加盟団体一覧','<p class="note" style="margin:-4px 2px 14px">'+total+'大学（今年度の北海道学生サッカーリーグ 1部・2部・3部）</p>'+d.members.map(l=>(makeBadges(l.teams,t=>t.id,t=>t.short||t.name),'')+'<div class="league"><h3>'+esc(shortComp(l.name))+'<span>'+l.teams.length+'チーム</span></h3><div class="clubs">'+
+      l.teams.map(t=>'<a class="club club2" href="./team.html?comp='+encodeURIComponent(l.comp)+'&team='+encodeURIComponent(t.id)+'">'+crest(t)+'<div><strong>'+esc(univLabel(t))+'</strong></div></a>').join('')+'</div></div>').join('')]);
   }
   const fileRow=o=>{const u=safeUrl(o.url),pdf=/\.pdf(\?|$)/i.test(u),tag=u?'a':'div';
     return '<'+tag+(u?' href="'+esc(u)+'" target="_blank" rel="noopener"':'')+'><span class="ic'+(pdf?' pdf':'')+'">'+(pdf?'PDF':u?'LINK':'INFO')+'</span><span><b>'+esc(o.title)+'</b>'+(has(o.body)?'<small>'+richText(o.body)+'</small>':'')+'</span>'+(u?'<span class="go">開く ↗</span>':'')+'</'+tag+'>'};
