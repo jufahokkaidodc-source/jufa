@@ -125,3 +125,16 @@ html[data-layout="5"] .cols{grid-template-columns:minmax(0,1fr)}
   .nav.open{display:flex!important}
   .nav a{padding:13px 8px!important;font-size:14px!important;border-bottom:1px solid #eee}
 }
+
+/* 指で押しやすく（2026-11）：スマホでは、小さい文字のリンク・節の切りかえなどの押せる高さを40px以上にする（見た目の文字の大きさは変えない） */
+@media (pointer:coarse){
+  .sechead a,.boxhead a,footer a,.foot a,.subtabs button,.subtabs a{min-height:40px;display:inline-flex;align-items:center}
+  .subtabs button{padding-top:8px;padding-bottom:8px}
+}
+@media (pointer:coarse){
+  /* 上のクラブのエンブレムの丸：見た目は30pxのまま、押せる範囲を広げる */
+  .clubbar .wrap>a,.clubbar a{position:relative}
+  .clubbar a::after{content:"";position:absolute;inset:-6px}
+  /* 順位表のクラブ名・選手名・パンくず */
+  a.tt,a.plink,.crumb a{min-height:36px;display:inline-flex;align-items:center}
+}
