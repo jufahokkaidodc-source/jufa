@@ -13,8 +13,8 @@
 <meta property="og:site_name" content="北海道学生サッカー連盟">
 <meta property="og:title" content="チーム紹介 | 北海道学生サッカー連盟">
 <meta property="og:description" content="北海道の大学サッカー部の紹介・選手名鑑・試合結果">
-<meta property="og:url" content="https://jufahokkaidodc-source.github.io/jufa/new/team.html">
-<meta property="og:image" content="https://jufahokkaidodc-source.github.io/jufa/new/img/ogp.png">
+<meta property="og:url" content="https://www.jufahokkaido.com/new/team.html">
+<meta property="og:image" content="https://www.jufahokkaido.com/new/img/ogp.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ja_JP">
@@ -894,7 +894,7 @@ $('nav').addEventListener('click',e=>{if(e.target.closest('a')){$('nav').classLi
   let d;
   try{d=await json('competitions.json')}
   catch(e){
-    if(!/github\.io$/.test(location.hostname)){DEMO=true;d=await json('competitions.json')}
+    if(!/(github\.io|jufahokkaido\.com)$/.test(location.hostname)){DEMO=true;d=await json('competitions.json')}
     else{$('teamTitle').textContent='大会情報を取得できません';return}
   }
   $('demo').hidden=!DEMO;
