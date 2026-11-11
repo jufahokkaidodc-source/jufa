@@ -324,6 +324,7 @@ table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
 .fm.w b{color:#E60012}.fm.l b{color:var(--muted)}
 .pvs{display:grid;grid-template-columns:1fr 1fr;gap:14px}.pvp{display:flex;justify-content:space-between;gap:6px;padding:5px 0;border-top:1px solid var(--line);font-size:13px}.pvs .ptn{margin-bottom:4px}
 a.h2r:hover .sc b{color:var(--red)}
+.rkm{font-style:normal;font-size:10.5px;font-weight:700;margin-left:4px;font-family:var(--num,inherit);white-space:nowrap}.rkm.up{color:#2fbf5f}.rkm.dn{color:#ff5a5f}
 </style>
 <link rel="stylesheet" href="./theme.css">
 <script src="./site.js"></script>
@@ -405,6 +406,9 @@ a.h2r:hover .sc b{color:var(--red)}
 
 <script src="./live.js"></script>
 <script>
+/* 順位の上がり下がり（前の試合日のあとの順位と比べる。rankPrev はホームページの書き出しが入れる） */
+function rkMove(prev,r){const id=r&&r.team&&r.team.id,p=prev&&id?Number(prev[id]):0,n=Number(r&&r.rank);if(!p||!n||p===n)return '';const up=p>n;return '<i class="rkm '+(up?'up':'dn')+'" title="前の試合日から'+Math.abs(p-n)+'つ'+(up?'上がった':'下がった')+'">'+(up?'▲':'▼')+Math.abs(p-n)+'</i>';}
+
 'use strict';
 const $=id=>document.getElementById(id);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -692,7 +696,7 @@ function rStandings(){
     const fp=g.table.some(r=>r.fairPlay!=null),rate=g.table.some(r=>r.pointsRate!=null);
     return (g.group?'<div class="sh"><h2>'+esc(g.group)+'</h2></div>':'<div style="height:14px"></div>')+'<div class="card scroll"><table class="tbl">'+
       '<tr><th>順位</th><th class="l">チーム</th><th>勝点</th><th>試合</th><th>勝</th><th>分</th><th>敗</th><th class="hide-sp">得点</th><th class="hide-sp">失点</th><th>得失点</th>'+(rate?'<th>勝点率</th>':'')+(fp?'<th>FP</th>':'')+'</tr>'+
-      g.table.map(r=>'<tr><td class="rk">'+r.rank+'</td><td class="l"><span class="tn">'+crest(r.team,'xs')+teamLink(r.team,r.team.short)+'</span></td><td class="pts">'+r.points+'</td><td>'+r.played+'</td><td>'+r.won+'</td><td>'+r.drawn+'</td><td>'+r.lost+'</td>'+
+      g.table.map(r=>'<tr><td class="rk">'+r.rank+rkMove(DATA.rankPrev,r)+'</td><td class="l"><span class="tn">'+crest(r.team,'xs')+teamLink(r.team,r.team.short)+'</span></td><td class="pts">'+r.points+'</td><td>'+r.played+'</td><td>'+r.won+'</td><td>'+r.drawn+'</td><td>'+r.lost+'</td>'+
         '<td class="hide-sp">'+r.goalsFor+'</td><td class="hide-sp">'+r.goalsAgainst+'</td><td>'+(r.goalDiff>0?'+':'')+r.goalDiff+'</td>'+(rate?'<td>'+(r.pointsRate??'')+'</td>':'')+(fp?'<td>'+(r.fairPlay??'')+'</td>':'')+'</tr>').join('')+
       '</table></div>'+(g.table.some(r=>r.note)?'<p class="note">'+g.table.filter(r=>r.note).map(r=>esc(r.team.short+'：'+r.note)).join('　')+'</p>':'');
   }).join('')+'<p class="note">順位は勝点・得失点差・総得点・当該チーム同士の勝敗の順で決めます（大会要項による）。</p>';
@@ -950,5 +954,6 @@ init();
 </script>
 <script src="./alert.js"></script>
 <script src="./hit.js"></script>
+<script src="reveal.js" defer></script>
 </body>
 </html>

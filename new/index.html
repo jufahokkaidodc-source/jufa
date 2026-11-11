@@ -277,7 +277,9 @@ tr.top .pos{border-left-color:var(--blue);color:var(--blue)}
 .feat .b strong{display:block;font-size:14.5px;margin-top:8px}
 .feat .b p{font-size:12px;color:var(--muted);line-height:1.75;margin:5px 0 0}
 
-.partner{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.scorer{color:inherit;text-decoration:none}a.scorer:hover b{text-decoration:underline}
+.partner{margin-top:44px;display:grid;grid-template-columns:1fr;gap:14px}
+.p1go{display:inline-flex;align-items:center;min-height:44px;margin-top:12px;padding:0 18px;border-radius:999px;background:var(--red);color:#fff;font-weight:700;text-decoration:none}
 .partner > div{border-radius:14px;padding:26px}
 .p1{background:var(--navy);color:#fff}
 .p1 h3{margin:6px 0 8px;font-size:18px;line-height:1.5}
@@ -384,6 +386,23 @@ html{scroll-padding-top:0}
 .fav .rs{font-style:normal;font-size:12px;padding:1px 6px;border-radius:4px;vertical-align:2px}
 .fav .rs.W{background:#2E7D32;color:#fff}.fav .rs.L{background:#555;color:#fff}.fav .rs.D{background:#888;color:#fff}
 @media(max-width:680px){.fav .fg{gap:6px}.fav .fc{padding:8px}.fav .fc b{font-size:14px}.fav .fc span{font-size:12px}.fav .rs{display:block;width:max-content;margin-bottom:2px}}
+.rkm{font-style:normal;font-size:10.5px;font-weight:700;margin-left:4px;font-family:var(--num,inherit);white-space:nowrap}.rkm.up{color:#2fbf5f}.rkm.dn{color:#ff5a5f}
+.big{margin-top:28px}
+.bigc{position:relative;overflow:hidden;border-radius:16px;background:linear-gradient(120deg,color-mix(in srgb,var(--bh,#333) 55%,#000),#111 48%,#111 52%,color-mix(in srgb,var(--ba,#333) 55%,#000));padding:18px 16px 16px;color:#fff}
+.bigc .bh{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}.bigc .bh small{font-family:var(--num);letter-spacing:.18em;color:#ff4d57;font-weight:800;font-size:12px}.bigc .bh b{font-size:18px}
+.bigc .vs{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.bigc .t{text-align:center;min-width:0}.bigc .t .cr{display:flex;justify-content:center;margin-bottom:6px}
+.bigc .t b,.bigc .t .rk,.bigc .mid .d{color:#fff}.bigc .fm i{color:#fff!important}.bigc .t .rk small{color:#ccc}
+.crest.lg{width:64px;height:64px;font-size:20px}.crest.lg.two{font-size:16px}
+.bigc .t b{display:block;font-size:16px;line-height:1.3;overflow-wrap:anywhere}
+.bigc .t .rk{font-family:var(--num);font-size:30px;font-weight:800;line-height:1}.bigc .t .rk small{font-size:13px;margin-left:2px}
+.bigc .t .fm{display:flex;gap:3px;justify-content:center;margin-top:6px}.bigc .t .fm i{font-style:normal;font-size:11px;font-weight:800;width:20px;height:20px;border-radius:4px;display:grid;place-items:center}
+.bigc .fm .w{background:#2e9d4f}.bigc .fm .d{background:#666}.bigc .fm .l{background:#c62828}
+.bigc .t .sc{font-size:12px;color:#ccc;margin-top:6px}
+.bigc .mid{text-align:center;font-family:var(--num);font-weight:800}.bigc .mid .d{font-size:22px}.bigc .mid .k{font-size:14px;color:#ccc}.bigc .mid .x{font-size:13px;color:#ff4d57;letter-spacing:.2em;margin:4px 0}
+.bigc .vn{text-align:center;font-size:12px;color:#bbb;margin-top:12px}
+.bigc a.go{display:flex;justify-content:center;align-items:center;min-height:44px;margin:12px auto 0;max-width:260px;border-radius:999px;background:#fff;color:#111;font-weight:800;text-decoration:none}
+@media (min-width:760px){.bigc{padding:26px 30px}.bigc .t b{font-size:20px}.bigc .t .rk{font-size:40px}.bigc .mid .d{font-size:30px}}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yuji+Boku&display=swap">
 <link rel="stylesheet" href="./theme.css">
@@ -566,6 +585,8 @@ html{scroll-padding-top:0}
   </div>
 </section>
 
+<section class="wrap big" id="bigMatch" hidden aria-label="注目の一戦"></section>
+
 <section class="ticker" data-part="ticker">
   <div class="wrap">
     <div class="ticker-head">
@@ -620,8 +641,7 @@ html{scroll-padding-top:0}
   </section>
 
   <div class="wrap mpart partner" data-part="partner">
-    <div class="p1"><span class="label">FOR UNIVERSITIES</span><h3>各大学・クラブの専用ページを、公式データでつくる。</h3><p>試合結果や個人成績は公式記録から自動で反映。広報の負担を減らしながら、ファンや新入生に活動を届ける仕組みを準備しています。</p></div>
-    <div class="p2"><b>パートナー・スポンサー</b>北海道の大学サッカーを、一緒に盛り上げませんか。<br>掲載スペース（準備中）</div>
+    <div class="p1"><span class="label">FOR UNIVERSITIES</span><h3>各大学・クラブの専用ページを、公式データでつくる。</h3><p>試合結果や個人成績は公式記録から自動で反映。広報の負担を減らしながら、ファンや新入生に活動を届けます。</p><a class="p1go" href="../clubs/">チームのホームページを見る ›</a></div>
   </div>
 </main>
 </div><!-- /#parts -->
@@ -635,6 +655,9 @@ html{scroll-padding-top:0}
 
 <script src="./live.js"></script>
 <script>
+/* 順位の上がり下がり（前の試合日のあとの順位と比べる。rankPrev はホームページの書き出しが入れる） */
+function rkMove(prev,r){const id=r&&r.team&&r.team.id,p=prev&&id?Number(prev[id]):0,n=Number(r&&r.rank);if(!p||!n||p===n)return '';const up=p>n;return '<i class="rkm '+(up?'up':'dn')+'" title="前の試合日から'+Math.abs(p-n)+'つ'+(up?'上がった':'下がった')+'">'+(up?'▲':'▼')+Math.abs(p-n)+'</i>';}
+
 'use strict';
 const $=id=>document.getElementById(id);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1077,7 +1100,8 @@ $('mvDots').addEventListener('click',e=>{const b=e.target.closest('button');if(b
 $('mvMatch').addEventListener('mouseenter',()=>MV.paused=true);$('mvMatch').addEventListener('mouseleave',()=>MV.paused=false);
 // 指で左右にはらって切り替え
 (()=>{let x0=null;const el=$('mvMatch');el.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});el.addEventListener('touchend',e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>40){showMV(MV.i+(dx<0?1:-1));startMV()}},{passive:true})})();
-if(window.JUFA_LIVE)JUFA_LIVE.on(()=>{if(MV.list.length)showMV(MV.i)});
+// 試合が始まったら、トップの大きな表示を試合中の試合に切りかえる（読み込んだあとに始まったときも）
+if(window.JUFA_LIVE)JUFA_LIVE.on(()=>{if(!MV.list.length)return;const ms=S.ms||[],hasLive=ms.some(m=>liveOf(m)),showing=MV.list.some(m=>!m.off&&liveOf(m));if(hasLive&&!showing)renderMV(ms,MV.label);else showMV(MV.i)});
 
 /* top photos：写真がないときは何も出さない。今の1枚と次の1枚だけ読み込む */
 let HERO=[],TEAMPH=[];
@@ -1130,16 +1154,38 @@ function renderTable(groups){
       let gd=pick(t,['gd','goalDiff','diff']);
       if(gd==null&&pick(t,['gf','goalsFor'])!=null)gd=(+pick(t,['gf','goalsFor']))-(+pick(t,['ga','goalsAgainst'])||0);
       if(gd!=null&&+gd>0)gd='+'+gd;
-      return '<tr class="'+(i===0?'top':'')+'"><td class="l"><span class="pos">'+esc(t.rank??i+1)+'</span></td><td class="l"><span class="tt">'+crest(t.team,'xs')+esc(name(t.team))+'</span></td>'+
+      return '<tr class="'+(i===0?'top':'')+'"><td class="l"><span class="pos">'+esc(t.rank??i+1)+'</span>'+rkMove(S.rankPrev,t)+'</td><td class="l"><span class="tt">'+crest(t.team,'xs')+esc(name(t.team))+'</span></td>'+
         '<td class="pts">'+esc(t.points)+'</td><td class="n">'+esc(t.played)+'</td>'+
         (wdl?'<td class="n">'+esc(pick(t,['won','win','w']))+'</td><td class="n">'+esc(pick(t,['drawn','draw','d']))+'</td><td class="n">'+esc(pick(t,['lost','lose','l']))+'</td>':'')+
         (gdOk?'<td class="n">'+esc(gd??'')+'</td>':'')+'</tr>';
     }).join('')+'</tbody></table>').join('');
 }
+/* 注目の一戦（2026-11）：これからの試合のうち、次の試合日の中で、両チームの順位の合計がいちばん小さい（上位どうし）試合を大きく出す
+   順位表のない大会・試合の日程がない時期は出さない。両チームの順位・直近5試合・チームの得点王 */
+function renderBig(ms,d){
+  const box=$('bigMatch');if(!box)return;box.hidden=true;box.innerHTML='';
+  const rk={};(d.groups||[]).forEach(g=>(g.table||[]).forEach(r=>{if(r.team&&r.team.id)rk[r.team.id]=r}));
+  if(!Object.keys(rk).length)return;
+  const today=jstToday(),up=order(ms).filter(m=>!isDone(m)&&m.home&&m.away&&typeof m.home==='object'&&typeof m.away==='object'&&(m.date||'')>=today&&!/中止|延期/.test(m.status||'')&&rk[m.home.id]&&rk[m.away.id]);
+  if(!up.length)return;
+  const rd=up[0].round,day=up[0].date,cand=up.filter(m=>rd?m.round===rd:m.date===day).sort((a,b)=>(+rk[a.home.id].rank+ +rk[a.away.id].rank)-(+rk[b.home.id].rank+ +rk[b.away.id].rank));
+  const m=cand[0];if(!m)return;
+  const form=T=>order(ms).filter(x=>isDone(x)&&x.home&&x.away&&(x.home.id===T.id||x.away.id===T.id)).slice(-5).map(x=>{const hs=x.home.id===T.id,a=+(hs?x.score.home:x.score.away),b=+(hs?x.score.away:x.score.home);return a>b?'<i class="w">勝</i>':a<b?'<i class="l">敗</i>':'<i class="d">分</i>'}).join('');
+  const top=T=>{const p=(d.scorers||[]).find(x=>x.team&&x.team.id===T.id);return p?'チーム得点王：'+esc(p.name)+'（'+esc(p.count)+'点）':''};
+  const side=T=>'<div class="t"><div class="cr">'+crest(T,'lg')+'</div><b>'+esc(name(T))+'</b><div class="rk">'+esc(rk[T.id].rank)+'<small>位</small></div><div class="fm">'+form(T)+'</div><div class="sc">'+top(T)+'</div></div>';
+  const dm=/^(\d{4})-(\d{2})-(\d{2})/.exec(m.date||'');
+  const [hc,ac]=matchColors(m);box.style.setProperty('--bh',hc);box.style.setProperty('--ba',ac);
+  box.innerHTML='<div class="bigc" style="--bh:'+esc(hc)+';--ba:'+esc(ac)+'"><div class="bh"><small>BIG MATCH</small><b>注目の一戦</b><span style="color:#bbb;font-size:12px">'+esc(m.round||'')+'</span></div>'+
+    '<div class="vs">'+side(m.home)+'<div class="mid"><div class="d">'+(dm?(+dm[2])+'.'+dm[3]:'')+'</div><div class="k">'+esc(m.kickoff||'')+(m.kickoff?' KO':'')+'</div><div class="x">VS</div></div>'+side(m.away)+'</div>'+
+    '<div class="vn">📍 '+esc(m.venue||'会場未定')+'</div><a class="go" href="'+esc(detail(S.id,m.matchId))+'">試合のみどころを見る ›</a></div>';
+  box.hidden=false;
+}
 function renderScorers(rows){
   if(!rows?.length){$('scorerList').innerHTML='<p class="empty">得点記録はまだありません。</p>';return}
-  $('scorerList').innerHTML=rows.slice(0,8).map((p,i)=>'<div class="scorer'+(i<3?' top':'')+(i===0?' lead':'')+'"><span class="r">'+esc(p.rank??i+1)+'</span>'+crest(p.team,'sm')+
-    '<span class="who"><b>'+esc(p.name)+'</b><small>'+esc(name(p.team))+'</small></span><span class="g">'+esc(p.count)+'<small>点</small></span></div>').join('');
+  // 選手の名前を押すと、選手のページ（player.html：今季の得点・出場）へ
+  const pl=p=>!DEMO&&p.team&&typeof p.team==='object'&&p.team.id&&p.name?'./player.html?comp='+encodeURIComponent(S.id)+'&team='+encodeURIComponent(p.team.id)+'&name='+encodeURIComponent(p.name):'';
+  $('scorerList').innerHTML=rows.slice(0,8).map((p,i)=>{const u=pl(p),tg=u?'a':'div';return '<'+tg+(u?' href="'+esc(u)+'"':'')+' class="scorer'+(i<3?' top':'')+(i===0?' lead':'')+'"><span class="r">'+esc(p.rank??i+1)+'</span>'+crest(p.team,'sm')+
+    '<span class="who"><b>'+esc(p.name)+'</b><small>'+esc(name(p.team))+'</small></span><span class="g">'+esc(p.count)+'<small>点</small></span></'+tg+'>'}).join('');
 }
 
 /* 入替戦のように、ほかの大会のチームが出る大会：チームの紹介（エンブレムなど）を、そのチームの大会の名簿から読む
@@ -1170,13 +1216,15 @@ async function load(id){
     const up=o.find(m=>!isDone(m)&&(m.date||'9999')>=today),last=o.filter(isDone).pop();
     const lastD=last?daysUntil(last.date):null;
     const feat=last&&lastD!=null&&lastD>=-2?last:(up||last||o[0]);
-    S.feat=feat;
+    S.feat=feat;S.ms=ms;
     S.champ=champOf(d,ms);
     const fi=S.rounds.findIndex(r=>r.list.includes(feat));
     S.ri=fi>=0?fi:defaultRound(S.rounds);
     setRound(S.ri);
     renderFeatured(feat);
     renderTopics(ms,d.scorers,d.competition?.name||'');
+    S.rankPrev=d.rankPrev||null;
+    renderBig(ms,d);
     renderTable(d.groups);renderScorers(d.scorers);renderClubs(collectTeams(ms),id);
     renderPhotos(heroFor(id,collectTeams(ms)));
     renderMV(ms,(document.querySelector('#comptabs [aria-selected=true]')||{}).textContent||'');
@@ -1282,5 +1330,6 @@ function demoData(file){
 </script>
 <script src="./alert.js"></script>
 <script src="./hit.js"></script>
+<script src="reveal.js" defer></script>
 </body>
 </html>

@@ -138,3 +138,8 @@ html[data-layout="5"] .cols{grid-template-columns:minmax(0,1fr)}
   /* 順位表のクラブ名・選手名・パンくず */
   a.tt,a.plink,.crumb a{min-height:36px;display:inline-flex;align-items:center}
 }
+
+/* 試合中（速報）を目立たせる（2026-11）：赤い印をゆっくり点滅。動きを減らす設定では点滅しない */
+@keyframes livePulse{0%,100%{box-shadow:0 0 0 0 rgba(230,0,18,.55)}50%{box-shadow:0 0 0 8px rgba(230,0,18,0)}}
+.bx.live,.sc.live,.st.live,.lv,.live-badge{animation:livePulse 1.8s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.bx.live,.sc.live,.st.live,.lv,.live-badge{animation:none}}
