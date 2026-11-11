@@ -3,7 +3,7 @@
  *  使い方：JUFA_LIVE.on(関数) で、読み込むたびに呼ばれる。JUFA_LIVE.of(試合ID) でその試合の速報（なければ null）
  */
 (function(){
-  var API='https://jufa-app-1028311295320.asia-northeast1.run.app/api/live?v=1';
+  var API='https://app.jufahokkaido.com/api/live?v=1';
   var L={data:null,map:{},subs:[],timer:null,active:false};
   function next(){clearTimeout(L.timer);L.timer=setTimeout(load,L.active?30000:300000);}
   function load(){
