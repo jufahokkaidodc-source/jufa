@@ -3,7 +3,7 @@
 (function(){
   try{
     if(navigator.doNotTrack==='1'||window.doNotTrack==='1')return;
-    var EXEC='https://jufa-app-1028311295320.asia-northeast1.run.app/api/hit';
+    var EXEC='https://app.jufahokkaido.com/api/hit';
     var p=(location.pathname.split('/').pop()||'index.html').replace(/\.html$/,'')||'index';
     var q=new URLSearchParams(location.search),x=p==='results'?(q.get('comp')||''):(p==='team'||p==='player')?(q.get('team')||''):'';
     new Image().src=EXEC+'?p='+encodeURIComponent(p)+'&q='+encodeURIComponent(x)+'&_='+Date.now();
