@@ -402,7 +402,7 @@ function crestBase(t,size){
   if(u)return '<span class="crest img '+(size||'')+(two?' two':'')+(ud?' hasdark':'')+'" '+st+' data-ch="'+esc(ch)+'"><img class="el" src="'+esc(u)+'" alt="" loading="lazy" onerror="crestFail(this)">'+(ud?'<img class="ed" src="'+esc(ud)+'" alt="" loading="lazy" onerror="crestFail(this)">':'')+'</span>';
   return '<span class="crest '+(size||'')+(two?' two':'')+'" '+st+' aria-hidden="true">'+esc(ch)+'</span>';
 }
-function crestFail(img){const s=img.parentNode;if(img.classList.contains('ed')){s.classList.remove('hasdark');img.remove();return}s.classList.remove('img','hasdark');s.querySelectorAll('img').forEach(x=>x.remove());s.insertBefore(document.createTextNode(s.dataset.ch),s.firstChild)}
+function crestFail(img){const s=img.parentNode;if(!s)return;if(img.classList.contains('ed')){s.classList.remove('hasdark');img.remove();return}s.classList.remove('img','hasdark');s.querySelectorAll('img').forEach(x=>x.remove());s.insertBefore(document.createTextNode(s.dataset.ch),s.firstChild)}
 /* 同じ見た目のエンブレムが並ぶときだけ、名前の違う部分を小さな札にする（チームページと同じ） */
 const BADGE=new Map();
 const BADGE_WORDS={'セカンド':'2nd','サテライト':'SAT','サード':'3rd','トップ':'TOP'};

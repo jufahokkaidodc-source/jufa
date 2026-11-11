@@ -294,7 +294,15 @@ tr.top .pos{border-left-color:var(--blue);color:var(--blue)}
 .footer nav{display:flex;gap:18px;flex-wrap:wrap}
 .footer nav a:hover{color:var(--lime)}
 
-.sk{display:block;height:14px;margin:14px 18px;border-radius:6px;background:linear-gradient(90deg,#e9eef3 25%,#f5f8fa 50%,#e9eef3 75%);background-size:200% 100%;animation:sh 1.3s infinite}
+.sk{display:block;height:14px;margin:14px 18px;border-radius:6px;background:linear-gradient(90deg,rgba(255,255,255,.05) 25%,rgba(255,255,255,.11) 50%,rgba(255,255,255,.05) 75%);background-size:200% 100%;animation:sh 1.3s infinite}
+/* 読み込み中：中身がそろうまで、からの帯（CLUBS・節の切り替え）は出さない。読めなかったときは、やさしい案内と「もう一度」 */
+.clubbar:not(.ready){display:none}
+.roundnav:not(.ready){visibility:hidden}
+.loadmsg{margin:14px 18px;padding:16px;border-radius:12px;background:rgba(255,255,255,.06);color:#d6d6d6;font-size:14px;line-height:1.7}
+.loadmsg b{display:block;color:#fff;font-size:15px;margin-bottom:4px}
+.loadmsg button{margin-top:10px;min-height:44px;padding:0 20px;border:0;border-radius:999px;background:#E60012;color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.stale{background:#2a2a2a;color:#e0e0e0;font-size:13px;text-align:center;padding:8px 16px}
+@media (prefers-reduced-motion:reduce){.sk{animation:none}}
 @keyframes sh{to{background-position:-200% 0}}
 /* Ver.4: 固定ヘッダーとページ内リンクの調整 */
 html{scroll-padding-top:0}
@@ -697,7 +705,7 @@ const photoSet=(u,ws)=>/drive\.google\.com\/thumbnail/.test(photoUrl(u,ws[0]))?w
 let EMB={};
 const embReady=fetch('./emblems/index.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).then(j=>{EMB=j&&typeof j==='object'?j:{}}).catch(()=>{});
 function embFor(...names){for(const n of names){const f=n&&EMB[String(n).trim()];if(f&&/^[^\/\\?#]+\.(png|jpe?g|webp|svg|gif)$/i.test(f))return './emblems/'+encodeURIComponent(f)}return ''}
-function crestFail(img){const s=img.parentNode;if(img.classList.contains('ed')){s.classList.remove('hasdark');img.remove();return}s.classList.remove('img','hasdark');s.querySelectorAll('img').forEach(x=>x.remove());s.insertBefore(document.createTextNode(s.dataset.ch),s.firstChild)}
+function crestFail(img){const s=img.parentNode;if(!s)return;if(img.classList.contains('ed')){s.classList.remove('hasdark');img.remove();return}s.classList.remove('img','hasdark');s.querySelectorAll('img').forEach(x=>x.remove());s.insertBefore(document.createTextNode(s.dataset.ch),s.firstChild)}
 const PALETTE=['#145ec9','#0f7a6b','#7b3fb5','#c0392b','#1d6fa5','#b35c00','#2e7d32','#ad1457','#37474f','#5d4dbf'];
 /* 案①：同じ見た目（同じエンブレム・同じ文字）のチームが並ぶときだけ、名前の違う部分を小さな札にして付ける */
 const BADGE=new Map();
@@ -742,11 +750,43 @@ const WD=['日','月','火','水','木','金','土'];
 function fmtDate(s){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');if(!m)return s||'日程未定';return (+m[2])+'/'+(+m[3])+'（'+WD[new Date(+m[1],+m[2]-1,+m[3]).getDay()]+'）'}
 function daysUntil(s){const a=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||''),b=/^(\d{4})-(\d{2})-(\d{2})/.exec(jstToday());if(!a||!b)return null;return Math.round((Date.UTC(+a[1],+a[2]-1,+a[3])-Date.UTC(+b[1],+b[2]-1,+b[3]))/864e5)}
 
-async function json(file){
+/* データを読む：通信がうまくいかないときは、少し待って3回まで読み直す。
+   それでもだめなら、前にこの端末で読んだ内容（大会一覧と、最後に見た大会だけ覚えておく）を出す */
+const MEMO='jufa:d:';
+async function json(file,keep){
   if(DEMO)return demoData(file);
-  const r=await fetch('../results/data/'+file,{cache:'no-store'});
-  if(!r.ok)throw Error('HTTP '+r.status);
-  return r.json();
+  // 一度「前に読んだ内容」に切り替えたら、ほかのファイルは待たずに1回だけ試す
+  let err;const n=$('stale')?1:3;
+  for(let i=0;i<n;i++){
+    try{
+      const r=await fetch('../results/data/'+file,{cache:'no-store'});
+      if(!r.ok)throw Error('HTTP '+r.status);
+      const t=await r.text(),d=JSON.parse(t);
+      if(keep)remember(file,t);
+      return d;
+    }catch(e){err=e;if(i<n-1)await new Promise(ok=>setTimeout(ok,700*(i+1)))}
+  }
+  if(keep)try{const t=localStorage.getItem(MEMO+file);if(t){showStale();return JSON.parse(t)}}catch(_){}
+  throw err;
+}
+function remember(file,t){
+  try{
+    if(file!=='competitions.json'&&file!=='news.json'){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.startsWith(MEMO)&&k!==MEMO+'competitions.json'&&k!==MEMO+'news.json'&&k!==MEMO+file)localStorage.removeItem(k)}}
+    localStorage.setItem(MEMO+file,t);
+  }catch(_){}
+}
+function showStale(){
+  if($('stale'))return;
+  const n=document.createElement('div');n.id='stale';n.className='stale';n.setAttribute('role','status');
+  n.textContent='通信がうまくいかないため、前に読み込んだ内容を出しています。少したってから読み直してください。';
+  const tabs=document.querySelector('.comptabs');if(tabs)tabs.after(n);else document.body.prepend(n);
+}
+/* 読めなかったとき：白い帯や「取得できません」を並べず、1か所に案内と「もう一度読み込む」を出す */
+function loadFailed(){
+  const msg='<div class="loadmsg" role="alert"><b>試合の情報を読み込めませんでした</b>通信がつながりにくいようです。電波のよいところで、もう一度読み込んでください。<br><button type="button" onclick="location.reload()">もう一度読み込む</button></div>';
+  const tabs=document.querySelector('.comptabs');if(tabs)tabs.hidden=true;
+  $('ticker').innerHTML=msg;
+  for(const k of ['topics','matchList','table','scorerList','clubList'])if($(k))$(k).innerHTML='<p class="empty">試合の情報を読み込めたら、ここに出ます。</p>';
 }
 const order=ms=>[...ms].sort((a,b)=>String(a.date||'').localeCompare(String(b.date||''))||String(a.kickoff||'').localeCompare(String(b.kickoff||'')));
 
@@ -784,10 +824,11 @@ function clubCard(t,href){
   const p=PROF.get(tkey(t))||PROF.get(typeof t==='object'?t.univ:'');
   const cr=crest(t),c=(cr.match(/--c:(#[0-9a-f]{3,8})/i)||[])[1]||'#145ec9';
   const ph=photoUrl(p?.teamPhoto,600),set=photoSet(p?.teamPhoto,[400,600,900]);
-  const cv=ph?'<span class="cv photo" style="--c:'+c+'"><img src="'+esc(ph)+'"'+(set?' srcset="'+esc(set)+'" sizes="(max-width:680px) 50vw, 220px"':'')+' alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.remove(\'photo\');this.remove()"></span>':'<span class="cv" style="--c:'+c+'"></span>';
+  const cv=ph?'<span class="cv photo" style="--c:'+c+'"><img src="'+esc(ph)+'"'+(set?' srcset="'+esc(set)+'" sizes="(max-width:680px) 50vw, 220px"':'')+' alt="" loading="lazy" decoding="async" onerror="if(this.parentNode)this.parentNode.classList.remove(\'photo\');this.remove()"></span>':'<span class="cv" style="--c:'+c+'"></span>';
   return '<a class="club" href="'+esc(href)+'" style="--c:'+c+'">'+cv+cr+'<span class="cb"><strong>'+esc(typeof t==='object'?(t.name||t.short||''):t)+'</strong></span></a>';
 }
 function renderClubs(teams,id){
+  $('clubbar').parentNode.classList.toggle('ready',teams.length>0);
   $('clubbar').innerHTML='<small>CLUBS</small>'+teams.map(t=>'<a href="'+esc(teamUrl(id,t))+'" title="'+esc(name(t))+'">'+crest(t,'sm')+'</a>').join('');
   $('clubCount').textContent=teams.length?teams.length+'クラブ':'';
   $('clubList').innerHTML=teams.length?teams.map(t=>clubCard(t,teamUrl(id,t))).join(''):'<p class="empty">クラブ情報はありません。</p>';
@@ -849,7 +890,7 @@ function renderSchedule(){
   $('matchList').innerHTML=html;
 }
 if(window.JUFA_LIVE)JUFA_LIVE.on(()=>{if(S.rounds&&S.rounds.length){renderTicker();renderSchedule();}});
-function setRound(i){S.ri=Math.max(0,Math.min(S.rounds.length-1,i));renderTicker();renderRoundTabs();renderSchedule()}
+function setRound(i){document.querySelector('.roundnav')?.classList.toggle('ready',S.rounds.length>0);S.ri=Math.max(0,Math.min(S.rounds.length-1,i));renderTicker();renderRoundTabs();renderSchedule()}
 $('prevR').onclick=()=>setRound(S.ri-1);
 $('nextR').onclick=()=>setRound(S.ri+1);
 
@@ -1201,7 +1242,7 @@ async function load(id){
   S.id=id;
   document.querySelectorAll('#comptabs button').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.id===id)));
   try{
-    const [d,ro]=await Promise.all([json(encodeURIComponent(id)+'.json'),DEMO?null:fetch('../results/data/'+encodeURIComponent(id)+'-roster.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)]);
+    const [d,ro]=await Promise.all([json(encodeURIComponent(id)+'.json',true),DEMO?null:fetch('../results/data/'+encodeURIComponent(id)+'-roster.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)]);
     if(!d.ok)throw Error('大会データを取得できません');
     for(const t of ro?.teams||[])if(t.profile){PROF.set(tkey(t.team),t.profile);if(t.team.univ)PROF.set(t.team.univ,t.profile)}
     if(!DEMO)await profFromOtherComps(id,d.matches||[]);
@@ -1229,8 +1270,7 @@ async function load(id){
     renderPhotos(heroFor(id,collectTeams(ms)));
     renderMV(ms,(document.querySelector('#comptabs [aria-selected=true]')||{}).textContent||'');
   }catch(e){
-    featEl().innerHTML='<p class="empty" style="color:#c0d3e2">データを読み込めません：'+esc(e.message)+'</p>';
-    for(const k of ['ticker','topics','matchList','table','scorerList','clubList'])$(k).innerHTML='<p class="empty">データを表示できません。</p>';
+    console.error(e);loadFailed();
   }
 }
 
@@ -1279,13 +1319,13 @@ async function renderFav(comps){
 /* boot */
 (async()=>{
   let d;
-  try{d=await json('competitions.json')}
+  try{d=await json('competitions.json',true)}
   catch(e){
     if(!/(github\.io|jufahokkaido\.com)$/.test(location.hostname)){DEMO=true;d=await json('competitions.json')}
-    else{$('comptabs').innerHTML='<button>大会情報を取得できません</button>';featEl().innerHTML='<p class="empty" style="color:#c0d3e2">大会一覧を取得できません：'+esc(e.message)+'</p>';return}
+    else{console.error(e);loadFailed();return}
   }
   $('demo').hidden=!DEMO;
-  try{const r=DEMO?{ok:1,news:[{id:'a1',date:jstToday(),cat:'連盟',title:'（サンプル）2027年度 チーム登録の受付について',important:true},{id:'a2',date:jstToday(),cat:'demo-1',title:'（サンプル）第3節 会場変更のお知らせ',important:true}],hero:demoHero(),teamPhotos:demoTeamPhotos()}:await fetch('../results/data/news.json',{cache:'no-store'}).then(r=>r.ok?r.json():null);NEWS=r?.news||[];HERO=r?.hero||[];TEAMPH=r?.teamPhotos||[]}catch(_){NEWS=[]}
+  try{const r=DEMO?{ok:1,news:[{id:'a1',date:jstToday(),cat:'連盟',title:'（サンプル）2027年度 チーム登録の受付について',important:true},{id:'a2',date:jstToday(),cat:'demo-1',title:'（サンプル）第3節 会場変更のお知らせ',important:true}],hero:demoHero(),teamPhotos:demoTeamPhotos()}:await json('news.json',true).catch(()=>null);NEWS=r?.news||[];HERO=r?.hero||[];TEAMPH=r?.teamPhotos||[]}catch(_){NEWS=[]}
   renderAlert();
   await embReady;
   const cs=d.competitions||[];

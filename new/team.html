@@ -569,7 +569,7 @@ let EMB={};
 const embReady=fetch('./emblems/index.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).then(j=>{EMB=j&&typeof j==='object'?j:{}}).catch(()=>{});
 function embFor(...names){for(const n of names){const f=n&&EMB[String(n).trim()];if(f&&/^[^\/\\?#]+\.(png|jpe?g|webp|svg|gif)$/i.test(f))return './emblems/'+encodeURIComponent(f)}return ''}
 function heroEmbFail(img){const a=img.dataset.alt;if(a){img.dataset.alt='';img.src=a;return}$('hero').classList.remove('has-emb');img.remove()}
-function crestFail(img){const s=img.parentNode;if(img.classList.contains('ed')){s.classList.remove('hasdark');img.remove();return}s.classList.remove('img','hasdark');s.querySelectorAll('img').forEach(x=>x.remove());s.insertBefore(document.createTextNode(s.dataset.ch),s.firstChild)}
+function crestFail(img){const s=img.parentNode;if(!s)return;if(img.classList.contains('ed')){s.classList.remove('hasdark');img.remove();return}s.classList.remove('img','hasdark');s.querySelectorAll('img').forEach(x=>x.remove());s.insertBefore(document.createTextNode(s.dataset.ch),s.firstChild)}
 const WD=['日','月','火','水','木','金','土'];
 function fmtDate(s,short){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');if(!m)return s||'日程未定';return (+m[2])+'/'+(+m[3])+(short?'':'（'+WD[new Date(+m[1],+m[2]-1,+m[3]).getDay()]+'）')}
 function wd(s){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');return m?WD[new Date(+m[1],+m[2]-1,+m[3]).getDay()]:''}
