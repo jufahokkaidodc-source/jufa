@@ -384,7 +384,7 @@ function embFor(...ns){for(const n of ns){const f=n&&EMB[String(n).trim()];if(f&
 function emblemUrl(e){
   e=String(e||'').trim();if(!e)return '';
   const d=e.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
-  if(d)return 'https://drive.google.com/thumbnail?id='+d[1]+'&sz=w400';
+  if(d)return 'https://app.jufahokkaido.com/img/drive/'+d[1]+'?sz=w400';
   if(/^https:\/\//i.test(e))return e;
   if(/^[^\/\\?#]+\.(png|jpe?g|webp|svg|gif)$/i.test(e))return './emblems/'+encodeURIComponent(e);
   return '';
@@ -532,11 +532,12 @@ function render(me,rows,prof){
   }
 }
 const teamUrlP=t=>'./team.html?'+(P.comp?'comp='+encodeURIComponent(P.comp)+'&':'')+'team='+encodeURIComponent(t.id||P.team);
-function photoSrc(u,w){u=String(u||'').trim();const d=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);if(d)return 'https://drive.google.com/thumbnail?id='+d[1]+'&sz=w'+w;if(/^https:\/\//i.test(u))return u;return '';}
+function photoSrc(u,w){u=String(u||'').trim();const d=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);if(d)return 'https://app.jufahokkaido.com/img/drive/'+d[1]+'?sz=w'+w;if(/^https:\/\//i.test(u))return u;return '';}
 $('menu').addEventListener('click',()=>{const o=$('nav').classList.toggle('open');$('menu').setAttribute('aria-expanded',String(o))});
 init();
 </script>
 <script src="./alert.js"></script>
 <script src="./hit.js"></script>
+<script src="reveal.js" defer></script>
 </body>
 </html>

@@ -246,7 +246,7 @@ const PALETTE=['#145ec9','#0f7a6b','#7b3fb5','#c0392b','#1d6fa5','#b35c00','#2e7
 function emblemUrl(e){
   e=String(e||'').trim();if(!e)return '';
   const d=e.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
-  if(d)return 'https://drive.google.com/thumbnail?id='+d[1]+'&sz=w400';
+  if(d)return 'https://app.jufahokkaido.com/img/drive/'+d[1]+'?sz=w400';
   if(/^https:\/\//i.test(e))return e;
   if(/^[^\/\\?#]+\.(png|jpe?g|webp|svg|gif)$/i.test(e))return './emblems/'+encodeURIComponent(e);
   return '';
@@ -255,7 +255,7 @@ function emblemUrl(e){
 function photoUrl(u,w){
   u=String(u||'').trim();if(!u)return '';
   const d=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
-  if(d)return 'https://drive.google.com/thumbnail?id='+d[1]+'&sz=w'+w;
+  if(d)return 'https://app.jufahokkaido.com/img/drive/'+d[1]+'?sz=w'+w;
   if(/^https:\/\//i.test(u))return u;
   return '';
 }

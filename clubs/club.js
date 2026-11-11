@@ -13,6 +13,12 @@
  */
 (function () {
   'use strict';
+  // 写真は連盟のシステム（app.jufahokkaido.com）から速く出す。出せないときは、もとの Google ドライブの縮小版に切りかえる
+  document.addEventListener('error', function (e) {
+    var t = e.target; if (!t || t.tagName !== 'IMG' || t.dataset.fb) return;
+    var m = String(t.src).match(/\/img\/drive\/([\w-]+)\?sz=w(\d+)/); if (!m) return;
+    t.dataset.fb = '1'; t.src = 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w' + m[2];
+  }, true);
   const CFG = Object.assign({ univ: '', name: '', en: '', color: '', hero: '', heroCaption: '', lead: '',
     data: '../results/data/', results: '../results/', site: '../new/' }, window.CLUB || {});
   const $ = id => document.getElementById(id);
@@ -31,7 +37,7 @@
   function img(u, w) {
     u = String(u || '').trim(); if (!u) return '';
     const d = u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
-    if (d) return 'https://drive.google.com/thumbnail?id=' + d[1] + '&sz=w' + w;
+    if (d) return 'https://app.jufahokkaido.com/img/drive/'+d[1]+'?sz=w' + w;
     if (/^https:\/\//i.test(u)) return u;
     if (/^[^\/\\?#]+\.(png|jpe?g|webp|svg|gif)$/i.test(u)) return CFG.site + 'emblems/' + encodeURIComponent(u);
     return '';

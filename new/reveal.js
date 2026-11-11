@@ -4,6 +4,12 @@
  */
 (function () {
   'use strict';
+  // 写真は連盟のシステム（app.jufahokkaido.com）から速く出す。出せないときは、もとの Google ドライブの縮小版に切りかえる
+  document.addEventListener('error', function (e) {
+    var t = e.target; if (!t || t.tagName !== 'IMG' || t.dataset.fb) return;
+    var m = String(t.src).match(/\/img\/drive\/([\w-]+)\?sz=w(\d+)/); if (!m) return;
+    t.dataset.fb = '1'; t.src = 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w' + m[2];
+  }, true);
   if (!('IntersectionObserver' in window)) return;
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var SEL = '.sechead,.bigc,.card,.club,.clubs>*,.scorer,.mcard,.news-item,.ni,.pv,.sh,.box,.partner>div';
