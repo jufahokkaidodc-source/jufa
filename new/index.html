@@ -913,6 +913,9 @@ function renderMV(ms,compLabel){
   const live=o.filter(m=>liveOf(m)),up=o.filter(m=>!isDone(m)&&!liveOf(m)&&(m.date||'9999')>=today&&!/中止|延期/.test(m.status||''));
   let list=live.concat(up).slice(0,5);
   if(!list.length)list=o.filter(isDone).slice(-5).reverse();
+  // シーズンオフ：これからの試合がなく、最後の試合から2週間たったら、終わった試合ではなく「全日程終了」と優勝チームを出す
+  const lastDone=o.filter(isDone).pop(),ld=lastDone?daysUntil(lastDone.date):null;
+  if(!live.length&&!up.length&&ld!=null&&ld<-14)list=[{off:1,team:S.champ||null,season:String(lastDone.date||'').slice(0,4)}];
   MV.list=list;MV.label=compLabel||'';MV.i=0;
   $('mvDots').innerHTML=list.length>1?list.map((_,i)=>'<button type="button" data-i="'+i+'" aria-label="'+(i+1)+'試合目"></button>').join(''):'';
   showMV(0);startMV();
@@ -932,7 +935,9 @@ addEventListener('resize',()=>requestAnimationFrame(mvNmFit));
 function showMV(i){
   const n=MV.list.length;
   if(!n){$('mvMatch').innerHTML='<div></div><div class="mv-c"><span class="cp">'+esc(MV.label)+'</span><span class="vn">試合の日程が決まると、ここに出ます</span></div><div></div>';$('mvBtn').href=detail(S.id);return}
-  i=((i%n)+n)%n;MV.i=i;const m=MV.list[i],lv=liveOf(m),done=isDone(m);
+  i=((i%n)+n)%n;MV.i=i;const m=MV.list[i];
+  if(m.off)return showOff(m);
+  const lv=liveOf(m),done=isDone(m);
   const dm=/^(\d{4})-(\d{2})-(\d{2})/.exec(m.date||'');
   const dt=dm?(+dm[2])+'.'+dm[3]+'<small>'+WD[new Date(+dm[1],+dm[2]-1,+dm[3]).getDay()]+'</small>':'日程未定';
   const sc=done?esc(m.score.home)+' - '+esc(m.score.away):lv?esc(lv.score.home)+' - '+esc(lv.score.away):'';
@@ -967,8 +972,35 @@ function showMV(i){
       '<span class="vn">'+vn(m.venue||'会場未定')+'</span>'+
       (lv?'<span class="bx live">'+esc(JUFA_LIVE.label(lv))+'</span>':done?'<span class="bx">試合終了</span>':'')+ // 「あと○日」「本日開催」は出さない（試合終了・速報だけ）
     '</div>'+tm(m.away,ea,' r'+lt(ac,m.away));
-  $('mvBtn').href=detail(S.id,done||lv?m.matchId:'');
+  $('mvBtn').href=detail(S.id,done||lv?m.matchId:'');$('mvBtn').innerHTML='試合情報はこちら<span aria-hidden="true">»</span>';
   $('mvDots').querySelectorAll('button').forEach(b=>b.setAttribute('aria-current',String(+b.dataset.i===i)));
+}
+function champOf(d,ms){
+  const g=(d.groups||[]).filter(x=>x.table&&x.table.length);
+  if(g.length===1)return g[0].table[0].team||null;
+  if(g.length||!/トーナメント/.test(d.competition?.format||''))return null;
+  const last=order(ms).filter(isDone).pop();if(!last)return null;
+  const h=+last.score.home,a=+last.score.away;if(h>a)return last.home;if(a>h)return last.away;
+  const pk=last.pk||last.score.pk;if(pk&&pk.home!=null&&pk.away!=null&&+pk.home!==+pk.away)return +pk.home>+pk.away?last.home:last.away;
+  return null;
+}
+/* シーズンオフの大きな表示：全日程終了と優勝チーム（リーグは順位表の1位、トーナメントは最後の試合の勝者） */
+function showOff(m){
+  const t=m.team,tn=v=>esc(v).replace(/(大学)(?=.)/g,'$1<wbr>');
+  const head='<span class="cp">'+esc(MV.label)+'</span><span class="bx">全日程終了</span>';
+  if(t&&typeof t==='object'){
+    const p=teamProf(t),w=x=>x.replace(/sz=w\d+/,'sz=w1000'),dk=COLOR_EMBLEM.includes(t.univ||'')?'':w(emblemUrl({emblem:p?.emblemDark})),nm=w(emblemUrl(p)||embFor(t.univ||'',name(t),t.name||'')),u=dk||nm;
+    const [c]=matchColors({home:t,away:t});$('mvBg').style.setProperty('--hc',c);$('mvBg').style.setProperty('--ac',c);
+    const sn=String(t.short||t.name||'').replace(/大$/,'');
+    $('mvNm').innerHTML='<div class="l"><span style="--n:'+Math.max(2,[...(sn.length>=2?sn:(t.short||t.name||''))].length)+'">'+esc(sn.length>=2?sn:(t.short||t.name||''))+'</span></div><div class="r"><span style="--n:2">優勝</span></div>';
+    requestAnimationFrame(mvNmFit);
+    $('mvMatch').innerHTML='<div class="mv-tm"><div class="mv-emb l">'+(u?embImg(u,!!dk,dk?nm:''):'')+'</div><b>'+tn(t.name||t.short||'')+'</b></div>'+
+      '<div class="mv-c">'+head+'<span class="dt" style="font-size:clamp(34px,7vw,64px)">優勝</span><span class="ko">'+esc(name(t))+'</span><span class="vn">'+esc(m.season?m.season+'年度の記録は「大会記録」で見られます':'')+'</span></div><div></div>';
+  }else{
+    $('mvNm').innerHTML='';
+    $('mvMatch').innerHTML='<div></div><div class="mv-c">'+head+'<span class="vn">次のシーズンの日程は、決まりしだいお知らせします</span></div><div></div>';
+  }
+  $('mvBtn').href=detail(S.id);$('mvBtn').innerHTML='大会の記録を見る<span aria-hidden="true">»</span>';
 }
 /* 背景のエンブレムを、表示するときに切り抜く（外側の白などの背景を透明に。ホームページ管理画面の切り抜きと同じやり方）
    画像を読める（CORS）ときだけ。読めないときは、そのまま出す。結果は URL ごとに覚えておく */
@@ -1139,6 +1171,7 @@ async function load(id){
     const lastD=last?daysUntil(last.date):null;
     const feat=last&&lastD!=null&&lastD>=-2?last:(up||last||o[0]);
     S.feat=feat;
+    S.champ=champOf(d,ms);
     const fi=S.rounds.findIndex(r=>r.list.includes(feat));
     S.ri=fi>=0?fi:defaultRound(S.rounds);
     setRound(S.ri);

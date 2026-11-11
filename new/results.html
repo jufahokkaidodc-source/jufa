@@ -112,7 +112,8 @@ button{cursor:pointer}
 .lvtag{display:inline-block;background:var(--red,#E60012);color:#fff;font-size:12px;font-weight:700;border-radius:4px;padding:2px 8px;margin-top:6px}
 .mrow .sc.pend{font-size:14px;font-weight:700;border:1px solid var(--line);color:var(--muted)}
 .mrow .meta{grid-column:2 / 5;font-size:12px;color:var(--muted);margin-top:-6px;text-align:center}
-.mrow .meta .go{color:var(--blue);font-weight:700}
+.mrow .meta .go{color:var(--blue);font-weight:700;white-space:nowrap;display:inline-block}
+.mrow .meta .mi{white-space:nowrap}
 .mrow.tbd .tm{grid-column:2 / 5;justify-content:flex-start;color:var(--muted);font-weight:500}
 .dayhead{padding:9px 16px;font-size:12px;font-weight:700;border-top:1px solid var(--line)}
 .dayhead:first-child{border-top:0}
@@ -670,7 +671,8 @@ const venueLink=v=>v?'<a class="vlink" href="./venues.html?v='+encodeURIComponen
 const liveOf=m=>!m.score&&window.JUFA_LIVE?JUFA_LIVE.of(m.matchId):null;
 function mRow(m){
   const badges=(m.badges||[]).map(b=>'<span class="badge">'+esc(b)+'</span>').join('');
-  const meta=[m.no?'No.'+m.no:'',m.venue,m.host?'当番校 '+m.host:''].filter(Boolean).map(esc).join('　');
+  // 番号・当番校は途中で改行しない（会場名は長いので折り返してよい）
+  const meta=[m.no?'<span class="mi">No.'+esc(m.no)+'</span>':'',m.venue?esc(m.venue):'',m.host?'<span class="mi">当番校 '+esc(m.host)+'</span>':''].filter(Boolean).join('　');
   if(!m.home||!m.away)return '<div class="mrow tbd"><span class="ko">'+esc(m.kickoff||'')+'</span><span class="tm">'+badges+esc(m.placeholder||'未定')+'</span><div class="meta">'+meta+'</div></div>';
   let sc;
   if(m.score){const pk=m.score.pk?'<small>PK '+m.score.pk.home+'-'+m.score.pk.away+'</small>':m.score.extraTime?'<small>延長</small>':'';sc='<span class="sc done">'+m.score.home+' - '+m.score.away+pk+'</span>';}
