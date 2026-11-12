@@ -1289,7 +1289,10 @@ async function renderFav(comps){
   try{
     // 年度がかわって大会IDが変わったときは、同じ大学の同じ種類の大会（例：-L1）でさがす
     const kind=String(f.comp||'').replace(/^\d{4}-/,'');
-    const tryComps=[f.comp,...comps.map(c=>c.id).filter(id=>id!==f.comp&&id.replace(/^\d{4}-/,'')===kind)].filter(id=>comps.some(c=>c.id===id));
+    // 昇格・降格で部が変わっても見つかるように、同じ種類の大会のあとで、リーグのほかの部も見る（同じ大学のチーム）
+    const isLg=/^L\d$/.test(kind),sameKind=comps.map(c=>c.id).filter(id=>id!==f.comp&&id.replace(/^\d{4}-/,'')===kind);
+    const otherLg=isLg?comps.map(c=>c.id).filter(id=>/-L\d$/.test(id)&&!sameKind.includes(id)&&id!==f.comp):[];
+    const tryComps=[f.comp,...sameKind,...otherLg].filter(id=>comps.some(c=>c.id===id));
     let d=null,team=null,comp='';
     for(const id of tryComps){
       const x=await json(encodeURIComponent(id)+'.json').catch(()=>null);if(!x||!x.matches)continue;
