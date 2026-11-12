@@ -578,6 +578,7 @@ html{scroll-padding-top:0}
     </nav>
   </div>
   <div class="comptabs"><div class="wrap" id="comptabs" role="tablist"><button aria-selected="true">読み込み中…</button></div></div>
+  <div class="prenote" id="preNote" hidden><div class="wrap">プレ大会（フェスティバル）：シーズン前に、大会運営システム（速報・結果）を試すための大会です。<b>公式の記録ではありません</b>。</div></div>
 </header>
 
 <div class="alert" id="alert" hidden></div>
@@ -1250,6 +1251,7 @@ async function load(id){
     document.querySelectorAll('.js-sched').forEach(a=>a.href=detail(id));
     document.querySelectorAll('.js-rank').forEach(a=>a.href=detail(id)+'&tab=standings');
     $('updated').textContent=(d.competition?.name||id)+'　最終更新 '+(d.updatedAt||'不明');
+    $('preNote').hidden=!/-PRE$/.test(String(id));
     const ms=d.matches||[];
     makeBadges(collectTeams(ms),tkey,name);
     S.rounds=buildRounds(ms);
@@ -1289,7 +1291,10 @@ async function renderFav(comps){
   try{
     // 年度がかわって大会IDが変わったときは、同じ大学の同じ種類の大会（例：-L1）でさがす
     const kind=String(f.comp||'').replace(/^\d{4}-/,'');
-    const tryComps=[f.comp,...comps.map(c=>c.id).filter(id=>id!==f.comp&&id.replace(/^\d{4}-/,'')===kind)].filter(id=>comps.some(c=>c.id===id));
+    // 昇格・降格で部が変わっても見つかるように、同じ種類の大会のあとで、リーグのほかの部も見る（同じ大学のチーム）
+    const isLg=/^L\d$/.test(kind),sameKind=comps.map(c=>c.id).filter(id=>id!==f.comp&&id.replace(/^\d{4}-/,'')===kind);
+    const otherLg=isLg?comps.map(c=>c.id).filter(id=>/-L\d$/.test(id)&&!sameKind.includes(id)&&id!==f.comp):[];
+    const tryComps=[f.comp,...sameKind,...otherLg].filter(id=>comps.some(c=>c.id===id));
     let d=null,team=null,comp='';
     for(const id of tryComps){
       const x=await json(encodeURIComponent(id)+'.json').catch(()=>null);if(!x||!x.matches)continue;

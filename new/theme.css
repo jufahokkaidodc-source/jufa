@@ -143,3 +143,8 @@ html[data-layout="5"] .cols{grid-template-columns:minmax(0,1fr)}
 @keyframes livePulse{0%,100%{box-shadow:0 0 0 0 rgba(230,0,18,.55)}50%{box-shadow:0 0 0 8px rgba(230,0,18,0)}}
 .bx.live,.sc.live,.st.live,.lv,.live-badge{animation:livePulse 1.8s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.bx.live,.sc.live,.st.live,.lv,.live-badge{animation:none}}
+
+/* プレ大会（フェスティバル）：公式の記録ではないことを、大会の上に出す */
+.prenote{background:#3a2a00;color:#ffd666;font-size:13px;line-height:1.6;padding:10px 16px;border-top:1px solid #5c4600;border-bottom:1px solid #5c4600}
+p.prenote{border:1px solid #5c4600;border-radius:10px;margin:10px 0 0}
+.prenote b{color:#fff}

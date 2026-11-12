@@ -391,6 +391,7 @@ a.h2r:hover .sc b{color:var(--red)}
 <div class="wrap pagehead">
   <div class="eyebrow">RESULTS & RECORDS</div>
   <h1 id="compTitle">大会記録</h1>
+  <p class="prenote" id="preNote" hidden>プレ大会（フェスティバル）：シーズン前に、大会運営システム（速報・結果）を試すための大会です。<b>公式の記録ではありません</b>。</p>
   <p id="compSub">日程・結果・順位表・得点ランキング・警告・退場</p>
   <div class="calbox" id="calBox" hidden></div>
   <div class="sharebox" id="shareBox" hidden><button type="button" id="shareBtn">↗ この大会を共有する</button><span id="shareNote" role="status"></span></div>
@@ -542,8 +543,9 @@ async function load(){
     const tm=new Map();(d.matches||[]).forEach(m=>[m.home,m.away].forEach(t=>{if(t&&t.id&&!tm.has(t.id))tm.set(t.id,t)}));makeBadges([...tm.values()]);
     const c=d.competition||{};
     $('compTitle').textContent=c.name||'大会記録';
+    $('preNote').hidden=!/-PRE$/.test(String(c.id||S.comp||''));
     // 共有：LINE・X などに、大会の色の画像つきで出るページ（results/share/大会ID.html。ホームページの書き出しが作る）
-    {let u=location.origin+location.pathname+'?comp='+encodeURIComponent(c.id);const b=$('shareBtn');$('shareBox').hidden=DEMO;
+    {let u=location.origin+location.pathname+'?comp='+encodeURIComponent(c.id);const b=$('shareBtn');$('shareBox').hidden=false;
      // 共有のページがあれば（新しいしくみが書き出した大会）、そちらを使う
      fetch('../results/share/'+encodeURIComponent(c.id)+'.html',{method:'HEAD',cache:'no-store'}).then(r=>{if(r.ok)u='https://www.jufahokkaido.com/results/share/'+encodeURIComponent(c.id)+'.html'}).catch(()=>{});
      b.onclick=async()=>{const t=c.name+'｜北海道学生サッカー連盟';try{if(navigator.share){await navigator.share({title:t,url:u});return}await navigator.clipboard.writeText(u);$('shareNote').textContent='リンクをコピーしました。LINE などに貼ってください';}catch(e){if(e&&e.name==='AbortError')return;$('shareNote').textContent=u;}};}
