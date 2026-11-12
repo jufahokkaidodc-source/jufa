@@ -281,12 +281,13 @@ $('menu').addEventListener('click',()=>{const o=$('nav').classList.toggle('open'
   for(let i=0;i<3&&!d;i++){try{const r=await fetch('../results/data/schedule.json',{cache:'no-store'});if(r.ok)d=await r.json();else if(r.status===404)break}catch(_){await new Promise(ok=>setTimeout(ok,700*(i+1)))}}
   if(!d||!(d.list||[]).length){$('list').innerHTML='<div class="card"><p class="empty">日程表はまだありません。日程が決まると、ここにPDFが出ます。</p></div>';return}
   $('title').textContent=d.year+'年度 年間日程表・結果';document.title=d.year+'年度 年間日程表 | 北海道学生サッカー連盟';
-  const url=x=>'../results/'+x.path;
+  // 置き場所は results/data/…（schedule.json の path は data/ より下）。「ここで見る」は同じ中身のHTML（iPad などは、埋め込んだPDFが白くなるため）
+  const url=x=>'../results/data/'+x.path, view=x=>x.html?'../results/data/'+x.html:url(x);
   $('list').innerHTML=d.list.map((x,i)=>'<div class="scard'+(x.all?' main':'')+'"><div><h3>'+esc(x.all?x.name:x.short||x.name)+'</h3><p>'+x.matches+'試合'+(x.from?'　'+esc(md(x.from))+'〜'+esc(md(x.to)):'')+'</p></div>'+
     '<div class="acts"><a class="btn'+(x.all?' p':'')+'" href="'+esc(url(x))+'" target="_blank" rel="noopener">開く（PDF）</a><button class="btn" type="button" data-i="'+i+'">ここで見る</button></div></div>').join('');
-  const show=i=>{const x=d.list[i];$('viewer').hidden=false;$('vname').textContent=x.all?x.name:(x.short||x.name);$('frame').src=url(x);};
+  const show=i=>{const x=d.list[i];$('viewer').hidden=false;$('vname').textContent=x.all?x.name:(x.short||x.name);$('frame').src=view(x);};
   $('list').addEventListener('click',e=>{const b=e.target.closest('[data-i]');if(b){show(+b.dataset.i);$('viewer').scrollIntoView({behavior:'smooth'})}});
-  if(matchMedia('(min-width:681px)').matches)show(0);else document.querySelectorAll('[data-i]').forEach(b=>b.remove());
+  if(matchMedia('(min-width:681px)').matches)show(0);
 })();
 </script>
 <script src="./hit.js"></script>

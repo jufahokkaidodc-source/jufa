@@ -1214,7 +1214,9 @@ function renderBig(ms,d){
   const m=cand[0];if(!m)return;
   const form=T=>order(ms).filter(x=>isDone(x)&&x.home&&x.away&&(x.home.id===T.id||x.away.id===T.id)).slice(-5).map(x=>{const hs=x.home.id===T.id,a=+(hs?x.score.home:x.score.away),b=+(hs?x.score.away:x.score.home);return a>b?'<i class="w">勝</i>':a<b?'<i class="l">敗</i>':'<i class="d">分</i>'}).join('');
   const top=T=>{const p=(d.scorers||[]).find(x=>x.team&&x.team.id===T.id);return p?'チーム得点王：'+esc(p.name)+'（'+esc(p.count)+'点）':''};
-  const side=T=>'<div class="t"><div class="cr">'+crest(T,'lg')+'</div><b>'+esc(name(T))+'</b><div class="rk">'+esc(rk[T.id].rank)+'<small>位</small></div><div class="fm">'+form(T)+'</div><div class="sc">'+top(T)+'</div></div>';
+  // まだ試合をしていない（開幕前）は、順位を出さない（みんな同じ「1位」になるため）
+  const rkH=T=>+(rk[T.id].played||0)>0?esc(rk[T.id].rank)+'<small>位</small>':'<small>開幕前</small>';
+  const side=T=>'<div class="t"><div class="cr">'+crest(T,'lg')+'</div><b>'+esc(name(T))+'</b><div class="rk">'+rkH(T)+'</div><div class="fm">'+form(T)+'</div><div class="sc">'+top(T)+'</div></div>';
   const dm=/^(\d{4})-(\d{2})-(\d{2})/.exec(m.date||'');
   const [hc,ac]=matchColors(m);box.style.setProperty('--bh',hc);box.style.setProperty('--ba',ac);
   box.innerHTML='<div class="bigc" style="--bh:'+esc(hc)+';--ba:'+esc(ac)+'"><div class="bh"><small>BIG MATCH</small><b>注目の一戦</b><span style="color:#bbb;font-size:12px">'+esc(m.round||'')+'</span></div>'+
@@ -1314,7 +1316,7 @@ async function renderFav(comps){
     const mlink=m=>'./results.html?comp='+encodeURIComponent(comp)+'&match='+encodeURIComponent(m.matchId);
     const nextH=next?'<a class="fc" href="'+mlink(next)+'"><small>次の試合</small><b>'+esc(favDate(next.date))+(next.kickoff?' '+esc(next.kickoff):'')+'</b><span>vs '+esc(name(opp(next)))+'</span><em>'+esc([next.round,next.venue].filter(Boolean).join('　'))+'</em></a>':'<div class="fc"><small>次の試合</small><b>予定なし</b></div>';
     const lastH=last&&last.score?(()=>{const r=res(last),h=tkey(last.home)===id;return '<a class="fc" href="'+mlink(last)+'"><small>前の試合</small><b><i class="rs '+r[0]+'">'+r[1]+'</i> '+(h?last.score.home:last.score.away)+' - '+(h?last.score.away:last.score.home)+'</b><span>vs '+esc(name(opp(last)))+'</span><em>'+esc(favDate(last.date))+'</em></a>'})():'<div class="fc"><small>前の試合</small><b>まだありません</b></div>';
-    const rankH=rank&&rank.rank!=null?'<a class="fc" href="./results.html?comp='+encodeURIComponent(comp)+'&tab=standings"><small>順位</small><b>'+esc(rank.rank)+'位</b><span>勝点 '+esc(rank.points??'')+'</span><em>'+esc((rank.won??'')+'勝'+(rank.drawn??'')+'分'+(rank.lost??'')+'敗')+'</em></a>':'';
+    const rankH=rank&&rank.rank!=null&&+(rank.played||0)>0?'<a class="fc" href="./results.html?comp='+encodeURIComponent(comp)+'&tab=standings"><small>順位</small><b>'+esc(rank.rank)+'位</b><span>勝点 '+esc(rank.points??'')+'</span><em>'+esc((rank.won??'')+'勝'+(rank.drawn??'')+'分'+(rank.lost??'')+'敗')+'</em></a>':'';
     box.innerHTML='<div class="fav"><div class="fh"><a class="ft" href="./team.html?comp='+encodeURIComponent(comp)+'&team='+encodeURIComponent(id)+'">'+crest(team)+'<b>'+esc(name(team))+'</b></a><span class="fl">★ お気に入り</span><button type="button" class="fx" id="favClear" aria-label="お気に入りを解除">解除</button></div><div class="fg">'+nextH+lastH+rankH+'</div></div>';
     box.hidden=false;
     $('favClear').onclick=()=>{if(!confirm('お気に入りを解除しますか？'))return;try{localStorage.removeItem('jufa:fav')}catch(_){}box.hidden=true};
