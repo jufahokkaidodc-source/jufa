@@ -277,7 +277,9 @@ tr.top .pos{border-left-color:var(--blue);color:var(--blue)}
 .feat .b strong{display:block;font-size:14.5px;margin-top:8px}
 .feat .b p{font-size:12px;color:var(--muted);line-height:1.75;margin:5px 0 0}
 
-.partner{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.scorer{color:inherit;text-decoration:none}a.scorer:hover b{text-decoration:underline}
+.partner{margin-top:44px;display:grid;grid-template-columns:1fr;gap:14px}
+.p1go{display:inline-flex;align-items:center;min-height:44px;margin-top:12px;padding:0 18px;border-radius:999px;background:var(--red);color:#fff;font-weight:700;text-decoration:none}
 .partner > div{border-radius:14px;padding:26px}
 .p1{background:var(--navy);color:#fff}
 .p1 h3{margin:6px 0 8px;font-size:18px;line-height:1.5}
@@ -292,7 +294,15 @@ tr.top .pos{border-left-color:var(--blue);color:var(--blue)}
 .footer nav{display:flex;gap:18px;flex-wrap:wrap}
 .footer nav a:hover{color:var(--lime)}
 
-.sk{display:block;height:14px;margin:14px 18px;border-radius:6px;background:linear-gradient(90deg,#e9eef3 25%,#f5f8fa 50%,#e9eef3 75%);background-size:200% 100%;animation:sh 1.3s infinite}
+.sk{display:block;height:14px;margin:14px 18px;border-radius:6px;background:linear-gradient(90deg,rgba(255,255,255,.05) 25%,rgba(255,255,255,.11) 50%,rgba(255,255,255,.05) 75%);background-size:200% 100%;animation:sh 1.3s infinite}
+/* 読み込み中：中身がそろうまで、からの帯（CLUBS・節の切り替え）は出さない。読めなかったときは、やさしい案内と「もう一度」 */
+.clubbar:not(.ready){display:none}
+.roundnav:not(.ready){visibility:hidden}
+.loadmsg{margin:14px 18px;padding:16px;border-radius:12px;background:rgba(255,255,255,.06);color:#d6d6d6;font-size:14px;line-height:1.7}
+.loadmsg b{display:block;color:#fff;font-size:15px;margin-bottom:4px}
+.loadmsg button{margin-top:10px;min-height:44px;padding:0 20px;border:0;border-radius:999px;background:#E60012;color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.stale{background:#2a2a2a;color:#e0e0e0;font-size:13px;text-align:center;padding:8px 16px}
+@media (prefers-reduced-motion:reduce){.sk{animation:none}}
 @keyframes sh{to{background-position:-200% 0}}
 /* Ver.4: 固定ヘッダーとページ内リンクの調整 */
 html{scroll-padding-top:0}
@@ -384,6 +394,23 @@ html{scroll-padding-top:0}
 .fav .rs{font-style:normal;font-size:12px;padding:1px 6px;border-radius:4px;vertical-align:2px}
 .fav .rs.W{background:#2E7D32;color:#fff}.fav .rs.L{background:#555;color:#fff}.fav .rs.D{background:#888;color:#fff}
 @media(max-width:680px){.fav .fg{gap:6px}.fav .fc{padding:8px}.fav .fc b{font-size:14px}.fav .fc span{font-size:12px}.fav .rs{display:block;width:max-content;margin-bottom:2px}}
+.rkm{font-style:normal;font-size:10.5px;font-weight:700;margin-left:4px;font-family:var(--num,inherit);white-space:nowrap}.rkm.up{color:#2fbf5f}.rkm.dn{color:#ff5a5f}
+.big{margin-top:28px}
+.bigc{position:relative;overflow:hidden;border-radius:16px;background:linear-gradient(120deg,color-mix(in srgb,var(--bh,#333) 55%,#000),#111 48%,#111 52%,color-mix(in srgb,var(--ba,#333) 55%,#000));padding:18px 16px 16px;color:#fff}
+.bigc .bh{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}.bigc .bh small{font-family:var(--num);letter-spacing:.18em;color:#ff4d57;font-weight:800;font-size:12px}.bigc .bh b{font-size:18px}
+.bigc .vs{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.bigc .t{text-align:center;min-width:0}.bigc .t .cr{display:flex;justify-content:center;margin-bottom:6px}
+.bigc .t b,.bigc .t .rk,.bigc .mid .d{color:#fff}.bigc .fm i{color:#fff!important}.bigc .t .rk small{color:#ccc}
+.crest.lg{width:64px;height:64px;font-size:20px}.crest.lg.two{font-size:16px}
+.bigc .t b{display:block;font-size:16px;line-height:1.3;overflow-wrap:anywhere}
+.bigc .t .rk{font-family:var(--num);font-size:30px;font-weight:800;line-height:1}.bigc .t .rk small{font-size:13px;margin-left:2px}
+.bigc .t .fm{display:flex;gap:3px;justify-content:center;margin-top:6px}.bigc .t .fm i{font-style:normal;font-size:11px;font-weight:800;width:20px;height:20px;border-radius:4px;display:grid;place-items:center}
+.bigc .fm .w{background:#2e9d4f}.bigc .fm .d{background:#666}.bigc .fm .l{background:#c62828}
+.bigc .t .sc{font-size:12px;color:#ccc;margin-top:6px}
+.bigc .mid{text-align:center;font-family:var(--num);font-weight:800}.bigc .mid .d{font-size:22px}.bigc .mid .k{font-size:14px;color:#ccc}.bigc .mid .x{font-size:13px;color:#ff4d57;letter-spacing:.2em;margin:4px 0}
+.bigc .vn{text-align:center;font-size:12px;color:#bbb;margin-top:12px}
+.bigc a.go{display:flex;justify-content:center;align-items:center;min-height:44px;margin:12px auto 0;max-width:260px;border-radius:999px;background:#fff;color:#111;font-weight:800;text-decoration:none}
+@media (min-width:760px){.bigc{padding:26px 30px}.bigc .t b{font-size:20px}.bigc .t .rk{font-size:40px}.bigc .mid .d{font-size:30px}}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yuji+Boku&display=swap">
 <link rel="stylesheet" href="./theme.css">
@@ -566,6 +593,8 @@ html{scroll-padding-top:0}
   </div>
 </section>
 
+<section class="wrap big" id="bigMatch" hidden aria-label="注目の一戦"></section>
+
 <section class="ticker" data-part="ticker">
   <div class="wrap">
     <div class="ticker-head">
@@ -620,8 +649,7 @@ html{scroll-padding-top:0}
   </section>
 
   <div class="wrap mpart partner" data-part="partner">
-    <div class="p1"><span class="label">FOR UNIVERSITIES</span><h3>各大学・クラブの専用ページを、公式データでつくる。</h3><p>試合結果や個人成績は公式記録から自動で反映。広報の負担を減らしながら、ファンや新入生に活動を届ける仕組みを準備しています。</p></div>
-    <div class="p2"><b>パートナー・スポンサー</b>北海道の大学サッカーを、一緒に盛り上げませんか。<br>掲載スペース（準備中）</div>
+    <div class="p1"><span class="label">FOR UNIVERSITIES</span><h3>各大学・クラブの専用ページを、公式データでつくる。</h3><p>試合結果や個人成績は公式記録から自動で反映。広報の負担を減らしながら、ファンや新入生に活動を届けます。</p><a class="p1go" href="../clubs/">チームのホームページを見る ›</a></div>
   </div>
 </main>
 </div><!-- /#parts -->
@@ -635,6 +663,9 @@ html{scroll-padding-top:0}
 
 <script src="./live.js"></script>
 <script>
+/* 順位の上がり下がり（前の試合日のあとの順位と比べる。rankPrev はホームページの書き出しが入れる） */
+function rkMove(prev,r){const id=r&&r.team&&r.team.id,p=prev&&id?Number(prev[id]):0,n=Number(r&&r.rank);if(!p||!n||p===n)return '';const up=p>n;return '<i class="rkm '+(up?'up':'dn')+'" title="前の試合日から'+Math.abs(p-n)+'つ'+(up?'上がった':'下がった')+'">'+(up?'▲':'▼')+Math.abs(p-n)+'</i>';}
+
 'use strict';
 const $=id=>document.getElementById(id);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -655,7 +686,7 @@ const PROF=new Map();
 function emblemUrl(p){
   const e=String(p?.emblem||'').trim();if(!e)return '';
   const d=e.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
-  if(d)return 'https://drive.google.com/thumbnail?id='+d[1]+'&sz=w400';
+  if(d)return 'https://app.jufahokkaido.com/img/drive/'+d[1]+'?sz=w400';
   if(/^https:\/\//i.test(e))return e;
   if(/^[^\/\\?#]+\.(png|jpe?g|webp|svg|gif)$/i.test(e))return './emblems/'+encodeURIComponent(e);
   return '';
@@ -664,7 +695,7 @@ function emblemUrl(p){
 function photoUrl(u,w){
   u=String(u||'').trim();if(!u)return '';
   const d=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
-  if(d)return 'https://drive.google.com/thumbnail?id='+d[1]+'&sz=w'+w;
+  if(d)return 'https://app.jufahokkaido.com/img/drive/'+d[1]+'?sz=w'+w;
   if(/^https:\/\//i.test(u))return u;
   if(DEMO&&/^data:image\//.test(u))return u;
   return '';
@@ -674,7 +705,7 @@ const photoSet=(u,ws)=>/drive\.google\.com\/thumbnail/.test(photoUrl(u,ws[0]))?w
 let EMB={};
 const embReady=fetch('./emblems/index.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).then(j=>{EMB=j&&typeof j==='object'?j:{}}).catch(()=>{});
 function embFor(...names){for(const n of names){const f=n&&EMB[String(n).trim()];if(f&&/^[^\/\\?#]+\.(png|jpe?g|webp|svg|gif)$/i.test(f))return './emblems/'+encodeURIComponent(f)}return ''}
-function crestFail(img){const s=img.parentNode;if(img.classList.contains('ed')){s.classList.remove('hasdark');img.remove();return}s.classList.remove('img','hasdark');s.querySelectorAll('img').forEach(x=>x.remove());s.insertBefore(document.createTextNode(s.dataset.ch),s.firstChild)}
+function crestFail(img){const s=img.parentNode;if(!s)return;if(img.classList.contains('ed')){s.classList.remove('hasdark');img.remove();return}s.classList.remove('img','hasdark');s.querySelectorAll('img').forEach(x=>x.remove());s.insertBefore(document.createTextNode(s.dataset.ch),s.firstChild)}
 const PALETTE=['#145ec9','#0f7a6b','#7b3fb5','#c0392b','#1d6fa5','#b35c00','#2e7d32','#ad1457','#37474f','#5d4dbf'];
 /* 案①：同じ見た目（同じエンブレム・同じ文字）のチームが並ぶときだけ、名前の違う部分を小さな札にして付ける */
 const BADGE=new Map();
@@ -719,11 +750,43 @@ const WD=['日','月','火','水','木','金','土'];
 function fmtDate(s){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');if(!m)return s||'日程未定';return (+m[2])+'/'+(+m[3])+'（'+WD[new Date(+m[1],+m[2]-1,+m[3]).getDay()]+'）'}
 function daysUntil(s){const a=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||''),b=/^(\d{4})-(\d{2})-(\d{2})/.exec(jstToday());if(!a||!b)return null;return Math.round((Date.UTC(+a[1],+a[2]-1,+a[3])-Date.UTC(+b[1],+b[2]-1,+b[3]))/864e5)}
 
-async function json(file){
+/* データを読む：通信がうまくいかないときは、少し待って3回まで読み直す。
+   それでもだめなら、前にこの端末で読んだ内容（大会一覧と、最後に見た大会だけ覚えておく）を出す */
+const MEMO='jufa:d:';
+async function json(file,keep){
   if(DEMO)return demoData(file);
-  const r=await fetch('../results/data/'+file,{cache:'no-store'});
-  if(!r.ok)throw Error('HTTP '+r.status);
-  return r.json();
+  // 一度「前に読んだ内容」に切り替えたら、ほかのファイルは待たずに1回だけ試す
+  let err;const n=$('stale')?1:3;
+  for(let i=0;i<n;i++){
+    try{
+      const r=await fetch('../results/data/'+file,{cache:'no-store'});
+      if(!r.ok)throw Error('HTTP '+r.status);
+      const t=await r.text(),d=JSON.parse(t);
+      if(keep)remember(file,t);
+      return d;
+    }catch(e){err=e;if(i<n-1)await new Promise(ok=>setTimeout(ok,700*(i+1)))}
+  }
+  if(keep)try{const t=localStorage.getItem(MEMO+file);if(t){showStale();return JSON.parse(t)}}catch(_){}
+  throw err;
+}
+function remember(file,t){
+  try{
+    if(file!=='competitions.json'&&file!=='news.json'){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.startsWith(MEMO)&&k!==MEMO+'competitions.json'&&k!==MEMO+'news.json'&&k!==MEMO+file)localStorage.removeItem(k)}}
+    localStorage.setItem(MEMO+file,t);
+  }catch(_){}
+}
+function showStale(){
+  if($('stale'))return;
+  const n=document.createElement('div');n.id='stale';n.className='stale';n.setAttribute('role','status');
+  n.textContent='通信がうまくいかないため、前に読み込んだ内容を出しています。少したってから読み直してください。';
+  const tabs=document.querySelector('.comptabs');if(tabs)tabs.after(n);else document.body.prepend(n);
+}
+/* 読めなかったとき：白い帯や「取得できません」を並べず、1か所に案内と「もう一度読み込む」を出す */
+function loadFailed(){
+  const msg='<div class="loadmsg" role="alert"><b>試合の情報を読み込めませんでした</b>通信がつながりにくいようです。電波のよいところで、もう一度読み込んでください。<br><button type="button" onclick="location.reload()">もう一度読み込む</button></div>';
+  const tabs=document.querySelector('.comptabs');if(tabs)tabs.hidden=true;
+  $('ticker').innerHTML=msg;
+  for(const k of ['topics','matchList','table','scorerList','clubList'])if($(k))$(k).innerHTML='<p class="empty">試合の情報を読み込めたら、ここに出ます。</p>';
 }
 const order=ms=>[...ms].sort((a,b)=>String(a.date||'').localeCompare(String(b.date||''))||String(a.kickoff||'').localeCompare(String(b.kickoff||'')));
 
@@ -761,10 +824,11 @@ function clubCard(t,href){
   const p=PROF.get(tkey(t))||PROF.get(typeof t==='object'?t.univ:'');
   const cr=crest(t),c=(cr.match(/--c:(#[0-9a-f]{3,8})/i)||[])[1]||'#145ec9';
   const ph=photoUrl(p?.teamPhoto,600),set=photoSet(p?.teamPhoto,[400,600,900]);
-  const cv=ph?'<span class="cv photo" style="--c:'+c+'"><img src="'+esc(ph)+'"'+(set?' srcset="'+esc(set)+'" sizes="(max-width:680px) 50vw, 220px"':'')+' alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.remove(\'photo\');this.remove()"></span>':'<span class="cv" style="--c:'+c+'"></span>';
+  const cv=ph?'<span class="cv photo" style="--c:'+c+'"><img src="'+esc(ph)+'"'+(set?' srcset="'+esc(set)+'" sizes="(max-width:680px) 50vw, 220px"':'')+' alt="" loading="lazy" decoding="async" onerror="if(this.parentNode)this.parentNode.classList.remove(\'photo\');this.remove()"></span>':'<span class="cv" style="--c:'+c+'"></span>';
   return '<a class="club" href="'+esc(href)+'" style="--c:'+c+'">'+cv+cr+'<span class="cb"><strong>'+esc(typeof t==='object'?(t.name||t.short||''):t)+'</strong></span></a>';
 }
 function renderClubs(teams,id){
+  $('clubbar').parentNode.classList.toggle('ready',teams.length>0);
   $('clubbar').innerHTML='<small>CLUBS</small>'+teams.map(t=>'<a href="'+esc(teamUrl(id,t))+'" title="'+esc(name(t))+'">'+crest(t,'sm')+'</a>').join('');
   $('clubCount').textContent=teams.length?teams.length+'クラブ':'';
   $('clubList').innerHTML=teams.length?teams.map(t=>clubCard(t,teamUrl(id,t))).join(''):'<p class="empty">クラブ情報はありません。</p>';
@@ -826,7 +890,7 @@ function renderSchedule(){
   $('matchList').innerHTML=html;
 }
 if(window.JUFA_LIVE)JUFA_LIVE.on(()=>{if(S.rounds&&S.rounds.length){renderTicker();renderSchedule();}});
-function setRound(i){S.ri=Math.max(0,Math.min(S.rounds.length-1,i));renderTicker();renderRoundTabs();renderSchedule()}
+function setRound(i){document.querySelector('.roundnav')?.classList.toggle('ready',S.rounds.length>0);S.ri=Math.max(0,Math.min(S.rounds.length-1,i));renderTicker();renderRoundTabs();renderSchedule()}
 $('prevR').onclick=()=>setRound(S.ri-1);
 $('nextR').onclick=()=>setRound(S.ri+1);
 
@@ -1077,7 +1141,8 @@ $('mvDots').addEventListener('click',e=>{const b=e.target.closest('button');if(b
 $('mvMatch').addEventListener('mouseenter',()=>MV.paused=true);$('mvMatch').addEventListener('mouseleave',()=>MV.paused=false);
 // 指で左右にはらって切り替え
 (()=>{let x0=null;const el=$('mvMatch');el.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});el.addEventListener('touchend',e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>40){showMV(MV.i+(dx<0?1:-1));startMV()}},{passive:true})})();
-if(window.JUFA_LIVE)JUFA_LIVE.on(()=>{if(MV.list.length)showMV(MV.i)});
+// 試合が始まったら、トップの大きな表示を試合中の試合に切りかえる（読み込んだあとに始まったときも）
+if(window.JUFA_LIVE)JUFA_LIVE.on(()=>{if(!MV.list.length)return;const ms=S.ms||[],hasLive=ms.some(m=>liveOf(m)),showing=MV.list.some(m=>!m.off&&liveOf(m));if(hasLive&&!showing)renderMV(ms,MV.label);else showMV(MV.i)});
 
 /* top photos：写真がないときは何も出さない。今の1枚と次の1枚だけ読み込む */
 let HERO=[],TEAMPH=[];
@@ -1130,16 +1195,38 @@ function renderTable(groups){
       let gd=pick(t,['gd','goalDiff','diff']);
       if(gd==null&&pick(t,['gf','goalsFor'])!=null)gd=(+pick(t,['gf','goalsFor']))-(+pick(t,['ga','goalsAgainst'])||0);
       if(gd!=null&&+gd>0)gd='+'+gd;
-      return '<tr class="'+(i===0?'top':'')+'"><td class="l"><span class="pos">'+esc(t.rank??i+1)+'</span></td><td class="l"><span class="tt">'+crest(t.team,'xs')+esc(name(t.team))+'</span></td>'+
+      return '<tr class="'+(i===0?'top':'')+'"><td class="l"><span class="pos">'+esc(t.rank??i+1)+'</span>'+rkMove(S.rankPrev,t)+'</td><td class="l"><span class="tt">'+crest(t.team,'xs')+esc(name(t.team))+'</span></td>'+
         '<td class="pts">'+esc(t.points)+'</td><td class="n">'+esc(t.played)+'</td>'+
         (wdl?'<td class="n">'+esc(pick(t,['won','win','w']))+'</td><td class="n">'+esc(pick(t,['drawn','draw','d']))+'</td><td class="n">'+esc(pick(t,['lost','lose','l']))+'</td>':'')+
         (gdOk?'<td class="n">'+esc(gd??'')+'</td>':'')+'</tr>';
     }).join('')+'</tbody></table>').join('');
 }
+/* 注目の一戦（2026-11）：これからの試合のうち、次の試合日の中で、両チームの順位の合計がいちばん小さい（上位どうし）試合を大きく出す
+   順位表のない大会・試合の日程がない時期は出さない。両チームの順位・直近5試合・チームの得点王 */
+function renderBig(ms,d){
+  const box=$('bigMatch');if(!box)return;box.hidden=true;box.innerHTML='';
+  const rk={};(d.groups||[]).forEach(g=>(g.table||[]).forEach(r=>{if(r.team&&r.team.id)rk[r.team.id]=r}));
+  if(!Object.keys(rk).length)return;
+  const today=jstToday(),up=order(ms).filter(m=>!isDone(m)&&m.home&&m.away&&typeof m.home==='object'&&typeof m.away==='object'&&(m.date||'')>=today&&!/中止|延期/.test(m.status||'')&&rk[m.home.id]&&rk[m.away.id]);
+  if(!up.length)return;
+  const rd=up[0].round,day=up[0].date,cand=up.filter(m=>rd?m.round===rd:m.date===day).sort((a,b)=>(+rk[a.home.id].rank+ +rk[a.away.id].rank)-(+rk[b.home.id].rank+ +rk[b.away.id].rank));
+  const m=cand[0];if(!m)return;
+  const form=T=>order(ms).filter(x=>isDone(x)&&x.home&&x.away&&(x.home.id===T.id||x.away.id===T.id)).slice(-5).map(x=>{const hs=x.home.id===T.id,a=+(hs?x.score.home:x.score.away),b=+(hs?x.score.away:x.score.home);return a>b?'<i class="w">勝</i>':a<b?'<i class="l">敗</i>':'<i class="d">分</i>'}).join('');
+  const top=T=>{const p=(d.scorers||[]).find(x=>x.team&&x.team.id===T.id);return p?'チーム得点王：'+esc(p.name)+'（'+esc(p.count)+'点）':''};
+  const side=T=>'<div class="t"><div class="cr">'+crest(T,'lg')+'</div><b>'+esc(name(T))+'</b><div class="rk">'+esc(rk[T.id].rank)+'<small>位</small></div><div class="fm">'+form(T)+'</div><div class="sc">'+top(T)+'</div></div>';
+  const dm=/^(\d{4})-(\d{2})-(\d{2})/.exec(m.date||'');
+  const [hc,ac]=matchColors(m);box.style.setProperty('--bh',hc);box.style.setProperty('--ba',ac);
+  box.innerHTML='<div class="bigc" style="--bh:'+esc(hc)+';--ba:'+esc(ac)+'"><div class="bh"><small>BIG MATCH</small><b>注目の一戦</b><span style="color:#bbb;font-size:12px">'+esc(m.round||'')+'</span></div>'+
+    '<div class="vs">'+side(m.home)+'<div class="mid"><div class="d">'+(dm?(+dm[2])+'.'+dm[3]:'')+'</div><div class="k">'+esc(m.kickoff||'')+(m.kickoff?' KO':'')+'</div><div class="x">VS</div></div>'+side(m.away)+'</div>'+
+    '<div class="vn">📍 '+esc(m.venue||'会場未定')+'</div><a class="go" href="'+esc(detail(S.id,m.matchId))+'">試合のみどころを見る ›</a></div>';
+  box.hidden=false;
+}
 function renderScorers(rows){
   if(!rows?.length){$('scorerList').innerHTML='<p class="empty">得点記録はまだありません。</p>';return}
-  $('scorerList').innerHTML=rows.slice(0,8).map((p,i)=>'<div class="scorer'+(i<3?' top':'')+(i===0?' lead':'')+'"><span class="r">'+esc(p.rank??i+1)+'</span>'+crest(p.team,'sm')+
-    '<span class="who"><b>'+esc(p.name)+'</b><small>'+esc(name(p.team))+'</small></span><span class="g">'+esc(p.count)+'<small>点</small></span></div>').join('');
+  // 選手の名前を押すと、選手のページ（player.html：今季の得点・出場）へ
+  const pl=p=>!DEMO&&p.team&&typeof p.team==='object'&&p.team.id&&p.name?'./player.html?comp='+encodeURIComponent(S.id)+'&team='+encodeURIComponent(p.team.id)+'&name='+encodeURIComponent(p.name):'';
+  $('scorerList').innerHTML=rows.slice(0,8).map((p,i)=>{const u=pl(p),tg=u?'a':'div';return '<'+tg+(u?' href="'+esc(u)+'"':'')+' class="scorer'+(i<3?' top':'')+(i===0?' lead':'')+'"><span class="r">'+esc(p.rank??i+1)+'</span>'+crest(p.team,'sm')+
+    '<span class="who"><b>'+esc(p.name)+'</b><small>'+esc(name(p.team))+'</small></span><span class="g">'+esc(p.count)+'<small>点</small></span></'+tg+'>'}).join('');
 }
 
 /* 入替戦のように、ほかの大会のチームが出る大会：チームの紹介（エンブレムなど）を、そのチームの大会の名簿から読む
@@ -1155,7 +1242,7 @@ async function load(id){
   S.id=id;
   document.querySelectorAll('#comptabs button').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.id===id)));
   try{
-    const [d,ro]=await Promise.all([json(encodeURIComponent(id)+'.json'),DEMO?null:fetch('../results/data/'+encodeURIComponent(id)+'-roster.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)]);
+    const [d,ro]=await Promise.all([json(encodeURIComponent(id)+'.json',true),DEMO?null:fetch('../results/data/'+encodeURIComponent(id)+'-roster.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)]);
     if(!d.ok)throw Error('大会データを取得できません');
     for(const t of ro?.teams||[])if(t.profile){PROF.set(tkey(t.team),t.profile);if(t.team.univ)PROF.set(t.team.univ,t.profile)}
     if(!DEMO)await profFromOtherComps(id,d.matches||[]);
@@ -1170,19 +1257,20 @@ async function load(id){
     const up=o.find(m=>!isDone(m)&&(m.date||'9999')>=today),last=o.filter(isDone).pop();
     const lastD=last?daysUntil(last.date):null;
     const feat=last&&lastD!=null&&lastD>=-2?last:(up||last||o[0]);
-    S.feat=feat;
+    S.feat=feat;S.ms=ms;
     S.champ=champOf(d,ms);
     const fi=S.rounds.findIndex(r=>r.list.includes(feat));
     S.ri=fi>=0?fi:defaultRound(S.rounds);
     setRound(S.ri);
     renderFeatured(feat);
     renderTopics(ms,d.scorers,d.competition?.name||'');
+    S.rankPrev=d.rankPrev||null;
+    renderBig(ms,d);
     renderTable(d.groups);renderScorers(d.scorers);renderClubs(collectTeams(ms),id);
     renderPhotos(heroFor(id,collectTeams(ms)));
     renderMV(ms,(document.querySelector('#comptabs [aria-selected=true]')||{}).textContent||'');
   }catch(e){
-    featEl().innerHTML='<p class="empty" style="color:#c0d3e2">データを読み込めません：'+esc(e.message)+'</p>';
-    for(const k of ['ticker','topics','matchList','table','scorerList','clubList'])$(k).innerHTML='<p class="empty">データを表示できません。</p>';
+    console.error(e);loadFailed();
   }
 }
 
@@ -1231,13 +1319,13 @@ async function renderFav(comps){
 /* boot */
 (async()=>{
   let d;
-  try{d=await json('competitions.json')}
+  try{d=await json('competitions.json',true)}
   catch(e){
     if(!/(github\.io|jufahokkaido\.com)$/.test(location.hostname)){DEMO=true;d=await json('competitions.json')}
-    else{$('comptabs').innerHTML='<button>大会情報を取得できません</button>';featEl().innerHTML='<p class="empty" style="color:#c0d3e2">大会一覧を取得できません：'+esc(e.message)+'</p>';return}
+    else{console.error(e);loadFailed();return}
   }
   $('demo').hidden=!DEMO;
-  try{const r=DEMO?{ok:1,news:[{id:'a1',date:jstToday(),cat:'連盟',title:'（サンプル）2027年度 チーム登録の受付について',important:true},{id:'a2',date:jstToday(),cat:'demo-1',title:'（サンプル）第3節 会場変更のお知らせ',important:true}],hero:demoHero(),teamPhotos:demoTeamPhotos()}:await fetch('../results/data/news.json',{cache:'no-store'}).then(r=>r.ok?r.json():null);NEWS=r?.news||[];HERO=r?.hero||[];TEAMPH=r?.teamPhotos||[]}catch(_){NEWS=[]}
+  try{const r=DEMO?{ok:1,news:[{id:'a1',date:jstToday(),cat:'連盟',title:'（サンプル）2027年度 チーム登録の受付について',important:true},{id:'a2',date:jstToday(),cat:'demo-1',title:'（サンプル）第3節 会場変更のお知らせ',important:true}],hero:demoHero(),teamPhotos:demoTeamPhotos()}:await json('news.json',true).catch(()=>null);NEWS=r?.news||[];HERO=r?.hero||[];TEAMPH=r?.teamPhotos||[]}catch(_){NEWS=[]}
   renderAlert();
   await embReady;
   const cs=d.competitions||[];
@@ -1282,5 +1370,6 @@ function demoData(file){
 </script>
 <script src="./alert.js"></script>
 <script src="./hit.js"></script>
+<script src="reveal.js" defer></script>
 </body>
 </html>

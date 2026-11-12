@@ -324,6 +324,8 @@ table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
 .fm.w b{color:#E60012}.fm.l b{color:var(--muted)}
 .pvs{display:grid;grid-template-columns:1fr 1fr;gap:14px}.pvp{display:flex;justify-content:space-between;gap:6px;padding:5px 0;border-top:1px solid var(--line);font-size:13px}.pvs .ptn{margin-bottom:4px}
 a.h2r:hover .sc b{color:var(--red)}
+.rkm{font-style:normal;font-size:10.5px;font-weight:700;margin-left:4px;font-family:var(--num,inherit);white-space:nowrap}.rkm.up{color:#2fbf5f}.rkm.dn{color:#ff5a5f}
+.sharebox{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0 0}.sharebox button{min-height:40px;border-radius:999px;border:1px solid var(--line,#333);background:transparent;color:inherit;font:inherit;font-weight:700;padding:0 16px;cursor:pointer}.sharebox span{font-size:12px;color:var(--muted,#999);word-break:break-all}
 </style>
 <link rel="stylesheet" href="./theme.css">
 <script src="./site.js"></script>
@@ -391,6 +393,7 @@ a.h2r:hover .sc b{color:var(--red)}
   <h1 id="compTitle">大会記録</h1>
   <p id="compSub">日程・結果・順位表・得点ランキング・警告・退場</p>
   <div class="calbox" id="calBox" hidden></div>
+  <div class="sharebox" id="shareBox" hidden><button type="button" id="shareBtn">↗ この大会を共有する</button><span id="shareNote" role="status"></span></div>
   <nav class="subtabs" id="subtabs" aria-label="記録の種類"></nav>
 </div>
 
@@ -399,12 +402,15 @@ a.h2r:hover .sc b{color:var(--red)}
 <footer class="footer">
   <div class="wrap">
     <div><strong>北海道学生サッカー連盟</strong><p>大会記録は、公式記録（各試合の当番校が入力し、両チーム・主審が承認したもの）から自動で反映しています。</p><p id="updated"></p></div>
-    <nav><a href="./">トップ</a><a href="./news.html">お知らせ</a><a href="./about.html">連盟について</a><a href="./history.html">歴代成績</a><a href="./info.html">大会情報</a><a href="./venues.html">会場案内</a><a href="#" onclick="scrollTo({top:0});return false">ページ上部へ ↑</a></nav>
+    <nav><a href="./">トップ</a><a href="./news.html">お知らせ</a><a href="./about.html">連盟について</a><a href="./history.html">歴代成績</a><a href="./info.html">大会情報</a><a href="./schedule.html">年間日程表</a><a href="./venues.html">会場案内</a><a href="#" onclick="scrollTo({top:0});return false">ページ上部へ ↑</a></nav>
   </div>
 </footer>
 
 <script src="./live.js"></script>
 <script>
+/* 順位の上がり下がり（前の試合日のあとの順位と比べる。rankPrev はホームページの書き出しが入れる） */
+function rkMove(prev,r){const id=r&&r.team&&r.team.id,p=prev&&id?Number(prev[id]):0,n=Number(r&&r.rank);if(!p||!n||p===n)return '';const up=p>n;return '<i class="rkm '+(up?'up':'dn')+'" title="前の試合日から'+Math.abs(p-n)+'つ'+(up?'上がった':'下がった')+'">'+(up?'▲':'▼')+Math.abs(p-n)+'</i>';}
+
 'use strict';
 const $=id=>document.getElementById(id);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -441,7 +447,7 @@ function embFor(...ns){for(const n of ns){const f=n&&EMB[String(n).trim()];if(f&
 function emblemUrl(e){
   e=String(e||'').trim();if(!e)return '';
   const d=e.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
-  if(d)return 'https://drive.google.com/thumbnail?id='+d[1]+'&sz=w400';
+  if(d)return 'https://app.jufahokkaido.com/img/drive/'+d[1]+'?sz=w400';
   if(/^https:\/\//i.test(e))return e;
   if(/^[^\/\\?#]+\.(png|jpe?g|webp|svg|gif)$/i.test(e))return './emblems/'+encodeURIComponent(e);
   return '';
@@ -458,7 +464,7 @@ function crestBase(t,size){
   if(u)return '<span class="crest img '+(size||'')+(two?' two':'')+(ud?' hasdark':'')+'" '+st+' data-ch="'+esc(ch)+'"><img class="el" src="'+esc(u)+'" alt="" loading="lazy" onerror="crestFail(this)">'+(ud?'<img class="ed" src="'+esc(ud)+'" alt="" loading="lazy" onerror="crestFail(this)">':'')+'</span>';
   return '<span class="crest '+(size||'')+(two?' two':'')+'" '+st+' aria-hidden="true">'+esc(ch)+'</span>';
 }
-function crestFail(img){const s=img.parentNode;if(img.classList.contains('ed')){s.classList.remove('hasdark');img.remove();return}s.classList.remove('img','hasdark');s.querySelectorAll('img').forEach(x=>x.remove());s.insertBefore(document.createTextNode(s.dataset.ch),s.firstChild)}
+function crestFail(img){const s=img.parentNode;if(!s)return;if(img.classList.contains('ed')){s.classList.remove('hasdark');img.remove();return}s.classList.remove('img','hasdark');s.querySelectorAll('img').forEach(x=>x.remove());s.insertBefore(document.createTextNode(s.dataset.ch),s.firstChild)}
 /* 同じ見た目のエンブレムが並ぶときだけ、名前の違う部分を小さな札にする（チームページと同じ） */
 const BADGE=new Map();
 const BADGE_WORDS={'セカンド':'2nd','サテライト':'SAT','サード':'3rd','トップ':'TOP'};
@@ -536,6 +542,11 @@ async function load(){
     const tm=new Map();(d.matches||[]).forEach(m=>[m.home,m.away].forEach(t=>{if(t&&t.id&&!tm.has(t.id))tm.set(t.id,t)}));makeBadges([...tm.values()]);
     const c=d.competition||{};
     $('compTitle').textContent=c.name||'大会記録';
+    // 共有：LINE・X などに、大会の色の画像つきで出るページ（results/share/大会ID.html。ホームページの書き出しが作る）
+    {let u=location.origin+location.pathname+'?comp='+encodeURIComponent(c.id);const b=$('shareBtn');$('shareBox').hidden=DEMO;
+     // 共有のページがあれば（新しいしくみが書き出した大会）、そちらを使う
+     fetch('../results/share/'+encodeURIComponent(c.id)+'.html',{method:'HEAD',cache:'no-store'}).then(r=>{if(r.ok)u='https://www.jufahokkaido.com/results/share/'+encodeURIComponent(c.id)+'.html'}).catch(()=>{});
+     b.onclick=async()=>{const t=c.name+'｜北海道学生サッカー連盟';try{if(navigator.share){await navigator.share({title:t,url:u});return}await navigator.clipboard.writeText(u);$('shareNote').textContent='リンクをコピーしました。LINE などに貼ってください';}catch(e){if(e&&e.name==='AbortError')return;$('shareNote').textContent=u;}};}
     calBox($('calBox'),[{file:c.id+'.ics',label:'この大会の全試合'}].concat([...tm.values()].sort((a,b)=>String(a.short||a.name).localeCompare(String(b.short||b.name),'ja')).map(t=>({file:'t-'+t.id+'.ics',label:(t.short||t.name)+'の試合'}))),'日程をカレンダーに入れる');
     $('compSub').textContent='日程・結果・順位表・得点ランキング・警告・退場';
     document.title=(c.name||'大会記録')+' | 北海道学生サッカー連盟';
@@ -692,7 +703,7 @@ function rStandings(){
     const fp=g.table.some(r=>r.fairPlay!=null),rate=g.table.some(r=>r.pointsRate!=null);
     return (g.group?'<div class="sh"><h2>'+esc(g.group)+'</h2></div>':'<div style="height:14px"></div>')+'<div class="card scroll"><table class="tbl">'+
       '<tr><th>順位</th><th class="l">チーム</th><th>勝点</th><th>試合</th><th>勝</th><th>分</th><th>敗</th><th class="hide-sp">得点</th><th class="hide-sp">失点</th><th>得失点</th>'+(rate?'<th>勝点率</th>':'')+(fp?'<th>FP</th>':'')+'</tr>'+
-      g.table.map(r=>'<tr><td class="rk">'+r.rank+'</td><td class="l"><span class="tn">'+crest(r.team,'xs')+teamLink(r.team,r.team.short)+'</span></td><td class="pts">'+r.points+'</td><td>'+r.played+'</td><td>'+r.won+'</td><td>'+r.drawn+'</td><td>'+r.lost+'</td>'+
+      g.table.map(r=>'<tr><td class="rk">'+r.rank+rkMove(DATA.rankPrev,r)+'</td><td class="l"><span class="tn">'+crest(r.team,'xs')+teamLink(r.team,r.team.short)+'</span></td><td class="pts">'+r.points+'</td><td>'+r.played+'</td><td>'+r.won+'</td><td>'+r.drawn+'</td><td>'+r.lost+'</td>'+
         '<td class="hide-sp">'+r.goalsFor+'</td><td class="hide-sp">'+r.goalsAgainst+'</td><td>'+(r.goalDiff>0?'+':'')+r.goalDiff+'</td>'+(rate?'<td>'+(r.pointsRate??'')+'</td>':'')+(fp?'<td>'+(r.fairPlay??'')+'</td>':'')+'</tr>').join('')+
       '</table></div>'+(g.table.some(r=>r.note)?'<p class="note">'+g.table.filter(r=>r.note).map(r=>esc(r.team.short+'：'+r.note)).join('　')+'</p>':'');
   }).join('')+'<p class="note">順位は勝点・得失点差・総得点・当該チーム同士の勝敗の順で決めます（大会要項による）。</p>';
@@ -922,7 +933,7 @@ function rMatch(){
   const note=lv?'<p class="note">速報です（公式記録の確定前）。スコア・得点者・メンバー・交代・警告・退場・スタッツ・時間は、確定のときに変わることがあります。</p>':d.source==='report'?'<p class="note">この試合は試合報告から取り込んだ記録です（先発・交代の記録はありません）。</p>':'';
   const back={tournament:'トーナメント',cards:'警告・退場'}[S.tab]||'日程・結果';
   // 試合の写真（全体システムの「発信」→「試合の写真」。写っている人の同意があるものだけ）
-  const dimg=(u,w)=>{const m=String(u||'').match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);return m?'https://drive.google.com/thumbnail?id='+m[1]+'&sz=w'+w:(/^https:\/\//.test(u)?u:'');};
+  const dimg=(u,w)=>{const m=String(u||'').match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);return m?'https://app.jufahokkaido.com/img/drive/'+m[1]+'?sz=w'+w:(/^https:\/\//.test(u)?u:'');};
   const phs=(d.photos||[]).filter(p=>dimg(p.url,800));
   const ph=phs.length?'<div class="sh"><h2>写真</h2></div><div class="mphotos">'+phs.map(p=>'<figure><a href="'+esc(dimg(p.url,1600))+'" target="_blank" rel="noopener"><img src="'+esc(dimg(p.url,800))+'" alt="'+esc(p.caption||'試合の写真')+'" loading="lazy" decoding="async" onerror="this.closest(\'figure\').remove()"></a>'+(p.caption||p.credit?'<figcaption>'+esc(p.caption||'')+(p.credit?'<span>撮影：'+esc(p.credit)+'</span>':'')+'</figcaption>':'')+'</figure>').join('')+'</div>':'';
   // 公式記録を用紙の形で見る（record.html）。確定した公式記録がある試合だけ
@@ -950,5 +961,6 @@ init();
 </script>
 <script src="./alert.js"></script>
 <script src="./hit.js"></script>
+<script src="reveal.js" defer></script>
 </body>
 </html>

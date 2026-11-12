@@ -384,7 +384,7 @@ function embFor(...ns){for(const n of ns){const f=n&&EMB[String(n).trim()];if(f&
 function emblemUrl(e){
   e=String(e||'').trim();if(!e)return '';
   const d=e.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
-  if(d)return 'https://drive.google.com/thumbnail?id='+d[1]+'&sz=w400';
+  if(d)return 'https://app.jufahokkaido.com/img/drive/'+d[1]+'?sz=w400';
   if(/^https:\/\//i.test(e))return e;
   if(/^[^\/\\?#]+\.(png|jpe?g|webp|svg|gif)$/i.test(e))return './emblems/'+encodeURIComponent(e);
   return '';
@@ -402,7 +402,7 @@ function crestBase(t,size){
   if(u)return '<span class="crest img '+(size||'')+(two?' two':'')+(ud?' hasdark':'')+'" '+st+' data-ch="'+esc(ch)+'"><img class="el" src="'+esc(u)+'" alt="" loading="lazy" onerror="crestFail(this)">'+(ud?'<img class="ed" src="'+esc(ud)+'" alt="" loading="lazy" onerror="crestFail(this)">':'')+'</span>';
   return '<span class="crest '+(size||'')+(two?' two':'')+'" '+st+' aria-hidden="true">'+esc(ch)+'</span>';
 }
-function crestFail(img){const s=img.parentNode;if(img.classList.contains('ed')){s.classList.remove('hasdark');img.remove();return}s.classList.remove('img','hasdark');s.querySelectorAll('img').forEach(x=>x.remove());s.insertBefore(document.createTextNode(s.dataset.ch),s.firstChild)}
+function crestFail(img){const s=img.parentNode;if(!s)return;if(img.classList.contains('ed')){s.classList.remove('hasdark');img.remove();return}s.classList.remove('img','hasdark');s.querySelectorAll('img').forEach(x=>x.remove());s.insertBefore(document.createTextNode(s.dataset.ch),s.firstChild)}
 /* 同じ見た目のエンブレムが並ぶときだけ、名前の違う部分を小さな札にする（チームページと同じ） */
 const BADGE=new Map();
 const BADGE_WORDS={'セカンド':'2nd','サテライト':'SAT','サード':'3rd','トップ':'TOP'};
@@ -532,11 +532,12 @@ function render(me,rows,prof){
   }
 }
 const teamUrlP=t=>'./team.html?'+(P.comp?'comp='+encodeURIComponent(P.comp)+'&':'')+'team='+encodeURIComponent(t.id||P.team);
-function photoSrc(u,w){u=String(u||'').trim();const d=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);if(d)return 'https://drive.google.com/thumbnail?id='+d[1]+'&sz=w'+w;if(/^https:\/\//i.test(u))return u;return '';}
+function photoSrc(u,w){u=String(u||'').trim();const d=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);if(d)return 'https://app.jufahokkaido.com/img/drive/'+d[1]+'?sz=w'+w;if(/^https:\/\//i.test(u))return u;return '';}
 $('menu').addEventListener('click',()=>{const o=$('nav').classList.toggle('open');$('menu').setAttribute('aria-expanded',String(o))});
 init();
 </script>
 <script src="./alert.js"></script>
 <script src="./hit.js"></script>
+<script src="reveal.js" defer></script>
 </body>
 </html>

@@ -247,7 +247,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 <footer class="footer">
   <div class="wrap">
     <div><strong>北海道学生サッカー連盟</strong><p>試合の日程・結果・記録は、連盟の大会運営システムから自動で反映しています。</p><p id="updated"></p></div>
-    <nav><a href="./">トップ</a><a href="./news.html">お知らせ</a><a href="./about.html">連盟について</a><a href="./history.html">歴代成績</a><a href="./info.html">大会情報</a><a href="./venues.html">会場案内</a><a href="./results.html">大会記録</a><a href="./privacy.html">プライバシーポリシー</a></nav>
+    <nav><a href="./">トップ</a><a href="./news.html">お知らせ</a><a href="./about.html">連盟について</a><a href="./history.html">歴代成績</a><a href="./info.html">大会情報</a><a href="./schedule.html">年間日程表</a><a href="./venues.html">会場案内</a><a href="./results.html">大会記録</a><a href="./privacy.html">プライバシーポリシー</a></nav>
   </div>
 </footer>
 <script>
@@ -262,7 +262,7 @@ const AREA_COLOR={'札幌':'#E60012','道央':'#F28C28','道北':'#1976D2','道�
 const AREA_EN={'札幌':'SAPPORO','道央':'CENTRAL','道北':'NORTH','道東':'EAST','道南':'SOUTH'};
 const xy=v=>[(v.lng-HK.X0)*HK.C*HK.K,(HK.Y0-v.lat)*HK.K];
 /* 写真：ドライブの共有リンクは縮小版にする */
-function photoUrl(u){u=String(u||'').trim();if(!u)return '';const d=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);if(d)return 'https://drive.google.com/thumbnail?id='+d[1]+'&sz=w1200';return /^(https:\/\/|\.\/)/.test(u)?u:''}
+function photoUrl(u){u=String(u||'').trim();if(!u)return '';const d=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);if(d)return 'https://app.jufahokkaido.com/img/drive/'+d[1]+'?sz=w1200';return /^(https:\/\/|\.\/)/.test(u)?u:''}
 const slug=v=>'v-'+[...v.name].map(c=>c.charCodeAt(0).toString(36)).join('').slice(0,40);
 /* 近い会場（地図で重なる会場）は1つの点にまとめる。数字はその場所の会場の数 */
 function clusters(vs,px){
@@ -344,5 +344,6 @@ $('menu')?.addEventListener('click',e=>{const n=$('nav');const o=n.classList.tog
 </script>
 <script src="./alert.js"></script>
 <script src="./hit.js"></script>
+<script src="reveal.js" defer></script>
 </body>
 </html>

@@ -172,7 +172,7 @@ const safeUrl=u=>/^https?:\/\//i.test(String(u||''))?String(u):'';
 function photoUrl(u,w){
   u=String(u||'').trim();if(!u)return '';
   const d=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
-  if(d)return 'https://drive.google.com/thumbnail?id='+d[1]+'&sz=w'+w;
+  if(d)return 'https://app.jufahokkaido.com/img/drive/'+d[1]+'?sz=w'+w;
   if(/^https:\/\//i.test(u))return u;
   if(DEMO&&/^data:image\//.test(u))return u;
   return '';
@@ -245,5 +245,6 @@ function demoData(file){
 </script>
 <script src="./alert.js"></script>
 <script src="./hit.js"></script>
+<script src="reveal.js" defer></script>
 </body>
 </html>
