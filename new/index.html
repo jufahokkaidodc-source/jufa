@@ -578,6 +578,7 @@ html{scroll-padding-top:0}
     </nav>
   </div>
   <div class="comptabs"><div class="wrap" id="comptabs" role="tablist"><button aria-selected="true">読み込み中…</button></div></div>
+  <div class="prenote" id="preNote" hidden><div class="wrap">プレ大会（フェスティバル）：シーズン前に、大会運営システム（速報・結果）を試すための大会です。<b>公式の記録ではありません</b>。</div></div>
 </header>
 
 <div class="alert" id="alert" hidden></div>
@@ -1250,6 +1251,7 @@ async function load(id){
     document.querySelectorAll('.js-sched').forEach(a=>a.href=detail(id));
     document.querySelectorAll('.js-rank').forEach(a=>a.href=detail(id)+'&tab=standings');
     $('updated').textContent=(d.competition?.name||id)+'　最終更新 '+(d.updatedAt||'不明');
+    $('preNote').hidden=!/-PRE$/.test(String(id));
     const ms=d.matches||[];
     makeBadges(collectTeams(ms),tkey,name);
     S.rounds=buildRounds(ms);
