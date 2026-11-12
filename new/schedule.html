@@ -8,11 +8,11 @@
 <link rel="apple-touch-icon" href="../results/apple-touch-icon.png">
 <meta name="robots" content="noindex,nofollow">
 <title>年間日程表 | 北海道学生サッカー連盟</title>
-<meta name="description" content="北海道学生サッカーの年間日程表（PDF）。リーグ戦の全試合の日付・会場・当番校">
+<meta name="description" content="北海道学生サッカーの年間日程表・結果（PDF）。リーグ戦の全試合を節ごとに">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="北海道学生サッカー連盟">
 <meta property="og:title" content="年間日程表 | 北海道学生サッカー連盟">
-<meta property="og:description" content="北海道学生サッカーの年間日程表（PDF）。リーグ戦の全試合の日付・会場・当番校">
+<meta property="og:description" content="北海道学生サッカーの年間日程表・結果（PDF）。リーグ戦の全試合を節ごとに">
 <meta property="og:url" content="https://www.jufahokkaido.com/new/schedule.html">
 <meta property="og:image" content="https://www.jufahokkaido.com/new/img/ogp.png">
 <meta property="og:image:width" content="1200">
@@ -258,7 +258,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   <div class="eyebrow">SCHEDULE</div><h1 id="title">年間日程表</h1>
 </div></section>
 <main class="wrap main">
-  <p class="note" style="margin:0 0 16px">リーグ戦の全試合の日付・キックオフ・会場・当番校・帯同審判を、PDFで見られます。日程が変わると、自動で新しいPDFになります。<br>スマホでは「開く」を押すと、PDFが開きます（保存・印刷もできます）。</p>
+  <p class="note" style="margin:0 0 16px">リーグ戦の全試合を、節ごとにまとめたPDFです。日付・キックオフ・会場・当番校・帯同審判と、<b>試合の結果</b>が入っています。結果が確定したり日程が変わったりすると、自動で新しいPDFになります。<br>スマホでは「開く」を押すと、PDFが開きます（保存・印刷もできます）。</p>
   <div class="sclist" id="list"><span class="sk"></span><span class="sk"></span></div>
   <div class="viewer" id="viewer" hidden><div class="sechead"><h2><small>PREVIEW</small><span id="vname"></span></h2></div><iframe id="frame" title="日程表のPDF"></iframe></div>
 </main>
@@ -280,7 +280,7 @@ $('menu').addEventListener('click',()=>{const o=$('nav').classList.toggle('open'
   let d=null;
   for(let i=0;i<3&&!d;i++){try{const r=await fetch('../results/data/schedule.json',{cache:'no-store'});if(r.ok)d=await r.json();else if(r.status===404)break}catch(_){await new Promise(ok=>setTimeout(ok,700*(i+1)))}}
   if(!d||!(d.list||[]).length){$('list').innerHTML='<div class="card"><p class="empty">日程表はまだありません。日程が決まると、ここにPDFが出ます。</p></div>';return}
-  $('title').textContent=d.year+'年度 年間日程表';document.title=d.year+'年度 年間日程表 | 北海道学生サッカー連盟';
+  $('title').textContent=d.year+'年度 年間日程表・結果';document.title=d.year+'年度 年間日程表 | 北海道学生サッカー連盟';
   const url=x=>'../results/'+x.path;
   $('list').innerHTML=d.list.map((x,i)=>'<div class="scard'+(x.all?' main':'')+'"><div><h3>'+esc(x.all?x.name:x.short||x.name)+'</h3><p>'+x.matches+'試合'+(x.from?'　'+esc(md(x.from))+'〜'+esc(md(x.to)):'')+'</p></div>'+
     '<div class="acts"><a class="btn'+(x.all?' p':'')+'" href="'+esc(url(x))+'" target="_blank" rel="noopener">開く（PDF）</a><button class="btn" type="button" data-i="'+i+'">ここで見る</button></div></div>').join('');
