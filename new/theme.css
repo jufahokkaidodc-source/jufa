@@ -84,7 +84,7 @@ tr.me td{background:#2a1416}
 
 /* エンブレム（順位表・ランキング・日程・参加クラブなど）：白い丸い台にのせず、黒地の上にそのまま（2026-11 事務局）
    ・黒地用の白い版（チーム紹介「エンブレム（暗い背景用）」）があれば、それを出す
-   ・ないときは普通のエンブレムに、細い白いふちを付けて黒地から浮かせる（トップの対戦カードと同じやり方）
+   ・ないときは普通のエンブレムに、ごくうすい白いふち（0.6px）を付けて黒地から浮かせる。ふちを太くすると、エンブレムの白い縁と重なって大きく見えるため
    ・白いヘッダーの上（CLUBS の列）は、普通のエンブレムをそのまま */
 .crest.img{background:transparent!important;border-radius:0!important;box-shadow:none!important}
 .crest.img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
@@ -92,7 +92,7 @@ tr.me td{background:#2a1416}
 .crest.img.hasdark .ed{display:block!important}
 .crest.img:not(.hasdark) .el{display:block!important}
 .crest.img:not(.hasdark) .ed{display:none!important}
-.crest.img:not(.hasdark) img{filter:drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff) drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff)}
+.crest.img:not(.hasdark) img{filter:drop-shadow(0 0 .6px rgba(255,255,255,.75))}
 .club>.crest.img{background:transparent!important;border:0!important}
 .clubbar .crest.img .el{display:block!important}
 .clubbar .crest.img .ed{display:none!important}
