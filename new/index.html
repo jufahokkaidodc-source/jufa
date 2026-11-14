@@ -722,6 +722,9 @@ html{scroll-padding-top:0}
 
 /* 対戦カード：上は大学ごとの背景と筆文字（左右50%ずつ）、下は 左：ホーム／まん中：スコア／右：アウェイ */
 .mv.art{--ah:calc(var(--mvh) - 300px)}
+/* 下の帯はスライドの下に寄せ、上の画像はその上の端までぴったり（高さは mvArtFit が測って --ah に入れる）。筆文字は画像のまん中 */
+.mv.art .mv-in{padding-top:0;padding-bottom:48px;justify-content:flex-end}
+.mv.post .mv-in{padding-bottom:48px}
 .mv.art .mv-art{justify-content:stretch}
 .mv-art .pic{flex:1 1 50%;width:50%;height:100%;overflow:hidden;position:relative}
 .mv-art .pic img{position:absolute;top:0;left:50%;height:100%;width:auto;max-width:none;translate:-50% 0;display:block}
@@ -757,10 +760,15 @@ html{scroll-padding-top:0}
 .ps .rl{font-size:15px;gap:8px 18px}.ps .rp b{font-size:19px}
 
 /* チーム紹介カード：写真の代わりに共通グラフィック */
-.club .cv.jbgc:after{display:none}
+.club.jbgc{background:#0a0a0a;border-color:#2a2a2a}
+.club.jbgc .cv{background:none}.club.jbgc .cv:after{display:none}
+.club.jbgc .cb strong{color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.club.jbgc:hover{border-color:#555}
 
 @media(max-width:680px){
   .mv.art{--ah:calc(var(--mvh) - 250px)}
+  .mv.art .mv-in{padding-top:0;padding-bottom:46px;justify-content:flex-end}
+  .mv.post .mv-in{padding-bottom:46px}
   /* スマホ：半分の幅より画像が広いので、それぞれの半分のまん中に置く（筆文字が切れないように） */
   .mv-art .pic.l img,.mv-art .pic.r img{left:50%;right:auto;translate:-50% 0;-webkit-mask-image:none;mask-image:none}
   .exg{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -1044,10 +1052,10 @@ function collectTeams(ms){const map=new Map();for(const m of ms)for(const t of [
 function clubCard(t,href){
   const p=PROF.get(tkey(t))||PROF.get(typeof t==='object'?t.univ:'');
   const cr=crest(t),c=(cr.match(/--c:(#[0-9a-f]{3,8})/i)||[])[1]||'#145ec9';
-  // 写真は使わず、共通グラフィック（TRIPLE STRIKE）をチームの色で。色はチーム紹介の色（大学カラーマスター）。ないときは JUFA の赤
+  // 写真は使わず、カード全体を共通グラフィック（TRIPLE STRIKE）に。色はチーム紹介の色（大学カラーマスター）。ないときは JUFA の赤
   const hx=v=>/^#[0-9a-f]{6}$/i.test(v||'')?v:'';
-  const cv='<span class="cv jbgc" data-jbg="triple-strike"'+(hx(p?.color)?' data-color="'+esc(p.color)+'"':'')+(hx(p?.color2)?' data-color2="'+esc(p.color2)+'"':'')+'></span>';
-  return '<a class="club" href="'+esc(href)+'" style="--c:'+c+'">'+cv+cr+'<span class="cb"><strong>'+esc(typeof t==='object'?(t.name||t.short||''):t)+'</strong></span></a>';
+  const dc=(hx(p?.color)?' data-color="'+esc(p.color)+'"':'')+(hx(p?.color2)?' data-color2="'+esc(p.color2)+'"':'');
+  return '<a class="club jbgc" data-jbg="triple-strike"'+dc+' href="'+esc(href)+'" style="--c:'+c+'"><span class="cv"></span>'+cr+'<span class="cb"><strong>'+esc(typeof t==='object'?(t.name||t.short||''):t)+'</strong></span></a>';
 }
 function renderClubs(teams,id){
   $('clubbar').parentNode.classList.toggle('ready',teams.length>0);
@@ -1233,6 +1241,11 @@ function mvArt(m){
   box.innerHTML='<div class="fill l" aria-hidden="true">'+im(h,'')+'</div><div class="fill r" aria-hidden="true">'+im(a,'')+'</div>'+pic(h,m.home,'l')+pic(a,m.away,'r');
   return true;
 }
+/* 対戦カード：上の画像の高さを、下の帯（.kx）の上の端までにする */
+function mvArtFit(){const mv=$('mv');if(!mv)return;const kx=mv.classList.contains('art')&&mv.querySelector('.kx');
+  if(!kx){mv.style.removeProperty('--ah');return}
+  const t=Math.round(kx.getBoundingClientRect().top-mv.getBoundingClientRect().top);if(t>80)mv.style.setProperty('--ah',t+'px');}
+addEventListener('resize',()=>requestAnimationFrame(mvArtFit));
 document.getElementById('mv')?.classList.add('bg-name');
 /* スマホ：縦書きの大学名を、それぞれの半分の外側に、上からエンブレムの上のほうまでに入る大きさにする（高さは変えない） */
 function mvNmFit(){
@@ -1299,6 +1312,7 @@ function showMV(i){
     const info=(dm?md+(ko?' '+ko:'')+'　':'')+'📍 '+vn(m.venue||'会場未定');
     $('mvMatch').innerHTML='<div class="kx">'+side(m.home,'h')+'<div class="kcn">'+mid+cen+'</div>'+side(m.away,'a')+'</div><div class="kxi">'+info+'</div>';
     const [h1,a1]=matchColors(m);$('mvMatch').style.setProperty('--hc',h1);$('mvMatch').style.setProperty('--ac',a1);
+    requestAnimationFrame(mvArtFit);
   }
   $('mvBtn').href=detail(S.id,done||lv?m.matchId:'');
   // 画像のときは「試合終了」「速報」の札をボタンにまとめる（1つにする）
