@@ -698,6 +698,19 @@ html{scroll-padding-top:0}
   .ps-final .pfs .pe{width:64px}.ps-final .pfs b{font-size:14px}.ps-final .pfsc b{font-size:46px}
   .mv.post .mv-in>.mv-btn{margin-top:14px;min-height:42px;font-size:14px}
 }
+/* ───── スライドの高さをそろえる（2026-11）：対戦カード・結果・表彰・来季の案内を、すべて同じ高さに ─────
+ * PC：画面の幅と高さに合わせて 560〜740px。対戦カードの大学画像は、この高さから下の帯（約245px）を引いた高さ
+ * スマホ：大学画像（横幅の84%の高さ）＋下の帯が入る高さ。結果・表彰のスライドも同じ高さにして、中身はまん中に */
+.mv{--mvh:clamp(560px,min(52vw,calc(100vh - 160px)),740px)}
+.mv .mv-in,.mv.post .mv-in,.mv.art .mv-in{min-height:var(--mvh);box-sizing:border-box}
+.mv.art{--ah:calc(var(--mvh) - 245px)}
+.mv.art .mv-in{justify-content:center}
+.mv.post .mv-in{justify-content:center}
+@media(max-width:680px){
+  .mv{--mvh:max(545px,calc(84vw + 215px))}
+  .mv.art{--ah:84vw}
+  .mv .mv-in,.mv.post .mv-in,.mv.art .mv-in{min-height:var(--mvh)}
+}
 </style>
 <script src="./site.js"></script>
 <script src="./brand-bg.js"></script>
