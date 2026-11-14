@@ -661,9 +661,11 @@ html{scroll-padding-top:0}
 .pr{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);grid-template-areas:"h s a";align-items:center;gap:2px 12px;padding:8px 14px;border-radius:10px;background:rgba(10,10,10,.6)}
 .pr .pnote{grid-area:n;font-size:11.5px;opacity:.85}.pr .pt{font-size:clamp(14px,1.6vw,18px);font-weight:700;opacity:.6}.pr .pt.h{grid-area:h;text-align:right}.pr .pt.a{grid-area:a;text-align:left}
 .pol.legs{grid-template-columns:1fr;gap:6px;width:min(900px,100%)} /* 入替戦：左 1st leg・右 2nd leg */
-.ptie{display:grid;grid-template-columns:minmax(0,1fr);gap:4px}.pol.legs .ptie{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:10px}
+.ptie{display:grid;grid-template-columns:minmax(0,1fr);gap:4px}.pol.legs .ptie{grid-template-columns:repeat(2,minmax(0,1fr)) 5.5em;column-gap:10px}
+.pagc{display:flex;align-items:center;justify-content:center;border-radius:10px;background:#E60012;color:#fff}.pagc b{font-family:var(--num);font-weight:800;font-size:clamp(24px,2.6vw,32px)}
+.pagm{display:none}.pagm b{font-family:var(--num);font-weight:800;color:#fff}
 .ptie .pnote{grid-column:1/-1;font-size:11.5px;opacity:.85;text-align:center}
-.plg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:10px;text-align:center;font-family:var(--num);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#E60012}
+.plg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) 5.5em;column-gap:10px;text-align:center;font-family:var(--num);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#E60012}
 .pr.none{display:flex;justify-content:center;opacity:.5}
 .pr .pt.win{opacity:1;font-weight:900} /* 勝ったチームを白く太く（負けたチームはうすく） */
 .pr b{grid-area:s;font-family:var(--num);font-weight:800;font-size:clamp(24px,2.6vw,32px);white-space:nowrap}.pr b small{font-size:.5em;margin-left:6px;opacity:.85}
@@ -687,7 +689,7 @@ html{scroll-padding-top:0}
   .exg{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.exc{padding:6px 8px;gap:1px}.ep{gap:6px}.ep b{font-size:13px}.ep span{font-size:10.5px}.ek{font-size:13px}
   .pg{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.pol{grid-template-columns:1fr;gap:4px}
   /* 入替戦：1試合1行（左に組み合わせ、右に結果） */
-  .pr{padding:4px 6px;gap:0 5px}.ptie .pnote{font-size:10px;line-height:1.2}.pr .pt{font-size:12px}.pr b{font-size:19px}.pr b small{display:block;margin:0;font-size:9px;text-align:center}.pol.legs{gap:5px}.pol.legs .ptie,.plg{column-gap:5px}.plg{font-size:11px}.pc{padding:10px 6px}.pc .pe{width:40px}.pc b{font-size:16px}
+  .pr{padding:4px 6px;gap:0 5px}.ptie .pnote{font-size:10px;line-height:1.2}.pr .pt{font-size:12px}.pr b{font-size:19px}.pr b small{display:block;margin:0;font-size:9px;text-align:center}.pol.legs{gap:5px}.pol.legs .ptie,.plg{grid-template-columns:repeat(2,minmax(0,1fr))}.pagc,.plg .pag{display:none}.pagm{display:inline;font-size:11px;opacity:1}.pagm b{font-size:14px}.pol.legs .ptie,.plg{column-gap:5px}.plg{font-size:11px}.pc{padding:10px 6px}.pc .pe{width:40px}.pc b{font-size:16px}
   .ps-final .pfs .pe{width:64px}.ps-final .pfs b{font-size:14px}.ps-final .pfsc b{font-size:46px}
   .mv.post .mv-in>.mv-btn{margin-top:14px;min-height:42px;font-size:14px}
 }
@@ -1361,7 +1363,13 @@ function showPost(m){
     const ties=[];m.list.forEach(f=>{const k=[f.home.id,f.away.id].sort().join('|');let t=ties.find(x=>x.k===k);if(!t)ties.push(t={k,ms:[]});t.ms.push(f)});
     ties.forEach(t=>t.ms.sort((a,b)=>String(a.date||'').localeCompare(String(b.date||''))));
     const two=ties.some(t=>t.ms.length>1);
-    html='<div class="ps ps-po">'+head('PLAYOFF RESULTS','入替戦の結果')+'<div class="pol'+(two?' legs':'')+'">'+(two?'<div class="plg"><span>1st leg</span><span>2nd leg</span></div>':'')+ties.map(t=>'<div class="ptie"><span class="pnote">'+esc(t.ms[0].note||t.ms[0].round||'')+'</span>'+cell(t.ms[0])+(two?cell(t.ms[1]):'')+'</div>').join('')+'</div></div>';
+    /* 2試合の合計（ホーム・アウェイが入れ替わっても、チームごとに足す）。同点で2戦目にPKがあればPKの勝者を太字に */
+    const agg=t=>{if(t.ms.length<2)return null;const A=t.ms[0].home,B=t.ms[0].away;let a=0,b=0;
+      t.ms.forEach(f=>{const h=+f.score.home||0,w=+f.score.away||0;if(f.home.id===A.id){a+=h;b+=w}else{a+=w;b+=h}});
+      let win=a>b?A:b>a?B:null;if(!win){const l=t.ms[t.ms.length-1],v=l.pk||l.score.pk;if(v&&v.home!=null)win=winnerOf(l)}
+      return {A,B,a,b,win}};
+    html='<div class="ps ps-po">'+head('PLAYOFF RESULTS','入替戦の結果')+'<div class="pol'+(two?' legs':'')+'">'+(two?'<div class="plg"><span>1st leg</span><span>2nd leg</span><span class="pag">合計</span></div>':'')
+      +ties.map(t=>{const g=two?agg(t):null;return '<div class="ptie"><span class="pnote">'+esc(t.ms[0].note||t.ms[0].round||'')+(g?'<span class="pagm">　合計 <b>'+g.a+'-'+g.b+'</b></span>':'')+'</span>'+cell(t.ms[0])+(two?cell(t.ms[1])+'<div class="pagc">'+(g?'<b>'+g.a+'-'+g.b+'</b>':'—')+'</div>':'')+'</div>'}).join('')+'</div></div>';
   }else if(m.post==='division'){
     const divs=[...new Set(m.list.map(x=>x.div))];
     html='<div class="ps ps-po">'+head('NEXT SEASON DIVISION','翌年度の所属')+'<div class="dvg">'+divs.map(v=>'<div class="dv"><span class="ek">'+esc(v)+'</span>'+m.list.filter(x=>x.div===v).map(x=>'<b>'+esc(x.team.name||x.team.short)+'</b>').join('')+'</div>').join('')+'</div></div>';
