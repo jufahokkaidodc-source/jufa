@@ -771,7 +771,8 @@ html{scroll-padding-top:0}
 .club.jbgc>.crest{width:104px;height:104px;margin-top:0;font-size:34px}
 .club.jbgc>.crest.two{font-size:28px}
 .club.jbgc .cb{padding:0}
-@media(max-width:680px){.club.jbgc{padding:16px 8px 14px;min-height:150px;gap:8px}.club.jbgc>.crest{width:76px;height:76px;margin-top:0;font-size:26px}.club.jbgc>.crest.two{font-size:21px}}
+.club.jbgc .cemb{width:112px}.club.jbgc .cemb img{filter:drop-shadow(0 0 1px rgba(255,255,255,.35)) drop-shadow(0 4px 10px rgba(0,0,0,.6))}
+@media(max-width:680px){.club.jbgc{padding:16px 8px 14px;min-height:150px;gap:8px}.club.jbgc>.crest{width:76px;height:76px;margin-top:0;font-size:26px}.club.jbgc>.crest.two{font-size:21px}.club.jbgc .cemb{width:84px}}
 .club.jbgc .cv{background:none}.club.jbgc .cv:after{display:none}
 .club.jbgc .cb strong{color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.8)}
 .club.jbgc:hover{border-color:#555}
@@ -1066,7 +1067,9 @@ function clubCard(t,href){
   // 写真は使わず、カード全体を共通グラフィック（TRIPLE STRIKE）に。色はチーム紹介の色（大学カラーマスター）。ないときは JUFA の赤
   const hx=v=>/^#[0-9a-f]{6}$/i.test(v||'')?v:'';
   const dc=(hx(p?.color)?' data-color="'+esc(p.color)+'"':'')+(hx(p?.color2)?' data-color2="'+esc(p.color2)+'"':'');
-  return '<a class="club jbgc" data-jbg="triple-strike"'+dc+' href="'+esc(href)+'" style="--c:'+c+'"><span class="cv"></span>'+cr+'<span class="cb"><strong>'+esc(typeof t==='object'?(t.name||t.short||''):t)+'</strong></span></a>';
+  // エンブレムは白い丸の台にのせず、そのまま出す（黒地用の白い版があればそれを使う。対戦カードと同じ）。エンブレムがないときは、これまでの丸い文字
+  const em=typeof t==='object'?bigEmb(t):'';
+  return '<a class="club jbgc" data-jbg="triple-strike"'+dc+' href="'+esc(href)+'" style="--c:'+c+'"><span class="cv"></span>'+(em?'<span class="pe cemb">'+em+'</span>':cr)+'<span class="cb"><strong>'+esc(typeof t==='object'?(t.name||t.short||''):t)+'</strong></span></a>';
 }
 function renderClubs(teams,id){
   $('clubbar').parentNode.classList.toggle('ready',teams.length>0);
