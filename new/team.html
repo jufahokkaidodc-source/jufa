@@ -586,7 +586,7 @@ async function json(file){
   if(DEMO)return demoData(file);
   const r=await fetch('../results/data/'+file,{cache:'no-store'});
   if(!r.ok)throw Error('HTTP '+r.status);
-  return r.json();
+  const d=await r.json();return window.jufaMergePO?jufaMergePO(d):d; // プレーオフ用に別に登録したチームをまとめる（site.js）
 }
 /* 各大学の手入力データ（new/data/teams.json）。無くても動く */
 async function loadProfiles(){

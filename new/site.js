@@ -64,3 +64,53 @@
     if (JSON.stringify(S) !== before) document.dispatchEvent(new CustomEvent('jufa-site'));
   }).catch(function () {});
 })();
+
+/* プレーオフ用に別に登録したチーム（例：Iリーグのプレーオフの「札幌大学サテライト」）を、リーグの同じチームにまとめる
+ *  システムでは、プレーオフに出るチームを別のチーム（ID が …-PO-… など）として登録している。
+ *  ホームページでは別のチーム（Cチーム）に見えないよう、同じ名前のリーグのチームに置きかえ、名簿・チーム紹介にも出さない。
+ *  まとめる条件：同じ大会に同じ名前のチームがほかにあり、そのチームが「プレーオフの試合にだけ出ている」か「ID に -PO- がある」 */
+(function () {
+  var PO = /プレーオフ|プレイオフ|play\s*off/i;
+  function nm(t) { return t && typeof t === 'object' ? String(t.name || '') : ''; }
+  function aliasMap(matches, teams) {
+    var seen = {}, inLeague = {}, byName = {};
+    (matches || []).forEach(function (m) {
+      [m.home, m.away].forEach(function (t) {
+        if (!t || typeof t !== 'object' || !t.id) return;
+        seen[t.id] = t;
+        if (!PO.test(String(m.round || '') + ' ' + String(m.kind || ''))) inLeague[t.id] = true;
+      });
+    });
+    (teams || []).forEach(function (t) { if (t && t.id && !seen[t.id]) seen[t.id] = t; });
+    Object.keys(seen).forEach(function (id) { var n = nm(seen[id]); if (n) (byName[n] = byName[n] || []).push(id); });
+    var map = {};
+    Object.keys(byName).forEach(function (n) {
+      var ids = byName[n]; if (ids.length < 2) return;
+      var main = ids.filter(function (id) { return inLeague[id] && !/-PO-/i.test(id); })[0] || ids.filter(function (id) { return !/-PO-/i.test(id); })[0];
+      if (!main) return;
+      ids.forEach(function (id) {
+        if (id === main) return;
+        if (/-PO-/i.test(id) || (matches && matches.length && !inLeague[id])) map[id] = seen[main];
+      });
+    });
+    return map;
+  }
+  /* 大会のデータ（試合）と名簿をまとめて直す。読みこんだ JSON をそのまま渡す */
+  window.jufaMergePO = function (d) {
+    if (!d || typeof d !== 'object') return d;
+    if (Array.isArray(d.matches)) {
+      var map = aliasMap(d.matches);
+      if (Object.keys(map).length) d.matches.forEach(function (m) {
+        if (m.home && map[m.home.id]) m.home = map[m.home.id];
+        if (m.away && map[m.away.id]) m.away = map[m.away.id];
+        if (m.winner && map[m.winner]) m.winner = map[m.winner].id;
+      });
+    }
+    if (Array.isArray(d.teams)) {
+      var tm = d.teams.map(function (x) { return x && x.team; }).filter(Boolean);
+      var map2 = aliasMap(null, tm);
+      if (Object.keys(map2).length) d.teams = d.teams.filter(function (x) { return !(x && x.team && map2[x.team.id]); });
+    }
+    return d;
+  };
+})();

@@ -1004,10 +1004,10 @@ async function json(file,keep){
       if(!r.ok)throw Error('HTTP '+r.status);
       const t=await r.text(),d=JSON.parse(t);
       if(keep)remember(file,t);
-      return d;
+      return window.jufaMergePO?jufaMergePO(d):d; // プレーオフ用に別に登録したチームをまとめる（site.js）
     }catch(e){err=e;if(i<n-1)await new Promise(ok=>setTimeout(ok,700*(i+1)))}
   }
-  if(keep)try{const t=localStorage.getItem(MEMO+file);if(t){showStale();return JSON.parse(t)}}catch(_){}
+  if(keep)try{const t=localStorage.getItem(MEMO+file);if(t){showStale();const d=JSON.parse(t);return window.jufaMergePO?jufaMergePO(d):d}}catch(_){}
   throw err;
 }
 function remember(file,t){
