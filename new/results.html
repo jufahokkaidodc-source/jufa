@@ -328,6 +328,7 @@ a.h2r:hover .sc b{color:var(--red)}
 .sharebox{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0 0}.sharebox button{min-height:40px;border-radius:999px;border:1px solid var(--line,#333);background:transparent;color:inherit;font:inherit;font-weight:700;padding:0 16px;cursor:pointer}.sharebox span{font-size:12px;color:var(--muted,#999);word-break:break-all}
 </style>
 <link rel="stylesheet" href="./theme.css">
+<link rel="stylesheet" href="./brand-bg.css">
 <script src="./site.js"></script>
 <style>
 /* 黒い背景（theme.css）の上での調整 */
@@ -366,6 +367,10 @@ a.h2r:hover .sc b{color:var(--red)}
 .subtabs a[aria-current=page]{background:var(--cc,var(--red));border-color:var(--cc,var(--red));color:var(--cc-on,#fff)}
 .sh{border-bottom-color:var(--cc,var(--red))}
 .pagehead .eyebrow{color:var(--cc-t,#ff3b47)}
+/* 大会のメインビジュアル（共通グラフィック）：高さは文字に合わせて、少しだけ上下をあける */
+.chero .pagehead{padding:30px 0 14px}
+.chero .pagehead p{color:#c9cdd1}
+@media(max-width:680px){.chero .pagehead{padding:20px 0 10px}}
 .mst .bars i.h,.ana-bars i{background:var(--cc,var(--red))}
 </style>
 </head>
@@ -388,6 +393,8 @@ a.h2r:hover .sc b{color:var(--red)}
   <div class="comptabs"><div class="wrap" id="comptabs"><button aria-current="page">読み込み中…</button></div></div>
 </header>
 
+<!-- 大会のメインビジュアル：共通グラフィック TRIANGLE ASCENT（JUFAの色）。brand-bg.js が図形を入れる -->
+<section class="chero" data-jbg="triangle-ascent" data-layout="left">
 <div class="wrap pagehead">
   <div class="eyebrow">RESULTS & RECORDS</div>
   <h1 id="compTitle">大会記録</h1>
@@ -397,6 +404,7 @@ a.h2r:hover .sc b{color:var(--red)}
   <div class="sharebox" id="shareBox" hidden><button type="button" id="shareBtn">↗ この大会を共有する</button><span id="shareNote" role="status"></span></div>
   <nav class="subtabs" id="subtabs" aria-label="記録の種類"></nav>
 </div>
+</section>
 
 <main class="wrap main" id="main"><div class="loading">読み込み中…</div></main>
 
@@ -407,6 +415,8 @@ a.h2r:hover .sc b{color:var(--red)}
   </div>
 </footer>
 
+<script src="./brand-bg.js"></script>
+<script>JUFABG.init();</script>
 <script src="./live.js"></script>
 <script>
 /* 順位の上がり下がり（前の試合日のあとの順位と比べる。rankPrev はホームページの書き出しが入れる） */

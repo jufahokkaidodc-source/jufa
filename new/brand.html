@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>共通グラフィック見本</title>
+<link rel="icon" href="../results/favicon.png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./brand-bg.css">
+<style>
+/* 共通グラフィック（背景5種類）の見本。運営・制作の確認用（検索には出さない） */
+*{box-sizing:border-box}
+body{margin:0;background:#0e0e0e;color:#f2f2f2;font-family:"Noto Sans JP",sans-serif}
+.top{padding:24px 16px 8px;max-width:1200px;margin:0 auto}
+.top h1{margin:0 0 6px;font-size:22px}.top p{margin:0;color:#9aa0a6;font-size:13px;line-height:1.7}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;max-width:1200px;margin:12px auto;padding:0 16px}
+.ctl button{font:inherit;font-size:13px;padding:8px 12px;border-radius:999px;border:1px solid #333;background:#1a1a1a;color:#ccc;cursor:pointer}
+.ctl button[aria-pressed=true]{background:#E60012;border-color:#E60012;color:#fff}
+.sec{max-width:1200px;margin:22px auto;padding:0 16px}
+.sec h2{font-family:"Barlow Condensed",sans-serif;font-size:26px;letter-spacing:.04em;margin:0 0 2px}
+.sec h2 small{font-family:"Noto Sans JP";font-size:12px;color:#9aa0a6;margin-left:8px;letter-spacing:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;margin-top:10px}
+.card{aspect-ratio:16/9;border-radius:10px;display:grid;place-items:center;text-align:center;padding:16px}
+.card .in b{display:block;font-size:clamp(18px,2.2vw,26px);font-weight:900}
+.card .in span{display:block;font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:13px;letter-spacing:.14em;color:#fff;opacity:.8}
+.card .in i{display:inline-block;margin-top:6px;font-style:normal;font-size:11px;padding:2px 8px;border-radius:999px;background:var(--jbg-a);color:#fff}
+.wide{aspect-ratio:auto;min-height:clamp(260px,34vw,420px);margin-top:10px}
+@media(max-width:680px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>JUFA Hokkaido 共通グラフィック 見本</h1>
+  <p>背景5種類 × JUFAの色・大学の色。大学の色は、チーム紹介に登録した色（results/data の名簿）から読み込んでいます。ここで色を決めることはしません。</p>
+</div>
+<div class="ctl" id="ctl" aria-label="装飾の強さ">
+  <button type="button" data-i="low">弱い</button><button type="button" data-i="normal" aria-pressed="true">ふつう</button><button type="button" data-i="high">強い</button><button type="button" data-i="off">装飾なし</button>
+</div>
+<main id="main"></main>
+<script src="./brand-bg.js"></script>
+<script>
+'use strict';
+const NAMES={'triangle-ascent':['01 TRIANGLE ASCENT','優勝・大会開幕・大会メインビジュアル'],'triple-strike':['02 TRIPLE STRIKE','標準。全大会共通・クラブ紹介・見出し・シーズンオフ'],'orbit':['03 ORBIT','試合結果・対戦カード・次節案内'],'monolith':['04 MONOLITH','個人表彰・最終順位・得点ランキング・記録'],'north-pulse':['05 NORTH PULSE','大会トップ・次年度案内・シーズンオフ・連盟紹介']};
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/* 見本に出す大学：名簿にある大学から（指示書の例の大学を先に） */
+const PICK=['札幌大学','星槎道都大学','札幌大谷大学','東海大学','北翔大学','北海道文教大学'];
+(async()=>{
+  const teams=[];
+  for(const f of ['2026-L1','2026-L2','2026-L3']){try{const r=await fetch('../results/data/'+f+'-roster.json',{cache:'no-store'});if(!r.ok)continue;const d=await r.json();
+    for(const t of d.teams||[])if(t.profile&&t.team&&!teams.some(x=>x.univ===t.team.univ))teams.push({univ:t.team.univ,name:t.team.name,p:t.profile});}catch(e){}}
+  const list=[{univ:null,name:'JUFA（大学の指定なし）',p:null},...PICK.map(u=>teams.find(t=>t.univ===u)).filter(Boolean)];
+  let h='';
+  for(const v of JUFABG.variants){const [en,use]=NAMES[v];
+    h+='<section class="sec"><h2>'+en+'<small>'+esc(use)+'</small></h2>'+
+      '<div class="card wide" data-v="'+v+'" data-k="0"><div class="in"><span>'+esc(en.slice(3))+'</span><b>2026年度 第45回北海道学生サッカーリーグ 1部</b><i>JUFA</i></div></div>'+
+      '<div class="grid">'+list.slice(1).map((t,k)=>'<div class="card" data-v="'+v+'" data-k="'+(k+1)+'"><div class="in"><span>'+esc(en.slice(3))+'</span><b>'+esc(t.name)+'</b><i>'+esc(t.p.color||'')+'</i></div></div>').join('')+'</div></section>';}
+  document.getElementById('main').innerHTML=h;
+  const paint=i=>document.querySelectorAll('.card').forEach(el=>{const t=list[+el.dataset.k];JUFABG.apply(el,Object.assign({variant:el.dataset.v,intensity:i==='off'?'normal':i,deco:i!=='off'},JUFABG.fromProfile(t&&t.p)));});
+  paint('normal');
+  document.getElementById('ctl').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#ctl button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));paint(b.dataset.i);});
+})();
+</script>
+</body>
+</html>
