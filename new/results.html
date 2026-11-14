@@ -447,7 +447,7 @@ const sd=ymd=>{const m=String(ymd||'').match(/(\d{4})-(\d{2})-(\d{2})/);if(!m)re
 
 /* ---------- データ（全体システムが書き出した JSON。同じファイルは1回だけ読む） ---------- */
 const JC={};
-const getJSON=f=>JC[f]||(JC[f]=fetch('../results/data/'+f,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('データを読み込めませんでした（'+r.status+'）');return r.json();}).catch(e=>{delete JC[f];throw e;}));
+const getJSON=f=>JC[f]||(JC[f]=fetch('../results/data/'+f,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('データを読み込めませんでした（'+r.status+'）');return r.json();}).then(d=>window.jufaMergePO?jufaMergePO(d):d).catch(e=>{delete JC[f];throw e;}));
 
 /* ---------- エンブレム・チームカラー（チームページと同じ考え方） ---------- */
 const PALETTE=['#145ec9','#0f7a6b','#7b3fb5','#c0392b','#1d6fa5','#b35c00','#2e7d32','#ad1457','#37474f','#5d4dbf'];
