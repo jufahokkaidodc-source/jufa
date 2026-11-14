@@ -1240,7 +1240,8 @@ function mvArt(m){
   mv.classList.toggle('art',!!(h&&a));
   if(!(h&&a)){box.innerHTML='';return false}
   // 画像は「背景と筆文字」だけ（エンブレム・大学名は入っていない）。エンブレムと大学名は下のスコアの帯に出す
-  const im=(u,alt)=>'<img src="'+u+'.webp" srcset="'+u+'-s.webp 540w, '+u+'.webp 1086w" sizes="(max-width:680px) 50vw, 560px" alt="'+alt+'" decoding="async">';
+  const V='?v=20261114c'; // 画像を差しかえたら変える（古い画像がスマホに残らないように）
+  const im=(u,alt)=>'<img src="'+u+'.webp'+V+'" srcset="'+u+'-s.webp'+V+' 540w, '+u+'.webp'+V+' 1086w" sizes="(max-width:680px) 50vw, 560px" alt="'+alt+'" decoding="async">';
   const pic=(u,t,c)=>'<div class="pic '+c+'">'+im(u,esc((t.univ||'')+'の筆文字'))+'</div>';
   box.innerHTML='<div class="fill l" aria-hidden="true">'+im(h,'')+'</div><div class="fill r" aria-hidden="true">'+im(a,'')+'</div>'+pic(h,m.home,'l')+pic(a,m.away,'r');
   return true;
