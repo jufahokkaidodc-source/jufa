@@ -556,9 +556,9 @@ html{scroll-padding-top:0}
 .mv-art .pic.l{animation:mvPicL .7s cubic-bezier(.2,.8,.2,1) both}.mv-art .pic.r{animation:mvPicR .7s cubic-bezier(.2,.8,.2,1) both}
 @keyframes mvPicL{from{opacity:0;transform:translateX(-40px)}}@keyframes mvPicR{from{opacity:0;transform:translateX(40px)}}
 @media(prefers-reduced-motion:reduce){.mv-art .pic{animation:none!important}}
-/* チームの区別（A・B・U-22・サテライトなど）：大学の正式名称の右上に札で（画像の右から13%・上から77%のところが札の右下）
+/* チームの区別（A・B・U-22・サテライトなど）：大学の正式名称の右上に札で（画像の右から12%・上から74.5%のところが札の右下。正式名称は上から78%より下）
    スマホで左右が切れても見えるように、右は11%より内側に */
-.mv-art .tg{position:absolute;right:13%;bottom:23%;padding:.25em .75em;border-radius:6px;background:var(--red,#E60012);color:#fff;border:2px solid #fff;
+.mv-art .tg{position:absolute;right:12%;bottom:25.5%;padding:.25em .75em;border-radius:6px;background:var(--red,#E60012);color:#fff;border:2px solid #fff;
   font-family:var(--num),"Noto Sans JP",sans-serif;font-size:clamp(11px,calc(var(--ah)*.032),22px);font-weight:900;line-height:1.2;letter-spacing:.03em;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.5);rotate:-3deg}
 .mv.art .mv-bg:after,.mv.art .mv-nm,.mv.art .mv-tm{display:none!important}
 .mv.art .mv-in{display:flex;flex-direction:column;align-items:center;justify-content:center;height:var(--ah);min-height:0;padding:0 0 calc(var(--ah)*.14)}
@@ -566,27 +566,26 @@ html{scroll-padding-top:0}
 /* 境目のカード：画像の下の大学名（高さの75%より下）にかからない高さに */
 .mv.art .mv-c{position:relative;z-index:1;width:clamp(170px,calc(var(--ah)*.38),280px);max-width:none;padding:16px 14px;border-radius:14px;background:rgba(12,12,12,.86);border:1px solid rgba(255,255,255,.22);box-shadow:0 10px 30px rgba(0,0,0,.45)}
 .mv.art .mv-c .dt{font-size:clamp(40px,calc(var(--ah)*.11),76px)}
-.mv.art .mv-c .ko{font-size:clamp(18px,calc(var(--ah)*.045),30px)}
+.mv.art .mv-c .ko{font-size:clamp(18px,calc(var(--ah)*.045),30px)!important}
 .mv.art .mv-c .vn{font-size:12px}
 .mv.art .mv-c .dt.tbd{font-size:clamp(26px,calc(var(--ah)*.05),40px);white-space:normal}
 .mv.art .mv-c .bx{margin-top:6px;font-size:13px;padding:4px 16px}
 .mv.art .mv-in>.mv-btn{align-self:center;margin:14px 0 0;min-height:44px;padding:0 22px;font-size:14px;gap:6px}
 .mv.art .mv-in>.mv-dots{position:absolute;left:50%;bottom:4px;translate:-50% 0;margin:0;z-index:2}
 .mv .vn2{display:none}
-/* スマホ：画像は横いっぱい。境目には大会・日付・キックオフだけを小さく重ね、会場とボタンは画像の下に */
+/* スマホ：画像は横いっぱい。画像の上には何も重ねず（筆文字・大学名を隠さない）、節・日時（結果）・会場・ボタンは画像の下に */
 @media(max-width:680px){
   .mv.art{--ah:84vw}
   .mv.art .mv-in{height:auto;justify-content:flex-start;padding:var(--ah) 16px 6px}
   .mv.art .mv-bg{display:none}.mv.art{background:var(--bg)}
-  /* カードは、筆文字の下・エンブレムの横（高さの40%から）。幅は画像の内側1/4ほど（筆文字とエンブレムにかからない） */
-  .mv.art .mv-c{position:absolute;top:calc(var(--ah)*.40);left:50%;translate:-50% 0;width:104px;padding:8px 4px;gap:1px;border-radius:12px}
-  .mv.art .mv-c .cp{font-size:10.5px;line-height:1.4}
-  .mv.art .mv-c .dt{font-size:30px}.mv.art .mv-c .dt.tbd{font-size:17px}.mv.art .mv-c .ko{font-size:15px}
-  .mv.art .mv-c .vn{display:none}.mv.art .mv-c .bx{font-size:11px;padding:2px 10px;margin-top:4px}
-  .mv.art .vn2{display:block;margin-top:12px;font-size:13px;font-weight:700;text-align:center;line-height:1.5}
+  .mv.art .mv-c{position:static;translate:none;width:auto;max-width:none;padding:12px 0 0;gap:2px;background:none;border:0;border-radius:0;box-shadow:none}
+  .mv.art .mv-c .cp{font-size:12px}
+  .mv.art .mv-c .dt{font-size:44px}.mv.art .mv-c .dt.tbd{font-size:24px}.mv.art .mv-c .ko{font-size:20px!important}
+  .mv.art .mv-c .vn{font-size:13px}.mv.art .mv-c .bx{font-size:12px;padding:3px 12px;margin-top:6px}
+  .mv.art .vn2{display:none!important}
   .mv.art .mv-in>.mv-btn{margin:10px 0 0;min-height:40px;font-size:13px}
   .mv.art .mv-in>.mv-dots{position:static;translate:none;margin-top:6px}
-  .mv-art .tg{border-width:1.5px;border-radius:4px}
+  .mv-art .tg{border-width:1.5px;border-radius:4px;font-size:10px;padding:.2em .5em;letter-spacing:0}  /* エンブレムにかからない大きさ */
 }
 </style>
 <script src="./site.js"></script>
@@ -1082,7 +1081,7 @@ function showMV(i){
   const [hc,ac]=matchColors(m);$('mvBg').style.setProperty('--hc',hc);$('mvBg').style.setProperty('--ac',ac);
   const lt=(c,t)=>(COLOR_EMBLEM.includes(t.univ||'')?' lp':WHITE_GLOW.includes(t.univ||'')?' wg':'')+(isRed(c)?' rd':lum(c)>.15?' lt':''); // 白い光の大学・赤い背景・明るい背景
   $('mvMatch').innerHTML=tm(m.home,eh,' l'+lt(hc,m.home))+
-    '<div class="mv-c"><span class="cp">'+esc([MV.label,m.round].filter(Boolean).join('　'))+'</span>'+
+    '<div class="mv-c"><span class="cp">'+esc(art?(m.round||''):[MV.label,m.round].filter(Boolean).join('　'))+'</span>'+
       (sc?'<span class="dt">'+sc+'</span><span class="ko" style="font-size:clamp(18px,3vw,26px)">'+(dm?(+dm[2])+'.'+dm[3]:'')+(m.kickoff?' '+esc(m.kickoff)+'KO':'')+'</span>':'<span class="dt'+(dm?'':' tbd')+'">'+dt+'</span>'+(m.kickoff?'<span class="ko">'+esc(m.kickoff)+'KO</span>':''))+
       '<span class="vn">'+vn(m.venue||'会場未定')+'</span>'+
       (lv?'<span class="bx live">'+esc(JUFA_LIVE.label(lv))+'</span>':done?'<span class="bx">試合終了</span>':'')+ // 「あと○日」「本日開催」は出さない（試合終了・速報だけ）
