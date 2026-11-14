@@ -601,6 +601,91 @@ html{scroll-padding-top:0}
   .kxi{font-size:12px;margin-top:8px}
   .mv.art .mv-in>.mv-btn{margin-top:10px;min-height:40px;font-size:13px;padding:0 18px}
 }
+
+/* ───── 大会結果のスライド（全大会共通・2026-11）：黒地・白い太字・大学の色・筆の柄（TYPE C）。画像は使わず、データから作る ───── */
+.mv.post .mv-nm,.mv.post .mv-art,.mv.post .mv-tm{display:none!important}
+.mv.post .mv-in{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:clamp(420px,44vw,620px);padding:30px 16px 16px;background:radial-gradient(70% 70% at 50% 45%,rgba(0,0,0,.55),rgba(0,0,0,.2))}
+.mv.post .mv-match{display:block;width:min(1100px,100%)}
+.mv.post .mv-in>.mv-btn{align-self:center;margin:20px 0 0;min-height:46px;padding:0 26px;font-size:15px}
+.mv.post .mv-in>.mv-dots{position:static;margin:10px auto 0}
+.ps{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;animation:mvCIn .6s ease both;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.ps .psh{display:flex;flex-direction:column;align-items:center;gap:4px}
+.ps .eb{font-size:13px;font-weight:700;letter-spacing:.08em;opacity:.92}
+.ps .ttl{display:block;font-family:var(--num);font-weight:800;font-style:italic;font-size:clamp(34px,5vw,68px);line-height:.95;letter-spacing:.02em;transform:skewX(-6deg);overflow-wrap:anywhere}
+.ps .ttl.big{font-size:clamp(56px,10vw,136px);letter-spacing:.04em}
+.ps .ja{font-size:14px;font-weight:900;letter-spacing:.06em}.ps .ja b{color:#fff;background:var(--red,#E60012);padding:1px 8px;border-radius:4px;margin-left:4px}
+.pe{display:grid;place-items:center;flex:none;width:clamp(64px,7vw,100px);aspect-ratio:1}
+.pe img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5))}
+.pe.xl{width:clamp(110px,13vw,190px)}.pe.lg{width:clamp(90px,11vw,150px)}.pe.sm{width:clamp(44px,4.6vw,60px)}
+.pe-ini{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;border:2px solid #fff;font-weight:900;font-size:clamp(16px,2vw,26px)}
+.ps .tn{font-size:clamp(26px,3.6vw,48px);font-weight:900;line-height:1.2}
+.ps .cn{font-size:13px;font-weight:700;opacity:.9}
+/* 最終順位：1位を真ん中に高く（ゴールド・シルバー・ブロンズ） */
+.pod{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.6vw,20px);align-items:end;width:min(860px,100%)}
+.pod li{--m:#999;display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 10px 14px;border-radius:12px;background:rgba(10,10,10,.6);border-top:5px solid var(--m);min-width:0}
+.pod li.gold{--m:#D4AF37;order:2;padding-top:26px}.pod li.silver{--m:#C8CCD0;order:1}.pod li.bronze{--m:#C77B3B;order:3}
+.pod .rk{font-family:var(--num);font-weight:800;font-size:clamp(30px,3.6vw,48px);line-height:1;color:var(--m)}.pod .rk small{font-family:"Noto Sans JP";font-size:.4em;margin-left:2px}
+.pod b{font-size:clamp(14px,1.6vw,20px);line-height:1.3;overflow-wrap:anywhere}.pod .pt{font-size:12px;opacity:.85}
+.pod li.gold .pe{width:clamp(80px,9vw,120px)}
+/* 決勝・最終結果 */
+.ps-final .pfr{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:clamp(10px,2vw,32px);width:min(900px,100%)}
+.ps-final .pfs{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0}.ps-final .pfs .pe{width:clamp(76px,9vw,130px)}
+.ps-final .pfs b{font-size:clamp(15px,1.9vw,24px);line-height:1.3;overflow-wrap:anywhere}
+.ps-final .plb{font-size:12px;font-weight:900;padding:2px 12px;border-radius:999px;background:#C8CCD0;color:#111}.ps-final .pfs.win .plb{background:#D4AF37}.ps-final .plb:empty{display:none}
+.ps-final .pfsc{display:flex;flex-direction:column;align-items:center}.ps-final .pfsc b{font-family:var(--num);font-weight:800;font-size:clamp(48px,7vw,96px);line-height:1;white-space:nowrap}.ps-final .pfsc i{font-style:normal;opacity:.6;margin:0 .15em}
+.ps-final .pfsc span{font-family:var(--num);font-weight:800;font-size:16px;opacity:.9}
+/* ベスト4 */
+.b4{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;width:min(960px,100%)}
+.b4 li{--m:rgba(255,255,255,.35);display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 8px;border-radius:12px;background:rgba(10,10,10,.6);border-top:4px solid var(--m);min-width:0}
+.b4 li.gold{--m:#D4AF37}.b4 li.silver{--m:#C8CCD0}.b4 b{font-size:clamp(13px,1.4vw,18px);line-height:1.3;overflow-wrap:anywhere}.b4 span{font-size:12px;font-weight:900;color:var(--m)}
+/* 個人表彰（MVP・新人賞・1人の優秀選手賞）：写真がなくても成り立つように、名前を大きく */
+.ps .pv{display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,40px);width:min(900px,100%)}
+.ps .pi{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;min-width:0}
+.ps .pn{font-size:clamp(36px,6vw,84px);font-weight:900;line-height:1.1;overflow-wrap:anywhere}
+.ps .pm{font-family:var(--num);font-weight:800;font-size:clamp(16px,1.8vw,22px);background:#fff;color:#111;padding:2px 12px;border-radius:4px;text-shadow:none}.ps .pm:empty{display:none}
+.ps .pu{font-size:clamp(14px,1.6vw,20px);font-weight:700}
+.ps .aw{font-size:12px;font-weight:900;color:#fff;background:var(--red,#E60012);padding:2px 10px;border-radius:4px;text-shadow:none}
+.ps .rl{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 14px;margin-top:4px;font-size:13px}.ps .rp b{font-size:15px;margin-right:6px}
+/* 優秀選手賞（人数が多い）：ポジションごとの列。スマホは2列 */
+.exg{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px 18px;width:min(1000px,100%);text-align:left}
+.exc{display:flex;flex-direction:column;gap:4px;padding:10px 12px;border-radius:10px;background:rgba(10,10,10,.6);min-width:0}
+.ek{align-self:flex-start;font-family:var(--num);font-weight:800;font-size:15px;background:var(--red,#E60012);color:#fff;padding:0 10px;border-radius:4px;text-shadow:none;margin-bottom:2px}
+.ep{display:flex;align-items:baseline;justify-content:space-between;gap:8px;line-height:1.35}.ep b{font-size:15px;font-weight:900;white-space:nowrap}.ep span{font-size:11.5px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* ポジション別（GK・DF・MF・FW）：PCは4つ横、スマホは2×2 */
+.pg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;width:min(1000px,100%)}
+.pc{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;border-radius:12px;background:rgba(10,10,10,.6);border-top:5px solid var(--c);min-width:0}
+.pc .sl{font-family:var(--num);font-weight:800;font-style:italic;font-size:clamp(26px,3vw,40px);line-height:1}
+.pc b{font-size:clamp(16px,1.8vw,22px);font-weight:900;line-height:1.3;overflow-wrap:anywhere}.pc span{font-size:12px;opacity:.9}
+/* 入替戦 */
+.pol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px;width:min(1000px,100%)}
+.pr{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);grid-template-areas:"n n n" "h s a";align-items:center;gap:2px 12px;padding:8px 14px;border-radius:10px;background:rgba(10,10,10,.6)}
+.pr .pnote{grid-area:n;font-size:11.5px;opacity:.85}.pr .pt{font-size:clamp(14px,1.6vw,18px);font-weight:700;opacity:.6}.pr .pt.h{grid-area:h;text-align:right}.pr .pt.a{grid-area:a;text-align:left}
+.pr .pt.win{opacity:1;font-weight:900} /* 勝ったチームを白く太く（負けたチームはうすく） */
+.pr b{grid-area:s;font-family:var(--num);font-weight:800;font-size:clamp(24px,2.6vw,32px);white-space:nowrap}.pr b small{font-size:.5em;margin-left:6px;opacity:.85}
+.dvg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;width:min(900px,100%)}.dv{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px;border-radius:10px;background:rgba(10,10,10,.6)}.dv b{font-size:15px}
+/* NEXT SEASON */
+.ps-next .ttl{font-size:clamp(26px,3.6vw,48px);font-style:normal;transform:none;font-family:"Noto Sans JP",sans-serif;font-weight:900}
+.ps-next .eb{font-family:var(--num);font-size:clamp(18px,2vw,26px);font-weight:800;font-style:italic;color:#fff;background:var(--red,#E60012);padding:2px 14px;border-radius:4px;text-shadow:none}
+.nx{display:flex;flex-direction:column;align-items:center;gap:4px}.nx span{font-size:14px;font-weight:900}.nx b{font-family:var(--num);font-weight:800;font-size:clamp(56px,8vw,110px);line-height:1}.nx b small{font-family:"Noto Sans JP";font-size:.32em;margin-left:.15em}.nx em{font-style:normal;font-size:13px}
+/* 前へ・次へ（PC。スマホは指ではらう・下の点で選ぶ） */
+.mv-nav{display:none;position:absolute;top:50%;translate:0 -50%;z-index:4;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:rgba(0,0,0,.45);color:#fff;font-size:26px;line-height:1;cursor:pointer}
+.mv-nav.p{left:14px}.mv-nav.n{right:14px}.mv-nav:hover,.mv-nav:focus-visible{background:rgba(0,0,0,.75)}
+@media(min-width:900px){.mv.multi .mv-nav{display:block}}
+@media(prefers-reduced-motion:reduce){.ps{animation:none}}
+@media(max-width:680px){
+  .mv.post .mv-in{min-height:0;padding:22px 14px 8px}
+  .ps{gap:10px}.ps .eb{font-size:11.5px}.ps .ja{font-size:12.5px}
+  .pod{grid-template-columns:1fr;gap:6px}.pod li{flex-direction:row;padding:8px 12px;gap:10px;text-align:left;border-top:0;border-left:5px solid var(--m)}
+  .pod li.gold,.pod li.silver,.pod li.bronze{order:0;padding-top:8px}.pod .pe,.pod li.gold .pe{width:44px}.pod b{flex:1;font-size:15px}.pod .rk{font-size:28px;width:2.1em}
+  .b4{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.b4 .pe{width:52px}
+  .ps .pv{flex-direction:column;gap:10px}.ps .pi{align-items:center;text-align:center}.ps .pn{font-size:36px}
+  .exg{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.exc{padding:6px 8px;gap:1px}.ep{gap:6px}.ep b{font-size:13px}.ep span{font-size:10.5px}.ek{font-size:13px}
+  .pg{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.pol{grid-template-columns:1fr;gap:4px}
+  /* 入替戦：1試合1行（左に組み合わせ、右に結果） */
+  .pr{grid-template-columns:4.6em minmax(0,1fr) auto minmax(0,1fr);grid-template-areas:"n h s a";padding:5px 8px;gap:0 8px}.pr .pnote{font-size:10px;line-height:1.25}.pr .pt{font-size:13px}.pr b{font-size:22px}.pc{padding:10px 6px}.pc .pe{width:40px}.pc b{font-size:16px}
+  .ps-final .pfs .pe{width:64px}.ps-final .pfs b{font-size:14px}.ps-final .pfsc b{font-size:46px}
+  .mv.post .mv-in>.mv-btn{margin-top:14px;min-height:42px;font-size:14px}
+}
 </style>
 <script src="./site.js"></script>
 </head>
@@ -640,6 +725,7 @@ html{scroll-padding-top:0}
     <a class="mv-btn" id="mvBtn" href="./results.html">試合情報はこちら<span aria-hidden="true">»</span></a>
     <div class="mv-dots" id="mvDots"></div>
   </div>
+  <button type="button" class="mv-nav p" id="mvPrev" aria-label="前のスライド">‹</button><button type="button" class="mv-nav n" id="mvNext" aria-label="次のスライド">›</button>
 </section>
 
 
@@ -1027,9 +1113,17 @@ function renderMV(ms,compLabel){
   if(!list.length)list=o.filter(isDone).slice(-5).reverse();
   // シーズンオフ：これからの試合がなく、最後の試合から2週間たったら、終わった試合ではなく「全日程終了」と優勝チームを出す
   const lastDone=o.filter(isDone).pop(),ld=lastDone?daysUntil(lastDone.date):null;
-  if(!live.length&&!up.length&&ld!=null&&ld<-14)list=[{off:1,team:S.champ||null,season:String(lastDone.date||'').slice(0,4)}];
+  //   延期などでまだ終わっていない試合があるときは、優勝・全日程終了を出さない（結果が確定していないため）
+  const st=seasonState(ms||[]);
+  if(st.allDone&&!live.length&&!up.length&&ld!=null&&ld<-14)list=[{off:1,team:S.champ||null,season:String(lastDone.date||'').slice(0,4)}];
+  // 大会結果のスライド（2026-11）：全日程が終わり、結果が確定した大会だけ。優勝・最終順位（大会結果）・公開した個人表彰
+  //   2週間以内は、そのあとに最後の試合の結果も続ける。作れるスライドがなければ、これまでの表示のまま
+  if(st.allDone&&!live.length){const post=buildPost(S.d||{},ms||[]);if(post.length)list=post.concat(ld!=null&&ld>=-14?o.filter(isDone).slice(-3).reverse():[])}
+  // 開幕前：大会の名前と開幕日（NEXT SEASON）を先に。日程がまだない大会も、これを出す
+  else if(!st.started&&!live.length&&S.d?.competition)list=[{next:1}].concat(list.filter(m=>!m.off));
   MV.list=list;MV.label=compLabel||'';MV.i=0;
-  $('mvDots').innerHTML=list.length>1?list.map((_,i)=>'<button type="button" data-i="'+i+'" aria-label="'+(i+1)+'試合目"></button>').join(''):'';
+  $('mvDots').innerHTML=list.length>1?list.map((_,i)=>'<button type="button" data-i="'+i+'" aria-label="'+(i+1)+'枚目"></button>').join(''):'';
+  $('mv').classList.toggle('multi',list.length>1);
   showMV(0);startMV();
 }
 /* 背景：筆の柄＋筆で書いた大学名（2026-10 決定。B案） */
@@ -1061,8 +1155,10 @@ function mvNmFit(){
 addEventListener('resize',()=>requestAnimationFrame(mvNmFit));
 function showMV(i){
   const n=MV.list.length;
-  if(!n){mvArt(null);$('mvMatch').innerHTML='<div></div><div class="mv-c"><span class="cp">'+esc(MV.label)+'</span><span class="vn">試合の日程が決まると、ここに出ます</span></div><div></div>';$('mvBtn').href=detail(S.id);return}
+  if(!n){mvArt(null);$('mv').classList.remove('post');$('mvMatch').innerHTML='<div></div><div class="mv-c"><span class="cp">'+esc(MV.label)+'</span><span class="vn">試合の日程が決まると、ここに出ます</span></div><div></div>';$('mvBtn').href=detail(S.id);return}
   i=((i%n)+n)%n;MV.i=i;const m=MV.list[i];
+  $('mv').classList.toggle('post',!!(m.post||m.next));
+  if(m.post||m.next){mvArt(null);return showPost(m)}
   const art=mvArt(m);
   if(m.off)return showOff(m);
   const lv=liveOf(m),done=isDone(m);
@@ -1119,7 +1215,18 @@ function showMV(i){
   $('mvBtn').innerHTML=art?(done?'結果を見る':lv?'速報を見る':'試合情報を見る')+'<span aria-hidden="true">»</span>':'試合情報はこちら<span aria-hidden="true">»</span>';
   $('mvDots').querySelectorAll('button').forEach(b=>b.setAttribute('aria-current',String(+b.dataset.i===i)));
 }
+/* 試合の勝者（PKもふくむ。引き分けは null） */
+function winnerOf(m){
+  if(!m||!isDone(m))return null;
+  const h=+m.score.home,a=+m.score.away;if(h>a)return m.home;if(a>h)return m.away;
+  const pk=m.pk||m.score.pk;if(pk&&pk.home!=null&&pk.away!=null&&+pk.home!==+pk.away)return +pk.home>+pk.away?m.home:m.away;
+  return null;
+}
+/* 大会の決勝（Iリーグのプレーオフもふくむ）。終わっていれば、その試合 */
+function finalOf(ms){return order(ms||[]).filter(m=>/^(決勝|プレーオフ)$/.test(String(m.round||'').trim())&&m.home&&m.away&&typeof m.home==='object').pop()||null}
 function champOf(d,ms){
+  // 決勝・プレーオフがある大会は、その勝者（終わっていなければ、まだ決まっていない）
+  const fin=finalOf(ms);if(fin)return winnerOf(fin);
   const g=(d.groups||[]).filter(x=>x.table&&x.table.length);
   if(g.length===1)return g[0].table[0].team||null;
   if(g.length||!/トーナメント/.test(d.competition?.format||''))return null;
@@ -1127,6 +1234,131 @@ function champOf(d,ms){
   const h=+last.score.home,a=+last.score.away;if(h>a)return last.home;if(a>h)return last.away;
   const pk=last.pk||last.score.pk;if(pk&&pk.home!=null&&pk.away!=null&&+pk.home!==+pk.away)return +pk.home>+pk.away?last.home:last.away;
   return null;
+}
+/* ───── 大会結果のスライド（2026-11。全大会共通） ─────
+   画像は作らない。大会データ（試合・順位表）・表彰（全体システムの「発信」→「表彰」で「公開」にしたもの）・大学のエンブレムと色から作る
+   出すのは、全日程が終わって結果が確定した大会だけ（延期・まだの試合・組み合わせ未定の試合が1つでもあれば出さない）
+   大会ごとのスライド（大会IDの末尾で決める。システムの大会IDのきまり：年度-L1 など） */
+const POST_PLAN={L1:['champ','ranking','mvp','excellent','rookie'],L2:['champ','ranking','excellent'],L3:['champ','ranking'],IL:['champ','results'],
+  PM:['champ','final','mvp','position'],ROOKIE:['champ','final','best4'],PO:['playoff','division'],LEAGUE:['champ','ranking'],CUP:['champ','final']};
+function postKind(d){
+  const id=String(d.competition?.id||S.id||''),f=String(d.competition?.format||'');
+  const m=id.match(/-(L1|L2|L3|IL|PM|ROOKIE|PO)$/);if(m)return m[1];
+  return /入替/.test(f)?'PO':/トーナメント/.test(f)?'CUP':'LEAGUE';
+}
+/* 大会のようす：始まったか・全日程が終わったか（中止・記録対象外は数えない。組み合わせ未定の試合が残っていれば終わっていない） */
+function seasonState(ms){
+  const rel=ms.filter(m=>!/cancelled|unrecorded/.test(m.status||''));
+  return {started:rel.some(isDone),allDone:rel.length>0&&rel.every(m=>isDone(m)&&m.home&&m.away)};
+}
+/* 表彰：賞の名前で分ける。背番号・ポジションは、その大会の選手名簿（名前とチーム）から引く */
+const nmKey=v=>String(v||'').normalize('NFKC').replace(/\s+/g,'');
+function awardPlayer(a){
+  const team=a.team||null,ro=S.ro?.teams||[],k=nmKey(a.name);
+  const rt=ro.find(x=>team&&x.team?.id===team.id)||ro.find(x=>team&&x.team?.univ&&x.team.univ===team.univ);
+  const pl=(rt?.players||[]).find(p=>nmKey(p.name)===k);
+  const note=String(a.note||'').normalize('NFKC'),pos=(note.match(/\b(GK|DF|MF|FW)\b/i)||[])[1]?.toUpperCase()||pl?.pos||'',no=(note.match(/(?:No\.?|背番号|#)?\s*(\d{1,3})\b/i)||[])[1]||pl?.no||'';
+  return {name:String(a.name||''),team,pos,no,award:String(a.award||'')};
+}
+function awardsOf(d){
+  const A=(d.awards||[]).filter(a=>a&&a.award),pick=re=>A.filter(a=>re.test(String(a.award).normalize('NFKC'))).map(awardPlayer);
+  const posOf=p=>{const m=String(p).normalize('NFKC').match(/最優秀\s*(GK|DF|MF|FW|ゴールキーパー|ディフェンダー|ミッドフィルダー|フォワード)/i);if(!m)return '';const x=m[1].toUpperCase();return {'ゴールキーパー':'GK','ディフェンダー':'DF','ミッドフィルダー':'MF','フォワード':'FW'}[m[1]]||x};
+  return {
+    mvp:pick(/最優秀選手|MVP/i).filter(p=>!/新人/.test(p.award)),
+    excellent:pick(/^優秀選手/),
+    rookieBest:pick(/最優秀新人/),
+    rookie:pick(/^優秀新人/),
+    position:A.filter(a=>posOf(a.award)).map(a=>({...awardPlayer(a),slot:posOf(a.award)})),
+    division:A.filter(a=>/翌年度|所属/.test(String(a.award))&&a.team).map(a=>({team:a.team,div:String(a.award).replace(/^.*?(翌年度|所属)[\s：:は]*/,'').trim()||String(a.award)}))
+  };
+}
+function buildPost(d,ms){
+  const kind=postKind(d),plan=POST_PLAN[kind]||[],aw=awardsOf(d),out=[];
+  const champ=champOf(d,ms),fin=finalOf(ms),g=(d.groups||[]).filter(x=>x.table&&x.table.length);
+  const year=String(d.competition?.year||String(d.competition?.id||'').slice(0,4));
+  for(const s of plan){
+    if(s==='champ'&&champ&&typeof champ==='object')out.push({post:'champ',team:champ});
+    if(s==='ranking'&&g.length===1&&g[0].table.length>=2)out.push({post:'ranking',rows:g[0].table.slice(0,3)});
+    if(s==='results'){if(fin&&isDone(fin))out.push({post:'final',m:fin,label:'FINAL RESULTS'});else if(g.length===1&&g[0].table.length>=2)out.push({post:'ranking',rows:g[0].table.slice(0,3),label:'FINAL RESULTS'})}
+    if(s==='final'&&fin&&isDone(fin)&&String(fin.round).trim()==='決勝')out.push({post:'final',m:fin});
+    if(s==='best4'){const sf=order(ms).filter(m=>String(m.round||'').trim()==='準決勝'&&isDone(m)&&typeof m.home==='object'&&typeof m.away==='object');
+      if(sf.length===2&&fin&&isDone(fin))out.push({post:'best4',sf,fin})}
+    if(s==='mvp'&&aw.mvp.length)out.push({post:'mvp',p:aw.mvp[0]});
+    if(s==='excellent'&&aw.excellent.length)out.push({post:'excellent',list:aw.excellent});
+    if(s==='rookie'&&(aw.rookieBest.length||aw.rookie.length))out.push({post:'rookie',best:aw.rookieBest[0]||null,list:aw.rookie});
+    if(s==='position'&&aw.position.length)out.push({post:'position',list:aw.position});
+    if(s==='playoff'){const po=order(ms).filter(m=>isDone(m)&&typeof m.home==='object'&&typeof m.away==='object');if(po.length)out.push({post:'playoff',list:po})}
+    if(s==='division'&&aw.division.length)out.push({post:'division',list:aw.division});
+  }
+  out.forEach(x=>x.year=year);
+  return out;
+}
+/* スライドの部品 */
+const tnm=v=>esc(v).replace(/(大学)(?=.)/g,'$1<wbr>');
+function bigEmb(t){if(!t||typeof t!=='object')return '';const p=teamProf(t),w=x=>x.replace(/sz=w\d+/,'sz=w1000'),dk=COLOR_EMBLEM.includes(t.univ||'')?'':w(emblemUrl({emblem:p?.emblemDark})),nm=w(emblemUrl(p)||embFor(t.univ||'',name(t),t.name||''));const u=dk||nm;return u?embImg(u,!!dk,dk?nm:''):'<span class="pe-ini">'+esc(String(name(t)).slice(0,2))+'</span>'}
+const pEmb=(t,c)=>'<span class="pe'+(c?' '+c:'')+'">'+bigEmb(t)+'</span>';
+const pMeta=p=>[p.pos,p.no?'No.'+esc(p.no):''].filter(Boolean).join('｜');
+const pTeam=t=>t&&typeof t==='object'?esc(t.name||t.short||''):'';
+function showPost(m){
+  const d=S.d||{},id=String(d.competition?.id||S.id||''),cname=esc(d.competition?.name||MV.label||''),yr=esc(m.year||String(d.competition?.year||''));
+  const head=(en,ja)=>'<div class="psh"><span class="eb">'+yr+'年度　'+esc(MV.label||'')+'</span><b class="ttl">'+en+'</b>'+(ja?'<span class="ja">'+ja+'</span>':'')+'</div>';
+  let col='#2a2a2a',html='',btn=['大会の記録を見る',detail(id)];
+  const tab=x=>detail(id)+'&tab='+x;
+  if(m.next){
+    const o=order(S.ms||[]).filter(x=>x.date),first=o[0],dm=first&&/^(\d{4})-(\d{2})-(\d{2})/.exec(first.date);
+    html='<div class="ps ps-next"><div class="psh"><span class="eb">NEXT SEASON</span><b class="ttl">'+cname+'</b></div>'+
+      (dm?'<div class="nx"><span>開幕</span><b>'+(+dm[2])+'.'+dm[3]+'<small>'+WD[new Date(+dm[1],+dm[2]-1,+dm[3]).getDay()]+'</small></b>'+(first.venue?'<em>📍 '+esc(first.venue)+'</em>':'')+'</div>':'<div class="nx"><span>日程は決まりしだいお知らせします</span></div>')+'</div>';
+    btn=['日程を見る',detail(id)];
+  }else if(m.post==='champ'){
+    col=teamColor(m.team);
+    html='<div class="ps ps-champ"><span class="eb">'+yr+'年度　'+esc(MV.label||'')+'</span><b class="ttl big">CHAMPIONS</b>'+pEmb(m.team,'xl')+'<b class="tn">'+tnm(m.team.name||m.team.short||'')+'</b><span class="cn">'+cname+'　優勝</span></div>';
+  }else if(m.post==='ranking'){
+    col=teamColor(m.rows[0].team);
+    const medal=['gold','silver','bronze'];
+    html='<div class="ps ps-rank">'+head(esc(m.label||'FINAL RANKING'),'最終順位')+'<ol class="pod">'+m.rows.map((r,k)=>'<li class="'+medal[k]+'"><span class="rk">'+esc(r.rank??k+1)+'<small>位</small></span>'+pEmb(r.team)+'<b>'+tnm(r.team?.name||r.team?.short||'')+'</b><span class="pt">勝点 '+esc(r.points??'')+'</span></li>').join('')+'</ol></div>';
+    btn=['順位表を見る',tab('standings')];
+  }else if(m.post==='final'){
+    const f=m.m,w=winnerOf(f),side=t=>'<div class="pfs'+(w&&t.id===w.id?' win':'')+'">'+pEmb(t)+'<b>'+tnm(t.name||t.short||'')+'</b><span class="plb">'+(w?(t.id===w.id?'優勝':'準優勝'):'')+'</span></div>';
+    const pk=f.pk||f.score.pk;col=w?teamColor(w):col;
+    html='<div class="ps ps-final">'+head(esc(m.label||'FINAL'),m.label?'最終結果':'決勝')+'<div class="pfr">'+side(f.home)+'<div class="pfsc"><b>'+esc(f.score.home)+'<i>-</i>'+esc(f.score.away)+'</b>'+(pk&&pk.home!=null?'<span>PK '+esc(pk.home)+'-'+esc(pk.away)+'</span>':'')+'</div>'+side(f.away)+'</div></div>';
+    btn=d.rounds&&d.rounds.length?['トーナメント表を見る',tab('tournament')]:['大会の記録を見る',detail(id,f.matchId)];
+  }else if(m.post==='best4'){
+    const w=winnerOf(m.fin),ru=w&&(m.fin.home.id===w.id?m.fin.away:m.fin.home),teams=[];
+    for(const s of m.sf)for(const t of [s.home,s.away])if(!teams.some(x=>x.id===t.id))teams.push(t);
+    teams.sort((a,b)=>(w&&b.id===w.id)-(w&&a.id===w.id)||(ru&&b.id===ru.id)-(ru&&a.id===ru.id));
+    col=w?teamColor(w):col;
+    html='<div class="ps ps-b4">'+head('BEST 4','ベスト4')+'<ul class="b4">'+teams.map(t=>'<li class="'+(w&&t.id===w.id?'gold':ru&&t.id===ru.id?'silver':'')+'">'+pEmb(t)+'<b>'+tnm(t.name||t.short||'')+'</b><span>'+(w&&t.id===w.id?'優勝':ru&&t.id===ru.id?'準優勝':'ベスト4')+'</span></li>').join('')+'</ul></div>';
+    btn=['トーナメント表を見る',tab('tournament')];
+  }else if(m.post==='mvp'){
+    const p=m.p;col=p.team?teamColor(p.team):col;
+    html='<div class="ps ps-mvp">'+head('MOST VALUABLE PLAYER','最優秀選手賞')+'<div class="pv">'+pEmb(p.team,'lg')+'<div class="pi"><b class="pn">'+esc(p.name)+'</b><span class="pm">'+pMeta(p)+'</span><span class="pu">'+pTeam(p.team)+'</span></div></div></div>';
+    btn=['表彰を見る',tab('awards')];
+  }else if(m.post==='excellent'){
+    const L=m.list,one=L.length===1;
+    if(one){const p=L[0];col=p.team?teamColor(p.team):col;
+      html='<div class="ps ps-mvp">'+head('EXCELLENT PLAYER','優秀選手賞')+'<div class="pv">'+pEmb(p.team,'lg')+'<div class="pi"><b class="pn">'+esc(p.name)+'</b><span class="pm">'+pMeta(p)+'</span><span class="pu">'+pTeam(p.team)+'</span></div></div></div>';}
+    else{const P=['GK','DF','MF','FW'],grp=P.map(k=>[k,L.filter(p=>p.pos===k)]).filter(x=>x[1].length),rest=L.filter(p=>!P.includes(p.pos));if(rest.length)grp.push(['',rest]);
+      html='<div class="ps ps-ex">'+head('EXCELLENT PLAYERS','優秀選手賞　<b>'+L.length+'名</b>')+'<div class="exg">'+grp.map(([k,ps])=>'<div class="exc"><span class="ek">'+(k||'—')+'</span>'+ps.map(p=>'<div class="ep"><b>'+esc(p.name)+'</b><span>'+esc(p.team?.short||p.team?.name||'')+(p.no?'　'+esc(p.no):'')+'</span></div>').join('')+'</div>').join('')+'</div></div>';}
+    btn=[one?'表彰を見る':'選手一覧を見る',tab('awards')];
+  }else if(m.post==='rookie'){
+    const b=m.best,others=m.list.filter(p=>!b||nmKey(p.name)!==nmKey(b.name)||b.team?.id!==p.team?.id);col=b?.team?teamColor(b.team):col;
+    html='<div class="ps ps-rk">'+head('ROOKIE AWARDS','新人賞')+(b?'<div class="pv">'+pEmb(b.team,'lg')+'<div class="pi"><span class="aw">最優秀新人賞</span><b class="pn">'+esc(b.name)+'</b><span class="pm">'+pMeta(b)+'</span><span class="pu">'+pTeam(b.team)+'</span></div></div>':'')+
+      (m.list.length?'<div class="rl"><span class="aw">優秀新人賞</span>'+m.list.map(p=>'<span class="rp"><b>'+esc(p.name)+'</b>'+esc(p.team?.short||'')+(p.pos?'　'+p.pos:'')+(p.no?' '+esc(p.no):'')+'</span>').join('')+'</div>':'')+'</div>';
+    void others;btn=['表彰を見る',tab('awards')];
+  }else if(m.post==='position'){
+    const P=['GK','DF','MF','FW'],L=P.map(k=>m.list.find(p=>p.slot===k)).filter(Boolean);
+    html='<div class="ps ps-pos">'+head('POSITION AWARDS','ポジション別 最優秀選手')+'<div class="pg">'+L.map(p=>'<div class="pc" style="--c:'+(p.team?teamColor(p.team):'#444')+'"><span class="sl">'+p.slot+'</span>'+pEmb(p.team,'sm')+'<b>'+esc(p.name)+'</b><span>'+pTeam(p.team)+(p.no?'　No.'+esc(p.no):'')+'</span></div>').join('')+'</div></div>';
+    btn=['表彰を見る',tab('awards')];
+  }else if(m.post==='playoff'){
+    html='<div class="ps ps-po">'+head('PLAYOFF RESULTS','入替戦の結果')+'<div class="pol">'+m.list.map(f=>{const w=winnerOf(f);return '<div class="pr"><span class="pnote">'+esc(f.note||f.round||'')+'</span><span class="pt h'+(w&&w.id===f.home.id?' win':'')+'">'+esc(f.home.short||f.home.name)+'</span><b>'+esc(f.score.home)+'-'+esc(f.score.away)+((f.pk||f.score.pk)&&(f.pk||f.score.pk).home!=null?'<small>PK'+esc((f.pk||f.score.pk).home)+'-'+esc((f.pk||f.score.pk).away)+'</small>':'')+'</b><span class="pt a'+(w&&w.id===f.away.id?' win':'')+'">'+esc(f.away.short||f.away.name)+'</span></div>'}).join('')+'</div></div>';
+  }else if(m.post==='division'){
+    const divs=[...new Set(m.list.map(x=>x.div))];
+    html='<div class="ps ps-po">'+head('NEXT SEASON DIVISION','翌年度の所属')+'<div class="dvg">'+divs.map(v=>'<div class="dv"><span class="ek">'+esc(v)+'</span>'+m.list.filter(x=>x.div===v).map(x=>'<b>'+esc(x.team.name||x.team.short)+'</b>').join('')+'</div>').join('')+'</div></div>';
+  }
+  $('mvBg').style.setProperty('--hc',col);$('mvBg').style.setProperty('--ac',col);$('mvNm').innerHTML='';
+  $('mvMatch').innerHTML=html;
+  $('mvBtn').classList.remove('done','live');$('mvBtn').href=btn[1];$('mvBtn').innerHTML=esc(btn[0])+'<span aria-hidden="true">»</span>';
+  $('mvDots').querySelectorAll('button').forEach(b=>b.setAttribute('aria-current',String(+b.dataset.i===MV.i)));
 }
 /* シーズンオフの大きな表示：全日程終了と優勝チーム（リーグは順位表の1位、トーナメントは最後の試合の勝者） */
 function showOff(m){
@@ -1215,8 +1447,16 @@ function embLoaded(el){
   embFin(el,t[0]);
 }
 function embNext(el){if(el.dataset.done){el.remove();return}el.dataset.k=+el.dataset.k+1;embStart(el)}
-function stopMV(){clearInterval(MV.timer);MV.timer=null}
-function startMV(){stopMV();if(matchMedia('(prefers-reduced-motion: reduce)').matches||MV.list.length<2)return;MV.timer=setInterval(()=>{if(!MV.paused&&!document.hidden)showMV(MV.i+1)},6000)}
+function stopMV(){clearTimeout(MV.timer);MV.timer=null}
+/* 表示時間：試合は6秒、大会結果のスライドは読む量に合わせて8〜11秒 */
+const mvDur=m=>!m?6000:m.post==='excellent'||m.post==='position'||m.post==='playoff'||m.post==='division'?11000:m.post||m.next?8000:6000;
+function startMV(){stopMV();if(matchMedia('(prefers-reduced-motion: reduce)').matches||MV.list.length<2)return;
+  const tick=()=>{if(!MV.paused&&!document.hidden)showMV(MV.i+1);MV.timer=setTimeout(tick,mvDur(MV.list[MV.i]))};MV.timer=setTimeout(tick,mvDur(MV.list[MV.i]))}
+$('mvPrev')?.addEventListener('click',()=>{showMV(MV.i-1);startMV()});$('mvNext')?.addEventListener('click',()=>{showMV(MV.i+1);startMV()});
+// キーボード：スライドの中にいるとき、左右の矢印で切りかえ
+$('mv').addEventListener('keydown',e=>{if(MV.list.length<2||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();showMV(MV.i+(e.key==='ArrowRight'?1:-1));startMV()}});
+// 読んでいるあいだ（ボタン・リンクにフォーカスがあるあいだ）は止める
+$('mv').addEventListener('focusin',()=>MV.paused=true);$('mv').addEventListener('focusout',()=>MV.paused=false);
 $('mvDots').addEventListener('click',e=>{const b=e.target.closest('button');if(b){showMV(+b.dataset.i);startMV()}});
 $('mvMatch').addEventListener('mouseenter',()=>MV.paused=true);$('mvMatch').addEventListener('mouseleave',()=>MV.paused=false);
 // 指で左右にはらって切り替え
@@ -1318,7 +1558,7 @@ async function load(id){
     const up=o.find(m=>!isDone(m)&&(m.date||'9999')>=today),last=o.filter(isDone).pop();
     const lastD=last?daysUntil(last.date):null;
     const feat=last&&lastD!=null&&lastD>=-2?last:(up||last||o[0]);
-    S.feat=feat;S.ms=ms;
+    S.feat=feat;S.ms=ms;S.d=d;S.ro=ro;
     S.champ=champOf(d,ms);
     const fi=S.rounds.findIndex(r=>r.list.includes(feat));
     S.ri=fi>=0?fi:defaultRound(S.rounds);
