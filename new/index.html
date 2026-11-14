@@ -580,19 +580,18 @@ html{scroll-padding-top:0}
 /* スマホ：画像は横いっぱい。画像の上には何も重ねず（筆文字・大学名を隠さない）、節・日時（結果）・会場・ボタンは画像の下に */
 @media(max-width:680px){
   .mv.art{--ah:84vw}
-  /* 画像の下は横ならび（左に節・日時・会場、右にボタン）にして、縦に長くしない */
-  .mv.art .mv-in{height:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:12px;padding:calc(var(--ah) + 10px) 16px 4px}
+  /* 画像の下は3列（左：節と日時／まん中：スコア（試合前は日付）／右：ボタン）。左右の列を同じ幅にして、スコアを画面の左右の真ん中に。会場はその下に1行 */
+  .mv.art .mv-in{height:auto;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);grid-template-rows:auto auto auto auto;align-items:center;column-gap:10px;row-gap:0;padding:calc(var(--ah) + 10px) 14px 6px}
   .mv.art .mv-bg{display:none}.mv.art{background:var(--bg)}
-  .mv.art .mv-match{min-width:0;grid-column:1;grid-row:1}
-  .mv.art .mv-c{position:static;translate:none;width:auto;max-width:none;padding:0;background:none;border:0;border-radius:0;box-shadow:none;
-    display:grid;grid-template-columns:auto 1fr;column-gap:8px;align-items:baseline;justify-items:start;text-align:left}
-  .mv.art .mv-c .cp{grid-column:1/-1;font-size:11.5px;opacity:.8}
-  .mv.art .mv-c .dt{font-size:30px;line-height:1}.mv.art .mv-c .dt.tbd{font-size:20px}.mv.art .mv-c .ko{font-size:15px!important}
-  .mv.art .mv-c .vn{grid-column:1/-1;font-size:12px;margin-top:2px;max-width:none}
+  .mv.art .mv-match,.mv.art .mv-c{display:contents}
+  .mv.art .mv-c .cp{grid-column:1;grid-row:1;justify-self:start;align-self:end;font-size:12px;opacity:.85}
+  .mv.art .mv-c .ko{grid-column:1;grid-row:2;justify-self:start;align-self:start;font-size:14px!important;line-height:1.25;text-align:left}
+  .mv.art .mv-c .dt{grid-column:2;grid-row:1/3;justify-self:center;font-size:34px;line-height:1}.mv.art .mv-c .dt.tbd{font-size:20px}
+  .mv.art .mv-c .vn{grid-column:1/-1;grid-row:3;justify-self:center;text-align:center;font-size:12px;margin-top:8px;max-width:none}
   .mv.art .vn2{display:none!important}
-  .mv.art .mv-in>.mv-btn{grid-column:2;grid-row:1;margin:0;min-height:40px;padding:0 14px;font-size:12.5px;gap:4px;flex-wrap:wrap;justify-content:center;max-width:42vw;text-align:center;line-height:1.3}
-  .mv.art .mv-btn.done,.mv.art .mv-btn.live{flex-direction:column;gap:0;padding:6px 14px;border-radius:14px}.mv.art .mv-btn i{display:none!important}.mv.art .mv-btn span{display:none}
-  .mv.art .mv-in>.mv-dots{grid-column:1/-1;grid-row:2;position:static;translate:none;margin:4px auto 0;min-height:24px}
+  .mv.art .mv-in>.mv-btn{grid-column:3;grid-row:1/3;justify-self:end;margin:0;min-height:40px;max-width:100%;padding:6px 12px;font-size:12px;gap:2px;flex-wrap:wrap;justify-content:center;text-align:center;line-height:1.3;border-radius:14px}
+  .mv.art .mv-btn.done,.mv.art .mv-btn.live{flex-direction:column;gap:0}.mv.art .mv-btn i{display:none!important}.mv.art .mv-btn span{display:none}
+  .mv.art .mv-in>.mv-dots{grid-column:1/-1;grid-row:4;position:static;translate:none;margin:2px auto 0;min-height:24px}
   .mv-art .tg{border-width:1.5px;border-radius:4px;font-size:10px;padding:.2em .5em;letter-spacing:0}  /* エンブレムにかからない大きさ */
 }
 </style>
