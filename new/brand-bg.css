@@ -1,0 +1,49 @@
+/* JUFA Hokkaido 共通グラフィック（背景5種類）  2026-11
+ * 中身は brand-bg.js が入れる。色は --jbg-a（アクセント＝大学カラー。ないときは JUFA の赤）だけを変える
+ * 1 黒い地と質感（ここ）→ 2 図形（.jbg-art の SVG）→ 3 大学カラー（--jbg-a）→ 4 中身（HTML）
+ */
+.jbg{position:relative;isolation:isolate;overflow:hidden;color:#fff;--jbg-a:#E60012;--jbg-k:.92;
+  background-color:#0a0a0a;
+  /* 質感：細かいざらつき＋左上から右下へのうすい光 */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(155deg,rgba(255,255,255,.06),transparent 30%,transparent 70%,rgba(255,255,255,.03)),
+    radial-gradient(120% 90% at 50% 50%,#141414,#050505)}
+.jbg[data-intensity=low]{--jbg-k:.55}
+.jbg[data-intensity=high]{--jbg-k:1}
+.jbg-art{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:var(--jbg-k);animation:jbg-in .7s ease-out both}
+/* 真ん中は暗く空けて、文字を読みやすく */
+.jbg-art:after{content:"";position:absolute;inset:0;background:radial-gradient(48% 58% at 50% 50%,rgba(0,0,0,.55),rgba(0,0,0,.25) 60%,transparent 85%)}
+.jbg[data-deco=off] .jbg-art{display:none}
+:where(.jbg>:not(.jbg-art)){position:relative;z-index:1}
+/* 中身が左寄せのとき：左の図形は小さく・うすく。左側を暗くして文字を読みやすく */
+.jbg[data-layout=left] .jbg-tl,.jbg[data-layout=left] .jbg-bl{opacity:.35;transform:scale(.6)}
+.jbg[data-layout=left] .jbg-tl{transform-origin:0 0}.jbg[data-layout=left] .jbg-bl{transform-origin:0 100%}
+.jbg[data-layout=left] .jbg-art:after{background:linear-gradient(90deg,rgba(0,0,0,.6),rgba(0,0,0,.35) 45%,transparent 75%)}
+
+/* 部品：四隅に置く。PCは --h / --w、スマホは --sh / --sw の大きさ */
+.jbg-p{position:absolute;display:block;height:var(--h,auto);width:var(--w,auto);max-width:100%;max-height:100%;overflow:visible}
+.jbg-tl{left:0;top:0}.jbg-tr{right:0;top:0}.jbg-bl{left:0;bottom:0}.jbg-br{right:0;bottom:0}
+.jbg-full{inset:0;width:100%;height:100%;max-width:none;max-height:none}
+@media(max-width:680px){
+  /* スマホ：図形を画面の端に寄せて小さく。中身（文字・エンブレム）を隠さない */
+  .jbg-p:not(.jbg-full){height:var(--sh,auto);width:var(--sw,auto)}
+  .jbg-art:after{background:radial-gradient(70% 60% at 50% 50%,rgba(0,0,0,.6),rgba(0,0,0,.3) 65%,transparent 90%)}
+  /* 左寄せの中身は、スマホでは横いっぱいに広がる。右の図形もうすくして、文字の後ろを静かに */
+  .jbg[data-layout=left] .jbg-tr,.jbg[data-layout=left] .jbg-br{opacity:.7}
+  .jbg[data-layout=left] .jbg-art:after{background:linear-gradient(90deg,rgba(0,0,0,.6),rgba(0,0,0,.4) 55%,rgba(0,0,0,.08))}
+}
+
+/* 色 */
+.jbg-p .w{fill:#fff}.jbg-p .g{fill:#8f8f8f}.jbg-p .a{fill:var(--jbg-a)}
+.jbg-p .sw{stroke:#fff}.jbg-p .sg{stroke:#9a9a9a}.jbg-p .sa{stroke:var(--jbg-a)}
+.jbg-p .shade{fill:url(#jbg-shade)}
+/* 大学カラーが黒に近い：白いふちで地から浮かせる。白に近い：グレーのふちで白い飾りと分ける（色そのものは変えない） */
+.jbg[data-low=dark] .jbg-p .a{stroke:#fff;stroke-width:3;paint-order:stroke}
+.jbg[data-low=dark] .jbg-p .sa{filter:drop-shadow(0 0 2px #fff)}
+.jbg[data-low=light] .jbg-p .a{stroke:#6b6b6b;stroke-width:3}
+.jbg[data-low=light] .jbg-p .sa{filter:drop-shadow(0 0 2px #6b6b6b)}
+
+@keyframes jbg-in{from{opacity:0}to{opacity:var(--jbg-k)}}
+@media(prefers-reduced-motion:reduce){.jbg-art{animation:none}}
+@media(forced-colors:active){.jbg-art{display:none}}
