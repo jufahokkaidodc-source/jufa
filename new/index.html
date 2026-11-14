@@ -711,6 +711,67 @@ html{scroll-padding-top:0}
   .mv.art{--ah:84vw}
   .mv .mv-in,.mv.post .mv-in,.mv.art .mv-in{min-height:var(--mvh)}
 }
+/* ───── トップのスライドの調整（2026-11） ───── */
+/* スライドを選ぶ点：どのスライドでも同じ位置（スライドの下から10px） */
+.mv .mv-in{padding-bottom:48px}
+.mv .mv-in>.mv-dots,.mv.art .mv-in>.mv-dots,.mv.post .mv-in>.mv-dots{position:absolute;left:0;right:0;bottom:10px;margin:0;justify-content:center;z-index:3}
+/* 左右の矢印：丸のまん中に（文字ではなく図で描く） */
+.mv-nav{align-items:center;justify-content:center;padding:0}
+.mv-nav svg{width:22px;height:22px;display:block}
+@media(min-width:900px){.mv.multi .mv-nav{display:flex}}
+
+/* 対戦カード：上は大学ごとの背景と筆文字（左右50%ずつ）、下は 左：ホーム／まん中：スコア／右：アウェイ */
+.mv.art{--ah:calc(var(--mvh) - 300px)}
+.mv.art .mv-art{justify-content:stretch}
+.mv-art .pic{flex:1 1 50%;width:50%;height:100%;overflow:hidden;position:relative}
+.mv-art .pic img{position:absolute;top:0;left:50%;height:100%;width:auto;max-width:none;translate:-50% 0;display:block}
+/* 2つの画像はまん中で合わせる（左の画像は左半分の右端、右の画像は右半分の左端に寄せる）。外側は同じ画像をぼかして広げ、境目はなめらかに */
+.mv-art .pic.l img{left:auto;right:0;translate:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%);mask-image:linear-gradient(90deg,transparent,#000 14%)}
+.mv-art .pic.r img{left:0;translate:none;-webkit-mask-image:linear-gradient(270deg,transparent,#000 14%);mask-image:linear-gradient(270deg,transparent,#000 14%)}
+.mv-art:after{content:"";position:absolute;left:0;right:0;bottom:0;height:18%;background:linear-gradient(180deg,transparent,var(--bg));z-index:2}
+.mv.art .mv-match{display:block;width:min(100%,1100px)}
+.kx{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);background:#111;animation:mvCIn .6s ease both}
+.kx .kt{--c:#555;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-width:0;padding:14px 12px 12px;border-top:5px solid var(--c);background:linear-gradient(180deg,color-mix(in srgb,var(--c) 22%,#111),#111 85%);text-align:center}
+.kx .kt.h{--c:var(--hc,#555)}.kx .kt.a{--c:var(--ac,#555)}
+.kx .kt .pe{width:clamp(56px,5.6vw,84px)}
+.kx .kt b{font-weight:900;font-size:clamp(14px,1.6vw,20px);line-height:1.35;overflow-wrap:anywhere}
+.kx .kcn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-width:clamp(150px,18vw,260px);padding:12px clamp(10px,2.4vw,32px);border-top:5px solid #2a2a2a}
+.kx .mid{display:inline-flex;align-items:center;gap:6px;background:var(--red,#E60012);color:#fff;font-weight:900;font-size:13px;line-height:1;padding:6px 12px;border-radius:999px;white-space:nowrap}
+.kx .mid.lv:before{content:"";width:7px;height:7px;border-radius:50%;background:#fff;animation:kLive 1.2s ease-in-out infinite}
+.ksc{font-family:var(--num);font-weight:800;font-size:clamp(52px,6.4vw,92px);line-height:1;white-space:nowrap}
+.ksc i{font-style:normal;opacity:.55;margin:0 .2em;font-size:.6em;vertical-align:.15em}
+.kdt{font-family:var(--num);font-weight:800;font-size:clamp(34px,4vw,54px);line-height:1;white-space:nowrap}
+.kdt small{font-family:"Noto Sans JP",sans-serif;font-size:.42em;font-weight:900;margin-left:.15em}
+.kdt.tbd{font-family:"Noto Sans JP",sans-serif;font-size:clamp(18px,2vw,26px);font-weight:900}
+.kko{font-family:var(--num);font-weight:800;font-size:clamp(15px,1.6vw,20px)}
+@media(prefers-reduced-motion:reduce){.kx{animation:none}.kx .mid.lv:before{animation:none}}
+
+/* 最終結果（決勝）：エンブレムと大学名を大きく。「優勝」などの札は文字をまん中に */
+.ps-final .pfs .pe{width:clamp(110px,12vw,180px)}
+.ps-final .pfs b{font-size:clamp(18px,2.4vw,30px);text-wrap:balance}
+.ps-final .pfsc b{font-size:clamp(56px,8vw,110px)}
+.ps-final .plb{display:inline-block;min-width:5.5em;text-align:center;font-size:15px;line-height:1.4;padding:4px 16px}
+/* 優秀選手賞・優秀新人賞：文字を大きく */
+.exg{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.ep b{font-size:18px}.ep span{font-size:13px}.ek{font-size:15px}
+.ps .rl{font-size:15px;gap:8px 18px}.ps .rp b{font-size:19px}
+
+/* チーム紹介カード：写真の代わりに共通グラフィック */
+.club .cv.jbgc:after{display:none}
+
+@media(max-width:680px){
+  .mv.art{--ah:calc(var(--mvh) - 250px)}
+  /* スマホ：半分の幅より画像が広いので、それぞれの半分のまん中に置く（筆文字が切れないように） */
+  .mv-art .pic.l img,.mv-art .pic.r img{left:50%;right:auto;translate:-50% 0;-webkit-mask-image:none;mask-image:none}
+  .exg{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kx .kt{padding:10px 6px 8px;gap:6px}.kx .kt .pe{width:44px}.kx .kt b{font-size:13px}
+  .kx .kcn{min-width:0;padding:10px 6px;gap:6px}
+  .ksc{font-size:42px}.kdt{font-size:28px}.kko{font-size:14px}.kx .mid{font-size:11px;padding:4px 9px}
+  .ps-final .pfs .pe{width:84px}.ps-final .pfs b{font-size:16px}.ps-final .pfsc b{font-size:50px}.ps-final .plb{font-size:13px}
+  .ep{line-height:1.22}.ep b{font-size:14px}.ep span{font-size:11.5px}.ek{font-size:12px}.exc{padding:5px 8px}.exg{gap:5px}
+  .ps-final .pfr{gap:6px}.ps-final .pfsc b{font-size:44px}.ps-final .pfs b{font-size:14px;text-wrap:balance}
+  .ps .rl{font-size:13px;gap:6px 12px}.ps .rp b{font-size:16px}
+}
 </style>
 <script src="./site.js"></script>
 <script src="./brand-bg.js"></script>
@@ -751,7 +812,7 @@ html{scroll-padding-top:0}
     <a class="mv-btn" id="mvBtn" href="./results.html">試合情報はこちら<span aria-hidden="true">»</span></a>
     <div class="mv-dots" id="mvDots"></div>
   </div>
-  <button type="button" class="mv-nav p" id="mvPrev" aria-label="前のスライド">‹</button><button type="button" class="mv-nav n" id="mvNext" aria-label="次のスライド">›</button>
+  <button type="button" class="mv-nav p" id="mvPrev" aria-label="前のスライド"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="mv-nav n" id="mvNext" aria-label="次のスライド"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 </section>
 
 
@@ -983,8 +1044,9 @@ function collectTeams(ms){const map=new Map();for(const m of ms)for(const t of [
 function clubCard(t,href){
   const p=PROF.get(tkey(t))||PROF.get(typeof t==='object'?t.univ:'');
   const cr=crest(t),c=(cr.match(/--c:(#[0-9a-f]{3,8})/i)||[])[1]||'#145ec9';
-  const ph=photoUrl(p?.teamPhoto,600),set=photoSet(p?.teamPhoto,[400,600,900]);
-  const cv=ph?'<span class="cv photo" style="--c:'+c+'"><img src="'+esc(ph)+'"'+(set?' srcset="'+esc(set)+'" sizes="(max-width:680px) 50vw, 220px"':'')+' alt="" loading="lazy" decoding="async" onerror="if(this.parentNode)this.parentNode.classList.remove(\'photo\');this.remove()"></span>':'<span class="cv" style="--c:'+c+'"></span>';
+  // 写真は使わず、共通グラフィック（TRIPLE STRIKE）をチームの色で。色はチーム紹介の色（大学カラーマスター）。ないときは JUFA の赤
+  const hx=v=>/^#[0-9a-f]{6}$/i.test(v||'')?v:'';
+  const cv='<span class="cv jbgc" data-jbg="triple-strike"'+(hx(p?.color)?' data-color="'+esc(p.color)+'"':'')+(hx(p?.color2)?' data-color2="'+esc(p.color2)+'"':'')+'></span>';
   return '<a class="club" href="'+esc(href)+'" style="--c:'+c+'">'+cv+cr+'<span class="cb"><strong>'+esc(typeof t==='object'?(t.name||t.short||''):t)+'</strong></span></a>';
 }
 function renderClubs(teams,id){
@@ -992,6 +1054,7 @@ function renderClubs(teams,id){
   $('clubbar').innerHTML='<small>CLUBS</small>'+teams.map(t=>'<a href="'+esc(teamUrl(id,t))+'" title="'+esc(name(t))+'">'+crest(t,'sm')+'</a>').join('');
   $('clubCount').textContent=teams.length?teams.length+'クラブ':'';
   $('clubList').innerHTML=teams.length?teams.map(t=>clubCard(t,teamUrl(id,t))).join(''):'<p class="empty">クラブ情報はありません。</p>';
+  if(window.JUFABG)JUFABG.init($('clubList'));
 }
 
 /* ticker */
@@ -1164,8 +1227,9 @@ function mvArt(m){
   const h=m&&!m.off?artOf(m.home):'',a=m&&!m.off?artOf(m.away):'';
   mv.classList.toggle('art',!!(h&&a));
   if(!(h&&a)){box.innerHTML='';return false}
-  const im=(u,alt)=>'<img src="'+u+'.webp" srcset="'+u+'-s.webp 540w, '+u+'.webp 1012w" sizes="(max-width:680px) 50vw, 560px" alt="'+alt+'" decoding="async">';
-  const pic=(u,t,c)=>'<div class="pic '+c+'"><div class="fr">'+im(u,esc(t.univ||''))+'</div></div>'; // チームの区別（A・サテライトなど）は、下の帯のチーム名で分かる
+  // 画像は「背景と筆文字」だけ（エンブレム・大学名は入っていない）。エンブレムと大学名は下のスコアの帯に出す
+  const im=(u,alt)=>'<img src="'+u+'.webp" srcset="'+u+'-s.webp 540w, '+u+'.webp 1086w" sizes="(max-width:680px) 50vw, 560px" alt="'+alt+'" decoding="async">';
+  const pic=(u,t,c)=>'<div class="pic '+c+'">'+im(u,esc((t.univ||'')+'の筆文字'))+'</div>';
   box.innerHTML='<div class="fill l" aria-hidden="true">'+im(h,'')+'</div><div class="fill r" aria-hidden="true">'+im(a,'')+'</div>'+pic(h,m.home,'l')+pic(a,m.away,'r');
   return true;
 }
@@ -1229,10 +1293,11 @@ function showMV(i){
     const ko=m.kickoff?esc(m.kickoff)+'KO':'';
     // 赤い札：試合前は節、試合中は「速報　後半」など、試合後は「試合終了」
     const mid=done?'<span class="mid">試合終了</span>':lv?'<span class="mid lv">'+esc(lv.state==='live'?'速報'+(lv.period?'　'+lv.period:''):JUFA_LIVE.label(lv))+'</span>':(m.round?'<span class="mid">'+esc(m.round)+'</span>':'');
-    const band=sc2?'<div class="ksb"><div class="kh"><span class="nm">'+nm(m.home)+'</span><span class="n">'+esc(sc2.home)+'</span></div><div class="ka"><span class="n">'+esc(sc2.away)+'</span><span class="nm">'+nm(m.away)+'</span></div><span class="sep" aria-hidden="true">-</span>'+mid+'</div>'
-      :'<div class="ksb pre"><div class="kh"><span class="nm">'+nm(m.home)+'</span></div><div class="ka"><span class="nm">'+nm(m.away)+'</span></div><div class="kc'+(dm?'':' tbd')+'">'+(dm?'<b>'+md+'<small>'+WD[new Date(+dm[1],+dm[2]-1,+dm[3]).getDay()]+'</small></b>'+(ko?'<span>'+ko+'</span>':''):'<b>日程未定</b>')+'</div>'+mid+'</div>';
-    const info=(sc2&&dm?md+(ko?' '+ko:'')+'　':'')+'📍 '+vn(m.venue||'会場未定');
-    $('mvMatch').innerHTML=band+'<div class="kxi">'+info+'</div>';
+    const side=(t,c)=>'<div class="kt '+c+'">'+pEmb(t)+'<b>'+esc(t.name||t.short||'')+'</b></div>';
+    const cen=sc2?'<b class="ksc">'+esc(sc2.home)+'<i>-</i>'+esc(sc2.away)+'</b>'
+      :(dm?'<b class="kdt">'+md+'<small>'+WD[new Date(+dm[1],+dm[2]-1,+dm[3]).getDay()]+'</small></b>'+(ko?'<span class="kko">'+ko+'</span>':''):'<b class="kdt tbd">日程未定</b>');
+    const info=(dm?md+(ko?' '+ko:'')+'　':'')+'📍 '+vn(m.venue||'会場未定');
+    $('mvMatch').innerHTML='<div class="kx">'+side(m.home,'h')+'<div class="kcn">'+mid+cen+'</div>'+side(m.away,'a')+'</div><div class="kxi">'+info+'</div>';
     const [h1,a1]=matchColors(m);$('mvMatch').style.setProperty('--hc',h1);$('mvMatch').style.setProperty('--ac',a1);
   }
   $('mvBtn').href=detail(S.id,done||lv?m.matchId:'');
@@ -1394,12 +1459,15 @@ function showPost(m){
     const divs=[...new Set(m.list.map(x=>x.div))];
     html='<div class="ps ps-po">'+head('NEXT SEASON DIVISION','翌年度の所属')+'<div class="dvg">'+divs.map(v=>'<div class="dv"><span class="ek">'+esc(v)+'</span>'+m.list.filter(x=>x.div===v).map(x=>'<b>'+esc(x.team.name||x.team.short)+'</b>').join('')+'</div>').join('')+'</div></div>';
   }
-  /* 個人表彰は MONOLITH。受賞した大学が1つならその大学の色（チーム紹介の色をそのまま渡す）、ばらばらなら JUFA の色 */
+  /* 背景は共通グラフィック（brand-bg.js）。優勝＝TRIANGLE ASCENT（優勝校の色）、最終順位・個人表彰＝MONOLITH、決勝・ベスト4＝ORBIT（優勝校の色）、
+     入替戦＝TRIPLE STRIKE、来季の案内・翌年度の所属＝NORTH PULSE。個人表彰は受賞した大学が1つならその色、ばらばらなら JUFA の色 */
   const one=a=>a.length&&a.every(p=>p.team&&p.team.id===a[0].team.id)?a[0].team:null;
-  const awT=m.post==='mvp'?m.p.team:m.post==='excellent'?one(m.list):m.post==='rookie'?(m.best?m.best.team:one(m.list)):m.post==='position'?one(m.list):undefined;
-  const jon=awT!==undefined&&!!window.JUFABG;
+  const BG=m.next?['north-pulse',null]:m.post==='champ'?['triangle-ascent',m.team]:m.post==='ranking'?['monolith',null]:m.post==='final'?['orbit',winnerOf(m.m)]:m.post==='best4'?['orbit',winnerOf(m.fin)]
+    :m.post==='playoff'?['triple-strike',null]:m.post==='division'?['north-pulse',null]
+    :m.post==='mvp'?['monolith',m.p.team]:m.post==='excellent'?['monolith',one(m.list)]:m.post==='rookie'?['monolith',m.best?m.best.team:one(m.list)]:m.post==='position'?['monolith',one(m.list)]:null;
+  const jon=!!BG&&!!window.JUFABG,awT=BG&&BG[1];
   $('mv').classList.toggle('jbgon',jon);
-  if(jon)JUFABG.apply($('mvJbg'),Object.assign({variant:'monolith'},JUFABG.fromProfile(awT?teamProf(awT):null)));
+  if(jon)JUFABG.apply($('mvJbg'),Object.assign({variant:BG[0]},JUFABG.fromProfile(awT?teamProf(awT):null)));
   $('mvBg').style.setProperty('--hc',col);$('mvBg').style.setProperty('--ac',col);$('mvNm').innerHTML='';
   $('mvMatch').innerHTML=html;
   $('mvBtn').classList.remove('done','live');$('mvBtn').href=btn[1];$('mvBtn').innerHTML=esc(btn[0])+'<span aria-hidden="true">»</span>';
