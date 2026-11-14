@@ -729,13 +729,13 @@ html{scroll-padding-top:0}
 .mv-art .pic{flex:1 1 50%;width:50%;height:100%;overflow:hidden;position:relative}
 .mv-art .pic img{position:absolute;top:0;left:50%;height:100%;width:auto;max-width:none;translate:-50% 0;display:block}
 /* 2つの画像はまん中で合わせる（左の画像は左半分の右端、右の画像は右半分の左端に寄せる）。外側は同じ画像をぼかして広げ、境目はなめらかに */
-.mv-art .pic.l img{left:auto;right:0;translate:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%);mask-image:linear-gradient(90deg,transparent,#000 14%)}
-.mv-art .pic.r img{left:0;translate:none;-webkit-mask-image:linear-gradient(270deg,transparent,#000 14%);mask-image:linear-gradient(270deg,transparent,#000 14%)}
+/* 画像は横長（筆文字のまわりはそのまま、外側を引きのばしたもの）。それぞれの半分のまん中に置き、端まで届く。ぼかしはかけない */
+.mv-art .pic img{left:50%;right:auto;translate:-50% 0;-webkit-mask-image:none;mask-image:none}
 /* 画像の外側は、ぼかした絵ではなく、ページと同じ黒（暗い枠に見えないように）。画像の外側の端は黒になじませる */
 .mv.art .mv-art .fill{display:none}
 .mv.art{background:var(--bg)}
 .mv.art:before,.mv.post:before{display:none}
-.mv-art:after{content:"";position:absolute;left:0;right:0;bottom:0;height:18%;background:linear-gradient(180deg,transparent,var(--bg));z-index:2}
+.mv-art:after{content:none}
 .mv.art .mv-match{display:block;width:min(100%,1100px)}
 .kx{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);background:#111;animation:mvCIn .6s ease both}
 .kx .kt{--c:#555;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-width:0;padding:14px 12px 12px;border-top:5px solid var(--c);background:linear-gradient(180deg,color-mix(in srgb,var(--c) 22%,#111),#111 85%);text-align:center}
@@ -1240,8 +1240,8 @@ function mvArt(m){
   mv.classList.toggle('art',!!(h&&a));
   if(!(h&&a)){box.innerHTML='';return false}
   // 画像は「背景と筆文字」だけ（エンブレム・大学名は入っていない）。エンブレムと大学名は下のスコアの帯に出す
-  const V='?v=20261114c'; // 画像を差しかえたら変える（古い画像がスマホに残らないように）
-  const im=(u,alt)=>'<img src="'+u+'.webp'+V+'" srcset="'+u+'-s.webp'+V+' 540w, '+u+'.webp'+V+' 1086w" sizes="(max-width:680px) 50vw, 560px" alt="'+alt+'" decoding="async">';
+  const V='?v=20261114d'; // 画像を差しかえたら変える（古い画像がスマホに残らないように）
+  const im=(u,alt)=>'<img src="'+u+'.webp'+V+'" srcset="'+u+'-s.webp'+V+' 1000w, '+u+'.webp'+V+' 2000w" sizes="(max-width:680px) 120vw, 100vw" alt="'+alt+'" decoding="async">';
   const pic=(u,t,c)=>'<div class="pic '+c+'">'+im(u,esc((t.univ||'')+'の筆文字'))+'</div>';
   box.innerHTML='<div class="fill l" aria-hidden="true">'+im(h,'')+'</div><div class="fill r" aria-hidden="true">'+im(a,'')+'</div>'+pic(h,m.home,'l')+pic(a,m.away,'r');
   return true;
