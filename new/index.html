@@ -1104,7 +1104,8 @@ function showMV(i){
     // 画像の下のスコアの帯（K案）：試合後は確定の点、試合中は速報の点、試合前はまん中に日付とキックオフ
     const sc2=done?m.score:lv?lv.score:null,nm=t=>esc(t.short||t.name||''),md=dm?(+dm[2])+'.'+dm[3]:'';
     const ko=m.kickoff?esc(m.kickoff)+'KO':'';
-    const mid=lv&&!done?'<span class="mid lv">'+esc(JUFA_LIVE.label(lv))+'</span>':(m.round?'<span class="mid">'+esc(m.round)+'</span>':'');
+    // 赤い札：試合前は節、試合中は「速報　後半」など、試合後は「試合終了」
+    const mid=done?'<span class="mid">試合終了</span>':lv?'<span class="mid lv">'+esc(lv.state==='live'?'速報'+(lv.period?'　'+lv.period:''):JUFA_LIVE.label(lv))+'</span>':(m.round?'<span class="mid">'+esc(m.round)+'</span>':'');
     const band=sc2?'<div class="ksb"><div class="kh"><span class="nm">'+nm(m.home)+'</span><span class="n">'+esc(sc2.home)+'</span></div><div class="ka"><span class="n">'+esc(sc2.away)+'</span><span class="nm">'+nm(m.away)+'</span></div><span class="sep" aria-hidden="true">-</span>'+mid+'</div>'
       :'<div class="ksb pre"><div class="kh"><span class="nm">'+nm(m.home)+'</span></div><div class="ka"><span class="nm">'+nm(m.away)+'</span></div><div class="kc'+(dm?'':' tbd')+'">'+(dm?'<b>'+md+'<small>'+WD[new Date(+dm[1],+dm[2]-1,+dm[3]).getDay()]+'</small></b>'+(ko?'<span>'+ko+'</span>':''):'<b>日程未定</b>')+'</div>'+mid+'</div>';
     const info=(sc2&&dm?md+(ko?' '+ko:'')+'　':'')+'📍 '+vn(m.venue||'会場未定');
@@ -1114,7 +1115,8 @@ function showMV(i){
   $('mvBtn').href=detail(S.id,done||lv?m.matchId:'');
   // 画像のときは「試合終了」「速報」の札をボタンにまとめる（1つにする）
   $('mvBtn').classList.toggle('done',!!(art&&done));$('mvBtn').classList.toggle('live',!!(art&&lv&&!done));
-  $('mvBtn').innerHTML=art&&done?'<b>試合終了</b><i aria-hidden="true"></i>結果を見る<span aria-hidden="true">»</span>':art&&lv?'<b>LIVE</b><i aria-hidden="true"></i>速報を見る<span aria-hidden="true">»</span>':'試合情報はこちら<span aria-hidden="true">»</span>';
+  // ボタン（画像のとき）：試合前「試合情報を見る」・試合中「速報を見る」（赤）・試合後「結果を見る」。試合中・試合後のようすは上の赤い札で分かる
+  $('mvBtn').innerHTML=art?(done?'結果を見る':lv?'速報を見る':'試合情報を見る')+'<span aria-hidden="true">»</span>':'試合情報はこちら<span aria-hidden="true">»</span>';
   $('mvDots').querySelectorAll('button').forEach(b=>b.setAttribute('aria-current',String(+b.dataset.i===i)));
 }
 function champOf(d,ms){
