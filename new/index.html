@@ -545,14 +545,21 @@ html{scroll-padding-top:0}
 .mv-art{display:none}
 .mv.art{--ah:min(720px,80vh,84vw)}
 .mv.art .mv-art{display:flex;position:absolute;left:0;right:0;top:0;height:var(--ah);z-index:0;justify-content:center;container-type:size;pointer-events:none}
-.mv-art .pic{flex:none;position:relative;height:100%;width:clamp(58.5cqh,50cqw,75cqh);overflow:hidden}
-.mv-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.mv-art .pic{flex:none;position:relative;z-index:1;height:100%;width:clamp(58.5cqh,50cqw,75cqh);overflow:hidden}
+/* 画像そのもの（切らない大きさ。はみ出た左右だけ .pic で隠れる）。札の位置は、この中の割合で決める */
+.mv-art .fr{position:absolute;top:0;bottom:0;left:50%;width:75cqh;translate:-50% 0}
+.mv-art .fr img{display:block;width:100%;height:100%}
+/* 左右の余白：それぞれの画像を大きくぼかして暗くしたもので埋める（画像の色がそのまま外へ広がる） */
+.mv-art .fill{position:absolute;top:0;bottom:0;width:50%;overflow:hidden;z-index:0}
+.mv-art .fill.l{left:0}.mv-art .fill.r{right:0}
+.mv-art .fill img{width:100%;height:100%;object-fit:cover;filter:blur(26px) brightness(.5) saturate(1.25);transform:scale(1.2)}
 .mv-art .pic.l{animation:mvPicL .7s cubic-bezier(.2,.8,.2,1) both}.mv-art .pic.r{animation:mvPicR .7s cubic-bezier(.2,.8,.2,1) both}
 @keyframes mvPicL{from{opacity:0;transform:translateX(-40px)}}@keyframes mvPicR{from{opacity:0;transform:translateX(40px)}}
 @media(prefers-reduced-motion:reduce){.mv-art .pic{animation:none!important}}
-/* チームの区別（A・B・U-22・サテライトなど）は、画像の上のすみに小さく（下の大学名にはかぶせない） */
-.mv-art .tg{position:absolute;top:10px;padding:3px 10px;border-radius:999px;background:rgba(10,10,10,.78);color:#fff;font-size:12px;font-weight:900;line-height:1.5;white-space:nowrap}
-.mv-art .l .tg{left:10px}.mv-art .r .tg{right:10px}
+/* チームの区別（A・B・U-22・サテライトなど）：大学の正式名称の右上に札で（画像の右から13%・上から77%のところが札の右下）
+   スマホで左右が切れても見えるように、右は11%より内側に */
+.mv-art .tg{position:absolute;right:13%;bottom:23%;padding:.25em .75em;border-radius:6px;background:var(--red,#E60012);color:#fff;border:2px solid #fff;
+  font-family:var(--num),"Noto Sans JP",sans-serif;font-size:clamp(11px,calc(var(--ah)*.032),22px);font-weight:900;line-height:1.2;letter-spacing:.03em;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.5);rotate:-3deg}
 .mv.art .mv-bg:after,.mv.art .mv-nm,.mv.art .mv-tm{display:none!important}
 .mv.art .mv-in{display:flex;flex-direction:column;align-items:center;justify-content:center;height:var(--ah);min-height:0;padding:0 0 calc(var(--ah)*.14)}
 .mv.art .mv-match{display:block}
@@ -579,7 +586,7 @@ html{scroll-padding-top:0}
   .mv.art .vn2{display:block;margin-top:12px;font-size:13px;font-weight:700;text-align:center;line-height:1.5}
   .mv.art .mv-in>.mv-btn{margin:10px 0 0;min-height:40px;font-size:13px}
   .mv.art .mv-in>.mv-dots{position:static;translate:none;margin-top:6px}
-  .mv-art .tg{top:6px;font-size:10.5px;padding:2px 8px}.mv-art .l .tg{left:6px}.mv-art .r .tg{right:6px}
+  .mv-art .tg{border-width:1.5px;border-radius:4px}
 }
 </style>
 <script src="./site.js"></script>
@@ -1018,14 +1025,15 @@ const MV_BG='name';
 const MATCH_ART={'北星学園大学':'hokusei','北海学園大学':'hokkai-gakuen','北海道医療大学':'iryo','北海道大学医学部':'hokudai-med','北海道大学水産学部':'hokudai-fish','北海道大学':'hokudai','北海道教育大学函館校':'hue-hakodate','北海道教育大学岩見沢校':'hue-iwamizawa','北海道教育大学旭川校':'hue-asahikawa','北海道教育大学札幌校':'hue-sapporo','北海道教育大学釧路校':'hue-kushiro','北海道文教大学':'bunkyo','北海道科学大学':'hus','北翔大学':'hokusho','室蘭工業大学':'muroran','小樽商科大学':'otaru','帯広畜産大学':'obihiro','旭川医科大学':'asahikawa-med','星槎道都大学':'seisa','札幌医科大学':'sapmed','札幌国際大学':'sapporo-kokusai','札幌大学':'sapporo','札幌大谷大学':'otani','東海大学':'tokai','東海大学札幌校舎':'tokai','釧路公立大学':'kushiro-koritsu'};
 const artOf=t=>{const s=t&&typeof t==='object'&&MATCH_ART[String(t.univ||'').trim()];return s?'./img/match/'+s:''};
 /* チームの区別（大学名のあとの A・B・U-22・サテライトなど）。画像は大学ごとなので、区別は小さな札で出す */
-const teamTag=t=>{const v=String(t.short||t.name||'').normalize('NFKC').trim(),m=v.match(/\s*(セカンド|second|サテライト|サード|トップ|U-?\d+|[A-Z]|\d+(?:st|nd|rd|th))$/i);return m?v:''};
+const teamTag=t=>{const v=String(t.short||t.name||'').normalize('NFKC').trim(),m=v.match(/\s*(セカンド|second|サテライト|サード|トップ|U-?\d+|[A-Z]|\d+(?:st|nd|rd|th))$/i);return m?m[1].replace(/^u-?(\d)/i,'U-$1').replace(/^second$/i,'セカンド'):''}; // 札は区別の文字だけ（A・サテライト・U-22）
 function mvArt(m){
   const mv=$('mv'),box=$('mvArt');if(!mv||!box)return false;
   const h=m&&!m.off?artOf(m.home):'',a=m&&!m.off?artOf(m.away):'';
   mv.classList.toggle('art',!!(h&&a));
   if(!(h&&a)){box.innerHTML='';return false}
-  const pic=(u,t,c)=>{const g=teamTag(t);return '<div class="pic '+c+'"><img src="'+u+'.webp" srcset="'+u+'-s.webp 540w, '+u+'.webp 1012w" sizes="(max-width:680px) 50vw, 560px" alt="'+esc(t.univ||'')+'" decoding="async">'+(g?'<span class="tg">'+esc(g)+'</span>':'')+'</div>'};
-  box.innerHTML=pic(h,m.home,'l')+pic(a,m.away,'r');
+  const im=(u,alt)=>'<img src="'+u+'.webp" srcset="'+u+'-s.webp 540w, '+u+'.webp 1012w" sizes="(max-width:680px) 50vw, 560px" alt="'+alt+'" decoding="async">';
+  const pic=(u,t,c)=>{const g=teamTag(t);return '<div class="pic '+c+'"><div class="fr">'+im(u,esc(t.univ||''))+(g?'<span class="tg">'+esc(g)+'</span>':'')+'</div></div>'};
+  box.innerHTML='<div class="fill l" aria-hidden="true">'+im(h,'')+'</div><div class="fill r" aria-hidden="true">'+im(a,'')+'</div>'+pic(h,m.home,'l')+pic(a,m.away,'r');
   return true;
 }
 document.getElementById('mv')?.classList.add('bg-name');
