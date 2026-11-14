@@ -765,6 +765,13 @@ html{scroll-padding-top:0}
 
 /* チーム紹介カード：写真の代わりに共通グラフィック */
 .club.jbgc{background:#0a0a0a;border-color:#2a2a2a}
+/* 上の黒い余白をなくす：写真用の 16:9 の場所は使わず、エンブレムと大学名をまん中に。エンブレムは大きく */
+.club.jbgc{justify-content:center;gap:10px;padding:22px 10px 18px;min-height:200px}
+.club.jbgc .cv{display:none}
+.club.jbgc>.crest{width:104px;height:104px;margin-top:0;font-size:34px}
+.club.jbgc>.crest.two{font-size:28px}
+.club.jbgc .cb{padding:0}
+@media(max-width:680px){.club.jbgc{padding:16px 8px 14px;min-height:150px;gap:8px}.club.jbgc>.crest{width:76px;height:76px;margin-top:0;font-size:26px}.club.jbgc>.crest.two{font-size:21px}}
 .club.jbgc .cv{background:none}.club.jbgc .cv:after{display:none}
 .club.jbgc .cb strong{color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.8)}
 .club.jbgc:hover{border-color:#555}
