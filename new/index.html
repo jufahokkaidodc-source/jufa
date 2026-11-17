@@ -562,6 +562,12 @@ html{scroll-padding-top:0}
 .mv-art .tg{position:absolute;right:12%;bottom:25.5%;padding:.25em .75em;border-radius:6px;background:var(--red,#E60012);color:#fff;border:2px solid #fff;
   font-family:var(--num),"Noto Sans JP",sans-serif;font-size:clamp(11px,calc(var(--ah)*.032),22px);font-weight:900;line-height:1.2;letter-spacing:.03em;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.5);rotate:-3deg}
 .mv.art .mv-bg,.mv.art .mv-nm,.mv.art .mv-tm{display:none!important}
+/* 大学の絵がない対戦カード（.jart）：絵の代わりに共通グラフィック ORBIT（全体）と、左右に大学の略称の筆文字（縦書き・白） */
+.mv-art .jb{position:absolute;inset:0;z-index:0}
+.mv-art .pic.jn{display:flex;align-items:center;justify-content:center;container-type:size}
+.mv-art .pic.jn span{font-family:"FudeGoshirae","Yuji Boku",serif;writing-mode:vertical-rl;color:#fff;line-height:1;white-space:nowrap;font-size:min(calc(78cqh / var(--n,2)),62cqw);
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.55));rotate:-3deg}
+.mv-art .pic.jn.r span{rotate:3deg}
 .mv.art{--ah:min(640px,72vh,84vw);background:var(--bg)}
 /* 画像の下のスコアの帯（K案・2026-11）：左右それぞれの画像の真下に、大学の色の線・チーム名・点数。まん中の上に節（試合中は速報）の赤い札
    試合前は点数の代わりに、まん中に日付とキックオフ。その下に日時・会場、ボタン */
@@ -1253,8 +1259,18 @@ const teamTag=t=>{const v=String(t.short||t.name||'').normalize('NFKC').trim(),m
 function mvArt(m){
   const mv=$('mv'),box=$('mvArt');if(!mv||!box)return false;
   const h=m&&!m.off?artOf(m.home):'',a=m&&!m.off?artOf(m.away):'';
-  mv.classList.toggle('art',!!(h&&a));
-  if(!(h&&a)){box.innerHTML='';return false}
+  mv.classList.toggle('art',!!(h&&a));mv.classList.remove('jart');
+  if(!(h&&a)){
+    // 大学の絵がない対戦カード（2026-11）：絵のときと同じ並べ方（上に絵・下にスコアの帯）。絵の代わりに共通グラフィック ORBIT（両チームの色）と、大学の略称の筆文字
+    if(m&&!m.off&&window.JUFABG){
+      const [hc,ac]=matchColors(m);
+      const bn=t=>{const v=String(t.short||t.name||'').normalize('NFKC').trim(),g=teamTag(t);return (g?v.slice(0,v.length-g.length).trim():v)||v};
+      const pn=(t,c)=>{const v=bn(t);return '<div class="pic jn '+c+'" aria-hidden="true"><span style="--n:'+Math.max(2,[...v].length)+'">'+esc(v)+'</span></div>'};
+      box.innerHTML='<div class="jb"></div>'+pn(m.home,'l')+pn(m.away,'r');
+      JUFABG.apply(box.querySelector('.jb'),{variant:'orbit',color:hc,color2:ac,layout:'center'});
+      mv.classList.add('art','jart');return true;
+    }
+    box.innerHTML='';return false}
   // 画像は「背景と筆文字」だけ（エンブレム・大学名は入っていない）。エンブレムと大学名は下のスコアの帯に出す
   const V='?v=20261114d'; // 画像を差しかえたら変える（古い画像がスマホに残らないように）
   const im=(u,alt)=>'<img src="'+u+'.webp'+V+'" srcset="'+u+'-s.webp'+V+' 1000w, '+u+'.webp'+V+' 2000w" sizes="(max-width:680px) 120vw, 100vw" alt="'+alt+'" decoding="async">';
