@@ -95,6 +95,19 @@
     });
     return map;
   }
+  /* 大会のタブ：年度ごとに分ける（2026-11）。新しい年度の大会ができると、前の年度の大会も一覧に残るので、
+   *  「リーグ 1部」が2つ並ばないように、タブには1つの年度の大会だけを出し、ほかの年度は「2026年度の大会」のボタンで切りかえる
+   *  year(c)：大会の年度（season・year・大会IDの頭の4けた）。わからない大会は、いちばん新しい年度に入れる */
+  window.jufaCompYears = function (cs, curId) {
+    cs = cs || [];
+    const yr = (c) => Number(c.season || c.year || (/^(\d{4})-/.exec(String(c.id || '')) || [])[1]) || 0;
+    const top = Math.max(0, ...cs.map(yr));
+    const y = (c) => yr(c) || top;
+    const cur = cs.find((c) => c.id === curId);
+    const sel = cur ? y(cur) : top;
+    const years = [...new Set(cs.map(y))].sort((a, b) => b - a);
+    return { year: sel, list: cs.filter((c) => y(c) === sel), others: years.filter((v) => v !== sel).map((v) => ({ year: v, first: cs.find((c) => y(c) === v) })) };
+  };
   /* 大会のデータ（試合）と名簿をまとめて直す。読みこんだ JSON をそのまま渡す */
   window.jufaMergePO = function (d) {
     if (!d || typeof d !== 'object') return d;

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>順位表・結果を貼る | 北海道学生サッカー連盟</title>
+<!--
+  ほかのサイトに貼る、自動で変わる順位表・結果・日程・得点ランキング（2026-11）
+  ・貼る側：<iframe src="https://（このサイト）/new/embed.html?comp=大会ID&view=standings"> を置くだけ。データが変わると、自動で新しくなる
+  ・中身は、このサイトの ../results/data/大会ID.json（大会運営システムが書き出す。公式記録が確定すると変わる）
+  ・指定（?のあと）
+      comp   大会ID（例 2026-L1）。ないときは、いちばん新しい年度のリーグ1部
+      view   standings（順位表）／results（結果）／schedule（日程）／scorers（得点ランキング）
+      n      行の数（結果・日程・得点ランキング。既定は8・8・10）
+      name   full（正式名称。既定）／short（短い名前）
+      theme  light（既定）／dark
+      head   0 で大会名の見出しを出さない
+  ・高さ：中身の高さを postMessage({ jufaEmbed: true, height }) で貼った側へ知らせる（下の「貼るコード」の小さな script が受け取って合わせる）
+  ・comp も view もないときは「貼るコードを作る」画面になる
+-->
+<style>
+:root{--ink:#222222;--mu:#6b7280;--ln:#e5e7eb;--bg:#ffffff;--soft:#f6f7f9;--acc:#E60012;--win:#222222}
+:root[data-theme=dark]{--ink:#f2f2f2;--mu:#a3a9b3;--ln:#2c3036;--bg:#111317;--soft:#1a1d22;--acc:#ff3341;--win:#ffffff}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic","Meiryo",system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.w{padding:10px 12px}
+.hd{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:0 0 8px;border-bottom:2px solid var(--acc);padding-bottom:6px}
+.hd b{font-size:15px;line-height:1.35}
+.hd small{color:var(--mu);font-size:11.5px;white-space:nowrap}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{font-size:11px;font-weight:500;color:var(--mu);text-align:center;padding:5px 4px;border-bottom:1px solid var(--ln);white-space:nowrap}
+td{padding:7px 4px;border-bottom:1px solid var(--ln);text-align:center;vertical-align:middle}
+td.l,th.l{text-align:left}td.r{text-align:right}
+.rk{font-weight:800;width:2.2em}
+.pt{font-weight:800}
+.tm{font-weight:700;overflow-wrap:anywhere}
+.opt{}
+@media (max-width:420px){.opt{display:none}}
+.day{margin:10px 0 2px;font-size:12px;font-weight:700;color:var(--mu)}
+.mt td{padding:8px 4px}
+.sc{font-weight:800;font-size:16px;white-space:nowrap;width:4.6em}
+.sc small{display:block;font-size:10.5px;font-weight:500;color:var(--mu)}
+.win{font-weight:800;color:var(--win)}
+.lose{color:var(--mu)}
+.ko{color:var(--mu);font-size:12px;white-space:nowrap;width:3.4em}
+.vn{display:block;color:var(--mu);font-size:11px;font-weight:400}
+.empty{padding:18px 4px;color:var(--mu);text-align:center}
+.ft{display:flex;justify-content:space-between;gap:8px;margin-top:8px;font-size:11px;color:var(--mu)}
+.ft a{color:var(--mu)}
+/* 貼るコードを作る画面 */
+.mk{max-width:880px;margin:0 auto;padding:20px 16px 40px}
+.mk h1{font-size:22px;margin:0 0 6px}
+.mk p{color:var(--mu);margin:0 0 14px}
+.mk .row{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 12px}
+.mk label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;font-weight:700;flex:1;min-width:150px}
+.mk select{min-height:42px;border:1px solid var(--ln);border-radius:6px;padding:0 8px;font:inherit;background:var(--bg);color:var(--ink)}
+.mk textarea{width:100%;min-height:150px;border:1px solid var(--ln);border-radius:6px;padding:10px;font:12.5px/1.6 ui-monospace,Menlo,Consolas,monospace;background:var(--soft);color:var(--ink)}
+.mk .btn{display:inline-flex;align-items:center;min-height:42px;padding:0 16px;border:0;border-radius:6px;background:var(--acc);color:#fff;font:700 14px inherit;cursor:pointer}
+.mk .pv{border:1px dashed var(--ln);border-radius:8px;overflow:hidden;margin:6px 0 16px;background:var(--bg)}
+.mk .pv iframe{display:block;width:100%;border:0}
+.mk h2{font-size:15px;margin:18px 0 6px}
+</style>
+</head>
+<body>
+<div id="app"><div class="w empty">読み込み中…</div></div>
+<script>
+(function(){
+'use strict';
+var P=new URLSearchParams(location.search);
+var DATA_DIR=new URL('../results/data/',location.href).href;
+var SITE=new URL('./results.html',location.href).href;
+var VIEWS={standings:'順位表',results:'結果',schedule:'日程',scorers:'得点ランキング'};
+var $=function(id){return document.getElementById(id);};
+var esc=function(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
+var WD='日月火水木金土';
+var md=function(d){var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(d||'');if(!m)return '日程未定';var t=new Date(Date.UTC(+m[1],+m[2]-1,+m[3]));return (+m[2])+'/'+(+m[3])+'（'+WD[t.getUTCDay()]+'）';};
+var ymd=function(){var j=new Date(Date.now()+9*3600e3);return j.toISOString().slice(0,10);};
+function getJSON(f){return fetch(DATA_DIR+f,{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error('データを読み込めませんでした（'+r.status+'）');return r.json();});}
+// 大会の一覧から、既定の大会（いちばん新しい年度のリーグ1部。なければ最初の大会）
+function pickComp(list,want){
+  if(want&&list.some(function(c){return c.id===want;}))return want;
+  var ys=list.map(function(c){return String(c.year||String(c.id).slice(0,4));}).sort();var y=ys[ys.length-1];
+  var l1=list.filter(function(c){return String(c.id).indexOf(y+'-L1')===0;})[0];
+  return (l1||list[0]||{}).id;
+}
+
+// ---- 貼るほう（iframe の中） ----
+function widget(){
+  var view=VIEWS[P.get('view')]?P.get('view'):'standings', full=P.get('name')!=='short', head=P.get('head')!=='0';
+  if(P.get('theme')==='dark')document.documentElement.dataset.theme='dark';
+  var nm=function(t){return t?(full?(t.name||t.short):(t.short||t.name)):'未定';};
+  getJSON('competitions.json').then(function(cs){
+    var list=cs.competitions||[], id=pickComp(list,P.get('comp'));
+    if(!id)throw new Error('大会がありません');
+    var comp=list.filter(function(c){return c.id===id;})[0]||{name:id};
+    return getJSON(id+'.json').then(function(d){draw(comp,d,view,nm,head);});
+  }).catch(function(e){$('app').innerHTML='<div class="w empty">'+esc(e.message)+'</div>';fit();});
+}
+function draw(comp,d,view,nm,head){
+  var ms=d.matches||[], body='';
+  var last=ms.filter(function(m){return m.score&&m.date;}).map(function(m){return m.date;}).sort().pop();
+  var link=SITE+'?comp='+encodeURIComponent(comp.id);
+  if(view==='standings'){
+    var gs=(d.groups||[]).filter(function(g){return (g.table||[]).length;});
+    body=gs.length?gs.map(function(g){return (g.group?'<div class="day">'+esc(g.group)+'</div>':'')+
+      '<table><thead><tr><th>順位</th><th class="l">チーム</th><th>勝点</th><th class="opt">試合</th><th class="opt">勝</th><th class="opt">分</th><th class="opt">敗</th><th>得失点差</th></tr></thead><tbody>'+
+      g.table.map(function(r){return '<tr><td class="rk">'+esc(r.rank)+'</td><td class="l tm">'+esc(nm(r.team))+'</td><td class="pt">'+esc(r.points)+'</td><td class="opt">'+esc(r.played)+'</td><td class="opt">'+esc(r.won)+'</td><td class="opt">'+esc(r.drawn)+'</td><td class="opt">'+esc(r.lost)+'</td><td>'+(r.goalDiff>0?'+':'')+esc(r.goalDiff)+'</td></tr>';}).join('')+'</tbody></table>';}).join('')
+      :'<div class="empty">この大会には順位表がありません</div>';
+  }else if(view==='results'||view==='schedule'){
+    var n=Math.max(1,Math.min(40,parseInt(P.get('n'),10)||8)), today=ymd();
+    var list=view==='results'
+      ?ms.filter(function(m){return m.score;}).sort(function(a,b){return String(b.date+b.kickoff).localeCompare(String(a.date+a.kickoff));}).slice(0,n).reverse()
+      :ms.filter(function(m){return !m.score&&m.date&&m.date>=today&&!/cancel|中止|postpone|延期/.test(m.status||'');}).sort(function(a,b){return String(a.date+a.kickoff).localeCompare(String(b.date+b.kickoff));}).slice(0,n);
+    if(!list.length)body='<div class="empty">'+(view==='results'?'まだ結果はありません':'これからの試合はありません')+'</div>';
+    else{
+      var cur='';
+      body=list.map(function(m){
+        var h='';if(m.date!==cur){cur=m.date;h='<div class="day">'+esc(md(m.date))+(m.round?'　'+esc(m.round):'')+'</div>';}
+        var s=m.score, hw=m.winner&&m.home&&m.winner===m.home.id, aw=m.winner&&m.away&&m.winner===m.away.id;
+        var mid=s?esc(s.home)+' - '+esc(s.away)+(s.pk&&s.pk.home!=null?'<small>PK '+esc(s.pk.home)+'-'+esc(s.pk.away)+'</small>':s.extraTime?'<small>延長</small>':''):'<small>'+esc(m.kickoff||'')+'</small>vs';
+        return h+'<table class="mt"><tr><td class="r tm '+(s?(hw?'win':aw?'lose':''):'')+'">'+esc(nm(m.home))+'</td><td class="sc">'+mid+'</td><td class="l tm '+(s?(aw?'win':hw?'lose':''):'')+'">'+esc(nm(m.away))+(view==='schedule'&&m.venue?'<span class="vn">'+esc(m.venue)+'</span>':'')+'</td></tr></table>';
+      }).join('');
+    }
+  }else{
+    var k=Math.max(1,Math.min(40,parseInt(P.get('n'),10)||10));
+    var sc=(d.scorers||[]).filter(function(x){return x.rank<=k;});
+    body=sc.length?'<table><thead><tr><th>順位</th><th class="l">選手</th><th class="l opt">チーム</th><th>得点</th></tr></thead><tbody>'+sc.map(function(x){return '<tr><td class="rk">'+esc(x.rank)+'</td><td class="l tm">'+esc(x.name)+'</td><td class="l opt">'+esc(nm(x.team))+'</td><td class="pt">'+esc(x.count)+'</td></tr>';}).join('')+'</tbody></table>'
+      :'<div class="empty">まだ得点はありません</div>';
+  }
+  $('app').innerHTML='<div class="w">'+(head?'<div class="hd"><b>'+esc(comp.name)+'　'+esc(VIEWS[view])+'</b><small>'+(last?esc(md(last))+'の試合まで':'')+'</small></div>':'')+body+
+    '<div class="ft"><span>北海道学生サッカー連盟 公式記録</span><a href="'+esc(link)+'" target="_blank" rel="noopener">くわしく見る ›</a></div></div>';
+  fit();
+}
+// 中身の高さを、貼った側へ知らせる
+function fit(){
+  if(window.parent===window)return;
+  // iframe の高さではなく、中身の高さ（#app）を知らせる
+  var send=function(){window.parent.postMessage({jufaEmbed:true,height:Math.ceil($('app').getBoundingClientRect().height)+2},'*');};
+  send();
+  if(window.ResizeObserver&&!fit.ro){fit.ro=new ResizeObserver(send);fit.ro.observe($('app'));}
+}
+
+// ---- 貼るコードを作る画面 ----
+function maker(){
+  document.title='順位表・結果をほかのサイトに貼る | 北海道学生サッカー連盟';
+  $('app').innerHTML='<div class="mk"><h1>順位表・結果を、ほかのサイトに貼る</h1>'+
+    '<p>大学・後援のサイトなどに、連盟の公式記録の順位表・結果・日程・得点ランキングを貼れます。下で選んで「貼るコード」をコピーし、サイトの HTML に貼ってください。公式記録が確定すると、貼った表も自動で新しくなります。</p>'+
+    '<div class="row"><label>大会<select id="mComp"></select></label><label>中身<select id="mView"><option value="standings">順位表</option><option value="results">結果（新しい順）</option><option value="schedule">日程（これからの試合）</option><option value="scorers">得点ランキング</option></select></label></div>'+
+    '<div class="row"><label>チーム名<select id="mName"><option value="full">正式名称</option><option value="short">短い名前</option></select></label><label>色<select id="mTheme"><option value="light">白い地</option><option value="dark">黒い地</option></select></label><label>行の数（結果・日程・ランキング）<select id="mN"><option>5</option><option selected>8</option><option>10</option><option>20</option></select></label></div>'+
+    '<h2>見本</h2><div class="pv"><iframe id="mPv" title="見本" style="height:420px"></iframe></div>'+
+    '<h2>貼るコード</h2><textarea id="mCode" readonly></textarea><div style="margin-top:8px;display:flex;gap:10px;align-items:center"><button class="btn" type="button" id="mCopy">コピー</button><span id="mMsg" style="color:var(--mu);font-size:12.5px"></span></div>'+
+    '<p style="margin-top:16px;font-size:12.5px">ブログ・SNS など、HTML を貼れないサービスでは使えません。そのときは「くわしく見る」のページ（'+esc(SITE)+'）へのリンクを貼ってください。PDF がほしいときは、連盟の事務局へ連絡してください（大会ごとの順位表・星取表などを送れます）。</p></div>';
+  getJSON('competitions.json').then(function(cs){
+    var list=(cs.competitions||[]).slice().sort(function(a,b){return String(b.year||b.id).localeCompare(String(a.year||a.id));});
+    var def=pickComp(list,P.get('comp'));
+    $('mComp').innerHTML=list.map(function(c){return '<option value="'+esc(c.id)+'"'+(c.id===def?' selected':'')+'>'+esc(c.name)+'</option>';}).join('');
+    var upd=function(){
+      var q=new URLSearchParams({comp:$('mComp').value,view:$('mView').value});
+      if($('mName').value==='short')q.set('name','short');
+      if($('mTheme').value==='dark')q.set('theme','dark');
+      if($('mView').value!=='standings')q.set('n',$('mN').value);
+      var url=new URL('./embed.html?'+q.toString(),location.href).href, origin=location.origin;
+      $('mPv').src=url;
+      $('mCode').value='<iframe src="'+url+'" title="北海道学生サッカー連盟 '+VIEWS[$('mView').value]+'" style="width:100%;max-width:720px;height:480px;border:0" loading="lazy"></iframe>\n'+
+        '<script>addEventListener("message",function(e){if(e.origin!=="'+origin+'"||!e.data||!e.data.jufaEmbed)return;document.querySelectorAll("iframe").forEach(function(f){if(f.contentWindow===e.source)f.style.height=e.data.height+"px";});});<\/script>';
+    };
+    ['mComp','mView','mName','mTheme','mN'].forEach(function(k){$(k).onchange=upd;});
+    upd();
+  }).catch(function(e){$('app').innerHTML='<div class="w empty">'+esc(e.message)+'</div>';});
+  addEventListener('message',function(e){if(e.origin===location.origin&&e.data&&e.data.jufaEmbed&&$('mPv'))$('mPv').style.height=e.data.height+'px';});
+  $('app').addEventListener('click',function(e){if(e.target&&e.target.id==='mCopy'){var t=$('mCode');t.select();var ok=function(){$('mMsg').textContent='コピーしました';};if(navigator.clipboard)navigator.clipboard.writeText(t.value).then(ok,function(){document.execCommand('copy');ok();});else{document.execCommand('copy');ok();}}});
+}
+
+if(!P.get('comp')&&!P.get('view'))maker();else widget();
+})();
+</script>
+</body>
+</html>
