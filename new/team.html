@@ -382,10 +382,12 @@ dl.facts dd{margin:0;font-weight:700;overflow-wrap:anywhere}
 .links a.sl.sn-youtube:hover{color:#222}
 .favbtn{margin-top:12px;font:inherit;font-size:14px;font-weight:700;color:#fff;background:#ffffff1a;border:1px solid #ffffff55;border-radius:999px;padding:8px 16px;cursor:pointer}
 .favbtn.on{background:#FFC400;border-color:#FFC400;color:#222}
+.langbtn{display:inline-block;float:right;margin:8px 0 6px 8px;padding:5px 12px;border:1px solid currentColor;border-radius:999px;font-size:12.5px;font-weight:700;color:inherit;text-decoration:none;opacity:.9}
 </style>
 <link rel="stylesheet" href="./theme.css?v=20261114f">
 <link rel="stylesheet" href="./brand-bg.css?v=20261114f">
 <script src="./site.js?v=20261123a"></script>
+<script src="./en.js?v=20261125a"></script>
 <script src="./brand-bg.js?v=20261114f"></script>
 </head>
 <body>
@@ -586,7 +588,8 @@ async function json(file){
   if(DEMO)return demoData(file);
   const r=await fetch('../results/data/'+file,{cache:'no-store'});
   if(!r.ok)throw Error('HTTP '+r.status);
-  const d=await r.json();return window.jufaMergePO?jufaMergePO(d):d; // プレーオフ用に別に登録したチームをまとめる（site.js）
+  const d0=await r.json(),d=window.jufaMergePO?jufaMergePO(d0):d0; // プレーオフ用に別に登録したチームをまとめる（site.js）
+  if(window.jufaEN&&jufaEN.on){await jufaEN.ready;return jufaEN.data(d);}return d; // 英語表示（en.js）
 }
 /* 各大学の手入力データ（new/data/teams.json）。無くても動く */
 async function loadProfiles(){
@@ -603,7 +606,7 @@ function profileOf(t){
 let S={comp:'',data:null,roster:null,team:null,up:[],res:[]};
 async function loadRoster(id){
   if(DEMO)return demoRoster();
-  try{const r=await fetch('../results/data/'+encodeURIComponent(id)+'-roster.json',{cache:'no-store'});return r.ok?await r.json():null}catch(_){return null}
+  try{const r=await fetch('../results/data/'+encodeURIComponent(id)+'-roster.json',{cache:'no-store'});if(!r.ok)return null;const d=await r.json();if(window.jufaEN&&jufaEN.on){await jufaEN.ready;return jufaEN.data(d);}return d}catch(_){return null}
 }
 
 function collectTeams(d){
@@ -910,7 +913,7 @@ $('nav').addEventListener('click',e=>{if(e.target.closest('a')){$('nav').classLi
   await embReady;
   const cs=d.competitions||[];
   if(!cs.length){$('teamTitle').textContent='大会が登録されていません';return}
-  const short=n=>String(n||'').replace(/^\d{4}年度\s*/,'').replace(/第\d+回\s*/,'').replace(/^北海道学生サッカー/,'').replace(/^北海道/,'').trim()||n;
+  const short=n=>window.jufaEN&&jufaEN.on&&/^\d{4} [A-Z]/.test(String(n||''))?jufaEN.short(n):String(n||'').replace(/^\d{4}年度\s*/,'').replace(/第\d+回\s*/,'').replace(/^北海道学生サッカー/,'').replace(/^北海道/,'').trim()||n;
   $('comptabs').innerHTML=cs.map(c=>'<button role="tab" data-id="'+esc(c.id)+'" title="'+esc(c.name)+'">'+esc(short(c.name))+'</button>').join('');
   const comp=cs.some(c=>c.id===PARAMS.get('comp'))?PARAMS.get('comp'):cs[0].id;
   $('comptabs').addEventListener('click',e=>{

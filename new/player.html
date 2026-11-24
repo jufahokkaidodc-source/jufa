@@ -285,9 +285,11 @@ table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
 .pst .tn{display:inline-flex;align-items:center;gap:6px}
 .plog .yc,.plog .rc{display:inline-block;width:9px;height:12px;border-radius:2px;vertical-align:-1px;background:#f5c400}.plog .rc{background:#e60012}
 @media(max-width:480px){.ph{flex-direction:column;text-align:center}.pmeta{justify-content:center}.pinfo h1{font-size:22px}}
+.langbtn{display:inline-block;float:right;margin:2px 0 6px 8px;padding:5px 12px;border:1px solid currentColor;border-radius:999px;font-size:12.5px;font-weight:700;color:inherit;text-decoration:none;opacity:.9}
 </style>
 <link rel="stylesheet" href="./theme.css?v=20261114f">
 <script src="./site.js?v=20261123a"></script>
+<script src="./en.js?v=20261125a"></script>
 <style>
 /* 黒い背景（theme.css）の上での調整 */
 .pagehead .eyebrow{color:#ff3b47}
@@ -365,7 +367,7 @@ function calBox(el,choices,title){
 const has=v=>v!=null&&String(v).trim()!=='';
 const name=t=>typeof t==='string'?t:(t?.short||t?.name||'未定');
 const tkey=t=>typeof t==='string'?t:(t?.id||t?.name||t?.short||'');
-const shortComp=n=>String(n||'').replace(/^\d{4}年度\s*/,'').replace(/第\d+回\s*/,'').replace(/^北海道学生サッカー/,'').replace(/^北海道/,'').trim()||n;
+const shortComp=n=>window.jufaEN&&jufaEN.on&&/^\d{4} [A-Z]/.test(String(n||''))?jufaEN.short(n):String(n||'').replace(/^\d{4}年度\s*/,'').replace(/第\d+回\s*/,'').replace(/^北海道学生サッカー/,'').replace(/^北海道/,'').trim()||n;
 const tightComp=n=>{const s=shortComp(n),a=s.split(/[\s　]+/);return s.length>10&&a[0].length>=3?a[0]:s}; // 表の中では「総理大臣杯」のように短く
 const W='日月火水木金土';
 const jd=ymd=>{const m=String(ymd||'').match(/(\d{4})-(\d{2})-(\d{2})/);if(!m)return ymd||'日程未定';const d=new Date(+m[1],+m[2]-1,+m[3]);return `${+m[2]}月${+m[3]}日（${W[d.getDay()]}）`;};
@@ -373,7 +375,9 @@ const sd=ymd=>{const m=String(ymd||'').match(/(\d{4})-(\d{2})-(\d{2})/);if(!m)re
 
 /* ---------- データ（全体システムが書き出した JSON。同じファイルは1回だけ読む） ---------- */
 const JC={};
-const getJSON=f=>JC[f]||(JC[f]=fetch('../results/data/'+f,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('データを読み込めませんでした（'+r.status+'）');return r.json();}).then(d=>window.jufaMergePO?jufaMergePO(d):d).catch(e=>{delete JC[f];throw e;}));
+const getJSON=f=>JC[f]||(JC[f]=fetch('../results/data/'+f,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('データを読み込めませんでした（'+r.status+'）');return r.json();}).then(d=>window.jufaMergePO?jufaMergePO(d):d)
+  .then(async d=>{if(window.jufaEN&&jufaEN.on){await jufaEN.ready;return jufaEN.data(d);}return d;}) // 英語表示（en.js）
+  .catch(e=>{delete JC[f];throw e;}));
 
 /* ---------- エンブレム・チームカラー（チームページと同じ考え方） ---------- */
 const PALETTE=['#145ec9','#0f7a6b','#7b3fb5','#c0392b','#1d6fa5','#b35c00','#2e7d32','#ad1457','#37474f','#5d4dbf'];
@@ -444,6 +448,7 @@ async function init(){
   try{
     await embReady;
     if(!P.team||!P.name)throw new Error('選手が指定されていません');
+    if(window.jufaEN&&jufaEN.on){await jufaEN.ready;P.name=jufaEN.nameEn(P.name);} // 英語表示：日本語の名前で開いたときは英語の名前で探す
     const cl=await getJSON('competitions.json');
     const comps=cl.competitions||[];
     const all=await Promise.all(comps.map(c=>getJSON(encodeURIComponent(c.id)+'.json').then(d=>({c,d})).catch(()=>null)));

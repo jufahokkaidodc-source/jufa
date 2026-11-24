@@ -22,7 +22,8 @@
   const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const teamOf = (k) => MAP.teams[nm(k)] || null;
   const shortOf = (s) => { const t = teamOf(s); return t ? t.short : s; };
-  const player = (name, univ) => { if (!name || !JP.test(name)) return name; return MAP.players[nm(univ) + '|' + nm(name)] || MAP.players['|' + nm(name)] || name; };
+  const player = (name, univ) => { if (!name || !JP.test(name)) return name; return MAP.players[nm(univ) + '|' + nm(name)] || MAP.players['|' + nm(name)] || (MAP.people || {})[nm(name)] || name; };
+  const person = (name) => (name && JP.test(name) && (MAP.people || {})[nm(name)]) || name; // 審判・監督・スタッフ
   const venue = (v) => { if (!v || !JP.test(v)) return v; return MAP.venues[vkey(v)] || v; };
   function round(r) {
     return String(r == null ? '' : r).replace(/第\s*(\d+)\s*節/g, 'Matchday $1').replace(/(\d+)\s*回戦/g, 'Round $1').replace(/準々決勝/g, 'Quarter-final').replace(/準決勝/g, 'Semi-final')
@@ -59,6 +60,7 @@
         else if (k === 'award') o[k] = AWARD[v] || v;
         else if (k === 'scorer' || k === 'assist' || k === 'in' || k === 'out' || k === 'name') o[k] = player(v, univ);
         else if (['weather', 'pitch', 'pitchCondition', 'wind', 'duration'].includes(k)) o[k] = info(v);
+        else if (['referee', 'ar1', 'ar2', 'fourth', 'coach', 'manager'].includes(k)) o[k] = person(v);
         continue;
       }
       if (k === 'lineups' || k === 'stats') { for (const sd of ['home', 'away']) if (v && v[sd]) walk(v[sd], { univ: c && c[sd] }); continue; }
@@ -101,6 +103,22 @@
     '試合詳細': 'Match details', '試合詳細 ›': 'Match details ›', '試合経過': 'Match events', 'メンバー': 'Line-ups', '控え': 'Substitutes', 'スタッツ': 'Stats', 'コーナーキック': 'Corner kicks', 'ゴールキック': 'Goal kicks', '直接FK': 'Direct FK', '間接FK': 'Indirect FK',
     '審判員・コンディション': 'Officials & conditions', '対戦成績・データ': 'Head-to-head & data', '第4審': '4th official', '用紙の形・印刷やPDF保存もできます': 'Official form view (print or save as PDF)',
     '📄 公式記録を見る': '📄 View official match report', '大会本部': 'Competition HQ', '学連事務局': 'Federation office', 'オウンゴール': 'Own goal', 'サテライト': 'Satellite', 'セカンド': 'Second',
+    // チームページ・選手のページ（team.html・player.html）
+    'カード': 'Cards', 'クラブ': 'Club', 'クラブニュース': 'Club news', 'クラブ情報': 'Club info', 'コーチ': 'Coach', 'GKコーチ': 'GK coach', 'ゴール': 'Goals', 'シーズン成績': 'Season record',
+    'トレーナー': 'Trainer', 'ホーム': 'Home', 'アウェイ': 'Away', 'マネージャー': 'Manager', 'レフェリー': 'Referee', '主務': 'Team manager', '副務': 'Assistant manager', '副部長': 'Deputy director',
+    '部長': 'Director', '顧問': 'Adviser', '学生コーチ': 'Student coach', '予定されている試合はありません。': 'No upcoming matches.', '今シーズンの成績': 'This season', '全公式戦': 'All official matches',
+    '全員': 'All', '公式サイト': 'Official site', '出身校': 'School', '創部': 'Founded', '勝-分-敗': 'W-D-L', '勝利': 'Win', '参加クラブ': 'Clubs', '合計': 'Total', '大会': 'Competition',
+    '左の数字は大会全体の順位です。': 'The number on the left is the overall ranking in the competition.', '引分': 'Draw', '得失': 'GD', '得失点差': 'GD', '得点記録はまだありません。': 'No goals recorded yet.',
+    '成績': 'Record', '成績は、連盟の公式記録（試合報告をふくむ）から自動で出しています。': 'Records are generated automatically from the official match reports.', '敗戦': 'Loss', '新公式サイト': 'New official site',
+    '日付': 'Date', '時間': 'Time', '未登録': 'No position', '相手': 'Opponent', '結果': 'Result', '記録': 'Record', '試合ごと': 'By match', '途中': 'Sub', '選手名鑑': 'Squad', '部員数': 'Members',
+    'これから': 'Upcoming', '(先発)': '(start)', '（先発）': '(start)', '☆ お気に入りにする': '☆ Add to favourites', '★ お気に入り': '★ Favourite', 'チーム紹介文は準備中です。': 'Team profile coming soon.',
+    '1試合平均得点': 'Goals per match', 'チーム内得点': 'Goals (team rank)', 'ゴールキーパー': 'Goalkeepers', 'ディフェンダー': 'Defenders', 'ミッドフィルダー': 'Midfielders', 'フォワード': 'Forwards',
+    'ポジション未登録': 'Position not set', 'の記録': '', '位': '',
+    '試合をタップすると大会記録のページ（得点者・警告などの詳細）に移動します。': 'Tap a match to open the competition records (scorers, cautions and more).',
+    'この大会は順位表がありません（トーナメント形式など）。': 'This competition has no standings (knockout format).',
+    '試合・成績は公式記録から自動で反映し、クラブ情報・選手名鑑は各大学の登録内容を表示しています。': 'Matches and records come from the official match reports; club info and squad lists are entered by each university.',
+    '選手一覧は大会の選手登録から掲載しています。出場・時間・得点・警告は公式記録が確定した試合から自動で集計しています（時間はアディショナルタイムを含みません）。': 'Players are listed from the competition registration. Appearances, minutes, goals and cautions are counted from confirmed official match reports (minutes exclude additional time).',
+    'いまは得点・アシスト・警告の記録に名前がある選手だけを掲載しています。出場・時間・得点・警告は公式記録が確定した試合から自動で集計しています（時間はアディショナルタイムを含みません）。': 'Only players who appear in goals, assists or cautions are listed for now. Appearances, minutes, goals and cautions are counted from confirmed official match reports (minutes exclude additional time).',
     '会場': 'Venue', '天候': 'Weather', 'ピッチ': 'Pitch', 'ベンチ': 'Bench', 'スタメン': 'Starting XI', '監督': 'Coach', '試合終了': 'Full time', '試合前': 'Upcoming', '中止': 'Cancelled', '中断': 'Suspended',
   };
   // 公式記録の用紙（record.html）だけの言いかた（表のせまい欄に入るように短く）
@@ -139,7 +157,10 @@
     [/(\d{4}年度\s*)?(第\d+回\s*)?全日本大学サッカー新人戦北海道大会/g, 'All Japan University Football Rookie Tournament, Hokkaido'],
     [/(\d{4}年度\s*)?(第\d+回\s*)?総理大臣杯\s*全日本大学サッカートーナメント北海道大会/g, "Prime Minister's Cup, Hokkaido"],
     [/^リーグ\s*(\d)部$/, 'Division $1'], [/^リーグ\s*入替戦$/, 'Playoff'], [/^入替戦$/, 'Playoff'],
-    [/^‹\s*(.+)に戻る$/, '‹ Back to $1'],
+    [/^‹\s*(.+)に戻る$/, '‹ Back to $1'], [/^背番号\s*(\d+)$/, 'No. $1'], [/^(\d)年$/, 'Year $1'], [/^‹\s*(.+)のページへ$/, '‹ $1 page'],
+    [/^(.+)の全チームの試合（リーグ・Iリーグなど）$/, '$1: all teams’ matches (league, I-League, etc.)'], [/全(\d+)チームの順位を見る/g, 'See all $1 teams'],
+    [/^大会(\d+)位$/, 'No. $1 in competition'], [/予選([A-ZＡ-Ｚ])ブロック/g, 'Group $1'], [/最終更新\s*/g, 'Updated '], [/^更新\s+/, 'Updated '], [/^(\d{4})年$/, '$1'],
+    [/（(.)）/g, (a, w) => (WD[w] ? ` (${WD[w]})` : a)], [/(\d+)\s*名/g, '$1 players'], [/試合平均得点/g, ' match avg. goals'],
     [/前半\s*(\d+-\d+)/g, '1st half $1'], [/後半\s*(\d+-\d+)/g, '2nd half $1'], [/延長\s*(\d+-\d+)/g, 'ET $1'],
     [/・No\./g, ' · No.'], [/（(\d+)試合）/g, ' ($1 matches)'], [/(\d+)\s*試合/g, '$1 matches'], [/(\d+)\s*人/g, '$1'], [/(\d+)\s*分$/g, "$1'"],
   ];
@@ -148,6 +169,10 @@
   function tr(t, el) {
     const k = t.trim();
     if (!k || !JP.test(k)) return null;
+    // ヘッダーのロゴの横（せまいので短く。下の小さい字は、もとから英語の正式名）
+    if (k === '北海道学生サッカー連盟' && el && el.closest && el.closest('.brandname')) return t.replace(k, 'JUFA Hokkaido');
+    // 英語名の下に出るフリガナ（カタカナの名前）は、英語では出さない
+    if (/^[ァ-ヶー]+[ 　][ァ-ヶー]+$/.test(k) && !WORDS[k]) return '';
     if (!REC && el && el.closest && el.closest('th') && TH[k]) {
       // 得点：順位表（失点の列がある表）では GF、得点ランキングでは Goals
       if (k === '得点') { const tr0 = el.closest('tr'); return t.replace(k, tr0 && /失点|GA/.test(tr0.textContent) ? 'GF' : 'Goals'); }
@@ -159,8 +184,10 @@
     let out = k;
     for (const [re, to] of RULES) out = out.replace(re, to);
     for (const [ja, en] of Object.entries(WORDS).sort((x, y) => y[0].length - x[0].length)) if (ja.length >= 3 && out.includes(ja)) out = out.split(ja).join(en);
-    for (const [ja, t] of Object.entries(MAP.teams)) if (ja.length >= 2 && JP.test(ja) && out.includes(ja)) out = out.split(ja).join(t.short);
+    for (const [ja, t] of Object.entries(MAP.teams).sort((x, y) => y[0].length - x[0].length)) if (ja.length >= 2 && JP.test(ja) && out.includes(ja)) out = out.split(ja).join(t.short);
     out = out.replace(/・/g, ', ');
+    // 文の途中だけが英語になる（まだら）のは読みにくいので、全部英語にならないときは元のまま
+    if (JP.test(out.replace(/[（）「」『』、。：！？　]/g, ''))) return null;
     return out !== k ? t.replace(k, out) : null;
   }
   function translate(root) {
@@ -175,13 +202,16 @@
   let busy = false;
   function start() {
     // 切りかえのボタン（ページの上・大会名の上）
-    const ph = document.querySelector('.pagehead') || document.querySelector('.bar') || document.body;
+    const ph = document.querySelector('.pagehead') || document.querySelector('.bar') || document.querySelector('.header .head') || document.querySelector('main') || document.body;
     const b = document.createElement('a');
     b.href = '#'; b.className = 'langbtn nolang'; b.setAttribute('role', 'button');
     b.textContent = EN ? '日本語' : 'English';
     b.setAttribute('aria-label', EN ? '日本語で見る' : 'View in English');
-    b.onclick = (e) => { e.preventDefault(); try { localStorage.setItem(KEY, EN ? 'ja' : 'en'); } catch (_) {} const u = new URL(location.href); u.searchParams.set('lang', EN ? 'ja' : 'en'); location.href = u.toString(); };
-    ph.insertBefore(b, ph.firstChild);
+    b.onclick = async (e) => { e.preventDefault(); try { localStorage.setItem(KEY, EN ? 'ja' : 'en'); } catch (_) {} const u = new URL(location.href); u.searchParams.set('lang', EN ? 'ja' : 'en');
+      if (EN && u.searchParams.get('name')) { await ready; u.searchParams.set('name', nameJa(u.searchParams.get('name'))); } // 選手のページ：日本語の名前にもどす
+      location.href = u.toString(); };
+    if (ph.matches && ph.matches('.head')) { b.textContent = EN ? '日本語' : 'EN'; b.style.cssText = 'margin-left:auto;float:none;margin-top:0;margin-bottom:0;white-space:nowrap;flex:none'; ph.insertBefore(b, ph.querySelector('.menubtn') || null); } // ヘッダーの右（メニューの左）
+    else ph.insertBefore(b, ph.firstChild);
     if (!EN) return;
     document.documentElement.lang = 'en';
     translate(document.body);
@@ -189,5 +219,14 @@
       .observe(document.body, { childList: true, subtree: true, characterData: true });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
-  window.jufaEN = { on: EN, ready, data, translate, player, venue, round };
+  // 大会の短い英語名（タブ・表の中）：2026 Hokkaido University Football League Division 1 → Division 1
+  function short(n) {
+    const x = String(n || '').replace(/^\d{4}\s+/, '');
+    return x.replace(/^Hokkaido University Football League Promotion\/Relegation Playoff.*/, 'Playoff').replace(/^Hokkaido University Football League\s*/, '')
+      .replace(/^Independence League.*/, 'I-League').replace(/^All Japan University Football Rookie Tournament.*/, 'Rookie Tournament').replace(/^Prime Minister's Cup.*/, "PM Cup").trim() || n;
+  }
+  // 選手の名前の行き来（選手のページの ?name=）：日本語 → 英語、英語 → 日本語
+  const nameEn = (n) => { if (!n || !JP.test(n)) return n; const k = '|' + nm(n); if (MAP.players[k]) return MAP.players[k]; const hit = Object.keys(MAP.players).find((x) => x.endsWith(k)); return hit ? MAP.players[hit] : n; };
+  const nameJa = (n) => { if (!n || JP.test(n)) return n; const hit = Object.keys(MAP.players).find((x) => MAP.players[x] === n); return hit ? hit.split('|')[1] : n; };
+  window.jufaEN = { on: EN, ready, data, translate, player, venue, round, short, nameEn, nameJa };
 })();
