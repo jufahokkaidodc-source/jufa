@@ -132,16 +132,19 @@ i.tc{display:inline-block;width:1.6mm;height:1.6mm;border-radius:50%;margin-righ
 .tag{display:inline-block;font-size:6pt;font-weight:700;color:#fff;border-radius:.6mm;padding:0 1.2mm;margin-right:1mm;vertical-align:1px}
 .foot{display:flex;justify-content:space-between;font-size:6pt;color:var(--g);margin-top:1mm}
 .paper.cmp .pl td{height:4.85mm}.paper.cmp .low td,.paper.cmp .low tbody th{height:4.6mm}.paper.cmp .goals td{height:4.8mm}.paper.cmp .pkt td,.paper.cmp .pkt tbody th{height:5.4mm}
+.bar .langbtn{margin-left:auto;margin-right:8px;padding:3px 10px;border:1px solid currentColor;border-radius:999px;font-size:12px;font-weight:700;color:inherit;text-decoration:none}@media print{.langbtn{display:none}}
 </style>
 </head>
 <body>
 <div class="bar"><a class="back" id="back" href="./results.html">‹ 試合の詳細</a><span class="ttl" id="ttl">公式記録</span><button type="button" id="print" hidden>印刷・PDF</button></div>
 <div id="main"><div class="msg">読み込み中…</div></div>
+<script src="./en.js?v=20261124b"></script>
 <script>
 'use strict';
 const Q=new URLSearchParams(location.search),COMP=Q.get('comp')||'',MID=Q.get('match')||'';
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const getJSON=f=>fetch('../results/data/'+f,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('データを読み込めませんでした（'+r.status+'）');return r.json()});
+const getJSON=f=>fetch('../results/data/'+f,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('データを読み込めませんでした（'+r.status+'）');return r.json()})
+  .then(async d=>{if(window.jufaEN&&jufaEN.on){await jufaEN.ready;return jufaEN.data(d);}return d;}); // 英語表示（en.js）
 const PALETTE=['#145ec9','#0f7a6b','#7b3fb5','#c0392b','#1d6fa5','#b35c00','#2e7d32','#ad1457','#37474f','#5d4dbf'];
 const nm=s=>String(s||'').replace(/[\s　]/g,'');
 document.getElementById('back').href='./results.html?comp='+encodeURIComponent(COMP)+'&match='+encodeURIComponent(MID);
