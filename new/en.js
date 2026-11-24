@@ -45,6 +45,8 @@
     if (o.match && o.match.home && o.match.away) c = { home: o.match.home.univ, away: o.match.away.univ };
     else if (o.home && o.away && isTeam(o.home)) c = { home: o.home.univ, away: o.away.univ };
     const univ = o.team && o.team.univ ? o.team.univ : o.side && c ? c[o.side] : c && c.univ;
+    // チームごとのまとまり（警告の表・分析の選手一覧）：中の選手は、そのチームの大学で探す
+    if (o.team && o.team.univ) c = Object.assign({}, c || {}, { univ: o.team.univ });
     if (o.competition && o.competition.id && MAP.comps[o.competition.id]) o.competition.name = MAP.comps[o.competition.id];
     if ('year' in o && 'format' in o && o.id && MAP.comps[o.id]) o.name = MAP.comps[o.id]; // competitions.json
     for (const k of Object.keys(o)) {
@@ -101,7 +103,25 @@
     '📄 公式記録を見る': '📄 View official match report', '大会本部': 'Competition HQ', '学連事務局': 'Federation office', 'オウンゴール': 'Own goal', 'サテライト': 'Satellite', 'セカンド': 'Second',
     '会場': 'Venue', '天候': 'Weather', 'ピッチ': 'Pitch', 'ベンチ': 'Bench', 'スタメン': 'Starting XI', '監督': 'Coach', '試合終了': 'Full time', '試合前': 'Upcoming', '中止': 'Cancelled', '中断': 'Suspended',
   };
+  // 公式記録の用紙（record.html）だけの言いかた（表のせまい欄に入るように短く）
+  const REC = /record\.html/.test(location.pathname);
+  if (REC) Object.assign(WORDS, {
+    '公式記録': 'Official Match Report', '日時': 'Date', '会場名': 'Venue', '試合時間': 'Duration', 'ピッチ状態': 'Condition', '風': 'Wind', '当番校': 'Host', '副審1': 'AR 1', '副審2': 'AR 2',
+    '第4の審判': '4th official', 'チーム代表者サイン': 'Team representatives', '✓ 承認済み': '✓ Approved', '交代': 'Subs', '得点': 'Gls', '選手名': 'Player', '位置': 'Pos', '時間': 'Min', '計': 'Tot',
+    '理由': 'Code', 'チーム合計': 'Team total', '得点者': 'Scorer', '延前': 'ET1', '延後': 'ET2', '前半': '1st', '後半': '2nd', '延長': 'ET', '先攻': '1st', '後攻': '2nd', '成功': 'Scored', '結果': 'Result',
+    '印刷・PDF': 'Print / PDF', '‹ 試合の詳細': '‹ Match details', '試合の詳細に戻る': 'Back to match details', '公式記録 | 北海道学生サッカー連盟': 'Official Match Report | Hokkaido University Football Association',
+    '得点経過　～ ドリブル　→ ゴロパス　↑ 浮き球パス　× 混戦　S シュート　H ヘディング': 'Build-up:  ～ dribble  → ground pass  ↑ lofted pass  × scramble  S shot  H header',
+    '＊時間表記の「HT」はハーフタイム、「＋」はアディショナルタイム中の経過分数を示します。': '* "HT" = half-time; "+" = minutes played in additional time.',
+    '「印刷・PDF」で A4 の紙に印刷したり、PDFで保存したりできます。': 'Use "Print / PDF" to print on A4 paper or save as PDF.',
+    '（注1）オフサイド欄の数字は、間接フリーキック数のうちオフサイドによるものを表す。': '(Note 1) The offside figure is the number of indirect free kicks awarded for offside.',
+    '［警告理由］': '[Caution codes]', '［退場理由］': '[Sending-off codes]',
+    'C1 反スポーツ的行為　C2 ラフプレー　C3 異議　C4 繰り返しの違反　C5 遅延行為　C6 距離不足　C7 無許可入　C8 無許可去': 'C1 Unsporting behaviour　C2 Reckless play　C3 Dissent　C4 Persistent offences　C5 Delaying the restart　C6 Failure to respect the distance　C7 Entering without permission　C8 Leaving without permission',
+    'S1 著しく不正なプレー　S2 乱暴な行為　S3 つば吐き　S4 得点機会阻止（ハンド）　S5 得点機会阻止（その他）　S6 暴言　S7・CS 警告2回': 'S1 Serious foul play　S2 Violent conduct　S3 Spitting　S4 Denying a goal by handball　S5 Denying an obvious goal-scoring opportunity　S6 Offensive language　S7/CS Second caution',
+  });
   const RULES = [
+    // 得点経過（右29↑中65HS → R29↑C65HS）
+    [/^[右左中0-9↑→～×SHPKOG\s]+$/, (x) => x.replace(/右/g, 'R').replace(/左/g, 'L').replace(/中/g, 'C')],
+    [/(\d{4})年 (\d{1,2})月 (\d{1,2})日（(.)）/g, (a, y, m, d, w) => `${WD[w] || w} ${+d} ${MON[m - 1]} ${y}`], [/\s*キックオフ/g, ' kick-off'],
     [/(\d{1,2})月(\d{1,2})日（(.)）/g, (a, m, d, w) => `${WD[w] || w} ${+d} ${MON[m - 1]}`],
     [/(\d{1,2})\/(\d{1,2})\((.)\)/g, (a, m, d, w) => `${+d} ${MON[m - 1]} (${WD[w] || w})`],
     [/(\d+)勝(\d+)分(\d+)敗/g, '$1W $2D $3L'],
@@ -112,11 +132,13 @@
     [/^出場 (\d+)分以上$/, 'Played $1+ min'], [/(\d+)-(\d+)分/g, "$1-$2'"],
     [/^更新：/, 'Updated: '], [/^当番校：?\s*/, 'Host: '], [/^(.+)の試合$/, '$1 matches'],
     [/第\s*(\d+)\s*節/g, 'Matchday $1'], [/(\d+)\s*回戦/g, 'Round $1'], [/準々決勝/g, 'Quarter-final'], [/準決勝/g, 'Semi-final'], [/3位決定戦/g, '3rd place'], [/決勝/g, 'Final'],
-    // 大会名（data/en.json に英語名がないとき）
-    [/^(\d{4})年度\s*第\d+回北海道学生サッカーリーグ\s*(\d)部$/, '$1 Hokkaido University Football League Division $2'],
-    [/^(\d{4}年度\s*)?インディペンデンスリーグ北海道大会$/, 'Independence League Hokkaido'],
-    [/^(\d{4}年度\s*)?全日本大学サッカー新人戦北海道大会$/, 'All Japan University Football Rookie Tournament, Hokkaido'],
-    [/^(\d{4}年度\s*)?総理大臣杯\s*全日本大学サッカートーナメント北海道大会$/, "Prime Minister's Cup, Hokkaido"],
+    // 大会名（data/en.json に英語名がないとき。文の途中・タブの短い名前も）
+    [/(\d{4})年度\s*第\d+回北海道学生サッカーリーグ\s*入替戦/g, '$1 Hokkaido University Football League Promotion/Relegation Playoff'],
+    [/(\d{4})年度\s*第\d+回北海道学生サッカーリーグ\s*(\d)部/g, '$1 Hokkaido University Football League Division $2'],
+    [/(\d{4}年度\s*)?(第\d+回\s*)?インディペンデンスリーグ北海道大会/g, 'Independence League Hokkaido'],
+    [/(\d{4}年度\s*)?(第\d+回\s*)?全日本大学サッカー新人戦北海道大会/g, 'All Japan University Football Rookie Tournament, Hokkaido'],
+    [/(\d{4}年度\s*)?(第\d+回\s*)?総理大臣杯\s*全日本大学サッカートーナメント北海道大会/g, "Prime Minister's Cup, Hokkaido"],
+    [/^リーグ\s*(\d)部$/, 'Division $1'], [/^リーグ\s*入替戦$/, 'Playoff'], [/^入替戦$/, 'Playoff'],
     [/^‹\s*(.+)に戻る$/, '‹ Back to $1'],
     [/前半\s*(\d+-\d+)/g, '1st half $1'], [/後半\s*(\d+-\d+)/g, '2nd half $1'], [/延長\s*(\d+-\d+)/g, 'ET $1'],
     [/・No\./g, ' · No.'], [/（(\d+)試合）/g, ' ($1 matches)'], [/(\d+)\s*試合/g, '$1 matches'], [/(\d+)\s*人/g, '$1'], [/(\d+)\s*分$/g, "$1'"],
@@ -126,7 +148,7 @@
   function tr(t, el) {
     const k = t.trim();
     if (!k || !JP.test(k)) return null;
-    if (el && el.closest && el.closest('th') && TH[k]) {
+    if (!REC && el && el.closest && el.closest('th') && TH[k]) {
       // 得点：順位表（失点の列がある表）では GF、得点ランキングでは Goals
       if (k === '得点') { const tr0 = el.closest('tr'); return t.replace(k, tr0 && /失点|GA/.test(tr0.textContent) ? 'GF' : 'Goals'); }
       return t.replace(k, TH[k]);
@@ -153,7 +175,7 @@
   let busy = false;
   function start() {
     // 切りかえのボタン（ページの上・大会名の上）
-    const ph = document.querySelector('.pagehead') || document.body;
+    const ph = document.querySelector('.pagehead') || document.querySelector('.bar') || document.body;
     const b = document.createElement('a');
     b.href = '#'; b.className = 'langbtn nolang'; b.setAttribute('role', 'button');
     b.textContent = EN ? '日本語' : 'English';
