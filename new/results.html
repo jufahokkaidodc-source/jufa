@@ -331,7 +331,7 @@ a.h2r:hover .sc b{color:var(--red)}
 <link rel="stylesheet" href="./theme.css?v=20261114f">
 <link rel="stylesheet" href="./brand-bg.css?v=20261114f">
 <script src="./site.js?v=20261123a"></script>
-<script src="./en.js?v=20261124b"></script>
+<script src="./en.js?v=20261125a"></script>
 <style>
 /* 黒い背景（theme.css）の上での調整 */
 .pagehead .eyebrow{color:#ff3b47}
@@ -442,7 +442,7 @@ function calBox(el,choices,title){
 const has=v=>v!=null&&String(v).trim()!=='';
 const name=t=>typeof t==='string'?t:(t?.short||t?.name||'未定');
 const tkey=t=>typeof t==='string'?t:(t?.id||t?.name||t?.short||'');
-const shortComp=n=>String(n||'').replace(/^\d{4}年度\s*/,'').replace(/第\d+回\s*/,'').replace(/^北海道学生サッカー/,'').replace(/^北海道/,'').trim()||n;
+const shortComp=n=>window.jufaEN&&jufaEN.on&&/^\d{4} [A-Z]/.test(String(n||''))?jufaEN.short(n):String(n||'').replace(/^\d{4}年度\s*/,'').replace(/第\d+回\s*/,'').replace(/^北海道学生サッカー/,'').replace(/^北海道/,'').trim()||n;
 const W='日月火水木金土';
 const jd=ymd=>{const m=String(ymd||'').match(/(\d{4})-(\d{2})-(\d{2})/);if(!m)return ymd||'日程未定';const d=new Date(+m[1],+m[2]-1,+m[3]);return `${+m[2]}月${+m[3]}日（${W[d.getDay()]}）`;};
 const sd=ymd=>{const m=String(ymd||'').match(/(\d{4})-(\d{2})-(\d{2})/);if(!m)return '';const d=new Date(+m[1],+m[2]-1,+m[3]);return `${+m[2]}/${+m[3]}(${W[d.getDay()]})`;};
