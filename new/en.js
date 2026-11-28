@@ -74,7 +74,7 @@
   const WORDS = {
     'ライブ配信': 'Live stream', '試合の映像': 'Match video', '▶ hudl で見る': '▶ Watch on hudl', '▶ 映像を見る': '▶ Watch video', '▶ 配信': '▶ Live', '▶ 映像': '▶ Video', 'キックオフ': 'Kick-off',
     '映像は YouTube で配信しています。': 'Streamed on YouTube. ', '映像は hudl で配信しています。': 'Streamed on hudl. ',
-    '上の点数は、公式記録の入力からの速報です（映像より先や後に変わることがあります）。': 'The score above is live from the official record input and may differ slightly from the video timing.',
+    '映像の上の点数・得点・交代・警告は、公式記録の入力から自動で出ています（映像と少しずれることがあります）。': 'The score and events on the video come automatically from the official record input and may differ slightly from the video timing.', '⛶ 全画面': '⛶ Full screen', '✕ もどる': '✕ Close', '試合終了': 'Full time',
     'トップ': 'Home', '日程・結果': 'Fixtures & Results', '順位・ランキング': 'Standings & Rankings', 'お知らせ': 'News', '歴代成績': 'History', '大会情報': 'Competition info', '会場案内': 'Venues',
     '連盟について': 'About', '年間日程表': 'Season calendar', '☰ メニュー': '☰ Menu', 'ページ上部へ ↑': 'Back to top ↑', '北海道学生サッカー連盟': 'Hokkaido University Football Association',
     '大会記録': 'Competition records', '順位表': 'Standings', '星取表': 'Results grid', 'トーナメント': 'Bracket', '得点': 'Goals', 'アシスト': 'Assists', '警告・退場': 'Cautions & dismissals',

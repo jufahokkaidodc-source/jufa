@@ -116,13 +116,22 @@ button{cursor:pointer}
 .vbtn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:12px 16px;border-radius:12px;background:var(--red,#E60012);color:#fff;font-weight:800;font-size:16px;text-decoration:none}
 .vbtn:hover{filter:brightness(1.08)}
 .vnote{color:var(--muted);font-size:11.5px;margin:6px 2px 0;line-height:1.6}
-.vtel{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;background:#111;color:#fff;border:1px solid var(--line);border-left:4px solid var(--red,#E60012);border-radius:10px;padding:8px 12px;margin-bottom:8px;font-size:14px}
-.vtel .vsc{display:flex;align-items:center;gap:8px;font-weight:800;min-width:0;color:#fff}.vtel .vsc span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:9em;color:#fff}
-.vtel .vsc b{color:#fff;font-family:var(--num);font-size:22px;letter-spacing:.04em;font-variant-numeric:tabular-nums}
-.vtel .vp{font-size:12px;color:#cfcfcf}.vtel .vg{flex-basis:100%;font-size:13px;color:#e8e8e8}
-.vtel.goal{animation:vgoal 1.2s ease 3}.vtel.goal .vp::after{content:'　GOAL!';color:#fff;font-weight:800}
-@keyframes vgoal{0%,100%{background:#111}40%{background:var(--red,#E60012)}}
-@media (prefers-reduced-motion:reduce){.vtel.goal{animation:none;background:var(--red,#E60012)}}
+.vframe{container-type:inline-size}
+.vframe:fullscreen,.vframe.vfull{border-radius:0;border:0;aspect-ratio:auto;width:100%;height:100%}
+.vframe.vfull{position:fixed;inset:0;z-index:9999;height:100dvh}
+.vov{position:absolute;inset:0;pointer-events:none;font-size:clamp(11px,2.3cqw,26px)}
+.vbug{position:absolute;top:4%;left:3%;display:flex;align-items:stretch;background:rgba(0,0,0,.78);color:#fff;border-radius:.35em;overflow:hidden;font-weight:800;line-height:1;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.vbug .t{padding:.45em .6em;max-width:8em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vbug b{background:#fff;color:#111;padding:.45em .55em;font-family:var(--num);font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.vbug .p{background:var(--red,#E60012);padding:.45em .55em;font-size:.85em;display:flex;align-items:center}
+.vlow{position:absolute;left:3%;bottom:7%;max-width:88%;display:flex;align-items:center;gap:.6em;flex-wrap:wrap;background:rgba(0,0,0,.82);color:#fff;border-left:.3em solid var(--red,#E60012);border-radius:.3em;padding:.5em .8em;font-weight:700;animation:vin .45s ease-out}
+.vlow b{background:var(--red,#E60012);padding:.15em .5em;border-radius:.2em;letter-spacing:.08em}
+.vlow small{color:#cfcfcf;font-weight:400}.vlow .in{color:#7ee08a}.vlow .out{color:#cfcfcf}.vlow .ico{margin:0}
+.vlow.goal{border-left-color:#fff}
+.vlow.bye{opacity:0;transform:translateX(-12px);transition:.6s}
+@keyframes vin{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.vlow{animation:none}.vlow.bye{transition:none}}
+.vfs{position:absolute;right:2%;top:4%;background:rgba(0,0,0,.6);color:#fff;border:1px solid rgba(255,255,255,.4);border-radius:6px;font-size:12px;padding:5px 9px;cursor:pointer}
 .vbadge{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--red,#E60012);border-radius:4px;padding:1px 6px;margin-right:6px}
 .lvtag{display:inline-block;background:var(--red,#E60012);color:#fff;font-size:12px;font-weight:700;border-radius:4px;padding:2px 8px;margin-top:6px}
 .mrow .sc.pend{font-size:14px;font-weight:700;border:1px solid var(--line);color:var(--muted)}
@@ -992,26 +1001,34 @@ let MTAB={id:'',t:'game'};
 /* ---------- 試合の映像（ライブ配信・アーカイブ）と、速報のテロップ ----------
  *  映像は事務局・当番校が入れたURL（video.js）。テロップは公式記録の入力中の内容（live.js）で自動で変わる
  *  速報で画面を描き直しても、映像（iframe）は作り直さない（setMain）。作り直すと再生が止まるため */
-const VGOAL={};
-function telop(m,lv){
-  if(!lv||lv.state==='final')return '';
-  const n=(lv.goals||[]).length,prev=VGOAL[m.matchId];VGOAL[m.matchId]=n;
-  const flash=prev!=null&&n>prev;
-  const g=n?lv.goals[n-1]:null,gt=g?(g.side==='home'?m.home:m.away):null;
-  return '<div class="vtel'+(flash?' goal':'')+'" aria-live="polite"><span class="vsc"><span>'+esc(m.home.short)+'</span><b>'+lv.score.home+' - '+lv.score.away+'</b><span>'+esc(m.away.short)+'</span></span><span class="vp">'+esc(JUFA_LIVE.label(lv))+'</span>'+
-    (g?'<span class="vg">⚽ '+(g.minute?esc(g.minute)+"' ":'')+esc(g.name)+(gt?'（'+esc(gt.short)+'）':'')+(g.pk?' PK':'')+'</span>':'')+'</div>';
+const VSEEN={};
+/* 映像の上に重ねる文字（スコアと時間帯・新しい得点/交代/警告）。会場ですることは増えない（公式記録の入力だけ） */
+function overlay(m,lv){
+  if(!lv||lv.state==='final')return '<div class="vov"></div>';
+  const n={g:(lv.goals||[]).length,s:(lv.subs||[]).length,c:(lv.cards||[]).length},p=VSEEN[m.matchId];VSEEN[m.matchId]=n;
+  const sh=sd=>esc((sd==='home'?m.home:m.away).short);
+  let low='';
+  if(p){
+    if(n.g>p.g){const g=lv.goals[n.g-1];low='<div class="vlow goal"><b>GOAL</b><span>⚽ '+(g.minute?esc(g.minute)+"' ":'')+esc(g.name)+(g.pk?' (PK)':'')+'</span><small>'+sh(g.side)+'</small></div>';}
+    else if(n.c>p.c){const c=lv.cards[n.c-1];low='<div class="vlow"><i class="ico '+(c.kind==='C'?'c':'s')+'"></i><span>'+(c.minute?esc(c.minute)+"' ":'')+esc(c.name)+'</span><small>'+sh(c.side)+'</small></div>';}
+    else if(n.s>p.s){const x=lv.subs[n.s-1];low='<div class="vlow"><span class="in">▲ '+esc(x.in)+'</span><span class="out">▼ '+esc(x.out)+'</span><small>'+sh(x.side)+(x.minute?' '+esc(x.minute)+"'":'')+'</small></div>';}
+  }
+  const per=lv.state==='live'?(lv.period||'LIVE'):'試合終了';
+  return '<div class="vov"><div class="vbug" aria-live="polite"><span class="t">'+sh('home')+'</span><b>'+lv.score.home+'-'+lv.score.away+'</b><span class="t">'+sh('away')+'</span><span class="p">'+esc(per)+'</span></div>'+low+'</div>';
 }
 function videoBox(m,lv){
   const v=window.JUFA_VIDEO&&JUFA_VIDEO.of(m.matchId);if(!v)return '';
   const done=!!m.score,src=(done&&v.archive)||v.live||v.archive;if(!src)return '';
   const onAir=lv&&lv.state==='live';
   const title=onAir?'<span class="lvtag">LIVE</span>ライブ配信':done||(lv&&lv.state!=='live')?'試合の映像':'ライブ配信'+(m.kickoff?'<small style="color:var(--muted);font-weight:400">'+esc(m.kickoff)+'</small><small style="color:var(--muted);font-weight:400">キックオフ</small>':'');
-  const body=src.embed?'<div class="vframe"><iframe src="'+esc(src.embed)+'" title="試合の映像" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'
+  // YouTube の全画面ボタンは消し（重ねた文字が見えなくなるため）、こちらの「全画面」を使う
+  const emb=src.kind==='youtube'?src.embed+(src.embed.includes('?')?'&':'?')+'fs=0':src.embed;
+  const body=src.embed?'<div class="vframe"><iframe src="'+esc(emb)+'" title="試合の映像" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>'+overlay(m,lv)+'<button type="button" class="vfs" aria-label="全画面で見る">⛶ 全画面</button></div>'
     :'<a class="vbtn" href="'+esc(src.url)+'" target="_blank" rel="noopener">▶ '+(src.kind==='hudl'?'hudl で見る':'映像を見る')+'</a>';
-  return '<section id="mvid" class="mvid" data-key="'+esc(m.matchId+'|'+src.url)+'"><div class="vtop"><h2>'+title+'</h2>'+telop(m,lv)+'</div>'+body+
-    '<p class="vnote"><span>'+(src.kind==='hudl'?'映像は hudl で配信しています。':'映像は YouTube で配信しています。')+'</span>'+(lv?'<span>上の点数は、公式記録の入力からの速報です（映像より先や後に変わることがあります）。</span>':'')+'</p></section>';
+  return '<section id="mvid" class="mvid" data-key="'+esc(m.matchId+'|'+src.url)+'"><div class="vtop"><h2>'+title+'</h2></div>'+body+
+    '<p class="vnote"><span>'+(src.kind==='hudl'?'映像は hudl で配信しています。':'映像は YouTube で配信しています。')+'</span>'+(lv&&src.embed?'<span>映像の上の点数・得点・交代・警告は、公式記録の入力から自動で出ています（映像と少しずれることがあります）。</span>':'')+'</p></section>';
 }
-/* 描き直し：同じ映像が出ているときは、映像のまわりだけ入れかえる */
+/* 描き直し：同じ映像が出ているときは、映像（iframe）はそのまま、まわりと重ねた文字だけ入れかえる */
 function setMain(html){
   const main=$('main'),old=main.querySelector(':scope>#mvid');
   if(old){
@@ -1019,17 +1036,29 @@ function setMain(html){
     const nv=t.querySelector(':scope>#mvid');
     if(nv&&nv.dataset.key===old.dataset.key){
       old.querySelector('.vtop').replaceWith(nv.querySelector('.vtop'));
+      const ov=old.querySelector('.vov'),nov=nv.querySelector('.vov');
+      if(ov&&nov){const keep=ov.querySelector('.vlow');ov.replaceWith(nov);if(keep&&!nov.querySelector('.vlow'))nov.appendChild(keep);}
       while(old.previousSibling)old.previousSibling.remove();
       while(old.nextSibling)old.nextSibling.remove();
       const kids=[...t.childNodes],i=kids.indexOf(nv);
       kids.slice(0,i).forEach(n=>main.insertBefore(n,old));kids.slice(i+1).forEach(n=>main.appendChild(n));
-      goalOff();return;
+      vWire();return;
     }
   }
-  main.innerHTML=html;goalOff();
+  main.innerHTML=html;vWire();
 }
-/* ゴールの合図は数秒で消す */
-function goalOff(){const g=document.querySelector('#mvid .vtel.goal');if(g)setTimeout(()=>g.classList.remove('goal'),4000);}
+/* 新しい出来事の帯は10秒で消す。全画面（iPhone のように全画面にできない機種は、画面いっぱいに広げる） */
+function vWire(){
+  const box=document.querySelector('#mvid .vframe');if(!box)return;
+  const low=box.querySelector('.vlow:not([data-t])');if(low){low.dataset.t='1';setTimeout(()=>low.classList.add('bye'),9000);setTimeout(()=>low.remove(),10000);}
+  const b=box.querySelector('.vfs');if(!b||b.dataset.w)return;b.dataset.w='1';
+  b.onclick=()=>{
+    if(document.fullscreenElement){document.exitFullscreen();return;}
+    if(box.classList.contains('vfull')){box.classList.remove('vfull');document.body.style.overflow='';b.textContent='⛶ 全画面';return;}
+    if(box.requestFullscreen)box.requestFullscreen().catch(()=>pseudo());else pseudo();
+    function pseudo(){box.classList.add('vfull');document.body.style.overflow='hidden';b.textContent='✕ もどる';}
+  };
+}
 if(window.JUFA_VIDEO)JUFA_VIDEO.on(()=>{
   if(!DATA)return;
   if(DETAIL&&S.match){rMatch();return;}
