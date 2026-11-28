@@ -109,6 +109,21 @@ button{cursor:pointer}
 .mrow .sc small{display:block;font-family:"Noto Sans JP";font-size:12px;font-weight:500;color:var(--muted)}
 .mrow .sc.live{background:var(--red,#E60012);color:#fff}
 .mrow .sc.live small{display:block;font-size:12px;font-weight:700;margin-top:2px}
+.mvid{margin:14px auto 4px;max-width:880px}
+.mvid h2{font-size:16px;margin:0 0 8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.mvid h2 .lvtag{margin:0}
+.vframe{position:relative;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.vframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vbtn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:12px 16px;border-radius:12px;background:var(--red,#E60012);color:#fff;font-weight:800;font-size:16px;text-decoration:none}
+.vbtn:hover{filter:brightness(1.08)}
+.vnote{color:var(--muted);font-size:11.5px;margin:6px 2px 0;line-height:1.6}
+.vtel{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;background:#111;color:#fff;border:1px solid var(--line);border-left:4px solid var(--red,#E60012);border-radius:10px;padding:8px 12px;margin-bottom:8px;font-size:14px}
+.vtel .vsc{display:flex;align-items:center;gap:8px;font-weight:800;min-width:0;color:#fff}.vtel .vsc span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:9em;color:#fff}
+.vtel .vsc b{color:#fff;font-family:var(--num);font-size:22px;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.vtel .vp{font-size:12px;color:#cfcfcf}.vtel .vg{flex-basis:100%;font-size:13px;color:#e8e8e8}
+.vtel.goal{animation:vgoal 1.2s ease 3}.vtel.goal .vp::after{content:'　GOAL!';color:#fff;font-weight:800}
+@keyframes vgoal{0%,100%{background:#111}40%{background:var(--red,#E60012)}}
+@media (prefers-reduced-motion:reduce){.vtel.goal{animation:none;background:var(--red,#E60012)}}
+.vbadge{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--red,#E60012);border-radius:4px;padding:1px 6px;margin-right:6px}
 .lvtag{display:inline-block;background:var(--red,#E60012);color:#fff;font-size:12px;font-weight:700;border-radius:4px;padding:2px 8px;margin-top:6px}
 .mrow .sc.pend{font-size:14px;font-weight:700;border:1px solid var(--line);color:var(--muted)}
 .mrow .meta{grid-column:2 / 5;font-size:12px;color:var(--muted);margin-top:-6px;text-align:center}
@@ -420,6 +435,7 @@ a.h2r:hover .sc b{color:var(--red)}
 <script src="./brand-bg.js?v=20261114f"></script>
 <script>JUFABG.init();</script>
 <script src="./live.js"></script>
+<script src="./video.js"></script>
 <script>
 /* 順位の上がり下がり（前の試合日のあとの順位と比べる。rankPrev はホームページの書き出しが入れる） */
 function rkMove(prev,r){const id=r&&r.team&&r.team.id,p=prev&&id?Number(prev[id]):0,n=Number(r&&r.rank);if(!p||!n||p===n)return '';const up=p>n;return '<i class="rkm '+(up?'up':'dn')+'" title="前の試合日から'+Math.abs(p-n)+'つ'+(up?'上がった':'下がった')+'">'+(up?'▲':'▼')+Math.abs(p-n)+'</i>';}
@@ -551,6 +567,7 @@ async function load(){
     const [d,ro]=await Promise.all([getJSON(encodeURIComponent(S.comp)+'.json'),getJSON(encodeURIComponent(S.comp)+'-roster.json').catch(()=>null)]);
     if(d.ok===false)throw new Error(d.error||'データがありません');
     DATA=d;PROF.clear();
+    if(window.JUFA_VIDEO)JUFA_VIDEO.load(S.comp);
     for(const t of ro?.teams||[])if(t.profile){PROF.set(tkey(t.team),t.profile);if(t.team.univ&&!PROF.has(t.team.univ))PROF.set(t.team.univ,t.profile)}
     // 入替戦のように、ほかの大会のチームが出る大会：そのチームの大会の名簿から紹介（エンブレムなど）を読む
     {const yr=String(S.comp).split('-')[0],own=String(S.comp).slice(yr.length+1),need=new Set();
@@ -708,11 +725,12 @@ function mRow(m){
   else if(liveOf(m)){const lv=liveOf(m);sc='<span class="sc live">'+lv.score.home+' - '+lv.score.away+(lv.pk?'<small>PK '+lv.pk.home+'-'+lv.pk.away+'</small>':'')+'<small>'+esc(JUFA_LIVE.label(lv))+'</small></span>';}
   else sc='<span class="sc pend">'+({suspended:'中断',postponed:'延期',cancelled:'中止',unrecorded:'結果未登録'}[m.status]||'VS')+'</span>';
   const lose=id=>m.score&&m.winner&&m.winner!==id?' lose':'';
-  const link=!!m.score||!!liveOf(m);
+  const vid=window.JUFA_VIDEO&&JUFA_VIDEO.of(m.matchId);
+  const link=!!m.score||!!liveOf(m)||!!vid;
   return '<div class="mrow'+(link?' link':'')+'"'+(link?' data-match="'+esc(m.matchId)+'" role="button" tabindex="0" aria-label="試合の詳細"':'')+'><span class="ko">'+esc(m.kickoff||'')+'</span>'+
     '<span class="tm h'+lose(m.home.id)+'">'+crest(m.home,'sm')+'<span>'+esc(m.home.short)+'</span></span>'+sc+
     '<span class="tm'+lose(m.away.id)+'">'+crest(m.away,'sm')+'<span>'+esc(m.away.short)+'</span></span>'+
-    '<div class="meta">'+badges+meta+(link?'　<span class="go">試合詳細 ›</span>':'')+'</div></div>';
+    '<div class="meta">'+(vid?'<span class="vbadge">'+(m.score?'▶ 映像':'▶ 配信')+'</span>':'')+badges+meta+(link?'　<span class="go">試合詳細 ›</span>':'')+'</div></div>';
 }
 
 /* ---------- 順位表 ---------- */
@@ -956,6 +974,7 @@ function rMatch(){
   const ph=phs.length?'<div class="sh"><h2>写真</h2></div><div class="mphotos">'+phs.map(p=>'<figure><a href="'+esc(dimg(p.url,1600))+'" target="_blank" rel="noopener"><img src="'+esc(dimg(p.url,800))+'" alt="'+esc(p.caption||'試合の写真')+'" loading="lazy" decoding="async" onerror="this.closest(\'figure\').remove()"></a>'+(p.caption||p.credit?'<figcaption>'+esc(p.caption||'')+(p.credit?'<span>撮影：'+esc(p.credit)+'</span>':'')+'</figcaption>':'')+'</figure>').join('')+'</div>':'';
   // 公式記録を用紙の形で見る（record.html）。確定した公式記録がある試合だけ
   const rec=d.source==='official'&&d.lineups?'<a class="recbtn" href="./record.html?comp='+encodeURIComponent(S.comp)+'&match='+encodeURIComponent(m.matchId)+'"><b>📄 公式記録を見る</b><small>用紙の形・印刷やPDF保存もできます</small></a>':'';
+  const vbox=videoBox(m,lv);
   // 試合が始まったら（速報・結果あり）、対戦成績・両チームのデータは「対戦成績・データ」タブへ
   const started=!!(m.score||lv),both=m.home&&m.away;
   if(MTAB.id!==m.matchId)MTAB={id:m.matchId,t:'game'};
@@ -963,12 +982,59 @@ function rMatch(){
   const game=tl+stx+ph+lu+pk+off+note;
   const tabs=started&&both?'<div class="mtabs" role="tablist">'+[['game','試合'],['data','対戦成績・データ']].map(([k,l])=>'<button type="button" role="tab" data-mt="'+k+'" aria-selected="'+(MTAB.t===k)+'" class="'+(MTAB.t===k?'on':'')+'">'+l+'</button>').join('')+'</div>':'';
   const body=!started?(both?data:'')+game:MTAB.t==='data'?data:(game||'<p class="note" style="margin-top:16px">まだ試合の記録はありません。</p>');
-  $('main').innerHTML='<a class="back" href="'+pageUrl(S.comp,S.tab)+'">‹ '+back+'に戻る</a>'+head+rec+tabs+body+'<div class="foot">'+esc(DATA.competition.name)+'　'+esc(m.matchId)+'</div>';
+  setMain('<a class="back" href="'+pageUrl(S.comp,S.tab)+'">‹ '+back+'に戻る</a>'+head+vbox+rec+tabs+body+'<div class="foot">'+esc(DATA.competition.name)+'　'+esc(m.matchId)+'</div>');
   $('main').querySelectorAll('[data-mt]').forEach(b=>b.onclick=()=>{MTAB.t=b.dataset.mt;rMatch()});
   if($('h2h'))drawH2H(m);
   if($('pre'))drawPreview(m);
 }
 let MTAB={id:'',t:'game'};
+
+/* ---------- 試合の映像（ライブ配信・アーカイブ）と、速報のテロップ ----------
+ *  映像は事務局・当番校が入れたURL（video.js）。テロップは公式記録の入力中の内容（live.js）で自動で変わる
+ *  速報で画面を描き直しても、映像（iframe）は作り直さない（setMain）。作り直すと再生が止まるため */
+const VGOAL={};
+function telop(m,lv){
+  if(!lv||lv.state==='final')return '';
+  const n=(lv.goals||[]).length,prev=VGOAL[m.matchId];VGOAL[m.matchId]=n;
+  const flash=prev!=null&&n>prev;
+  const g=n?lv.goals[n-1]:null,gt=g?(g.side==='home'?m.home:m.away):null;
+  return '<div class="vtel'+(flash?' goal':'')+'" aria-live="polite"><span class="vsc"><span>'+esc(m.home.short)+'</span><b>'+lv.score.home+' - '+lv.score.away+'</b><span>'+esc(m.away.short)+'</span></span><span class="vp">'+esc(JUFA_LIVE.label(lv))+'</span>'+
+    (g?'<span class="vg">⚽ '+(g.minute?esc(g.minute)+"' ":'')+esc(g.name)+(gt?'（'+esc(gt.short)+'）':'')+(g.pk?' PK':'')+'</span>':'')+'</div>';
+}
+function videoBox(m,lv){
+  const v=window.JUFA_VIDEO&&JUFA_VIDEO.of(m.matchId);if(!v)return '';
+  const done=!!m.score,src=(done&&v.archive)||v.live||v.archive;if(!src)return '';
+  const onAir=lv&&lv.state==='live';
+  const title=onAir?'<span class="lvtag">LIVE</span>ライブ配信':done||(lv&&lv.state!=='live')?'試合の映像':'ライブ配信'+(m.kickoff?'<small style="color:var(--muted);font-weight:400">'+esc(m.kickoff)+'</small><small style="color:var(--muted);font-weight:400">キックオフ</small>':'');
+  const body=src.embed?'<div class="vframe"><iframe src="'+esc(src.embed)+'" title="試合の映像" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'
+    :'<a class="vbtn" href="'+esc(src.url)+'" target="_blank" rel="noopener">▶ '+(src.kind==='hudl'?'hudl で見る':'映像を見る')+'</a>';
+  return '<section id="mvid" class="mvid" data-key="'+esc(m.matchId+'|'+src.url)+'"><div class="vtop"><h2>'+title+'</h2>'+telop(m,lv)+'</div>'+body+
+    '<p class="vnote"><span>'+(src.kind==='hudl'?'映像は hudl で配信しています。':'映像は YouTube で配信しています。')+'</span>'+(lv?'<span>上の点数は、公式記録の入力からの速報です（映像より先や後に変わることがあります）。</span>':'')+'</p></section>';
+}
+/* 描き直し：同じ映像が出ているときは、映像のまわりだけ入れかえる */
+function setMain(html){
+  const main=$('main'),old=main.querySelector(':scope>#mvid');
+  if(old){
+    const t=document.createElement('div');t.innerHTML=html;
+    const nv=t.querySelector(':scope>#mvid');
+    if(nv&&nv.dataset.key===old.dataset.key){
+      old.querySelector('.vtop').replaceWith(nv.querySelector('.vtop'));
+      while(old.previousSibling)old.previousSibling.remove();
+      while(old.nextSibling)old.nextSibling.remove();
+      const kids=[...t.childNodes],i=kids.indexOf(nv);
+      kids.slice(0,i).forEach(n=>main.insertBefore(n,old));kids.slice(i+1).forEach(n=>main.appendChild(n));
+      goalOff();return;
+    }
+  }
+  main.innerHTML=html;goalOff();
+}
+/* ゴールの合図は数秒で消す */
+function goalOff(){const g=document.querySelector('#mvid .vtel.goal');if(g)setTimeout(()=>g.classList.remove('goal'),4000);}
+if(window.JUFA_VIDEO)JUFA_VIDEO.on(()=>{
+  if(!DATA)return;
+  if(DETAIL&&S.match){rMatch();return;}
+  if(S.tab==='schedule'){const y=window.scrollY;render();window.scrollTo(0,y);}
+});
 
 if(window.JUFA_LIVE)JUFA_LIVE.on(()=>{
   if(!DATA)return;
